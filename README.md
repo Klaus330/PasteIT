@@ -14,9 +14,9 @@ Codul va fi menținut un număr de zile (stabilit de utilizatorul ce a postat).\
 Alte opțiuni și idei sunt binevenite.
 
 ## Colaborators
--Rata Cristina Iulia
--Sandu Viorel Adelin
--Popa Claudiu
+- Rata Cristina Iulia
+- Sandu Viorel Adelin
+- Popa Claudiu
 
 ## License
 **GNU GENERAL PUBLIC LICENSE**
