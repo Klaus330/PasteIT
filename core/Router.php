@@ -44,6 +44,7 @@ class Router
         if(is_string($callback)){
             if(strpos($callback, '@')){
                 [$controller, $action] = explode("@",$callback);
+
                 return $this->callAction($controller, $action);
             }
             return $this->renderView($callback);
@@ -56,7 +57,7 @@ class Router
     public function callAction($controller, $action) {
         $controller = "App\\Controllers\\${controller}";
         $controller = new $controller;
-
+        Application::$app->setController($controller);
         if(! method_exists($controller,$action)){
             throw new Exception("{$controller} doesn not to respond to the action {$action}");
         }
@@ -74,8 +75,9 @@ class Router
 
     public function layoutContent()
     {
+        $layout = Application::$app->controller->getLayout();
         ob_start();
-        include Application::$ROOT_DIR."/resources/views/layouts/main.view.php";
+        include Application::$ROOT_DIR."/resources/views/layouts/{$layout}.view.php";
         return ob_get_clean();
     }
 
