@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+/// Event wrapper - DEFAULT MIXIN THAT WAS INCLUDED, CONSIDER REMOVING
+/// @author Harry Roberts
+/// @param {Bool} $self [false] - Whether or not to include current selector
+/// @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+// Basic font style elements
+@mixin basic-font(
+  $style: $primary-font-style,
+  $weight: $primary-font-weight,
+  $size: $primary-font-size,
+  $line-height: $primary-line-height) {
+  font : {
+    style: $style;
+    weight: $weight;
+    size: $size;
+  }
+  line-height: $line-height;
+}
+

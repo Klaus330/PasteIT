@@ -1,0 +1,28 @@
+/*
+  Commonly known Sass structure "7-1 pattern" followed.
+  Each folder contains READMEs for more information.
+  Only 'Themes' folder was omitted, because we have only one theme.
+*/
+// 1. Configuration and helpers
+@import 'abstracts/functions',
+  'abstracts/mixins',
+  'abstracts/variables';
+
+// 2. Base stuff
+@import 'base/base',
+  'base/fonts',
+  'base/typography',
+  'base/helpers';
+
+// 3. Components
+
+
+// 4. Layout-related sections
+
+
+// 5. Page-specific styles
+
+
+// 6. Vendors
+@import 'vendors/normalize';
+
