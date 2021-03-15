@@ -25,7 +25,7 @@ class Application{
         $this->request = new Request();
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
-
+        $this->controller = new Controller();
     }
 
     public static function bind($key, $value)
