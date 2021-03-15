@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Core\Application;
 use App\Core\Controller;
+use App\Core\Request;
 
 class ContactController extends Controller
 {
@@ -13,5 +13,9 @@ class ContactController extends Controller
         ];
 
         return $this->render('contact', $params);
+    }
+
+    public function store(Request $request){
+        $body = $request->getBody();
     }
 }
