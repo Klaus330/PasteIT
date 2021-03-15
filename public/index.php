@@ -8,6 +8,6 @@ $app->router->get('/', function(){
     return 'Hello World';
 });
 
-$app->router->get('/contact', [\App\Controllers\ContactController::class, 'index']);
+$app->router->get('/contact', "ContactController@index");
 
 $app->run();

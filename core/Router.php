@@ -42,11 +42,27 @@ class Router
         }
 
         if(is_string($callback)){
+            if(strpos($callback, '@')){
+                [$controller, $action] = explode("@",$callback);
+                return $this->callAction($controller, $action);
+            }
             return $this->renderView($callback);
         }
 
         return call_user_func($callback);
     }
+
+
+    public function callAction($controller, $action) {
+        $controller = "App\\Controllers\\${controller}";
+        $controller = new $controller;
+
+        if(! method_exists($controller,$action)){
+            throw new Exception("{$controller} doesn not to respond to the action {$action}");
+        }
+        return $controller->$action();
+    }
+
 
     public function renderView($view, $params = [])
     {
