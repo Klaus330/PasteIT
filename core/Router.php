@@ -60,7 +60,7 @@ class Router
         if(! method_exists($controller,$action)){
             throw new Exception("{$controller} doesn not to respond to the action {$action}");
         }
-        return $controller->$action();
+        return $controller->$action($this->request);
     }
 
 
