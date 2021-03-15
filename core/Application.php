@@ -9,6 +9,9 @@ class Application{
     public Request $request;
     public Response $response;
     public static Application $app;
+    public Controller $controller;
+
+
     protected static $registry = [];
 
     /**
@@ -42,5 +45,13 @@ class Application{
     public function run()
     {
         echo $this->router->resolve();
+    }
+
+    /**
+     * @param Controller $controller
+     */
+    public function setController(Controller $controller): void
+    {
+        $this->controller = $controller;
     }
 }
