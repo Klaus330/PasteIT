@@ -19,7 +19,7 @@ class Request
         return $path;
     }
 
-    public function getMethod()
+    public function method()
     {
         return strtolower($_SERVER["REQUEST_METHOD"]);
     }
