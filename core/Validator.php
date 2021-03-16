@@ -63,4 +63,14 @@ class Validator
         }
         return self::$errors;
     }
+    public static function getErrorMessages(){
+        return[
+            Validator::RULE_REQUIRED => "This field is required",
+            Validator::RULE_EMAIL => "This field must be a valid email adress",
+            Validator::RULE_MAX => "Max length of this field must be {max}",
+            Validator::RULE_MIN => "Min length of this field must be {min}",
+            Validator::RULE_MATCH => "This field must be the same as {match}",
+            Validator::RULE_UNIQUE => "The value of this field must be unique"
+        ];
+    }
 }
