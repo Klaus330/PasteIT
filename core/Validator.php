@@ -63,6 +63,20 @@ class Validator
         }
         return self::$errors;
     }
+
+    protected static function addError($attribute, $rule, $params = []){
+        $message =  Validator::getErrorMessages()[$rule] ?? '';
+
+        if(!empty($params)){
+            foreach ($params as $key => $value){
+                $message = str_replace("{{$key}}", $value, $message);
+            }
+        }
+
+        self::$errors[$attribute][] = $message;
+
+    }
+
     public static function getErrorMessages(){
         return[
             Validator::RULE_REQUIRED => "This field is required",
