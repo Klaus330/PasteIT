@@ -16,4 +16,11 @@ class User extends Model
         echo "register";
     }
 
+    public function rules()
+    {
+        return [
+            'username' => [Validator::RULE_REQUIRED],
+            'password' => [Validator::RULE_REQUIRED, [Validator::RULE_MIN, 'min' => 6]]
+        ];
+    }
 }
