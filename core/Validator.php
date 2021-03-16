@@ -11,6 +11,11 @@ class Validator
     public const RULE_MATCH = 'match';
     public const RULE_MIN = 'min';
     public const RULE_MAX = 'min';
+
+    protected static $errors = [];
+
+
+
     public static function validate($data, $rulesArray)
     {
         if($rulesArray === [] || $data === [])
