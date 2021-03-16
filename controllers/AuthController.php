@@ -1,10 +1,11 @@
 <?php
 
 
-namespace App\Controllers;
+namespace app\controllers;
 
-use App\Core\Controller;
-use App\Core\Request;
+
+use app\core\Controller;
+use app\core\Request;
 
 class AuthController extends Controller
 {
