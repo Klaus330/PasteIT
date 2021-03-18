@@ -1,7 +1,5 @@
 <?php
-$app->router->get('/', function(){
-    return 'Hello World';
-});
+$app->router->get('/', "HomeController@index");
 
 $app->router->get('/contact', "ContactController@index");
 
