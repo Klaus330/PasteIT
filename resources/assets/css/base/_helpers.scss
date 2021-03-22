@@ -54,18 +54,3 @@
   width: 1px;
 }
 
-
-.hidden-on-small-screen{
-  display: none;
-  @include mq(medium){
-    display: flex;
-  }
-}
-
-
-.hidden-on-larger-screen{
-  display: block;
-  @include mq(medium){
-    display: none;
-  }
-}
