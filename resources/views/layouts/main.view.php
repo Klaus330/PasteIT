@@ -6,16 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="/css/style.css">
-
 </head>
 <body>
-<?php require dirname(__DIR__)."/partials/nav.view.php" ?>
+    {{nav}}
 
-<div class="container">
-    {{content}}
-</div>
+    <main class="container">
+        {{content}}
+    </main>
 
-
+    {{footer}}
 <script src="/js/script.js"></script>
 </body>
 </html>

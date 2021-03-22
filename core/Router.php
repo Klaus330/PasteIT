@@ -67,10 +67,9 @@ class Router
 
     public function renderView($view, $params = [])
     {
-        $layoutContent = $this->layoutContent();
         $viewContent  = $this->renderOnlyView($view, $params);
-        return str_replace('{{content}}', $viewContent, $layoutContent);
 
+        return $this->renderContent($viewContent);
     }
 
     public function layoutContent()
@@ -91,11 +90,20 @@ class Router
         include Application::$ROOT_DIR."/resources/views/{$view}.view.php";
         return ob_get_clean();
     }
+    protected function renderPartial($partial){
+        ob_start();
+        include Application::$ROOT_DIR."/resources/views/partials/{$partial}.view.php";
+        return ob_get_clean();
+    }
 
     public function renderContent($viewContent)
     {
         $layoutContent = $this->layoutContent();
-        return str_replace('{{content}}', $viewContent, $layoutContent);
+        $nav = $this->renderPartial('nav');
+        $footer = $this->renderPartial('footer');
+        $layoutContent = str_replace('{{content}}', $viewContent, $layoutContent);
+        $layoutContent = str_replace('{{nav}}', $nav, $layoutContent);
 
+        return str_replace('{{footer}}', $footer, $layoutContent);
     }
 }
