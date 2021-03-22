@@ -15,7 +15,8 @@
   'base/helpers';
 
 // 3. Components
-
+@import 'components/alerts',
+        'components/navbar';
 
 // 4. Layout-related sections
 
@@ -24,5 +25,5 @@
 
 
 // 6. Vendors
-@import 'vendors/normalize';
+//@import 'vendors/normalize';
 
