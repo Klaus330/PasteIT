@@ -37,3 +37,39 @@
   line-height: $line-height;
 }
 
+// Media query
+@mixin mq($mq-breakpoint, $mq-breakpoints: $breakpoints) {
+  // If $mq-breakpoint is a key that exists in
+  // $mq-breakpoints, get and use the value
+  @if map-has-key($mq-breakpoints, $mq-breakpoint) {
+    $mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
+  }
+
+  @media screen and (min-width: #{$mq-breakpoint}) {
+    @content;
+  }
+}
+
+@mixin mqmax($mq-breakpoint, $mq-breakpoints: $breakpoints) {
+  // If $mq-breakpoint is a key that exists in
+  // $mq-breakpoints, get and use the value
+  @if map-has-key($mq-breakpoints, $mq-breakpoint) {
+    $mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
+    @media (max-width: #{$mq-breakpoint}) {
+      @content;
+    }
+  }
+  @else {
+    @media screen and (max-width: $mq-breakpoint) {
+      @content;
+    }
+  }
+
+}
+
+@mixin mqbetween($min-mq-breakpoint, $max-mq-breakpoint) {
+
+  @media (min-width: $min-mq-breakpoint) and (max-width: $max-mq-breakpoint) {
+    @content;
+  }
+}
