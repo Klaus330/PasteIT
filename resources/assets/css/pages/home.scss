@@ -36,3 +36,10 @@
     }
   }
 }
+
+.home-form{
+  width:100%;
+  @include mq(medium){
+    width:70%;
+  }
+}
