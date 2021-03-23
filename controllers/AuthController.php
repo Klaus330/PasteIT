@@ -14,12 +14,12 @@ class AuthController extends Controller
 
     public function index()
     {
-
+        return $this->render("auth/login");
     }
 
     public function login(Request $request)
     {
-
+        return $this->render("home");
     }
 
     public function register(Request $request)

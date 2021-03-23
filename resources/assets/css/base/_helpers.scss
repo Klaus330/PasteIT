@@ -69,3 +69,12 @@ p-1{
 .mr-1{
   margin-right : map-get($map: $margins, $key: "button-4xs");
 }
+
+//margin top
+.mt-1{
+  margin-top : map-get($map: $margins, $key: "button-4xs");
+}
+
+.mt-2{
+  margin-top : map-get($map: $margins, $key: "button-3xs");
+}
