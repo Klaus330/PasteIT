@@ -3,3 +3,24 @@
     color: black;
     font-size: 14px;
 }
+
+
+.form-label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.form-container {
+    border-radius: 15px;
+    background-color: #f5e9e9;
+    padding: 20px;
+}
+
+
+.form-group {
+    display: flex;
+    flex: 0 0 auto;
+    flex-flow: row wrap;
+    align-items: center;
+    margin-bottom: 0;
+}

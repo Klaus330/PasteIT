@@ -15,10 +15,12 @@
   'base/helpers';
 
 // 3. Components
+
 @import 'components/alerts',
         'components/navbar',
         'components/lists',
-        'components/footer';
+        'components/footer',
+        'components/forms';
 
 // 4. Layout-related sections
 
