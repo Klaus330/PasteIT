@@ -6,6 +6,8 @@ namespace app\core;
 
 class Request
 {
+    protected $errors;
+
     public function getPath()
     {
         $path = $_SERVER['REQUEST_URI'] ?? '/';
@@ -63,4 +65,20 @@ class Request
         return $body;
     }
 
+    public function validate($rules)
+    {
+        $this->errors = Validator::validate($this->getBody(), $rules);
+        if(empty($this->errors)){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
 }
