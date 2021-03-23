@@ -8,10 +8,13 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+    {{nav}}
 
-<div class="container">
-    {{content}}
-</div>
+    <main class="container">
+        {{content}}
+    </main>
 
+    {{footer}}
+<script src="/js/script.js"></script>
 </body>
 </html>
