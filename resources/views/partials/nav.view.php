@@ -16,8 +16,8 @@
             </ul>
         </div>
         <div class="navbar-container collapse">
-            <a href="/login" class="btn btn-primary-outline">Login</a>
-            <a href="/register" class="btn btn-primary">Sign Up</a>
+            <a href="/login" class="btn btn-light-outline btn-sm mr-1">Login</a>
+            <a href="/register" class="btn btn-primary btn-sm">Sign Up</a>
         </div>
         <button class="navbar-toggler" type="button" id="nav-toggler">
             <span class="navbar-toggler-icon"></span>
