@@ -18,6 +18,7 @@ class Application{
      * Application constructor.
      * @param $router
      */
+    
     public function __construct($rootPath)
     {
         self::$ROOT_DIR = $rootPath;
