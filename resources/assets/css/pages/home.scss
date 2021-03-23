@@ -1,0 +1,38 @@
+.home-section{
+  background: $primary-color;
+  margin-bottom: 2.5rem;
+  padding: 0.75rem;
+}
+.home-first{
+  display: flex;
+
+}
+.home-paste{
+  flex:1;
+
+  textarea{
+    width: 100%;
+    background: $secondary-color;
+    outline: none;
+    border: 1px solid $primary-gray;
+    border-radius: 4px;
+    resize: none;
+    color: white;
+  }
+}
+.home-aside{
+  padding-left: 1.3rem;
+  padding-right: 2rem;
+  .list-group{
+    .list-group-item{
+      border-top: 0.5px solid $primary-gray;
+      padding: 0.5rem 0;
+      a{
+        font-size:map-get($fontSizes, 'text-2xs');
+      }
+      span{
+        font-size: map-get($fontSizes, 'text-3xs');
+      }
+    }
+  }
+}

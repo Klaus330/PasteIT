@@ -16,13 +16,15 @@
 
 // 3. Components
 @import 'components/alerts',
-        'components/navbar';
+        'components/navbar',
+        'components/lists',
+        'components/footer';
 
 // 4. Layout-related sections
 
 
 // 5. Page-specific styles
-
+@import 'pages/home';
 
 // 6. Vendors
 //@import 'vendors/normalize';
