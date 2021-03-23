@@ -54,7 +54,7 @@
                     <input type="text" placeholder="Title" class="form-control">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary">Create New Paste</button>
+                    <button class="btn btn-dark">Create New Paste</button>
                 </div>
             </form>
             <?php include "partials/alerts/guestalert.view.php" ?>
