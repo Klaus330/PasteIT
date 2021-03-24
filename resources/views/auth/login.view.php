@@ -2,17 +2,25 @@
     <h1>Login</h1>
     <div class="row">
         <form class="login-form" action="/login" method="POST">
-            <div class="form-group" >
-                <label for="username" class="form-label">
-                    Username:
-                </label>
-                <input type="text" name="username" class="form-control"/>
+            <div class="grid" >
+                <div class="col-md-3 col-3">
+                    <label for="username" class="form-label">
+                        Username:
+                    </label>
+                </div>
+                <div class="col-md-9 col-12">
+                    <input type="text" name="username" class="form-control"/>
+                </div>
             </div>
-            <div class="form-group mt-2">
-                <label for="password" class="form-label">
-                    Password:
-                </label>
-                <input type="password" name="password" class="form-control"/>
+            <div class="grid mt-2">
+                <div class="col-md-3 col-3">
+                    <label for="password" class="form-label">
+                        Password:
+                    </label>
+                </div>
+                <div class="col-md-9 col-12">
+                    <input type="password" name="password" class="form-control"/>
+                </div>
             </div>
             <div class="form-group mt-2 login-buttons">
                 <button type="submit" class="btn btn-primary">
