@@ -62,8 +62,12 @@
   background: $primary-color;
 }
 /* Paddings Helpers */
-p-1 {
+.p-1 {
   padding: 0.25rem;
+}
+
+.pl-4 {
+  padding-left : 1.25rem;
 }
 
 /* Margins Helpers */
@@ -350,6 +354,14 @@ p-1 {
     display: block;
   }
 }
+
+.md-hidden{
+  display: block !important;
+  @include mq(medium){
+    display: none !important;
+  }
+}
+
 
 
 /* Text Helpers */

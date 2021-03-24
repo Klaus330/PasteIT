@@ -61,12 +61,27 @@
     }
 }
 
+.btn-info {
+    color: #000;
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+}
+
 // BUTTON SIZES
 
 .btn-sm {
     padding: 0.35rem 0.35rem;
     font-size: 0.8rem;
 }
+
+.btn-lg {
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+}
+
+
+
+
 
 
 
