@@ -1,0 +1,35 @@
+.register-form{
+    background: $primary-color;
+    padding: 2rem 2rem;
+    width: 100%;
+    margin: 0 auto;
+
+    @include mq(medium)
+    {
+      width:70%;
+    }
+
+    @include mq(large)
+    {
+      width:50%;
+    }
+
+    .form-group{
+      display: flex ;
+      flex-flow: column;
+      flex-direction: column;
+      align-items: start;
+      @include mq(medium)
+      {
+        flex-direction: row;
+      }
+    }
+
+    .login-buttons{
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items:  flex-end;
+    }
+
+  }

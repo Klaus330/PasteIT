@@ -16,11 +16,14 @@
     align-content: center;
     padding-top: .3125rem;
     padding-bottom: .3125rem;
-    margin-right: 1rem;
     font-size: 1.25rem;
     line-height: inherit;
     white-space: nowrap;
     text-decoration: none;
+
+    @include mq(medium){
+      margin-right: 1rem;
+    }
   }
 
   .navbar-container {
@@ -170,5 +173,14 @@
 
 }
 
-
+.header-paste-btn {
+    background: $succes-btn-color url(/img/svg/add.svg) no-repeat 4px center;
+    background-size: 13px 13px;
+    color:white;
+    padding-left : 1.3rem;
+    
+    @include mq(medium){
+      margin-left: 3px;
+    }
+}
 

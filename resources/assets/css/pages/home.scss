@@ -1,16 +1,21 @@
-.home-section{
-  background: $primary-color;
+.home-section {
   margin-bottom: 2.5rem;
   padding: 0.75rem;
+
+  @include mq(medium){
+    background: $primary-color;
+  }
 }
-.home-first{
+
+.home-first {
   display: flex;
 
 }
-.home-paste{
-  flex:1;
 
-  textarea{
+.home-paste {
+  flex: 1;
+
+  textarea {
     width: 100%;
     background: $secondary-color;
     outline: none;
@@ -20,19 +25,30 @@
     color: white;
   }
 }
-.home-aside{
+
+.home-aside {
   padding-left: 1.3rem;
   padding-right: 2rem;
-  .list-group{
-    .list-group-item{
+
+  .list-group {
+    .list-group-item {
       border-top: 0.5px solid $primary-gray;
       padding: 0.5rem 0;
-      a{
-        font-size:map-get($fontSizes, 'text-2xs');
+
+      a {
+        font-size: map-get($fontSizes, 'text-2xs');
       }
-      span{
+
+      span {
         font-size: map-get($fontSizes, 'text-3xs');
       }
     }
+  }
+}
+
+.home-form {
+  width: 100%;
+  @include mq(medium) {
+    width: 70%;
   }
 }

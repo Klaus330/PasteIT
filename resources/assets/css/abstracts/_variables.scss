@@ -21,6 +21,12 @@ $scrollbar-primary-color: $primary-color !default;
 $scrollbar-bg-color: #000 !default;
 $secondary-btn-color: rgb(245, 245, 245) !default;
 
+// BUTTON COLORS
+$primary-btn-color : #fff !default;
+$danger-btn-color :  #dc3545 !default;
+$succes-btn-color : #198754 !default;
+$dark-btn-color : #202020 !default;
+
 // FONT
 // Values taken from the Figma scheme
 $primary-font-family: 'Poppins', sans-serif;
@@ -146,11 +152,11 @@ $margins:(
         'image': 2.5rem,
         'image-md': 3rem,
         'image-lg': 6rem,
-        'generic': 0.25rem,
-        'generic-xs': 0.5rem,
-        'generix-2xs': 0.75rem,
-        'generic-3xs': 1rem,
-        'generic-4xs': 1.25rem,
+        'generic': 1.5rem,
+        'generic-xs':1.25rem,
+        'generic-2xs': 1rem,
+        'generic-3xs': 0.75rem,
+        'generic-4xs': 0.5rem,
         'generic-sm': 1.25rem,
         'generix-sm': 1.5rem,
         'generic-2sm': 1.5rem,

@@ -15,16 +15,22 @@
   'base/helpers';
 
 // 3. Components
+
 @import 'components/alerts',
+        'components/buttons',
         'components/navbar',
         'components/lists',
-        'components/footer';
+        'components/footer',
+        'components/forms';
+
 
 // 4. Layout-related sections
-
+@import 'layout/sections';
 
 // 5. Page-specific styles
-@import 'pages/home';
+@import 'pages/home',
+        'pages/login',
+        'pages/register';
 
 // 6. Vendors
 //@import 'vendors/normalize';
