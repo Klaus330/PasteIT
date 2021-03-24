@@ -9,7 +9,7 @@
                     </label>
                 </div>
                 <div class="col-md-9 col-12">
-                    <input type="text" name="username" class="form-control"/>
+                    <input type="text" name="username" class="form-control" id="username"/>
                 </div>
             </div>
             <div class="grid mt-2">
@@ -19,7 +19,7 @@
                     </label>
                 </div>
                 <div class="col-md-9 col-12">
-                    <input type="password" name="password" class="form-control"/>
+                    <input type="password" name="password" class="form-control" id="password"/>
                 </div>
             </div>
             <div class="form-group mt-2 login-buttons">
