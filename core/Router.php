@@ -80,7 +80,7 @@ class Router
         return ob_get_clean();
     }
 
-    public function renderOnlyView($view, $params = []){
+    protected function renderOnlyView($view, $params = []){
 
         foreach($params as $key => $value){
             $$key = $value;
@@ -90,10 +90,9 @@ class Router
         include Application::$ROOT_DIR."/resources/views/{$view}.view.php";
         return ob_get_clean();
     }
-    protected function renderPartial($partial){
-        ob_start();
-        include Application::$ROOT_DIR."/resources/views/partials/{$partial}.view.php";
-        return ob_get_clean();
+
+    public function renderPartial($partial, $params = []){
+        return $this->renderOnlyView("/partials/{$partial}", $params);
     }
 
     public function renderContent($viewContent)
