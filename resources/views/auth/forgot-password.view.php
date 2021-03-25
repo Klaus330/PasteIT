@@ -9,7 +9,7 @@
                     </label>
                 </div>
                 <div class="col-md-9 col-12">
-                    <input type="text" name="email" class="form-control" id="email"/>
+                    <input type="text" name="email" class="form-control" id="email" placeholder="email"/>
                 </div>
             </div>
 

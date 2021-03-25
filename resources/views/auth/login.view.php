@@ -9,7 +9,7 @@
                     </label>
                 </div>
                 <div class="col-md-9 col-12">
-                    <input type="text" name="username" class="form-control" id="username"/>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="username"/>
                 </div>
             </div>
             <div class="grid mt-2">
@@ -19,7 +19,7 @@
                     </label>
                 </div>
                 <div class="col-md-9 col-12">
-                    <input type="password" name="password" class="form-control" id="password"/>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="password"/>
                 </div>
             </div>
             <div class="form-group mt-2 login-buttons">
@@ -32,10 +32,10 @@
                 </a>
             </div>
             <div class="grid">
-                <div class="col-md-offset-8">
+                <div class="col-md-8 col-5 ">
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 col-7 mt-2">
                     <a href="/forgot-password" class="btn-link">
                         Forgot your password?
                     </a>
