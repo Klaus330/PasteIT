@@ -1,9 +1,10 @@
-<section class="paste-section">
+<section class="flex">
+    <section class="paste-section">
     <div class="row">
         <div class="paste-info-content">
 
             <div class="paste-user-icon">
-                <img src="https://via.placeholder.com/150/" alt="user icon"/>
+                <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="user icon"/>
             </div>
 
             <div class="paste-info">
@@ -22,6 +23,13 @@
                         </span>
                     </div>
 
+                    <div class="expire-date">
+                        <img src="/img/svg/time.svg" />
+                        <span>
+                            Expiration date
+                        </span>
+                    </div>
+
                 </div>
             </div>
 
@@ -29,6 +37,11 @@
     </div>
 
     <div class="row">
+        <div class="grid">
+            <div class="highlighted-code col-10">
+                <h1>CEVA</h1>
+            </div>
+        </div>
 
     </div>
 
@@ -45,9 +58,13 @@
 
         </div>
     </div>
+        </section>
+
+
+    <aside class="sm-hidden">
+        <h2>aside</h2>
+    </aside>
+
 </section>
 
 
-<aside>
-
-</aside>
