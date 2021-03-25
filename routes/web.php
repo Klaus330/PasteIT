@@ -9,4 +9,5 @@ $app->router->get('/register', "AuthController@register");
 $app->router->post('/register', "AuthController@register");
 $app->router->get('/pastes', "PasteController@index");
 $app->router->get("/forgot-password","AuthController@forgotPassword");
+$app->router->get("/reset-password","AuthController@resetPassword");
 
