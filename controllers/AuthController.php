@@ -46,7 +46,11 @@ class AuthController extends Controller
 
     public function forgotPassword(Request $request)
     {
-
         return $this->render("auth/forgot-password");
+    }
+
+    public function resetPassword(Request $request)
+    {
+        return $this->render("auth/reset-password");
     }
 }
