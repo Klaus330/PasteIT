@@ -1,7 +1,7 @@
 <div class="row">
     <h1>Login</h1>
     <div class="row">
-        <form class="login-form" action="/login" method="POST">
+        <form class="login-form simple-form" action="/login" method="POST">
             <div class="grid" >
                 <div class="col-md-3 col-3">
                     <label for="username" class="form-label">
@@ -30,6 +30,17 @@
                 <a href="/register" class="btn btn-dark mr-1">
                     Create new account
                 </a>
+            </div>
+            <div class="grid">
+                <div class="col-md-offset-8">
+                </div>
+
+                <div class="col-md-4">
+                    <a href="/forgot-password" class="btn-link">
+                        Forgot your password?
+                    </a>
+                </div>
+
             </div>
 
         </form>
