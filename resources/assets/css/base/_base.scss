@@ -24,6 +24,12 @@ html{
   height: 100%;
 }
 
+main{
+  min-height: 100%;
+  display:flex;
+  flex-direction: column;
+}
+
 body{
   background: $secondary-color;
   margin: 0;
