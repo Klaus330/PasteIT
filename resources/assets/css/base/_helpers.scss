@@ -55,7 +55,7 @@
 }
 
 .mr-auto {
-  margin-right: auto !important;
+  margin-right: auto;
 }
 
 .bg-primary {
@@ -356,9 +356,9 @@
 }
 
 .md-hidden{
-  display: block !important;
+  display: block ;
   @include mq(medium){
-    display: none !important;
+    display: none;
   }
 }
 
