@@ -16,4 +16,8 @@ class UserController extends Controller
         return $this->render('/user/profile');
     }
 
+    public  function myPastes(){
+        return $this->render('/user/mypastes');
+    }
+
 }

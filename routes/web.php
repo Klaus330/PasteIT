@@ -12,3 +12,4 @@ $app->router->get("/forgot-password","AuthController@forgotPassword");
 $app->router->get("/reset-password","AuthController@resetPassword");
 $app->router->get("/user/settings","UserController@settings");
 $app->router->get("/user/profile","UserController@profile");
+$app->router->get("/user/mypastes","UserController@myPastes");
