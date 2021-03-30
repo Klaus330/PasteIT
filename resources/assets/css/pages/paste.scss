@@ -93,11 +93,14 @@
         background-color: $secondary-color;
         color : $primary-gray;
         padding: 1rem;
-        outline: none;
         font-size: map-get($map: $fontSizes, $key:"text-3xs" );
         border: 1px solid #444;
         border-radius: 3px;
-        overflow-wrap : break-word ;
+        overflow-wrap : break-word;
+
+        &:focus{
+            outline: none;
+        }
     }
 
 }

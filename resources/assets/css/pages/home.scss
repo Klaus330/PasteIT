@@ -17,12 +17,14 @@
 
   textarea {
     width: 100%;
-    background: $secondary-color;
-    outline: none;
+    background: $secondary-color;    
     border: 1px solid $primary-gray;
     border-radius: 4px;
     resize: none;
     color: white;
+    &:focus{
+      outline: none;
+    }
   }
 }
 
