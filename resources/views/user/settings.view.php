@@ -1,7 +1,7 @@
 <section class="flex">
-    <section class="settings-section">
+    <section class="section">
         <div class="row">
-            <h4 class="section-title">My Settings</h4>
+            <h4 class="section-title mb-2">My Settings</h4>
             <div class="settings-content">
                 <form class="home-form" action="/user/settings" method="POST">
                     <div class="grid">
