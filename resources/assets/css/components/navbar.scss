@@ -32,7 +32,7 @@
     align-items: center;
     justify-content: space-between;
     @include mq(medium) {
-      justify-content: normal;
+      justify-content: flex-start;
     }
   }
 
