@@ -12,4 +12,8 @@ class UserController extends Controller
         return $this->render('/user/settings');
     }
 
+    public function profile(){
+        return $this->render('/user/profile');
+    }
+
 }

@@ -2,3 +2,9 @@
   border-bottom: 1px solid lighten($primary-gray, 10%);
   padding-bottom: 0.5rem;
 }
+
+.section{
+  background: $primary-color;
+  padding: 1rem;
+  flex: 1;
+}
