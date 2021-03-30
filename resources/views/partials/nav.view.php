@@ -1,7 +1,7 @@
 <nav class="navbar navbar-dark">
     <div class="container navbar-container">
         <a href="/" class="navbar-brand">PasteIt</a>
-        <a href="/" class="btn btn-succes header-paste-btn md-hidden btn-sm">Paste</a>
+        <a href="/" class="btn btn-succes header-paste-btn btn-sm navbar-action-button">Paste</a>
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav">

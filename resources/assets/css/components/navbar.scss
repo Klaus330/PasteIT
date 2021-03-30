@@ -184,3 +184,9 @@
     }
 }
 
+.navbar-action-button{
+  display: block ;
+  @include mq(medium){
+    display: none;
+  }
+}
