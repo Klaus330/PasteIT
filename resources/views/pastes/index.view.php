@@ -38,8 +38,35 @@
 
     <div class="row">
         <div class="grid">
-            <div class="highlighted-code col-10">
-                <h1>CEVA</h1>
+            <div class="highlight-container col-12">
+                <div class="toolbar">
+
+                    <div class="">
+                        <a class="btn-toolbar" href="#">C++</a>
+                    </div>
+
+                    <div>
+                        <a class="btn-toolbar" href="#">raw</a>
+                        <a class="btn-toolbar" href="#">download</a>
+                    </div>
+
+                </div>
+                <div class="highlight-pre">
+                    <div class="source-code">
+                        <ol class="source">
+                            <li class="line">
+                                <span class="line-number">1.</span>
+                                <span class="fn-call">my_function</span>
+                                (<span class="string">"ce imi place web-ul"</span>)
+                            </li>
+                            <li class="line">
+                                <span class="line-number">2.</span>
+                                <span class="fn-call">my_function</span>
+                                (<span class="string">"ce imi place web-ul"</span>)
+                            </li>
+                        </ol>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -61,8 +88,26 @@
         </section>
 
 
-    <aside class="sm-hidden">
-        <h2>aside</h2>
+    <aside class="home-aside sm-hidden settings-aside">
+        <h4>Public Pastes</h4>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <a href="">Lorem</a>
+                <span>C++ | 33sec ago</span>
+            </li>
+            <li class="list-group-item">
+                <a href="">Lorem</a>
+                <span>C++ | 33sec ago</span>
+            </li>
+            <li class="list-group-item">
+                <a href="">Lorem</a>
+                <span>C++ | 33sec ago</span>
+            </li>
+            <li class="list-group-item">
+                <a href="">Lorem</a>
+                <span>C++ | 33sec ago</span>
+            </li>
+        </ul>
     </aside>
 
 </section>
