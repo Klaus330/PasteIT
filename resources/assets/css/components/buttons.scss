@@ -51,6 +51,15 @@
     border-color: $succes-btn-color;
 }
 
+.btn-toolbar {
+    background-color: $primary-color;
+    color: #81b6de;
+    padding: 0.5rem;
+    &:hover{
+        color:#ddd;
+    }
+}
+
 .btn-dark {
     color: #fff;
     background-color:$dark-btn-color;
