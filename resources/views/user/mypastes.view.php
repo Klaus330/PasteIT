@@ -11,7 +11,7 @@
                         <div class="card-content">
                             <h2 class="card-title">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="#">Read More</a>
                         </div>
                     </div>
                     <div class="card">
@@ -21,7 +21,7 @@
                         <div class="card-content">
                             <h2 class="card-title">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="#">Read More</a>
                         </div>
                     </div>
                     <div class="card">
@@ -31,7 +31,7 @@
                         <div class="card-content">
                             <h2 class="card-title">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="#">Read More</a>
                         </div>
                     </div>
                     <div class="card">
@@ -41,7 +41,7 @@
                         <div class="card-content">
                             <h2 class="card-title">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="#">Read More</a>
                         </div>
                     </div>
                     <div class="card">
@@ -51,27 +51,27 @@
                         <div class="card-content">
                             <h2 class="card-title">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="#">Read More</a>
                         </div>
                     </div>
                     <div class="card">
-                        <span>
+                        <span class="card-blocks">
 
                         </span>
                         <div class="card-content">
                             <h2 class="card-title">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a href="#">Read More</a>
+                            <a class="btn btn-light btn-sm"href="#">Read More</a>
                         </div>
                     </div>
                     <div class="card">
-                        <span>
+                        <span class="card-blocks">
 
                         </span>
                         <div class="card-content">
                             <h2 class="card-title">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="#">Read More</a>
                         </div>
                     </div>
                 </div>
