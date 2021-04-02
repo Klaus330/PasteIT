@@ -9,6 +9,7 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+  border :1px solid #707070
 }
 
 .line-number {
@@ -25,6 +26,7 @@
   display: flex;
   align-items: flex-start;
   width: 100%;
+  color: white;
 }
 
 .toolbar {
@@ -34,3 +36,51 @@
   padding: 0.75rem;
   border: 1px solid #707070;
 }
+
+.fn-call {
+  color: yellow;
+}
+
+.string {
+  color: #198754;
+}
+
+.keyword {
+  color: #0dcaf0;
+}
+
+.variable {
+  color: #ced4da;
+}
+
+.comment {
+  color: #444444;
+}
+
+.boolean {
+  color: #0d6efd;
+}
+
+.number {
+  color :#dc3545;
+}
+
+.html-open, .html-close {
+  color: #f6de55;
+}
+
+.symbol {
+  color: #79dea0;
+}
+
+.semicolumn {
+  color: #f58e0f;
+}
+
+
+
+
+
+
+
+
