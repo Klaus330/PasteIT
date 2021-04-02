@@ -64,6 +64,39 @@
                                 <span class="fn-call">my_function</span>
                                 (<span class="string">"ce imi place web-ul"</span>)
                             </li>
+                            <li class="line">
+                                <span class="line-number">3.</span>
+                                <span class="keyword">int</span>
+                                <span class="variable">x</span>
+                            </li>
+                            <li class="line">
+                                <span class="line-number">4.</span>
+                                <span class="comment">//</span>
+                            </li>
+                            <li class="line">
+                                <span class="line-number">4.</span>
+                                <span class="boolean">true</span>
+                            </li>
+                            <li class="line">
+                                <span class="line-number">4.</span>
+                                <span class="number">23</span>
+                            </li>
+                            <li class="line">
+                                <span class="line-number">4.</span>
+                                <span class="html-open">&lthtml&gt</span>
+                            </li>
+                            <li class="line">
+                                <span class="line-number">4.</span>
+                                <span class="html-close">&lt/html&gt</span>
+                            </li>
+                            <li class="line">
+                                <span class="line-number">4.</span>
+                                <span class="symbol">=</span>
+                            </li>
+                            <li class="line">
+                                <span class="line-number">4.</span>
+                                <span class="semicolumn">;</span>
+                            </li>
                         </ol>
                     </div>
                 </div>
