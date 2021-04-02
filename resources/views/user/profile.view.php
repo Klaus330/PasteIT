@@ -50,6 +50,17 @@
                     </div>
 
                     <div class="grid">
+                        <div class="col-5 col-md-3 flex align-start">
+                            <label class="form-label" for="exposure">Theme : </label>
+                        </div>
+                        <div class="col-7 col-md-6 flex align-center">
+                            <img src="/img/svg/sun.svg" />
+                            <input class="swipe-btn" type="checkbox" name="dark-mode" id="dark-mode"  />
+                            <img src="/img/svg/moon.svg " />
+                        </div>
+                    </div>
+
+                    <div class="grid">
                         <div class="col-12 col-md-3 mt-5 flex align-start">
                             <button class="btn btn-dark">Update Settings</button>
                         </div>

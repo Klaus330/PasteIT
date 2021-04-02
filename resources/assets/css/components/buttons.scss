@@ -92,6 +92,39 @@
     color: $link-color;
 }
 
+.swipe-btn {
+    position: relative;
+    width: 60px;
+    height: 30px;
+    background: #c6c6c6;
+    outline: none;
+    -webkit-appearance: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    transition: 0.5s;
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
+    &:checked {
+        background: $link-color;
+        &:before {
+            left: 60%;
+        }
+    }
+    &:before{
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-radius: 20px;
+        top: 0;
+        left: 0;
+        background: #fff;
+        transition: 0.5s;
+        transform: scale(1.1);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+}
+
 
 
 
