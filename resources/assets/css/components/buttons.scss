@@ -35,8 +35,7 @@
 }
 
 .btn-primary {
-    background-color : $primary-btn-color;
-    border: 1px solid $primary-btn-color;
+
 }
 
 .btn-danger {
@@ -52,8 +51,6 @@
 }
 
 .btn-toolbar {
-    background-color: $primary-color;
-    color: #81b6de;
     padding: 0.5rem;
     &:hover{
         color:#ddd;

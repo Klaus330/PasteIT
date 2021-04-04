@@ -1,0 +1,12 @@
+.home-section {
+  @include mq(medium) {
+    background: $primary-color-light;
+  }
+}
+
+.home-paste {
+
+  textarea {
+    background: $secondary-color-light;
+  }
+}

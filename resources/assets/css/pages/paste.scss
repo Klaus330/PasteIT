@@ -1,5 +1,4 @@
 .paste-section {
-    background: $primary-color;
     padding : 1rem;
     flex: 1;
     .paste-info-content {
@@ -90,7 +89,6 @@
     .paste-text-area {
         width: 100%;
         resize: none;
-        background-color: $secondary-color;
         color : $primary-gray;
         padding: 1rem;
         font-size: map-get($map: $fontSizes, $key:"text-3xs" );

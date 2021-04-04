@@ -57,9 +57,6 @@
   margin-right: auto;
 }
 
-.bg-primary {
-  background: $primary-color;
-}
 /* Paddings Helpers */
 .p-1 {
   padding: 0.25rem;
@@ -374,4 +371,8 @@
 
 .line-height-sm {
   line-height: 90%;
+}
+
+.text-dark{
+  color: black;
 }

@@ -1,4 +1,4 @@
-<div class="alert alert-light alert-outline-light">
+<div class="alert alert-info">
     <i></i>
     <p class="p-1">
         You are currently not logged in, this means you can not edit or delete anything you paste.

@@ -69,7 +69,7 @@
 
                 <aside class="related-links">
                     <h4>Account related pages</h4>
-                    <ul class="quick-links-list">
+                    <ul class="quick-links-list quick-links-list-light">
                         <li class="quick-link-item">
                             <a class="quick-link" href="/user/profile">Profile</a>
                         </li>

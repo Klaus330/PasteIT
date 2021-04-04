@@ -1,0 +1,29 @@
+.btn-login {
+  color: #343a40;
+  border: 1px solid #343a40;
+}
+
+.btn-register {
+  border: 1px solid #fff;
+  color: white;
+  background: #343a40;
+}
+
+.btn-toolbar {
+  background-color: $primary-color-light;
+  color: #81b6de;
+}
+
+.btn-primary {
+  background-color : $primary-btn-color;
+  border: 1px solid #343a40;
+}
+
+.btn-dark {
+  color: #fff;
+  background-color: black;
+  &:hover{
+    background-color: lighten(black, 20%);
+  }
+
+}

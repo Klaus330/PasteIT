@@ -1,4 +1,4 @@
-<section class="home-section">
+<section class="home-section-light">
     <div class="row home-first">
         <div class="home-paste">
             <h4>New Paste</h4>
