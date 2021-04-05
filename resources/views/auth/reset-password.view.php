@@ -1,5 +1,5 @@
 <div class="row">
-    <h1>Reset password</h1>
+    <h1 class="h1">Reset password</h1>
     <div class="row">
         <form class="login-form simple-form" action="/reset-password" method="POST">
             <div class="grid mt-2">

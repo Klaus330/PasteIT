@@ -1,7 +1,7 @@
 <div class="flex">
     <section class="section">
         <div class="row">
-            <h4 class="section-title mb-2">My Profile</h4>
+            <h4 class="section-title mb-2 h4">My Profile</h4>
             <div class="settings-content">
                 <form class="home-form" action="/user/settings" method="POST">
                     <div class="grid">
@@ -25,7 +25,7 @@
                             <label class="form-label" for="exposure">Email Status : </label>
                         </div>
                         <div class="col-7 col-md-6 flex align-center">
-                           <h5> Verified !</h5>
+                           <h5 class="h5"> Verified !</h5>
                         </div>
                     </div>
                     <div class="grid">
@@ -36,7 +36,7 @@
                             <img class="profile-img" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="user icon"/>
                         </div>
                         <div class="col-6 col-md-4 flex align-start">
-                            <h6><a class="btn-link" href="#" > [ Change avatar ] </a></h6>
+                            <h6 class="h6"><a class="btn-link" href="#" > [ Change avatar ] </a></h6>
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@
                             <label class="form-label" for="exposure">Account Type : </label>
                         </div>
                         <div class="col-7 col-md-6 flex align-center">
-                            <h5> Free !</h5>
+                            <h5 class="h5"> Free !</h5>
                         </div>
                     </div>
 
@@ -68,7 +68,7 @@
                 </form>
 
                 <aside class="related-links">
-                    <h4>Account related pages</h4>
+                    <h4 class="h4">Account related pages</h4>
                     <ul class="quick-links-list quick-links-list-light">
                         <li class="quick-link-item">
                             <a class="quick-link" href="/user/profile">Profile</a>
@@ -88,7 +88,7 @@
 
 
     <aside class="home-aside sm-hidden settings-aside">
-        <h4>Public Pastes</h4>
+        <h4 class="h4">Public Pastes</h4>
         <ul class="list-group">
             <li class="list-group-item">
                 <a href="">Lorem</a>

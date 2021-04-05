@@ -1,11 +1,11 @@
 <section class="home-section section">
     <div class="row home-first">
         <div class="home-paste">
-            <h4>New Paste</h4>
+            <h4 class="h4">New Paste</h4>
             <textarea name="paste" id="pasteit" cols="30" rows="15"></textarea>
         </div>
         <aside class="home-aside sm-hidden">
-            <h4>Public Pastes</h4>
+            <h4 class="h4">Public Pastes</h4>
             <ul class="list-group">
                 <li class="list-group-item">
                     <a href="">Lorem</a>
@@ -27,7 +27,7 @@
         </aside>
     </div>
     <div class="row">
-        <h4 class="section-title">Optional Paste Settings</h4>
+        <h4 class="section-title h4">Optional Paste Settings</h4>
         <div>
             <form class="home-form" action="/paste" method="POST">
                 <div class="grid">
