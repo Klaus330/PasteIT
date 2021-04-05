@@ -1,4 +1,4 @@
-<section class="flex">
+<div class="flex">
     <section class="section">
         <div class="row">
             <h4 class="section-title mb-2">My Profile</h4>
@@ -9,7 +9,7 @@
                             <label class="form-label" for="syn-highlight">Username : </label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
-                            <input type="text" name="username" class="form-control" id="username" placeholder="username"/>
+                            <input type="text" name="username" class="form-control" id="syn-highlight" placeholder="username"/>
                         </div>
                     </div>
                     <div class="grid">
@@ -17,7 +17,7 @@
                             <label class="form-label" for="exposure">Email Adress: </label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
-                            <input type="text" name="email" class="form-control" id="email" placeholder="email"/>
+                            <input type="text" name="email" class="form-control" id="exposure" placeholder="email"/>
                         </div>
                     </div>
                     <div class="grid">
@@ -54,9 +54,9 @@
                             <label class="form-label" for="exposure">Theme : </label>
                         </div>
                         <div class="col-7 col-md-6 flex align-center">
-                            <img src="/img/svg/sun.svg" />
+                            <img src="/img/svg/sun.svg" alt="Sun" />
                             <input class="swipe-btn" type="checkbox" name="dark-mode" id="theme-mode" <?= $isInputChecked ? 'checked' : '' ?> />
-                            <img src="/img/svg/moon.svg " />
+                            <img src="/img/svg/moon.svg " alt="Moon" />
                         </div>
                     </div>
 
@@ -109,6 +109,6 @@
         </ul>
     </aside>
 
-</section>
+</div>
 
 
