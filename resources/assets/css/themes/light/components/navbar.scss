@@ -10,7 +10,10 @@
   .navbar-container, .navbar-dropdown {
     .navbar-nav {
       .nav-link {
-        color: $text-color;
+        color: $text-color-black;
+        @include mq(medium){
+          color: $text-color;
+        }
 
         &:hover {
           text-decoration: underline;

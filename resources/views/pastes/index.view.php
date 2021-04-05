@@ -8,7 +8,7 @@
             </div>
 
             <div class="paste-info">
-                <div class="paste-info-top"><h3>Paste Title</h3></div>
+                <div class="paste-info-top"><h3 class="h3">Paste Title</h3></div>
                 <div class="paste-info-bottom">
                     
                     <div class="username">
@@ -109,7 +109,7 @@
         <div class="grid">
 
             <div class="col-12 flex align-start">
-                <h3>RAW Paste data</h3>
+                <h3 class="h3">RAW Paste data</h3>
             </div>
 
             <div class="col-12">
@@ -122,7 +122,7 @@
 
 
     <aside class="home-aside sm-hidden settings-aside">
-        <h4>Public Pastes</h4>
+        <h4 class="h4">Public Pastes</h4>
         <ul class="list-group">
             <li class="list-group-item">
                 <a href="">Lorem</a>

@@ -1,5 +1,5 @@
 <div class="row">
-    <h1>Login</h1>
+    <h1 class="h1">Login</h1>
     <div class="row">
         <form class="login-form simple-form" action="/login" method="POST">
             <div class="grid" >

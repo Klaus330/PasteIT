@@ -1,7 +1,7 @@
 <div class="flex">
     <section class="section">
         <div class="row">
-            <h4 class="section-title mb-2">My Settings</h4>
+            <h4 class="section-title mb-2 h4">My Settings</h4>
             <div class="settings-content">
                 <form class="home-form" action="/user/settings" method="POST">
                     <div class="grid">
@@ -46,7 +46,7 @@
                 </form>
 
                 <aside class="related-links">
-                    <h4>Account related pages</h4>
+                    <h4 class="h4">Account related pages</h4>
                     <ul class="quick-links-list quick-links-list-light">
                         <li class="quick-link-item">
                             <a class="quick-link" href="/user/profile">Profile</a>
@@ -66,7 +66,7 @@
 
 
     <aside class="home-aside sm-hidden settings-aside">
-        <h4>Public Pastes</h4>
+        <h4 class="h4">Public Pastes</h4>
         <ul class="list-group">
             <li class="list-group-item">
                 <a href="">Lorem</a>

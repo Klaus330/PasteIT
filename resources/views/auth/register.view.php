@@ -1,5 +1,5 @@
 <div class="row">
-    <h1>Register</h1>
+    <h1 class="h1">Register</h1>
     <div class="row">
         <form class="register-form simple-form" action="/register" method="POST">
             <div class="grid">
