@@ -1,4 +1,4 @@
-<section class="home-section">
+<section class="home-section section">
     <div class="row home-first">
         <div class="home-paste">
             <h4>New Paste</h4>
@@ -31,7 +31,7 @@
         <div>
             <form class="home-form" action="/paste" method="POST">
                 <div class="grid">
-                    <div class="col-6 col-md-3 flex align-start">
+                    <div class="col-7 col-md-3 flex align-start">
                         <label class="form-label" for="syn-highlight">Syntax Highlighting:</label>
                     </div>
                     <div class="col-12 col-md-6 flex align-center">

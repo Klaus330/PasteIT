@@ -6,7 +6,6 @@
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
-    background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     appearance: none;
@@ -25,7 +24,6 @@
 
 .form-container {
     border-radius: 15px;
-    background-color: #f5e9e9;
     padding: 20px;
 }
 
@@ -51,8 +49,7 @@
 }
 
 .form-check-input:checked {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
+
 }
 
 .form-check-input {
@@ -60,7 +57,6 @@
     height: 1em;
     margin-top: .25em;
     vertical-align: top;
-    background-color: #fff;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -84,11 +80,9 @@
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
-    background-color: #fff;
     border: 1px solid #ced4da;
     border-radius: .25rem;
     appearance: none;
-    background-color: #fff;
 
     background-image: url("/img/svg/caret.svg");
     background-repeat: no-repeat;
@@ -97,7 +91,8 @@
 }
 
 .simple-form{
-    background: $primary-color;
     padding: 2rem 2rem;
     margin: 0 auto;
 }
+
+

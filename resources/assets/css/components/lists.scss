@@ -28,7 +28,6 @@
     vertical-align: middle;
     cursor: pointer;
     user-select: none;
-    background-color: $secondary-color;
     border: 1px solid transparent;
     border-top-color: transparent;
     border-right-color: transparent;
@@ -39,7 +38,6 @@
     border-radius: .25rem;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     &:hover{
-      background-color:darken($secondary-color,10%);
     }
     .quick-link{
       color: white;

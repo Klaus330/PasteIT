@@ -10,16 +10,6 @@
   }
 }
 
-.alert-primary {
-  background: $primary-color;
-}
-
-.alert-light{
-  color: white;
-  background: $secondary-color;
-}
-
-.alert-outline-light{
-  color: white;
-  border: 1px solid $primary-gray;
+.alert-info {
+  background: $info-color;
 }

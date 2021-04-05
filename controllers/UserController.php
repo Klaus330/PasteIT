@@ -12,11 +12,18 @@ class UserController extends Controller
         return $this->render('/user/settings');
     }
 
-    public function profile(){
-        return $this->render('/user/profile');
+    public function profile()
+    {
+        $isInputChecked = false;
+        if (array_key_exists('theme', $_COOKIE)) {
+            $isInputChecked = $_COOKIE['theme'] === 'dark';
+        }
+
+        return $this->render('/user/profile', ['isInputChecked' => $isInputChecked]);
     }
 
-    public  function myPastes(){
+    public function myPastes()
+    {
         return $this->render('/user/mypastes');
     }
 

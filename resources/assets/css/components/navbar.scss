@@ -21,7 +21,7 @@
     white-space: nowrap;
     text-decoration: none;
 
-    @include mq(medium){
+    @include mq(medium) {
       margin-right: 1rem;
     }
   }
@@ -57,24 +57,23 @@
   }
 
 
-  .navbar-dropdown{
+  .navbar-dropdown {
     display: none;
     width: 100%;
     position: absolute;
     left: 0;
     top: 100%;
-    background: $primary-color;
     color: white;
 
-    @include mq(medium){
+    @include mq(medium) {
       display: none;
     }
 
-    .navbar-nav{
+    .navbar-nav {
       display: flex;
       flex-direction: column;
 
-      .nav-item{
+      .nav-item {
         border-top: 0.05rem solid #fff;
         padding-left: 1.2rem;
       }
@@ -89,9 +88,9 @@
     }
   }
 
-  .toggle-collapse{
+  .toggle-collapse {
     display: block;
-    @include mq(medium){
+    @include mq(medium) {
       display: none;
     }
   }
@@ -103,12 +102,12 @@
     border: 1px solid transparent;
     border-radius: .25rem;
     padding: .25rem .5rem;
-    @include mq(medium){
+    @include mq(medium) {
       display: none;
       padding: .25rem .75rem;
     }
 
-    &:focus{
+    &:focus {
       outline: none;
     }
 
@@ -141,53 +140,30 @@
   display: none;
 
   @include mq(medium) {
-    display: flex;    
+    display: flex;
     flex-grow: 1;
     align-items: center;
     flex-basis: auto;
   }
 }
 
-.navbar-dark {
-  color: white;
-  background: $primary-color;
 
-  .navbar-brand {
-    color: white;
-  }
-
-  .navbar-container, .navbar-dropdown {
-    .navbar-nav {
-      .nav-link {
-        color: rgba(255, 255, 255, .5);
-
-        &:hover {
-          color: rgba(255, 255, 255, .7);
-        }
-      }
-
-      .active {
-        color: rgba(255, 255, 255, .7);
-      }
-    }
-  }
-
-}
 
 .header-paste-btn {
-    background: $succes-btn-color url(/img/svg/add.svg) no-repeat 4px center;
-    background-size: 13px 13px;
-    color:white;
-    padding-left : 1.3rem;
-    
-    @include mq(medium){
-      margin-left: 3px;
-    }
+  background: $succes-btn-color url(/img/svg/add.svg) no-repeat 4px center;
+  background-size: 13px 13px;
+  color: white;
+  padding-left: 1.3rem;
+
+  @include mq(medium) {
+    margin-left: 3px;
+  }
 }
 
-.navbar-action-button{
-  display: block ;
-  @include mq(medium){
+.navbar-action-button {
+  display: block;
+  @include mq(medium) {
     display: none;
   }
 }
+

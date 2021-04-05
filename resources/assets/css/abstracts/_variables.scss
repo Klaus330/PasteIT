@@ -1,24 +1,23 @@
 // -----------------------------------------------------------------------------
-// This file contains all application-wide Sass variables.
+// This file contains all application-wide Sass vars.scss.
 // -----------------------------------------------------------------------------
 
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 //
-// Always use !default flags so the variables can be overwritten.
+// Always use !default flags so the vars.scss can be overwritten.
 
-// Since we use Tailwind, a lot of variables are also defined in tailwind.config.js
+// Since we use Tailwind, a lot of vars.scss are also defined in tailwind.config.js
 
 // COLOR SYSTEM (
-$primary-color: #252525 !default;
-$secondary-color: #2b2b2b !default; // Use this one!! We need to get explicit 'grey' out of definitions
+$info-color: #8d91b7;
+
 $primary-gray: #cccccc !default;
-$text-color: #707070 !default;
 $dark-color: black !default;
-$link-color: #5ba8d2 !default;
+$link-color: #5ba8d2;
+
 
 // COLOR ELEMENTS
-$scrollbar-primary-color: $primary-color !default;
 $scrollbar-bg-color: #000 !default;
 $secondary-btn-color: rgb(245, 245, 245) !default;
 

@@ -1,4 +1,4 @@
-<section class="flex">
+<div class="flex">
     <section class="section">
         <div class="row">
             <h4 class="section-title mb-2">My Settings</h4>
@@ -16,22 +16,22 @@
                         </div>
                     </div>
                     <div class="grid">
-                        <div class="col-5 col-md-3 flex align-start">
-                            <label class="form-label" for="exposure">Default Expiration:</label>
+                        <div class="col-7 col-md-3 flex align-start">
+                            <label class="form-label" for="exposure1">Default Expiration:</label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
-                            <select name="exposure" id="exposure" class="form-select">
+                            <select name="exposure" id="exposure1" class="form-select">
                                 <option value="">Never</option>
                                 <option value="">Burn after read</option>
                             </select>
                         </div>
                     </div>
                     <div class="grid">
-                        <div class="col-5 col-md-3 flex align-start">
-                            <label class="form-label" for="exposure">Default Exposure:</label>
+                        <div class="col-7 col-md-3 flex align-start">
+                            <label class="form-label" for="exposure2">Default Exposure:</label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
-                            <select name="exposure" id="exposure" class="form-select">
+                            <select name="exposure" id="exposure2" class="form-select">
                                 <option value="">None</option>
                                 <option value="">Public</option>
                                 <option value="">Private</option>
@@ -47,7 +47,7 @@
 
                 <aside class="related-links">
                     <h4>Account related pages</h4>
-                    <ul class="quick-links-list">
+                    <ul class="quick-links-list quick-links-list-light">
                         <li class="quick-link-item">
                             <a class="quick-link" href="/user/profile">Profile</a>
                         </li>
@@ -87,6 +87,6 @@
         </ul>
     </aside>
 
-</section>
+</div>
 
 

@@ -20,7 +20,6 @@
         'components/buttons',
         'components/navbar',
         'components/lists',
-        'components/footer',
         'components/forms',
         'components/cards',
         'components/highlight';
@@ -36,6 +35,9 @@
         'pages/paste',
         'pages/settings',
         'pages/profile';
+
+@import 'themes/dark/dark',
+        'themes/light/light';
 
 // 6. Vendors
 //@import 'vendors/normalize';

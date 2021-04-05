@@ -1,0 +1,32 @@
+.navbar {
+  color: black;
+  background: $navbar-color;
+  box-shadow: 1px 1px 3px rgb(0 0 0 / 20%);
+
+  .navbar-brand {
+    color: $text-color;
+  }
+
+  .navbar-container, .navbar-dropdown {
+    .navbar-nav {
+      .nav-link {
+        color: $text-color;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      .active {
+        text-decoration: underline;
+      }
+    }
+  }
+
+}
+
+
+.navbar-dropdown {
+
+  background: $primary-color-light;
+}

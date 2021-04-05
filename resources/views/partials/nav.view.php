@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark">
+<nav class="navbar">
     <div class="container navbar-container">
         <a href="/" class="navbar-brand">PasteIt</a>
         <a href="/" class="btn btn-succes header-paste-btn btn-sm navbar-action-button">Paste</a>
@@ -20,8 +20,8 @@
             </ul>
         </div>
         <div class="navbar-container collapse">
-            <a href="/login" class="btn btn-light-outline btn-sm mr-1">Login</a>
-            <a href="/register" class="btn btn-primary btn-sm">Sign Up</a>
+            <a href="/login" class="btn btn-login btn-sm mr-1">Login</a>
+            <a href="/register" class="btn btn-register btn-sm">Sign Up</a>
         </div>
         <button class="navbar-toggler" type="button" id="nav-toggler">
             <span class="navbar-toggler-icon"></span>

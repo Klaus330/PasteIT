@@ -1,0 +1,26 @@
+.light {
+  @import "abstracts/vars",
+  "abstracts/mixins";
+
+  @import "components/buttons",
+  "components/forms",
+  "components/highlight",
+  "components/lists",
+  "components/navbar",
+  "components/alerts";
+
+  @import "layout/sections";
+
+  @import "pages/home",
+  "pages/login",
+  "pages/paste",
+  "pages/register",
+  "pages/settings";
+
+  @import "base/typography";
+
+  background: $secondary-color-light;
+  color: $text-color-black;
+
+
+}

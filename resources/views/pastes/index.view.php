@@ -1,4 +1,4 @@
-<section class="flex">
+<div class="flex">
     <section class="paste-section">
     <div class="row">
         <div class="paste-info-content">
@@ -12,19 +12,19 @@
                 <div class="paste-info-bottom">
                     
                     <div class="username">
-                            <img src="/img/svg/user-icon.svg"/>
+                            <img src="/img/svg/user-icon.svg" alt="user-icon"/>
                             <a href="#">Client</a>
                     </div>
 
                     <div class="date">
-                        <img src="/img/svg/date.svg"/>
+                        <img src="/img/svg/date.svg" alt="date"/>
                         <span>
                         Date
                         </span>
                     </div>
 
                     <div class="expire-date">
-                        <img src="/img/svg/time.svg" />
+                        <img src="/img/svg/time.svg" alt="time" />
                         <span>
                             Expiration date
                         </span>
@@ -83,11 +83,11 @@
                             </li>
                             <li class="line">
                                 <span class="line-number">4.</span>
-                                <span class="html-open">&lthtml&gt</span>
+                                <span class="html-open">&lt;html&gt;</span>
                             </li>
                             <li class="line">
                                 <span class="line-number">4.</span>
-                                <span class="html-close">&lt/html&gt</span>
+                                <span class="html-close">&lt;/html&gt;</span>
                             </li>
                             <li class="line">
                                 <span class="line-number">4.</span>
@@ -143,6 +143,6 @@
         </ul>
     </aside>
 
-</section>
+</div>
 
 

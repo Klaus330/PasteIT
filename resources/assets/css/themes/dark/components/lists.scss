@@ -1,0 +1,16 @@
+.list-group {
+
+  .list-group-item {
+    color:white;
+  }
+}
+
+.quick-links-list {
+  .quick-link-item {
+    background-color: $secondary-color-dark;
+
+    &:hover {
+      background-color: darken($secondary-color-dark, 10%);
+    }
+  }
+}
