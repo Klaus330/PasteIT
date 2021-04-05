@@ -2,5 +2,5 @@
 public/css/
 public/css/*.map
 public/css/*.css
-public/captcha/
+public/captcha/*.png
 public/js/
