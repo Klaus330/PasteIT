@@ -69,6 +69,18 @@
                     </div>
                 </div>
                 <div class="grid">
+                    <div class="col-6 col-md-3 flex align-start">
+                        <label class="form-label" for="captcha-code">Captcha:</label>
+                    </div>
+                    <div class="col-12 col-md-6 flex align-center">
+                        <input type="text" placeholder="Write the code" class="form-control" name="captcha-code"
+                               id="captcha-code">
+                    </div>
+                    <div class="col-12 col-md-3 flex align-center">
+                        <img src="<?= $captchaCode ?>" alt="" id="captcha-code">
+                    </div>
+                </div>
+                <div class="grid">
                     <div class="col-12 col-md-3 mt-5 flex align-start">
                         <button class="btn btn-dark">Create New Paste</button>
                     </div>
