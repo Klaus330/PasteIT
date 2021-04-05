@@ -6,7 +6,8 @@
   "components/forms",
   "components/highlight",
   "components/lists",
-  "components/navbar";
+  "components/navbar",
+  "components/alerts";
 
   @import "layout/sections";
 
@@ -19,6 +20,7 @@
   @import "base/typography";
 
   background: $secondary-color-light;
+  color: $text-color-black;
 
 
 }

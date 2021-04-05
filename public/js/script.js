@@ -21,17 +21,14 @@ function setThemeCookie(e) {
     console.log(currentTheme);
     if (e.target.checked  && currentTheme === 'light') {
         document.cookie = "theme=dark;expires=Thu, 18 Dec 2021 12:00:00 UTC;path=/";
-        body.dispatchEvent(event);
     } else if (e.target.checked  && currentTheme === 'dark') {
         document.cookie = "theme=light;expires=Thu, 18 Dec 2021 12:00:00 UTC;path=/";
-        body.dispatchEvent(event);
     }else if (!e.target.checked  && currentTheme === 'light'){
         document.cookie = "theme=dark;expires=Thu, 18 Dec 2021 12:00:00 UTC;path=/";
-        body.dispatchEvent(event);
     }else if (!e.target.checked  && currentTheme === 'dark'){
         document.cookie = "theme=light;expires=Thu, 18 Dec 2021 12:00:00 UTC;path=/";
-        body.dispatchEvent(event);
     }
+    body.dispatchEvent(event);
 }
 
 function changeTheme(e) {

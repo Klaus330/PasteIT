@@ -24,19 +24,19 @@
                         <div class="col-5 col-md-3 flex align-start">
                             <label class="form-label" for="exposure">Email Status : </label>
                         </div>
-                        <div class="col-12 col-md-6 flex align-center">
-                           <h5> Verfied !</h5>
+                        <div class="col-7 col-md-6 flex align-center">
+                           <h5> Verified !</h5>
                         </div>
                     </div>
                     <div class="grid">
                         <div class="col-4 col-md-3 flex align-start">
                             <label class="form-label" for="exposure">Avatar : </label>
                         </div>
-                        <div class="col-1 col-md-2 flex align-start" >
+                        <div class="col-1 col-md-3 flex align-start" >
                             <img class="profile-img" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="user icon"/>
                         </div>
                         <div class="col-6 col-md-4 flex align-start">
-                            <h5><a class="btn-link" href="#" > [ Change avatar ] </a></h5>
+                            <h6><a class="btn-link" href="#" > [ Change avatar ] </a></h6>
                         </div>
                     </div>
 

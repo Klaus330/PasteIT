@@ -1,24 +1,24 @@
 .navbar {
   color: black;
-  background: $primary-color-light;
+  background: $navbar-color;
   box-shadow: 1px 1px 3px rgb(0 0 0 / 20%);
 
   .navbar-brand {
-    color: black;
+    color: $text-color;
   }
 
   .navbar-container, .navbar-dropdown {
     .navbar-nav {
       .nav-link {
-        color: rgba(0, 0, 0, .5);
+        color: $text-color;
 
         &:hover {
-          color: rgba(0,0,0, .7);
+          text-decoration: underline;
         }
       }
 
       .active {
-        color: rgba(0,0,0, .7);
+        text-decoration: underline;
       }
     }
   }

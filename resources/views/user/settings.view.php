@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="grid">
-                        <div class="col-5 col-md-3 flex align-start">
+                        <div class="col-7 col-md-3 flex align-start">
                             <label class="form-label" for="exposure1">Default Expiration:</label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="grid">
-                        <div class="col-5 col-md-3 flex align-start">
+                        <div class="col-7 col-md-3 flex align-start">
                             <label class="form-label" for="exposure2">Default Exposure:</label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
