@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-7 col-md-6 flex align-center">
                             <img src="/img/svg/sun.svg" />
-                            <input class="swipe-btn" type="checkbox" name="dark-mode" id="dark-mode"  />
+                            <input class="swipe-btn" type="checkbox" name="dark-mode" id="theme-mode" <?= $isInputChecked ? 'checked' : '' ?> />
                             <img src="/img/svg/moon.svg " />
                         </div>
                     </div>
