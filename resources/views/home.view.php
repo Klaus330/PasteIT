@@ -112,12 +112,16 @@
 
     passwordAllowCheckbox.addEventListener('click', (e) => {
         let passwordInput = document.getElementById('password');
+        let label = document.getElementById('passworda-allow-label');
         if (!e.target.checked){
+
             passwordInput.setAttribute("disabled", "true");
         }else {
+
             passwordInput.removeAttribute("disabled");
             passwordInput.focus();
         }
+        label.innerText = e.target.checked ? 'Enabled' : 'Disabled';
     });
 
 </script>
