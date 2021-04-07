@@ -6,13 +6,15 @@
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
-    background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
     appearance: none;
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    outline: none;
+    
+    &:focus{
+        outline: none;
+    }
 }
 
 .form-label {
@@ -22,7 +24,6 @@
 
 .form-container {
     border-radius: 15px;
-    background-color: #f5e9e9;
     padding: 20px;
 }
 
@@ -48,8 +49,7 @@
 }
 
 .form-check-input:checked {
-    background-color: #0d6efd;
-    border-color: #0d6efd;
+
 }
 
 .form-check-input {
@@ -57,13 +57,11 @@
     height: 1em;
     margin-top: .25em;
     vertical-align: top;
-    background-color: #fff;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     border: 1px solid rgba(0,0,0,.25);
     appearance: none;
-    color-adjust: exact;
 }
 
 .form-check {
@@ -82,14 +80,19 @@
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
-    background-color: #fff;
     border: 1px solid #ced4da;
     border-radius: .25rem;
     appearance: none;
-    background-color: #fff;
 
     background-image: url("/img/svg/caret.svg");
     background-repeat: no-repeat;
     background-position: right .75rem center;
     background-size: 16px 12px;
 }
+
+.simple-form{
+    padding: 2rem 2rem;
+    margin: 0 auto;
+}
+
+

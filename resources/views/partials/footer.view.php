@@ -1,6 +1,6 @@
-<footer class="bg-primary">
-    <div class="container">
-        <div class="row">
+<footer class="footer">
+    <div class="container ">
+        <div class="row footer-content">
             <p>
                 By using PasteIt.com you agree to our cookies policy to enhance your experience.
             </p>

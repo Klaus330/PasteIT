@@ -3,9 +3,10 @@
   padding: 0.75rem;
 
   @include mq(medium){
-    background: $primary-color;
+
   }
 }
+
 
 .home-first {
   display: flex;
@@ -17,14 +18,16 @@
 
   textarea {
     width: 100%;
-    background: $secondary-color;
-    outline: none;
     border: 1px solid $primary-gray;
     border-radius: 4px;
     resize: none;
     color: white;
+    &:focus{
+      outline: none;
+    }
   }
 }
+
 
 .home-aside {
   padding-left: 1.3rem;

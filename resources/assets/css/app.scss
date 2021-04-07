@@ -20,8 +20,9 @@
         'components/buttons',
         'components/navbar',
         'components/lists',
-        'components/footer',
-        'components/forms';
+        'components/forms',
+        'components/cards',
+        'components/highlight';
 
 
 // 4. Layout-related sections
@@ -30,7 +31,13 @@
 // 5. Page-specific styles
 @import 'pages/home',
         'pages/login',
-        'pages/register';
+        'pages/register',
+        'pages/paste',
+        'pages/settings',
+        'pages/profile';
+
+@import 'themes/dark/dark',
+        'themes/light/light';
 
 // 6. Vendors
 //@import 'vendors/normalize';

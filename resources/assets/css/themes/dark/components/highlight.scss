@@ -1,0 +1,47 @@
+.line-number {
+  background: $secondary-color-dark;
+}
+
+.toolbar {
+  background: $secondary-color-dark;
+}
+
+.fn-call {
+  color: yellow;
+}
+
+.string {
+  color: #198754;
+}
+
+.keyword {
+  color: #0dcaf0;
+}
+
+.variable {
+  color: #ced4da;
+}
+
+.comment {
+  color: #444444;
+}
+
+.boolean {
+  color: #0d6efd;
+}
+
+.number {
+  color: #dc3545;
+}
+
+.html-open, .html-close {
+  color: #f6de55;
+}
+
+.symbol {
+  color: #79dea0;
+}
+
+.semicolumn {
+  color: #f58e0f;
+}

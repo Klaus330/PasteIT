@@ -1,0 +1,16 @@
+.list-group {
+
+  .list-group-item {
+    color:black;
+  }
+}
+
+.quick-links-list {
+  .quick-link-item {
+    background-color: black;
+
+    &:hover {
+      background-color: lighten(black, 20%);
+    }
+  }
+}
