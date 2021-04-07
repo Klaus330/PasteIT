@@ -53,6 +53,22 @@
                         </select>
                     </div>
                 </div>
+
+                <div class="grid">
+                    <div class="col-md-3 flex align-start">
+                        <label class="form-label" for="password">Password:</label>
+                    </div>
+                    <div class="col-md-6">
+                       <div class="col-md-9  flex align-center">
+                           <input type="checkbox" class="form-check-input" name="password-allow" id="password-allow">
+                           <label class="form-label" for="password-allow" id="passworda-allow-label">Disabled</label>
+                       </div>
+                        <div class="col-md-6">
+                            <input type="text" placeholder="Password" class="form-control" name="password" id="password">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="grid">
                     <div class="col-md-offset-3"></div>
                     <div class="form-check col-10 col-md-8 flex align-start">
@@ -90,3 +106,18 @@
         </div>
     </div>
 </section>
+
+<script>
+    let passwordAllowCheckbox = document.getElementById('password-allow');
+
+    passwordAllowCheckbox.addEventListener('click', (e) => {
+        let passwordInput = document.getElementById('password');
+        if (!e.target.checked){
+            passwordInput.setAttribute("disabled", "true");
+        }else {
+            passwordInput.removeAttribute("disabled");
+            passwordInput.focus();
+        }
+    });
+
+</script>
