@@ -13,5 +13,6 @@ $app->router->get("/reset-password","AuthController@resetPassword");
 $app->router->get("/user/settings","UserController@settings");
 $app->router->get("/user/profile","UserController@profile");
 $app->router->get("/user/mypastes","UserController@myPastes");
+$app->router->get("/locked-paste","PasteController@lockedPaste");
 
 $app->router->get("/captcha-image", 'CaptchaController@getCaptchaImage');
