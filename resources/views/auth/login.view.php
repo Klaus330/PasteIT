@@ -1,6 +1,5 @@
 <div class="row">
-    <h1 class="h1">Login</h1>
-    <div class="row">
+    <div class="row mt-3">
         <form class="login-form simple-form" action="/login" method="POST">
             <div class="grid" >
                 <div class="col-md-3 col-3">
