@@ -1,6 +1,5 @@
 <div class="row">
-    <h1 class="h1">Reset password</h1>
-    <div class="row">
+    <div class="row mt-5">
         <form class="login-form simple-form" action="/register" method="POST">
             <div class="grid" >
                 <div class="col-md-3 col-3">

@@ -1,6 +1,7 @@
 <nav class="navbar">
     <div class="container navbar-container">
-        <a href="/" class="navbar-brand">PasteIt</a>
+        <a href="/" class="navbar-brand"><img src="/favicon.png" alt="" style="    width: 50px;
+    height: 50px;"></a>
         <a href="/" class="btn btn-succes header-paste-btn btn-sm navbar-action-button">Paste</a>
 
         <div class="collapse navbar-collapse">
