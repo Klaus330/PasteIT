@@ -81,6 +81,42 @@
             <a href="#motivatie">
                 <span>5. </span>Structura
             </a>
+            <ol role="directory">
+                <li>
+                    <a href="#controllers"><span>5.1</span> Directorul Controllers</a>
+                </li>
+                <li>
+                    <a href="#models"><span>5.2 </span>Directorul Models</a>
+                </li>
+                <li>
+                    <a href="#core"><span>5.3 </span>Directorul Core</a>
+                </li>
+                <li>
+                    <a href="#routest"><span>5.4 </span>Directorul Routes</a>
+                </li>
+                <li>
+                    <a href="#vendor"><span>5.5 </span>Directorul Vendor</a>
+                </li>
+                <li>
+                    <a href="#resources"><span>5.6 </span>Directorul Resources</a>
+                    <ol role="directory">
+                        <li>
+                            <a href="#assets">
+                                <span>5.6.1</span> Directorul Assets
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#views">
+                                <span>5.6.2</span> Directorul Views
+                            </a>
+                        </li>
+                    </ol>
+                </li>
+                <li>
+                    <a href="#public"><span>5.7 </span>Directorul Public</a>
+                </li>
+                </li>
+            </ol>
         </li>
         <li>
             <a href="#referinte">
@@ -309,8 +345,110 @@
     <section typeof="sa:ScholarlyArticle" id="structure" role="doc-chapter">
         <h2><span>5.</span> Structura</h2>
         <p>
-
+            Pentru aplicatia noastra am considerat ca modelul software MVC se potriveste perfect. Astfel ca, folosind
+            limbajul de programare PHP am implementat un MVC pentru aplicatia noastra. Va vom prezenta acum structura
+            de fisiere care compun aplicatia noastra:
         </p>
+
+        <section typeof="sa:ScholarlyArticle" id="controllers" role="doc-chapter">
+            <h3><span>5.1</span> Directorul Controllers</h3>
+
+            <p>
+                Acest director este dedicat controllerelor aplicatiei noastre. Modelul MVC impune ca toate fisierele din
+                acest folder sa contina terminatia "Controller". Aceste clase vor trata diversele cereri primite de
+                catre
+                useri.
+            </p>
+            <img src="/img/scholarly/controllers.png" alt="controllers">
+        </section>
+        <section typeof="sa:ScholarlyArticle" id="models" role="doc-chapter">
+            <h3><span>5.2</span> Directorul Models</h3>
+
+            <p>
+                In acest director se afla toate clasele Model al caror scop este de a prelucra datele aplicatiei.
+            </p>
+            <img src="/img/scholarly/models.png" alt="models">
+        </section>
+        <section typeof="sa:ScholarlyArticle" id="core" role="doc-chapter">
+            <h3><span>5.3</span> Directorul Core</h3>
+
+            <p>
+                In acest director pastram toate clasele care definesc nucleul aplicatiei noastre PHP. Aici se afla
+                clasa Application care reprezinta un IOC Container, clasa Router al carei scop este de a redirectiona
+                cererile venite de la useri catre controlerele specializate si de a raspunde clientului, clasa Validator
+                care se ocupa cu validarea datelor primite de la utilizatori conform unor reguli predefinite, fisierul
+                bootstrap
+                care pregateste aplicatia pentru boot etc.
+            </p>
+            <img src="/img/scholarly/core.png" alt="core">
+        </section>
+        <section typeof="sa:ScholarlyArticle" id="routes" role="doc-chapter">
+            <h3><span>5.4</span> Directorul Routes</h3>
+
+            <p>
+                In directorul routes se regaseste fisierul web.php al carui scop este definirea rutelor pe care
+                utilizatorul le poate accesa in aplicatia web. Pentru a face asta, acesta se foloseste de o instanta
+                a clasei Router care se afla in directorul core.
+            </p>
+            <img src="/img/scholarly/routes.png" alt="routes">
+        </section>
+        <section typeof="sa:ScholarlyArticle" id="vendor" role="doc-chapter">
+            <h3><span>5.5</span> Directorul Vendor</h3>
+
+            <p>
+                Directorul vendor contine fisierul autoload.php care are ca scop realizarea incarcarii
+                automate a claselor care compum aplicatia noastra web. Acesta se foloseste de functia
+                predefinita din php <span>spl_autoload_register</span> pentru a include toate clasele
+                necesare pentru ca aplicatia sa functioneze corect.
+            </p>
+            <img src="/img/scholarly/vendor.png" alt="vendor">
+        </section>
+        <section typeof="sa:ScholarlyArticle" id="resources" role="doc-chapter">
+            <h3><span>5.6</span> Directorul Resources</h3>
+
+            <p>
+                Acest director contine doua alte directoare al caror scop este modelarea si formarea View-urilor
+                care urmeaza sa fie trimise drept raspuns utilizatorilor.
+            </p>
+            <h4 id="assets"><span>5.6.1</span> Directorul Assets</h4>
+            <p>
+                In assets se regasesc directoarele scss si js. Cel dintai contine toate fisiere SCSS organizate dupa
+                <a href="https://gist.github.com/rveitch/84cea9650092119527bc">patternul 7-1</a>. Cel de-al doilea
+                director
+                contine codurile javascript necesare pentru a imbunatati experienta utilizatorului in aplicatia web.
+
+            </p>
+            <img src="/img/scholarly/scss.png" alt="scss">
+            <h4 id="views"><span>5.6.2</span> Directorul Views</h4>
+            <p>
+                In acest director se afla toate view-urile aplicatiei. Fisierele din acest director au extensia
+                "view.php" pentru a face mai clara legatura dintre ele si modelul arhitectural MVC. Acestea,
+                contin codul html care va fi afisat in browser.
+            </p>
+            <img src="/img/scholarly/views.png" alt="views">
+
+        </section>
+        <section typeof="sa:ScholarlyArticle" id="public" role="doc-chapter">
+            <h3><span>5.7</span> Directorul Public</h3>
+
+            <p>
+                Punctul de intrare in aplicatia noastra se afla aici, acesta fiind reprezentat de catre
+                fisierul index.php. De asemenea, si raportul ScholarlyHTML este prezent in acest director.
+                Pe langa aceste doua fisiere mai avem si urmatoarele foldere: captcha, css, img pe care le vom detalia.
+            </p>
+            <img src="/img/scholarly/public.png" alt="public">
+            <p>
+                Folderul css contine fisierul style.css rezultat al compilarii tuturor fisierelor scss din directorul
+                assets/scss.
+            </p>
+            <p>
+                Folderul img contine toate imaginile si elementele svg prezente in aplicatia web.
+            </p>
+            <p>
+                Directorul captcha pastreaza pentru un timp limitat imaginile ce compun codurile captcha pe care
+                utilizatorii neautentificati trebuie sa le completeze inainte de a face o postare.
+            </p>
+        </section>
     </section>
     <section typeof="sa:ReferenceList" id="referinte" role="doc-bibliography">
         <h2><span>6. </span>Referinţe</h2>
