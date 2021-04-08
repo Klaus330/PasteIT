@@ -23,9 +23,11 @@
                 </div>
             </div>
             <div class="form-group mt-2 login-buttons">
-                <button type="submit" class="btn btn-primary">
-                    Login
-                </button>
+<!--                <button type="submit" class="btn btn-primary">-->
+<!--                    Login-->
+<!--                </button>-->
+                <a class="btn btn-primary" href="/user/profile">Login</a>
+
 
                 <a href="/register" class="btn btn-dark mr-1">
                     Create new account
