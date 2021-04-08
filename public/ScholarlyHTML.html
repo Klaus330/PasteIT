@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PasteIt - Scholarly HTML</title>
+    <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
+    <link rel="shortcut icon" type="image/svg" href="/img/logo.svg">
+    <style>
+        p {
+            text-indent: 40px;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body prefix="schema: http://schema.org"
+      style="font-family: 'Times New Roman', Times, serif; font-size: 15pt;"
+      itemscope="" itemtype="http://schema.org/WebPage"
+>
+<header>
+    <h1 itemprop="name">Paste It</h1>
+</header>
+<div role="contentinfo">
+    <ol role="directory">
+        <li>
+            <a href="#abstract">
+                <span>1. </span>Abstract
+            </a>
+        </li>
+        <li>
+            <a href="#introducere">
+                <span>2. </span>Introducere
+            </a>
+        </li>
+        <li>
+            <a href="#motivatie">
+                <span>3. </span>Motivație
+            </a>
+        </li>
+        <li>
+            <a href="#functionalitati">
+                <span>4. </span> Funcționalitățile aplicației
+            </a>
+            <ol role="directory">
+                <li>
+                    <a href="#register"><span>4.1</span> Register</a>
+                </li>
+                <li>
+                    <a href="#login"><span>4.2 </span>Componenta de login </a>
+                </li>
+                <li>
+                    <a href="#code-loading"><span>4.3 </span>Incarcarea codului </a>
+                </li>
+                <li>
+                    <a href="#expiration-limit"><span>4.4 </span>Perioada de expirare a postarilor </a>
+                </li>
+                <li>
+                    <a href="#my-pastes"><span>4.5 </span> Gestionarea Postarilor</a>
+                </li>
+                <li>
+                    <a href="#burn-after-read"><span>4.6 </span> Burn after read</a>
+                </li>
+                <li>
+                    <a href="#post-encryption"><span>4.7 </span> Criptarea postarilor</a>
+                </li>
+                <li>
+                    <a href="#views-tracker"><span>4.8 </span> Inregistrarea vizualizarilor</a>
+                </li>
+                <li>
+                    <a href="#captcha"><span>4.9 </span> Rezolvarea de probleme Captcha</a>
+                </li>
+                <li>
+                    <a href="#syntax-highlight"><span>4.10 </span> Selectarea sintaxei</a>
+                </li>
+                <li>
+                    <a href="#themes"><span>4.11 </span> Teme de culori</a>
+                </li>
+            </ol>
+        </li>
+        <li>
+            <a href="#motivatie">
+                <span>5. </span>Structura
+            </a>
+        </li>
+        <li>
+            <a href="#referinte">
+                <span>6. </span>Referinţe
+            </a>
+        </li>
+    </ol>
+
+    <section typeof="sa:AuthorsList">
+        <h2>Autori</h2>
+        <article typeof="schema:ScholarlyArticle">
+            <ol>
+                <li property="schema:author" typeof="sa:ContributorRole">
+                    <span typeof="schema:Person" resource="https://claudiupopa.ro/">
+                        <meta property="schema:givenName" content="Claudiu">
+                        <meta property="schema:familyName" content="Popa">
+                        <span property="schema:name">Popa Claudiu</span>
+                    </span>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="mailto:claudiu.popa@info.uaic.ro"
+                               property="schema:email">claudiu.popa@info.uaic.ro</a>
+                        </li>
+                    </ul>
+                </li>
+                <li property="schema:author" typeof="sa:ContributorRole">
+                    <span typeof="schema:Person" resource="https://github.com/RataCristinaIulia">
+                        <meta property="schema:givenName" content="Iulia">
+                        <meta property="schema:additionalName" content="Cristina">
+                        <meta property="schema:familyName" content="Rata">
+                        <span property="schema:name">Rata Cristina Iulia</span>
+                    </span>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="mailto:cristina.rata@info.uaic.ro"
+                               property="schema:email">cristina.rata@info.uaic.ro</a>
+                        </li>
+                    </ul>
+                </li>
+                <li property="schema:author" typeof="sa:ContributorRole">
+                    <span typeof="schema:Person" resource="https://github.com/SanduVAdelin">
+                        <meta property="schema:givenName" content="Adelin">
+                        <meta property="schema:additionalName" content="Viorel">
+                        <meta property="schema:familyName" content="Sandu">
+                        <span property="schema:name">Sandu Viorel Adelin</span>
+                    </span>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="mailto:viorel.sandu@info.uaic.ro"
+                               property="schema:email">viorel.sandu@info.uaic.ro</a>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+            <dl>
+                <dt>Licence</dt>
+                <dd>
+                    <a href="https://github.com/Klaus330/PasteIt/blob/master/LICENSE">GNU GENERAL PUBLIC LICENSE</a>
+                </dd>
+
+                <dt>Erori și recomandări</dt>
+                <dd>
+                    <a href="#">Recomandări/Erori</a>
+                </dd>
+            </dl>
+        </article>
+    </section>
+
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+        <h2><span>1. </span>Abstract</h2>
+        <p>
+            PasteIt este o aplicatie web prin intermediul careia se pot distribui
+            blocuri de cod sursa (scrise intr-un anumit limbaj de programare). Folosind modelul
+            MVC, implementat in PHP, alaturi de HTML, CSS si JS am reusit sa implementam functionalitatile
+            aplicatiei. Scopul final al acestui proiect este de a oferi o platforma alternativa de distribuire de
+            cod intre informaticieni.
+        </p>
+    </section>
+
+    <section typeof="sa:ScholarlyArticle" id="introducere" role="doc-introduction">
+        <h2><span>2. </span>Introducere</h2>
+        <p>
+            PasteIt este o platforma unde poti stoca online orice text pentru a fi usor de distribuit.
+            Site-ul este destinat in mare parte programatorilor care doresc sa impartaseasca bucati de
+            cod sau informatii de configurare(de servere, de baze de date), dar oricine se poate folosi
+            de functionalitatile aplicatiei.
+        </p>
+        <p>
+            Aplicatia ofera posibilitatea de a crea un cont, astfel incat un utilizator autentificat sa poata
+            beneficia de toate functionalitatile acesteia. In acelasi timp, vizitatorii platformei pot folosi
+            o mare parte din aceste utilitati.
+        </p>
+        <p>
+            Structura de baza a aplicatiei este scrisa in limbajul <a href="https://www.php.net/">PHP</a> (versiunea
+            8.0.1), urmand modelul arhitectural
+            <a href="https://ro.wikipedia.org/wiki/Model-view-controller">MVC</a>
+            (Model, View, Controller). Interfata ei este realizata in
+            <a href="https://ro.wikipedia.org/wiki/HTML5">HTML5</a> si <a href="https://www.w3schools.com/css/">CSS3</a>,
+            existand si cateva
+            scripturi de JavaScript care imbunatatesc experienta utilizatorului. Datele inregistrate vor fi stocate
+            intr-o baza de date relationala (<a href="https://mariadb.org/">MariaDb</a>).
+        </p>
+    </section>
+    <section typeof="sa:Motivation" id="motivatie" role="doc-prologue">
+        <h2><span>3. </span>Motivație</h2>
+        <p>
+            Dorim sa oferim o platforma care sa ofere programatorilor un loc sigur si stabil de a isi
+            distribui parti din cod catre alti programatori.
+        </p>
+    </section>
+    <section typeof="sa:MaterialsAndMethods" id="functionalitati" role="doc-chapter">
+        <h2><span>4</span> Functionalitati</h2>
+        <p>
+            In acest raport vom descrie functionalitatile pe care trebuie sa le indeplineasca aplicatia noastra.
+        </p>
+
+        <section typeof="sa:MaterialsAndMethods" id="register" role="doc-chapter">
+            <h3><span>4.1</span> Register</h3>
+
+            <p>
+                Vizitatorii noi se pot inregistra pe platforma noastra in pagina de <a href="/register">register</a>,
+                unde isi vor oferi datele personale(email, nume, prenume), pentru a putea beneficia de avantajele
+                unui user inregistrat. Datele oferite vor fi trimise intermediul unei cereri de tip "POST" realizata de
+                catre
+                formularul de inregistrare, doar dupa ce au fost completate toate campurile obligatorii.
+            </p>
+        </section>
+        <section typeof="sa:MaterialsAndMethods" id="login" role="doc-chapter">
+            <h3><span>4.2</span> Login</h3>
+
+            <p>
+                Utilizatorii se pot autentifica pe pagina de <a href="/login">login</a>, unde isi poate
+                gestiona contul si activitatea pe website. Credentialele utilizatorului vor fi trimise printr-o
+                cerere a formularului de autentificare catre endpoint-ul <a href="/login">"/login"</a>.
+            </p>
+        </section>
+
+        <section typeof="sa:MaterialsAndMethods" id="code-loading" role="doc-chapter">
+            <h3><span>4.3</span> Incarcare a codului</h3>
+            <p>
+                Pe pagina <a href="/">principala</a> utilizatorii de orice fel isi pot incarca
+                blocurile de cod pe care doresc sa le impartaseasca cu restul persoanelor care acceseaza
+                aplicatia web. Incarcarea se va face prin intermediul unui formular care va trimite o cerere
+                de tip "POST" catre endpoint-ul <a href="/new-paste">"/new-paste"</a>
+            </p>
+        </section>
+        <section typeof="sa:MaterialsAndMethods" id="expiration-limit" role="doc-chapter">
+            <h3><span>4.4</span> Perioada de expirare a postarilor</h3>
+            <p>
+                Postarile din cadrul platformei vor avea un termen de valabilitate.
+                Codul postat de vizitatorii neautentificati va fi pastrat in baza de date pe durata
+                a 30 de zile.
+                Beneficiul un utilizator autentificat este dat de faptul ca
+                are posibilitatea de a isi alege perioada de expirare a codului postat.
+            </p>
+        </section>
+
+        <section typeof="sa:MaterialsAndMethods" id="my-pastes" role="doc-chapter">
+            <h3><span>4.5</span> Gestionarea postarilor</h3>
+            <p>
+                Procedeul de gestionare a postarilor consta in mai multe operatii: stergere, modificare,
+                schimbare a datei de expirare, modificarea vizibilitatii unei postari si schimbarea modului de
+                afisare a codului. Un utilizator poate realiza toate aceste operatii accesand pagina de
+                <a href="/user/paste-settings">settings</a> specifica fiecarei postari.
+            </p>
+        </section>
+        <section typeof="sa:MaterialsAndMethods" id="burn-after-read" role="doc-chapter">
+            <h3><span>4.6</span> Burn after read</h3>
+            <p>
+                Orice utilizator poate opta pentru incarcarea unui cod cu proprietatea
+                de "burn after read". Continutul publicat va putea fi accesat o singura data, dupa inchiderea
+                paginii acesta fiind sters definitiv din baza de date si nu va exista nicio modalitate
+                de recuperare a acestuia.
+            </p>
+        </section>
+
+        <section typeof="sa:MaterialsAndMethods" id="post-encryption" role="doc-chapter">
+            <h3><span>4.7</span> Criptarea postarilor</h3>
+            <p>
+                Postarile pot fi criptate prin intermediul unei parole generate automat sau aleasa de catre
+                user inainte de a publica codul. Cei care vor accesa respectiva postare vor fi intampinati
+                de un formular in care vor fi rugati sa introduca parola stabilita de catre detinatorul postarii.
+            </p>
+        </section>
+
+        <section typeof="sa:MaterialsAndMethods" id="views-tracker" role="doc-chapter">
+            <h3><span>4.8</span> Inregistrarea vizualizarilor</h3>
+
+            <p>
+                O caracteristica a unei postari o reprezinta numarul de vizualizari. Acestea sunt inregistrate
+                in momentul in care postarea respectiva este accesata. Utilizatorii autentificati vor putea
+                sti numele celorlalti utilizatori autentificati care au vizualizat postarea.
+            </p>
+        </section>
+
+        <section typeof="sa:MaterialsAndMethods" id="captcha" role="doc-chapter">
+            <h3><span>4.9</span> Rezolvarea de probleme Captcha</h3>
+
+            <p>
+                Pentru ca un utilizator neautentificat sa poata publica codul dorit i se va cere sa rezolve
+                o problema de tip Captcha. Aceste probleme sunt generate automat de catre controllerul
+                "CaptchaController", care utilizeaza functiile predefinite pentru a crea imaginile cu
+                codurile captcha.
+            </p>
+        </section>
+
+        <section typeof="sa:MaterialsAndMethods" id="syntax-highlight" role="doc-chapter">
+            <h3><span>4.10</span> Selectarea sintaxei</h3>
+
+            <p>
+                Codurile vor fi colorate conform unui dicționar (sintax highlighting);
+                dicționarul (limbajul) va fi selectat de cel ce a făcut postarea.
+            </p>
+        </section>
+        <section typeof="sa:MaterialsAndMethods" id="themes" role="doc-chapter">
+            <h3><span>4.11</span> Teme de culori</h3>
+
+            <p>
+                Utilizatorii autentificati pot alege intre doua teme de culoare (light sau dark)
+                din pagina de <a href="/user/profile">profile</a>. Schimbarea temei se va face dinamic
+                prin intermediul unui script javascript, care va salva un cookie cu tema preferata a
+                utilizatorului.
+            </p>
+        </section>
+    </section>
+    <section typeof="sa:ScholarlyArticle" id="structure" role="doc-chapter">
+        <h2><span>5.</span> Structura</h2>
+        <p>
+
+        </p>
+    </section>
+    <section typeof="sa:ReferenceList" id="referinte" role="doc-bibliography">
+        <h2><span>6. </span>Referinţe</h2>
+        <ol>
+            <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage" id="Scholarly-html"
+                resource="https://w3c.github.io/scholarly-html/">
+                <cite property="schema:name">
+                    <a href="https://w3c.github.io/scholarly-html/">Scholarly HTML</a>
+                </cite>, by
+                <span property="schema:author" typeof="schema:Person">
+                            <span property="schema:givenName">Tzviya</span>
+                            <span property="schema:aditionalName">Wiley</span>
+                            <span property="schema:familiyName">Siegman</span>
+
+                </span>&amp;
+                <span property="schema:author" typeof="schema:Person">
+                    <span property="schema:givenName">Robin</span>
+                    <span property="schema:familiyName">Berjon</span>
+                </span>
+            </li>
+            <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage" id="busaco"
+                resource="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html">
+                 <span property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Sabin</span>
+                        <span property="schema:aditionalName">Corneliu</span>
+                        <span property="schema:familiyName">Buraga</span>
+                 </span>,
+                <cite property="schema:name">
+                    <a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html">
+                        Site-ul disciplinei "Tehnologii Web"
+                    </a> parte a
+                    <span typeof="schema:Organization"
+                          resource="https://www.uaic.ro">
+                            <a href="https://www.uaic.ro">
+                             <span property="schema:name">UAIC</span>
+                          </a>
+                    </span>
+                </cite>
+            </li>
+        </ol>
+    </section>
+</div>
+
+
+</body>
+</html>
