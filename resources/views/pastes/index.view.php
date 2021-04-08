@@ -40,7 +40,7 @@
 
                         <div class="paste-actions">
                             <div class="edit">
-                                <a href="#">
+                                <a href="/pastes/edit">
                                     <img src="/img/svg/edit.svg" alt="edit"/>
                                 </a>
                             </div>

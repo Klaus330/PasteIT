@@ -14,5 +14,6 @@ $app->router->get("/user/settings","UserController@settings");
 $app->router->get("/user/profile","UserController@profile");
 $app->router->get("/user/mypastes","UserController@myPastes");
 $app->router->get("/pastes/locked-paste","PasteController@lockedPaste");
+$app->router->get("/pastes/edit","PasteController@edit");
 
 $app->router->get("/captcha-image", 'CaptchaController@getCaptchaImage');
