@@ -202,7 +202,7 @@
             PasteIt este o platformă unde poți stoca online orice text pentru a fi ușor de distribuit.
             Site-ul este destinat în mare parte programatorilor care doresc să împărtășeasca bucăți de
             cod sau informații de configurare (de servere, de baze de date), dar oricine se poate folosi
-            de funcționalitățile aplicatiei.
+            de funcționalitățile aplicației.
         </p>
         <p>
             Aplicația oferă posibilitatea de a crea un cont, astfel încat un utilizator autentificat să poată
@@ -237,11 +237,11 @@
             <h3><span>4.1</span> Register</h3>
 
             <p>
-                Vizitatorii noi se pot înregistra pe platforma noastra în pagina de <a href="/register">register</a>,
+                Vizitatorii noi se pot înregistra pe platforma noastră în pagina de <a href="/register">register</a>,
                 unde iși vor oferi datele personale (email, nume, prenume), pentru a putea beneficia de avantajele
                 unui user înregistrat. Datele oferite vor fi trimise prin intermediul unei cereri de tip "POST" realizată de
                 către
-                formularul de înregistrare, doar dupa ce au fost completate toate câmpurile obligatorii.
+                formularul de înregistrare, doar după ce au fost completate toate câmpurile obligatorii.
             </p>
         </section>
         <section typeof="sa:MaterialsAndMethods" id="login" role="doc-chapter">
@@ -258,7 +258,7 @@
             <h3><span>4.3</span> Încărcare a codului</h3>
             <p>
                 Pe pagina <a href="/">principală</a> utilizatorii de orice fel iși pot încărca
-                blocurile de cod pe care doresc să le împărtășească cu restul persoanelor care acceseaza
+                blocurile de cod pe care doresc să le împărtășească cu restul persoanelor care accesează
                 aplicația web. Încărcarea se va face prin intermediul unui formular care va trimite o cerere
                 de tip "POST" către endpoint-ul <a href="/new-paste">"/new-paste"</a>
             </p>
@@ -269,7 +269,7 @@
                 Postările din cadrul platformei vor avea un termen de valabilitate.
                 Codul postat de vizitatorii neautentificați va fi păstrat în baza de date pe durata
                 a 30 de zile.
-                Beneficiul un utilizator autentificat este dat de faptul că
+                Beneficiul unui utilizator autentificat este dat de faptul că
                 are posibilitatea de a iși alege perioada de expirare a codului postat.
             </p>
         </section>
@@ -318,7 +318,7 @@
             <p>
                 Pentru ca un utilizator neautentificat să poată publica codul dorit i se va cere să rezolve
                 o problemă de tip Captcha. Aceste probleme sunt generate automat de către controllerul
-                "CaptchaController", care utilizează funcățiile predefinite pentru a crea imaginile cu
+                "CaptchaController", care utilizează funcțiile predefinite pentru a crea imaginile cu
                 codurile captcha.
             </p>
         </section>
@@ -327,7 +327,7 @@
             <h3><span>4.10</span> Selectarea sintaxei</h3>
 
             <p>
-                Codurile vor fi colorate conform unui dicționar (sintax highlighting);
+                Codurile vor fi colorate conform unui dicționar (sintax highlighting),
                 dicționarul (limbajul) va fi selectat de cel ce a făcut postarea.
             </p>
         </section>
@@ -347,14 +347,14 @@
         <p>
             Pentru aplicația noastră am considerat că modelul software MVC se potrivește perfect. Astfel că, folosind
             limbajul de programare PHP am implementat un MVC pentru aplicația noastra. Vă vom prezenta acum structura
-            de fișiere care compune aplicația noastră:
+            de fișiere care compune aplicația :
         </p>
 
         <section typeof="sa:ScholarlyArticle" id="controllers" role="doc-chapter">
             <h3><span>5.1</span> Directorul Controllers</h3>
 
             <p>
-                Acest director este dedicat controllerelor aplicației noastre. Modelul MVC impune că toate fișierele din
+                Acest director este dedicat controllerelor aplicației noastre. Modelul MVC impune ca toate fișierele din
                 acest folder să conțină terminația "Controller". Aceste clase vor trata diversele cereri primite de
                 către useri.
             </p>
@@ -375,7 +375,7 @@
                 În acest director păstrăm toate clasele care definesc nucleul aplicației noastre PHP. Aici se afla
                 clasa Application care reprezintă un IOC Container, clasa Router al cărei scop este de a redirecționa
                 cererile venite de la useri către controlerele specializate și de a raspunde clientului, clasa Validator
-                care se ocupă cu validarea datelor primite de la utilizatori conform unor reguli predefinite, fisierul
+                care se ocupă cu validarea datelor primite de la utilizatori conform unor reguli predefinite, fișierul
                 bootstrap care pregateste aplicatia pentru boot etc.
             </p>
             <img src="/img/scholarly/core.png" alt="core">
@@ -386,7 +386,7 @@
             <p>
                 În directorul routes se regăsește fișierul web.php al cărui scop este definirea rutelor pe care
                 utilizatorul le poate accesa în aplicația web. Pentru a face acest lucru, acesta se folosește de o instanță
-                a clasei Router care se aflp in directorul core.
+                a clasei Router care se află în directorul core.
             </p>
             <img src="/img/scholarly/routes.png" alt="routes">
         </section>
@@ -395,7 +395,7 @@
 
             <p>
                 Directorul vendor conține fișierul autoload.php care are ca scop realizarea încărcării
-                automate a claselor care compum aplicația noastră web. Acesta se folosește de funcția
+                automate a claselor care compun aplicația noastră web. Acesta se folosește de funcția
                 predefinită din php <span>spl_autoload_register</span> pentru a include toate clasele
                 necesare funcționării aplicației în mod corect.
             </p>
