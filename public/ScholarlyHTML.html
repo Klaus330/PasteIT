@@ -49,22 +49,22 @@
                     <a href="#login"><span>4.2 </span>Componenta de login </a>
                 </li>
                 <li>
-                    <a href="#code-loading"><span>4.3 </span>Incarcarea codului </a>
+                    <a href="#code-loading"><span>4.3 </span>Încărcarea codului </a>
                 </li>
                 <li>
-                    <a href="#expiration-limit"><span>4.4 </span>Perioada de expirare a postarilor </a>
+                    <a href="#expiration-limit"><span>4.4 </span>Perioada de expirare a postărilor </a>
                 </li>
                 <li>
-                    <a href="#my-pastes"><span>4.5 </span> Gestionarea Postarilor</a>
+                    <a href="#my-pastes"><span>4.5 </span> Gestionarea Postărilor</a>
                 </li>
                 <li>
                     <a href="#burn-after-read"><span>4.6 </span> Burn after read</a>
                 </li>
                 <li>
-                    <a href="#post-encryption"><span>4.7 </span> Criptarea postarilor</a>
+                    <a href="#post-encryption"><span>4.7 </span> Criptarea postărilor</a>
                 </li>
                 <li>
-                    <a href="#views-tracker"><span>4.8 </span> Inregistrarea vizualizarilor</a>
+                    <a href="#views-tracker"><span>4.8 </span> Înregistrarea vizualizărilor</a>
                 </li>
                 <li>
                     <a href="#captcha"><span>4.9 </span> Rezolvarea de probleme Captcha</a>
@@ -78,7 +78,7 @@
             </ol>
         </li>
         <li>
-            <a href="#motivatie">
+            <a href="#structure">
                 <span>5. </span>Structura
             </a>
             <ol role="directory">
@@ -92,7 +92,7 @@
                     <a href="#core"><span>5.3 </span>Directorul Core</a>
                 </li>
                 <li>
-                    <a href="#routest"><span>5.4 </span>Directorul Routes</a>
+                    <a href="#routes"><span>5.4 </span>Directorul Routes</a>
                 </li>
                 <li>
                     <a href="#vendor"><span>5.5 </span>Directorul Vendor</a>
@@ -147,7 +147,7 @@
                         <meta property="schema:givenName" content="Iulia">
                         <meta property="schema:additionalName" content="Cristina">
                         <meta property="schema:familyName" content="Rata">
-                        <span property="schema:name">Rata Cristina Iulia</span>
+                        <span property="schema:name">Rață Cristina Iulia</span>
                     </span>
                     <ul>
                         <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
@@ -188,127 +188,127 @@
     <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
         <h2><span>1. </span>Abstract</h2>
         <p>
-            PasteIt este o aplicatie web prin intermediul careia se pot distribui
-            blocuri de cod sursa (scrise intr-un anumit limbaj de programare). Folosind modelul
-            MVC, implementat in PHP, alaturi de HTML, CSS si JS am reusit sa implementam functionalitatile
-            aplicatiei. Scopul final al acestui proiect este de a oferi o platforma alternativa de distribuire de
-            cod intre informaticieni.
+            PasteIt este o aplicație web prin intermediul căreia se pot distribui
+            blocuri de cod sursă (scrise într-un anumit limbaj de programare). Folosind modelul
+            MVC, implementat în PHP, alături de HTML, CSS și JS am reușit să implementăm funcționalitățile
+            aplicației. Scopul final al acestui proiect este de a oferi o platformă alternativă de distribuire de
+            cod între informaticieni.
         </p>
     </section>
 
     <section typeof="sa:ScholarlyArticle" id="introducere" role="doc-introduction">
         <h2><span>2. </span>Introducere</h2>
         <p>
-            PasteIt este o platforma unde poti stoca online orice text pentru a fi usor de distribuit.
-            Site-ul este destinat in mare parte programatorilor care doresc sa impartaseasca bucati de
-            cod sau informatii de configurare(de servere, de baze de date), dar oricine se poate folosi
-            de functionalitatile aplicatiei.
+            PasteIt este o platformă unde poți stoca online orice text pentru a fi ușor de distribuit.
+            Site-ul este destinat în mare parte programatorilor care doresc să împărtășeasca bucăți de
+            cod sau informații de configurare (de servere, de baze de date), dar oricine se poate folosi
+            de funcționalitățile aplicatiei.
         </p>
         <p>
-            Aplicatia ofera posibilitatea de a crea un cont, astfel incat un utilizator autentificat sa poata
-            beneficia de toate functionalitatile acesteia. In acelasi timp, vizitatorii platformei pot folosi
-            o mare parte din aceste utilitati.
+            Aplicația oferă posibilitatea de a crea un cont, astfel încat un utilizator autentificat să poată
+            beneficia de toate funcționalitățile acesteia. În același timp, vizitatorii platformei pot folosi
+            o mare parte din aceste utilități.
         </p>
         <p>
-            Structura de baza a aplicatiei este scrisa in limbajul <a href="https://www.php.net/">PHP</a> (versiunea
-            8.0.1), urmand modelul arhitectural
+            Structura de baza a aplicației este scrisă în limbajul <a href="https://www.php.net/">PHP</a> (versiunea
+            8.0.1), urmând modelul arhitectural
             <a href="https://ro.wikipedia.org/wiki/Model-view-controller">MVC</a>
-            (Model, View, Controller). Interfata ei este realizata in
-            <a href="https://ro.wikipedia.org/wiki/HTML5">HTML5</a> si <a href="https://www.w3schools.com/css/">CSS3</a>,
-            existand si cateva
-            scripturi de JavaScript care imbunatatesc experienta utilizatorului. Datele inregistrate vor fi stocate
-            intr-o baza de date relationala (<a href="https://mariadb.org/">MariaDb</a>).
+            (Model, View, Controller). Interfața ei este realizată în
+            <a href="https://ro.wikipedia.org/wiki/HTML5">HTML5</a> și <a href="https://www.w3schools.com/css/">CSS3</a>,
+            existând și câteva
+            scripturi de JavaScript care îmbunătățesc experiența utilizatorului. Datele înregistrate vor fi stocate
+            într-o bază de date relațională (<a href="https://mariadb.org/">MariaDb</a>).
         </p>
     </section>
     <section typeof="sa:Motivation" id="motivatie" role="doc-prologue">
         <h2><span>3. </span>Motivație</h2>
         <p>
-            Dorim sa oferim o platforma care sa ofere programatorilor un loc sigur si stabil de a isi
-            distribui parti din cod catre alti programatori.
+            Dorim să oferim o platformă care să ofere programatorilor un loc sigur și stabil unde iși
+            distribui părți din cod către alți programatori.
         </p>
     </section>
     <section typeof="sa:MaterialsAndMethods" id="functionalitati" role="doc-chapter">
-        <h2><span>4</span> Functionalitati</h2>
+        <h2><span>4</span> Funcționalități</h2>
         <p>
-            In acest raport vom descrie functionalitatile pe care trebuie sa le indeplineasca aplicatia noastra.
+            În acest raport vom descrie funcționalitățile pe care trebuie să le îndeplinească aplicația noastră.
         </p>
 
         <section typeof="sa:MaterialsAndMethods" id="register" role="doc-chapter">
             <h3><span>4.1</span> Register</h3>
 
             <p>
-                Vizitatorii noi se pot inregistra pe platforma noastra in pagina de <a href="/register">register</a>,
-                unde isi vor oferi datele personale(email, nume, prenume), pentru a putea beneficia de avantajele
-                unui user inregistrat. Datele oferite vor fi trimise intermediul unei cereri de tip "POST" realizata de
-                catre
-                formularul de inregistrare, doar dupa ce au fost completate toate campurile obligatorii.
+                Vizitatorii noi se pot înregistra pe platforma noastra în pagina de <a href="/register">register</a>,
+                unde iși vor oferi datele personale (email, nume, prenume), pentru a putea beneficia de avantajele
+                unui user înregistrat. Datele oferite vor fi trimise prin intermediul unei cereri de tip "POST" realizată de
+                către
+                formularul de înregistrare, doar dupa ce au fost completate toate câmpurile obligatorii.
             </p>
         </section>
         <section typeof="sa:MaterialsAndMethods" id="login" role="doc-chapter">
             <h3><span>4.2</span> Login</h3>
 
             <p>
-                Utilizatorii se pot autentifica pe pagina de <a href="/login">login</a>, unde isi poate
-                gestiona contul si activitatea pe website. Credentialele utilizatorului vor fi trimise printr-o
-                cerere a formularului de autentificare catre endpoint-ul <a href="/login">"/login"</a>.
+                Utilizatorii se pot autentifica pe pagina de <a href="/login">login</a>, unde iși pot
+                gestiona contul și activitatea pe website. Credențialele utilizatorului vor fi trimise printr-o
+                cerere a formularului de autentificare către endpoint-ul <a href="/login">"/login"</a>.
             </p>
         </section>
 
         <section typeof="sa:MaterialsAndMethods" id="code-loading" role="doc-chapter">
-            <h3><span>4.3</span> Incarcare a codului</h3>
+            <h3><span>4.3</span> Încărcare a codului</h3>
             <p>
-                Pe pagina <a href="/">principala</a> utilizatorii de orice fel isi pot incarca
-                blocurile de cod pe care doresc sa le impartaseasca cu restul persoanelor care acceseaza
-                aplicatia web. Incarcarea se va face prin intermediul unui formular care va trimite o cerere
-                de tip "POST" catre endpoint-ul <a href="/new-paste">"/new-paste"</a>
+                Pe pagina <a href="/">principală</a> utilizatorii de orice fel iși pot încărca
+                blocurile de cod pe care doresc să le împărtășească cu restul persoanelor care acceseaza
+                aplicația web. Încărcarea se va face prin intermediul unui formular care va trimite o cerere
+                de tip "POST" către endpoint-ul <a href="/new-paste">"/new-paste"</a>
             </p>
         </section>
         <section typeof="sa:MaterialsAndMethods" id="expiration-limit" role="doc-chapter">
-            <h3><span>4.4</span> Perioada de expirare a postarilor</h3>
+            <h3><span>4.4</span> Perioada de expirare a postărilor</h3>
             <p>
-                Postarile din cadrul platformei vor avea un termen de valabilitate.
-                Codul postat de vizitatorii neautentificati va fi pastrat in baza de date pe durata
+                Postările din cadrul platformei vor avea un termen de valabilitate.
+                Codul postat de vizitatorii neautentificați va fi păstrat în baza de date pe durata
                 a 30 de zile.
-                Beneficiul un utilizator autentificat este dat de faptul ca
-                are posibilitatea de a isi alege perioada de expirare a codului postat.
+                Beneficiul un utilizator autentificat este dat de faptul că
+                are posibilitatea de a iși alege perioada de expirare a codului postat.
             </p>
         </section>
 
         <section typeof="sa:MaterialsAndMethods" id="my-pastes" role="doc-chapter">
-            <h3><span>4.5</span> Gestionarea postarilor</h3>
+            <h3><span>4.5</span> Gestionarea postărilor</h3>
             <p>
-                Procedeul de gestionare a postarilor consta in mai multe operatii: stergere, modificare,
-                schimbare a datei de expirare, modificarea vizibilitatii unei postari si schimbarea modului de
-                afisare a codului. Un utilizator poate realiza toate aceste operatii accesand pagina de
-                <a href="/user/paste-settings">settings</a> specifica fiecarei postari.
+                Procedeul de gestionare a postărilor constă în mai multe operații: ștergere, modificare,
+                schimbare a datei de expirare, modificarea vizibilității unei postări și schimbarea modului de
+                afișare a codului. Un utilizator poate realiza toate aceste operații accesând pagina de
+                <a href="/user/paste-settings">settings</a> specifică fiecarei postări.
             </p>
         </section>
         <section typeof="sa:MaterialsAndMethods" id="burn-after-read" role="doc-chapter">
             <h3><span>4.6</span> Burn after read</h3>
             <p>
-                Orice utilizator poate opta pentru incarcarea unui cod cu proprietatea
-                de "burn after read". Continutul publicat va putea fi accesat o singura data, dupa inchiderea
-                paginii acesta fiind sters definitiv din baza de date si nu va exista nicio modalitate
+                Orice utilizator poate opta pentru încărcarea unui cod cu proprietatea
+                de "burn after read". Conținutul publicat va putea fi accesat o singură dată, după închiderea
+                paginii acesta fiind șters definitiv din baza de date și nu va exista nicio modalitate
                 de recuperare a acestuia.
             </p>
         </section>
 
         <section typeof="sa:MaterialsAndMethods" id="post-encryption" role="doc-chapter">
-            <h3><span>4.7</span> Criptarea postarilor</h3>
+            <h3><span>4.7</span> Criptarea postărilor</h3>
             <p>
-                Postarile pot fi criptate prin intermediul unei parole generate automat sau aleasa de catre
-                user inainte de a publica codul. Cei care vor accesa respectiva postare vor fi intampinati
-                de un formular in care vor fi rugati sa introduca parola stabilita de catre detinatorul postarii.
+                Postările pot fi criptate prin intermediul unei parole generate automat sau aleasă de către
+                user înainte de a publica codul. Cei care vor accesa respectiva postare vor fi întâmpinați
+                de un formular în care vor fi rugați să introducă parola stabilită de către deținătorul postării.
             </p>
         </section>
 
         <section typeof="sa:MaterialsAndMethods" id="views-tracker" role="doc-chapter">
-            <h3><span>4.8</span> Inregistrarea vizualizarilor</h3>
+            <h3><span>4.8</span> Înregistrarea vizualizărilor</h3>
 
             <p>
-                O caracteristica a unei postari o reprezinta numarul de vizualizari. Acestea sunt inregistrate
-                in momentul in care postarea respectiva este accesata. Utilizatorii autentificati vor putea
-                sti numele celorlalti utilizatori autentificati care au vizualizat postarea.
+                O caracteristică a unei postări o reprezintă numărul de vizualizări. Acestea sunt înregistrate
+                în momentul în care postarea respectivă este accesată. Utilizatorii autentificați vor putea
+                ști numele celorlalți utilizatori logați care au vizualizat postarea.
             </p>
         </section>
 
@@ -316,9 +316,9 @@
             <h3><span>4.9</span> Rezolvarea de probleme Captcha</h3>
 
             <p>
-                Pentru ca un utilizator neautentificat sa poata publica codul dorit i se va cere sa rezolve
-                o problema de tip Captcha. Aceste probleme sunt generate automat de catre controllerul
-                "CaptchaController", care utilizeaza functiile predefinite pentru a crea imaginile cu
+                Pentru ca un utilizator neautentificat să poată publica codul dorit i se va cere să rezolve
+                o problemă de tip Captcha. Aceste probleme sunt generate automat de către controllerul
+                "CaptchaController", care utilizează funcățiile predefinite pentru a crea imaginile cu
                 codurile captcha.
             </p>
         </section>
@@ -335,9 +335,9 @@
             <h3><span>4.11</span> Teme de culori</h3>
 
             <p>
-                Utilizatorii autentificati pot alege intre doua teme de culoare (light sau dark)
-                din pagina de <a href="/user/profile">profile</a>. Schimbarea temei se va face dinamic
-                prin intermediul unui script javascript, care va salva un cookie cu tema preferata a
+                Utilizatorii autentificați pot alege între două teme de culoare (light sau dark)
+                din pagina de <a href="/user/profile">profile</a>. Schimbarea temei se va face în manieră dinamică
+                prin intermediul unui script javascript, care va salva un cookie cu tema preferată a
                 utilizatorului.
             </p>
         </section>
@@ -345,19 +345,18 @@
     <section typeof="sa:ScholarlyArticle" id="structure" role="doc-chapter">
         <h2><span>5.</span> Structura</h2>
         <p>
-            Pentru aplicatia noastra am considerat ca modelul software MVC se potriveste perfect. Astfel ca, folosind
-            limbajul de programare PHP am implementat un MVC pentru aplicatia noastra. Va vom prezenta acum structura
-            de fisiere care compun aplicatia noastra:
+            Pentru aplicația noastră am considerat că modelul software MVC se potrivește perfect. Astfel că, folosind
+            limbajul de programare PHP am implementat un MVC pentru aplicația noastra. Vă vom prezenta acum structura
+            de fișiere care compune aplicația noastră:
         </p>
 
         <section typeof="sa:ScholarlyArticle" id="controllers" role="doc-chapter">
             <h3><span>5.1</span> Directorul Controllers</h3>
 
             <p>
-                Acest director este dedicat controllerelor aplicatiei noastre. Modelul MVC impune ca toate fisierele din
-                acest folder sa contina terminatia "Controller". Aceste clase vor trata diversele cereri primite de
-                catre
-                useri.
+                Acest director este dedicat controllerelor aplicației noastre. Modelul MVC impune că toate fișierele din
+                acest folder să conțină terminația "Controller". Aceste clase vor trata diversele cereri primite de
+                către useri.
             </p>
             <img src="/img/scholarly/controllers.png" alt="controllers">
         </section>
@@ -365,7 +364,7 @@
             <h3><span>5.2</span> Directorul Models</h3>
 
             <p>
-                In acest director se afla toate clasele Model al caror scop este de a prelucra datele aplicatiei.
+                În acest director se află toate clasele Model al căror scop este de a prelucra datele aplicației.
             </p>
             <img src="/img/scholarly/models.png" alt="models">
         </section>
@@ -373,12 +372,11 @@
             <h3><span>5.3</span> Directorul Core</h3>
 
             <p>
-                In acest director pastram toate clasele care definesc nucleul aplicatiei noastre PHP. Aici se afla
-                clasa Application care reprezinta un IOC Container, clasa Router al carei scop este de a redirectiona
-                cererile venite de la useri catre controlerele specializate si de a raspunde clientului, clasa Validator
-                care se ocupa cu validarea datelor primite de la utilizatori conform unor reguli predefinite, fisierul
-                bootstrap
-                care pregateste aplicatia pentru boot etc.
+                În acest director păstrăm toate clasele care definesc nucleul aplicației noastre PHP. Aici se afla
+                clasa Application care reprezintă un IOC Container, clasa Router al cărei scop este de a redirecționa
+                cererile venite de la useri către controlerele specializate și de a raspunde clientului, clasa Validator
+                care se ocupă cu validarea datelor primite de la utilizatori conform unor reguli predefinite, fisierul
+                bootstrap care pregateste aplicatia pentru boot etc.
             </p>
             <img src="/img/scholarly/core.png" alt="core">
         </section>
@@ -386,9 +384,9 @@
             <h3><span>5.4</span> Directorul Routes</h3>
 
             <p>
-                In directorul routes se regaseste fisierul web.php al carui scop este definirea rutelor pe care
-                utilizatorul le poate accesa in aplicatia web. Pentru a face asta, acesta se foloseste de o instanta
-                a clasei Router care se afla in directorul core.
+                În directorul routes se regăsește fișierul web.php al cărui scop este definirea rutelor pe care
+                utilizatorul le poate accesa în aplicația web. Pentru a face acest lucru, acesta se folosește de o instanță
+                a clasei Router care se aflp in directorul core.
             </p>
             <img src="/img/scholarly/routes.png" alt="routes">
         </section>
@@ -396,10 +394,10 @@
             <h3><span>5.5</span> Directorul Vendor</h3>
 
             <p>
-                Directorul vendor contine fisierul autoload.php care are ca scop realizarea incarcarii
-                automate a claselor care compum aplicatia noastra web. Acesta se foloseste de functia
-                predefinita din php <span>spl_autoload_register</span> pentru a include toate clasele
-                necesare pentru ca aplicatia sa functioneze corect.
+                Directorul vendor conține fișierul autoload.php care are ca scop realizarea încărcării
+                automate a claselor care compum aplicația noastră web. Acesta se folosește de funcția
+                predefinită din php <span>spl_autoload_register</span> pentru a include toate clasele
+                necesare funcționării aplicației în mod corect.
             </p>
             <img src="/img/scholarly/vendor.png" alt="vendor">
         </section>
@@ -407,23 +405,23 @@
             <h3><span>5.6</span> Directorul Resources</h3>
 
             <p>
-                Acest director contine doua alte directoare al caror scop este modelarea si formarea View-urilor
-                care urmeaza sa fie trimise drept raspuns utilizatorilor.
+                Acest director conține două alte directoare al căror scop este modelarea și formarea View-urilor
+                care urmează să fie trimise drept răspuns utilizatorilor.
             </p>
             <h4 id="assets"><span>5.6.1</span> Directorul Assets</h4>
             <p>
-                In assets se regasesc directoarele scss si js. Cel dintai contine toate fisiere SCSS organizate dupa
+                În assets se regăsesc directoarele scss si js. Cel dintâi conține toate fișiere SCSS organizate dupa
                 <a href="https://gist.github.com/rveitch/84cea9650092119527bc">patternul 7-1</a>. Cel de-al doilea
                 director
-                contine codurile javascript necesare pentru a imbunatati experienta utilizatorului in aplicatia web.
+                conține codurile javascript necesare pentru a îmbunătăți experiența utilizatorului în aplicația web.
 
             </p>
             <img src="/img/scholarly/scss.png" alt="scss">
             <h4 id="views"><span>5.6.2</span> Directorul Views</h4>
             <p>
-                In acest director se afla toate view-urile aplicatiei. Fisierele din acest director au extensia
-                "view.php" pentru a face mai clara legatura dintre ele si modelul arhitectural MVC. Acestea,
-                contin codul html care va fi afisat in browser.
+                În acest director se află toate view-urile aplicației. Fișierele din acest director au extensia
+                "view.php" pentru a face mai clară legătura dintre ele și modelul arhitectural MVC. Acestea,
+                conțin codul html care va fi afișat în browser.
             </p>
             <img src="/img/scholarly/views.png" alt="views">
 
@@ -432,21 +430,21 @@
             <h3><span>5.7</span> Directorul Public</h3>
 
             <p>
-                Punctul de intrare in aplicatia noastra se afla aici, acesta fiind reprezentat de catre
-                fisierul index.php. De asemenea, si raportul ScholarlyHTML este prezent in acest director.
-                Pe langa aceste doua fisiere mai avem si urmatoarele foldere: captcha, css, img pe care le vom detalia.
+                Punctul de intrare în aplicație se află aici, acesta fiind reprezentat de către
+                fișierul index.php. De asemenea, și raportul ScholarlyHTML este prezent în acest director.
+                Pe lângă aceste două fișiere mai avem și următoarele foldere: captcha, css, img.
             </p>
             <img src="/img/scholarly/public.png" alt="public">
             <p>
-                Folderul css contine fisierul style.css rezultat al compilarii tuturor fisierelor scss din directorul
+                Folderul css conține fișierul style.css rezultat al compilării tuturor fișierelor scss din directorul
                 assets/scss.
             </p>
             <p>
-                Folderul img contine toate imaginile si elementele svg prezente in aplicatia web.
+                Folderul img conține toate imaginile și elementele svg prezente în aplicația web.
             </p>
             <p>
-                Directorul captcha pastreaza pentru un timp limitat imaginile ce compun codurile captcha pe care
-                utilizatorii neautentificati trebuie sa le completeze inainte de a face o postare.
+                Directorul captcha păstrează pentru un timp limitat imaginile ce compun codurile captcha pe care
+                utilizatorii neautentificați trebuie să le completeze înainte de a face o postare.
             </p>
         </section>
     </section>
