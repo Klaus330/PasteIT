@@ -94,13 +94,16 @@
     width: 60px;
     height: 30px;
     background: #c6c6c6;
-    outline: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
     border-radius: 20px;
     box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
     transition: 0.5s;
     margin-left: 0.75rem;
     margin-right: 0.75rem;
+    &:focus{
+        outline: none;
+    }
     &:checked {
         background: $link-color;
         &:before {

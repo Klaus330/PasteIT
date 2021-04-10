@@ -6,7 +6,9 @@
   "components/forms",
   "components/highlight",
   "components/lists",
-  "components/navbar";
+  "components/navbar",
+  "components/alerts",
+  "components/footer";
 
   @import "layout/sections";
 
@@ -14,11 +16,13 @@
   "pages/login",
   "pages/paste",
   "pages/register",
-  "pages/settings";
+  "pages/settings",
+  "pages/contact";
 
   @import "base/typography";
 
   background: $secondary-color-light;
+  color: $text-color-black;
 
 
 }

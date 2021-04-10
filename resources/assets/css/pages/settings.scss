@@ -8,13 +8,12 @@
   align-items: flex-start;
   flex: 1;
   margin-top: 1rem;
-
   @include mq(medium)
   {
     margin-top: 0;
     align-items: center;
   }
-  h4{
+  .h4{
     text-transform: uppercase;
     margin: 0;
   }

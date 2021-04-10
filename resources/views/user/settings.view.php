@@ -1,7 +1,7 @@
 <div class="flex">
     <section class="section">
         <div class="row">
-            <h4 class="section-title mb-2">My Settings</h4>
+            <h4 class="section-title mb-2 h4">My Settings</h4>
             <div class="settings-content">
                 <form class="home-form" action="/user/settings" method="POST">
                     <div class="grid">
@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="grid">
-                        <div class="col-5 col-md-3 flex align-start">
+                        <div class="col-7 col-md-3 flex align-start">
                             <label class="form-label" for="exposure1">Default Expiration:</label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="grid">
-                        <div class="col-5 col-md-3 flex align-start">
+                        <div class="col-7 col-md-3 flex align-start">
                             <label class="form-label" for="exposure2">Default Exposure:</label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
@@ -45,20 +45,7 @@
                     </div>
                 </form>
 
-                <aside class="related-links">
-                    <h4>Account related pages</h4>
-                    <ul class="quick-links-list quick-links-list-light">
-                        <li class="quick-link-item">
-                            <a class="quick-link" href="/user/profile">Profile</a>
-                        </li>
-                        <li class="quick-link-item">
-                            <a class="quick-link" href="/user/settings">Settings</a>
-                        </li>
-                        <li class="quick-link-item">
-                            <a class="quick-link" href="/user/delete">Delete account</a>
-                        </li>
-                    </ul>
-                </aside>
+                <?php include("../resources/views/partials/related-links.view.php")?>
             </div>
         </div>
 
@@ -66,7 +53,7 @@
 
 
     <aside class="home-aside sm-hidden settings-aside">
-        <h4>Public Pastes</h4>
+        <h4 class="h4">Public Pastes</h4>
         <ul class="list-group">
             <li class="list-group-item">
                 <a href="">Lorem</a>

@@ -1,7 +1,7 @@
 <div class="flex">
     <section class="section">
         <div class="row">
-            <h4 class="section-title mb-2">My Profile</h4>
+            <h4 class="section-title mb-2 h4">My Profile</h4>
             <div class="settings-content">
                 <form class="home-form" action="/user/settings" method="POST">
                     <div class="grid">
@@ -24,19 +24,19 @@
                         <div class="col-5 col-md-3 flex align-start">
                             <label class="form-label" for="exposure">Email Status : </label>
                         </div>
-                        <div class="col-12 col-md-6 flex align-center">
-                           <h5> Verfied !</h5>
+                        <div class="col-7 col-md-6 flex align-center">
+                           <h5 class="h5"> Verified !</h5>
                         </div>
                     </div>
                     <div class="grid">
                         <div class="col-4 col-md-3 flex align-start">
                             <label class="form-label" for="exposure">Avatar : </label>
                         </div>
-                        <div class="col-1 col-md-2 flex align-start" >
+                        <div class="col-1 col-md-3 flex align-start" >
                             <img class="profile-img" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="user icon"/>
                         </div>
                         <div class="col-6 col-md-4 flex align-start">
-                            <h5><a class="btn-link" href="#" > [ Change avatar ] </a></h5>
+                            <h6 class="h6"><a class="btn-link" href="#" > [ Change avatar ] </a></h6>
                         </div>
                     </div>
 
@@ -45,7 +45,7 @@
                             <label class="form-label" for="exposure">Account Type : </label>
                         </div>
                         <div class="col-7 col-md-6 flex align-center">
-                            <h5> Free !</h5>
+                            <h5 class="h5"> Free !</h5>
                         </div>
                     </div>
 
@@ -67,20 +67,8 @@
                     </div>
                 </form>
 
-                <aside class="related-links">
-                    <h4>Account related pages</h4>
-                    <ul class="quick-links-list quick-links-list-light">
-                        <li class="quick-link-item">
-                            <a class="quick-link" href="/user/profile">Profile</a>
-                        </li>
-                        <li class="quick-link-item">
-                            <a class="quick-link" href="/user/settings">Settings</a>
-                        </li>
-                        <li class="quick-link-item">
-                            <a class="quick-link" href="/user/delete">Delete account</a>
-                        </li>
-                    </ul>
-                </aside>
+                <?php include("../resources/views/partials/related-links.view.php")?>
+
             </div>
         </div>
 
@@ -88,7 +76,7 @@
 
 
     <aside class="home-aside sm-hidden settings-aside">
-        <h4>Public Pastes</h4>
+        <h4 class="h4">Public Pastes</h4>
         <ul class="list-group">
             <li class="list-group-item">
                 <a href="">Lorem</a>
@@ -110,5 +98,45 @@
     </aside>
 
 </div>
+
+<script>
+
+    function setThemeCookie(e) {
+        let event = new Event("theme-changed");
+        event.initEvent('theme-changed', true, true);
+        document.cookie = "theme=;expires=Thu, 18 Dec 2021 12:00:00 UTC;path=/";
+
+        let body = document.getElementsByTagName('body')[0];
+        let currentTheme = body.classList[0];
+        console.log(currentTheme);
+        if (e.target.checked  && currentTheme === 'light') {
+            document.cookie = "theme=dark;expires=Thu, 18 Dec 2021 12:00:00 UTC;path=/";
+        } else if (e.target.checked  && currentTheme === 'dark') {
+            document.cookie = "theme=light;expires=Thu, 18 Dec 2021 12:00:00 UTC;path=/";
+        }else if (!e.target.checked  && currentTheme === 'light'){
+            document.cookie = "theme=dark;expires=Thu, 18 Dec 2021 12:00:00 UTC;path=/";
+        }else if (!e.target.checked  && currentTheme === 'dark'){
+            document.cookie = "theme=light;expires=Thu, 18 Dec 2021 12:00:00 UTC;path=/";
+        }
+        body.dispatchEvent(event);
+    }
+
+    function changeTheme(e) {
+        let cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            if (cookies[i].split('=')[0].trim() === 'theme') {
+                let themeValue = cookies[i].split('=')[1];
+                e.target.classList = '' + themeValue;
+            }
+        }
+
+
+    }
+
+    document.getElementById('theme-mode')?.addEventListener('click', setThemeCookie);
+
+    document.getElementsByTagName('body')[0].addEventListener('theme-changed', changeTheme);
+
+</script>
 
 

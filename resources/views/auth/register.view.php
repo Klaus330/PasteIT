@@ -1,6 +1,5 @@
 <div class="row">
-    <h1>Register</h1>
-    <div class="row">
+    <div class="row mt-3">
         <form class="register-form simple-form" action="/register" method="POST">
             <div class="grid">
                 <div class="col-md-3 col-3">

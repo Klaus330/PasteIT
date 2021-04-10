@@ -3,13 +3,26 @@
   margin: 0 0 10px;
   color: #333;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;
+  overflow-x: scroll;
+  @include mq(large){
+    overflow-x: hidden;
+  }
 }
 
 .source {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  border: 1px solid #707070
+  border: 1px solid #707070;
+  overflow-x: scroll;
+
+  @include mq(large){
+    overflow-x: hidden;
+  }
+
+  .line {
+    white-space: nowrap;
+  }
 }
 
 .line-number {
