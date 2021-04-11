@@ -4,7 +4,7 @@
         <form class="home-form">
             <div class="grid">
                 <div class="col-12 col-md-2 flex align-start">
-                    <label class="form-label" for="title">Enter password:</label>
+                    <label class="form-label" for="password">Enter password:</label>
                 </div>
                 <div class="col-12 col-md-7 flex align-center mb-2">
                     <input type="password" placeholder="password" class="form-control" name="password" id="password">

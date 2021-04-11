@@ -13,7 +13,7 @@
             <a class="quick-link" href="/user/mypastes">My Pastes</a>
         </li>
         <li class="quick-link-item">
-            <form action="/user/delete" method="delete">
+            <form action="/user/delete" method="POST">
                 <button class="quick-link">Delete account</button>
             </form>
         </li>
