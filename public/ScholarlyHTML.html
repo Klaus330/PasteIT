@@ -20,7 +20,7 @@
 </head>
 <body prefix="schema: http://schema.org"
       style="font-family: 'Times New Roman', Times, serif; font-size: 15pt;"
-      itemscope="" itemtype="http://schema.org/WebPage"
+      itemscope itemtype="http://schema.org/WebPage"
 >
 <header>
     <h1 itemprop="name">Paste It</h1>
@@ -223,8 +223,8 @@
         </li>
     </ol>
 
-    <section typeof="sa:AuthorsList">
-        <article typeof="schema:ScholarlyArticle" itemscope itemprop="authors">
+    <section typeof="sa:AuthorsList" itemscope itemprop="authors">
+
             <h2>Autori</h2>
             <ol>
                 <li property="schema:author" typeof="sa:ContributorRole" itemscope itemtype="https://schema.org/Person"
@@ -278,7 +278,7 @@
             <dl>
                 <dt>Licence</dt>
                 <dd>
-                    <a href="https://github.com/Klaus330/PasteIt/blob/master/LICENSE">GNU GENERAL PUBLIC LICENSE</a>
+                    <a itemprop="license" rel="license" href="https://github.com/Klaus330/PasteIt/blob/master/LICENSE">GNU GENERAL PUBLIC LICENSE</a>
                 </dd>
 
                 <dt>Erori și recomandări</dt>
@@ -287,12 +287,11 @@
 ">Erori/Recomandări</a>
                 </dd>
             </dl>
-        </article>
     </section>
 
-    <section typeof="sa:Abstract" id="abstract" role="doc-abstract">
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract" itemscope="" itemtype="https://schema.org/Article"> 
         <h2><span>1. </span>Abstract</h2>
-        <p>
+        <p itemprop="description">
             PasteIt este o aplicație web prin intermediul căreia se pot distribui
             blocuri de cod sursă (scrise într-un anumit limbaj de programare). Folosind modelul
             MVC, scris în PHP, alături de HTML, CSS și JS am reușit să implementăm funcționalitățile
@@ -301,9 +300,9 @@
         </p>
     </section>
 
-    <section typeof="sa:ScholarlyArticle" id="introducere" role="doc-introduction">
+    <section typeof="sa:ScholarlyArticle" id="introducere" role="doc-introduction" itemscope="" itemtype="https://schema.org/Article">
         <h2><span>2. </span>Introducere</h2>
-        <p>
+        <p itemprop="description">
             PasteIt este o platformă unde poți stoca online orice text pentru a fi ușor de distribuit.
             Site-ul este destinat în mare parte programatorilor care doresc să împărtășeasca bucăți de
             cod sau informații de configurare (de servere, de baze de date), dar oricine se poate folosi
@@ -633,14 +632,23 @@
             acest folder să conțină terminația "Controller". Aceste clase vor trata diversele cereri primite de
             către useri.
         </p>
-        <img src="/img/scholarly/controllers.png" alt="controllers">
+        <figure typeof="sa:image" id="controller-file">
+            <img src="/img/scholarly/controllers.png" alt="controllers">
+            <figcaption>Directorul Controllers</figcaption>
+        </figure>
+
+       
 
         <h4 id="models"><span>4.3.2</span> Directorul Models</h4>
 
         <p>
             În acest director se află toate clasele Model al căror scop este de a prelucra datele aplicației.
         </p>
-        <img src="/img/scholarly/models.png" alt="models">
+        <figure typeof="sa:image" id="model-file">
+            <img src="/img/scholarly/models.png" alt="Models">
+            <figcaption>Directorul Models</figcaption>
+        </figure>
+        
 
         <h4 id="core"><span>4.3.3</span> Directorul Core</h4>
 
@@ -651,7 +659,11 @@
             care se ocupă cu validarea datelor primite de la utilizatori conform unor reguli predefinite, fișierul
             bootstrap care pregateste aplicatia pentru boot etc.
         </p>
-        <img src="/img/scholarly/core.png" alt="core">
+        <figure typeof="sa:image" id="core-file">
+            <img src="/img/scholarly/core.png" alt="core">
+            <figcaption>Directorul Core</figcaption>
+        </figure>
+        
 
         <h4 id="routes"><span>4.3.4</span> Directorul Routes</h4>
 
@@ -661,7 +673,11 @@
             instanță
             a clasei Router care se află în directorul core.
         </p>
-        <img src="/img/scholarly/routes.png" alt="routes">
+        <figure typeof="sa:image" id="Route-file">
+            <img src="/img/scholarly/routes.png" alt="routes">
+            <figcaption>Directorul Routes</figcaption>
+        </figure>
+        
 
         <h4 id="vendor"><span>4.3.5</span> Directorul Vendor</h4>
 
@@ -671,7 +687,12 @@
             predefinită din php <span>spl_autoload_register</span> pentru a include toate clasele
             necesare funcționării aplicației în mod corect.
         </p>
-        <img src="/img/scholarly/vendor.png" alt="vendor">
+        <figure typeof="sa:image" id="vendor-file">
+            <img src="/img/scholarly/vendor.png" alt="vendor">
+            <figcaption>Directorul Vendor</figcaption>
+        </figure>
+        
+        
 
         <h4 id="resources"><span>4.3.6</span> Directorul Resources</h4>
 
@@ -687,14 +708,25 @@
             conține codurile javascript necesare pentru a îmbunătăți experiența utilizatorului în aplicația web.
 
         </p>
-        <img src="/img/scholarly/scss.png" alt="scss">
+
+        <figure typeof="sa:image" id="sass-file">
+            <img src="/img/scholarly/scss.png" alt="scss">
+            <figcaption>Directorul Assets</figcaption>
+        </figure>
+        
+      
         <h5 id="views"><span>4.3.6.2</span> Directorul Views</h5>
         <p>
             În acest director se află toate view-urile aplicației. Fișierele din acest director au extensia
             "view.php" pentru a face mai clară legătura dintre ele și modelul arhitectural MVC. Acestea,
             conțin codul html care va fi afișat în browser.
         </p>
-        <img src="/img/scholarly/views.png" alt="views">
+
+        <figure typeof="sa:image" id="views-file">
+            <img src="/img/scholarly/views.png" alt="views">
+            <figcaption>Directorul Views</figcaption>
+        </figure>
+        
 
         <h4 id="public"><span>4.3.7</span> Directorul Public</h4>
 
@@ -703,7 +735,12 @@
             fișierul index.php. De asemenea, și raportul ScholarlyHTML este prezent în acest director.
             Pe lângă aceste două fișiere mai avem și următoarele foldere: captcha, css, img.
         </p>
-        <img src="/img/scholarly/public.png" alt="public">
+
+        <figure typeof="sa:image" id="public-file">
+             <img src="/img/scholarly/public.png" alt="public">
+            <figcaption>Directorul Public</figcaption>
+        </figure>
+       
         <p>
             Folderul css conține fișierul style.css rezultat al compilării tuturor fișierelor scss din directorul
             assets/scss.
