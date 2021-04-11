@@ -58,12 +58,12 @@
                     <div class="col-md-3 flex align-start">
                         <label class="form-label" for="password">Password:</label>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-12">
                        <div class="col-md-9  flex align-center">
                            <input type="checkbox" class="form-check-input" name="password-allow" id="password-allow">
                            <label class="form-label" for="password-allow" id="passworda-allow-label">Disabled</label>
                        </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6 col-12">
                             <input type="text" placeholder="Password" class="form-control" name="password" id="password">
                         </div>
                     </div>
@@ -89,11 +89,11 @@
                         <label class="form-label" for="captcha-code">Captcha:</label>
                     </div>
                     <div class="col-12 col-md-6 flex align-center">
-                        <input type="text" placeholder="Write the code" class="form-control" name="captcha-code"
+                        <input type="text" placeholder="Write the code" class="form-control" name="captcha"
                                id="captcha-code">
                     </div>
                     <div class="col-12 col-md-3 flex align-center">
-                        <img src="<?= $captchaCode ?>" alt="" id="captcha-code">
+                        <img src="<?= $captchaCode ?>" alt="" id="captcha-code-image">
                     </div>
                 </div>
                 <div class="grid">

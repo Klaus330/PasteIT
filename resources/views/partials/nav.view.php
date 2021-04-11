@@ -1,18 +1,16 @@
 <nav class="navbar">
     <div class="container navbar-container">
-        <a href="/" class="navbar-brand">PasteIt</a>
+        <a href="/" class="navbar-brand"><img src="/favicon.png" alt="" style="    width: 50px;
+    height: 50px;"></a>
         <a href="/" class="btn btn-succes header-paste-btn btn-sm navbar-action-button">Paste</a>
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a href="/" class="nav-link">Home</a>
+                <li class="nav-item">
+                    <a href="/ScholarlyHtml.html" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/" class="nav-link">About</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Contact</a>
+                    <a href="/contact" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item">
                     <a href="/" class="btn btn-succes header-paste-btn">Paste</a>

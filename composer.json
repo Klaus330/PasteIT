@@ -1,0 +1,7 @@
+{
+  "name": "pasteit",
+  "type": "project",
+  "description": "The PasteIt project",
+  "keywords": ["pasteit"],
+  "license": "GNU"
+}

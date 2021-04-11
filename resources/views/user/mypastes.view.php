@@ -11,7 +11,7 @@
                         <div class="card-content">
                             <h2 class="card-title h2">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
                         </div>
                     </div>
                     <div class="card">
@@ -21,7 +21,7 @@
                         <div class="card-content">
                             <h2 class="card-title h2">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="/pastes/locked-paste">Read More</a>
                         </div>
                     </div>
                     <div class="card">
@@ -31,7 +31,7 @@
                         <div class="card-content">
                             <h2 class="card-title h2">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
                         </div>
                     </div>
                     <div class="card">
@@ -41,7 +41,7 @@
                         <div class="card-content">
                             <h2 class="card-title h2">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
                         </div>
                     </div>
                     <div class="card">
@@ -51,7 +51,7 @@
                         <div class="card-content">
                             <h2 class="card-title h2">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
                         </div>
                     </div>
                     <div class="card">
@@ -61,7 +61,7 @@
                         <div class="card-content">
                             <h2 class="card-title h2">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
                         </div>
                     </div>
                     <div class="card">
@@ -71,7 +71,7 @@
                         <div class="card-content">
                             <h2 class="card-title h2">Card title</h2>
                             <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="#">Read More</a>
+                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
                         </div>
                     </div>
                 </div>
