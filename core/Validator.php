@@ -34,7 +34,7 @@ class Validator
 
                 switch ($ruleName) {
                     case Validator::RULE_REQUIRED:
-                        if ($value != null) {
+                        if (empty($value)) {
                             self::addError($attribute, self::RULE_REQUIRED);
                         }
                         break;
@@ -87,4 +87,15 @@ class Validator
             Validator::RULE_UNIQUE => "The value of this field must be unique"
         ];
     }
+
+    public static function hasError($attribute)
+    {
+        return self::$errors[$attribute] ?? false;
+    }
+
+    public static function getError($attribute)
+    {
+        return self::$errors[$attribute][0] ?? '';
+    }
+
 }
