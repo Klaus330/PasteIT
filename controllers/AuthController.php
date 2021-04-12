@@ -24,8 +24,8 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        $user = new User();
         if($request->isPost()){
-            $user = new User();
 
             $user->loadData($request->getBody());
 
@@ -33,15 +33,15 @@ class AuthController extends Controller
                 return 'Success';
             }
 
-            die(var_dump($request->getErrors()));
-
-            return $this->render('register', [
+            return $this->render('auth/register', [
                 'model' => $user,
                 'errors' => $request->getErrors()
             ]);
         }
 
-        return $this->render('auth/register');
+        return $this->render('auth/register', [
+            'model' => $user
+        ]);
     }
 
     public function forgotPassword(Request $request)

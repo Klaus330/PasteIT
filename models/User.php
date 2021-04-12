@@ -7,8 +7,10 @@ use app\core\Validator;
 
 class User extends Model
 {
-    public string $username;
-    public string $password;
+    public string $username = '';
+    public string $email = '';
+    public string $confirm_password = '';
+    public string $password = '';
 
 
     public function register()
@@ -20,7 +22,9 @@ class User extends Model
     {
         return [
             'username' => [Validator::RULE_REQUIRED],
-            'password' => [Validator::RULE_REQUIRED, [Validator::RULE_MIN, 'min' => 6]]
+            'email' => [Validator::RULE_REQUIRED],
+            'password' => [Validator::RULE_REQUIRED, [Validator::RULE_MIN, 'min' => 6]],
+            'confirm_password' => [Validator::RULE_REQUIRED]
         ];
     }
 }
