@@ -1,9 +1,9 @@
 <?php
 
+use app\core\Application;
 require_once __DIR__."/../vendor/autoload.php";
+$config = require_once "../config.php";
 
-use App\Core\Application;
-
-$app = new Application(dirname(__DIR__));
+$app = new Application(dirname(__DIR__), $config);
 
 require_once Application::$ROOT_DIR."/routes/web.php";
