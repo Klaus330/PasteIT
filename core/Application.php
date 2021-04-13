@@ -62,4 +62,9 @@ class Application
     {
         $this->controller = $controller;
     }
+
+
+    public function prepare($sql){
+        return $this->db->getPdo()->prepare($sql);
+    }
 }
