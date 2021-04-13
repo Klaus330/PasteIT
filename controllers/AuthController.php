@@ -26,11 +26,10 @@ class AuthController extends Controller
     {
         $user = new User();
         if($request->isPost()){
-
-            $user->loadData($request->getBody());
-
             if($request->validate($user->rules())){
-                return 'Success';
+                $user->loadData($request->getBody());
+                $user->save();
+               $this->redirect('/');
             }
 
             return $this->render('auth/register', [
