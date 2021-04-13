@@ -33,7 +33,7 @@ class Application
         $this->response = new Response();
         $this->router = new Router($this->request, $this->response);
         $this->controller = new Controller();
-        $this->db = new Database();
+        $this->db = Database::getConnection();
     }
 
     public static function bind($key, $value)

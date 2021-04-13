@@ -9,12 +9,24 @@ use app\core\Application;
 class Database
 {
 
-    public \PDO $pdo;
+    protected \PDO $pdo;
+    protected static $connection;
+
+
+    public static function getConnection(){
+        if(empty(self::$connection)){
+            self::$connection = new Database();
+        }
+
+        return self::$connection;
+    }
+
+
 
     /**
      * Database constructor.
      */
-    public function __construct()
+    protected function __construct()
     {
         $config = Application::$config['database'];
         $this->pdo = new \PDO(
@@ -89,5 +101,13 @@ class Database
 
     protected function log($message){
         echo '['.date('Y-m-d H:i:s').']: '. $message.PHP_EOL;
+    }
+
+    /**
+     * @return \PDO
+     */
+    public function getPdo(): \PDO
+    {
+        return $this->pdo;
     }
 }

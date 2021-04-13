@@ -18,7 +18,7 @@ class m0001_initial extends Migration {
             ) ENGINE=INNODB;
         ";
 
-        $db->pdo->exec($sql);
+        $db->getPdo()->exec($sql);
     }
 
 
@@ -28,6 +28,6 @@ class m0001_initial extends Migration {
 
         $sql = "DROP TABLE users";
 
-        $db->pdo->exec($sql);
+        $db->getPdo()->exec($sql);
     }
 }
