@@ -10,6 +10,7 @@ class Database
 {
 
     protected \PDO $pdo;
+    protected $config;
     protected static $connection;
 
 
@@ -28,7 +29,8 @@ class Database
      */
     protected function __construct()
     {
-        $this->pdo = Connection::make();
+        $this->config = Application::$config['database'];
+        $this->pdo = Connection::make($this->config);
     }
 
     public function applyMigrations()

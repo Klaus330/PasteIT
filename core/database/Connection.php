@@ -8,8 +8,7 @@ use app\core\Application;
 
 class Connection
 {
-    public static function make(){
-        $config = Application::$config['database'];
+    public static function make($config){
         return new \PDO(
             $config['DB_CONNECTION'].";dbname={$config['DB_NAME']}",
             $config['DB_USER'],
