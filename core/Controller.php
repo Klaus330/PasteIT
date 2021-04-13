@@ -38,4 +38,8 @@ class Controller
     {
         return $this->layout;
     }
+
+    public function redirect($path){
+        Application::$app->response->redirect($path);
+    }
 }
