@@ -58,6 +58,23 @@ class Validator
                                 self::addError($attribute, self::RULE_MATCH, $rule);
                             }
                         break;
+                    case Validator::RULE_UNIQUE:
+                        $tableName = $rule['class']->tableName();
+                        $className = $rule['class']::class;
+                        $uniqueAttribute = $rule['attribute'] ?? $attribute;
+
+
+                        $sql="SELECT * FROM $tableName WHERE $uniqueAttribute=:$uniqueAttribute";
+
+                        $statement = Application::$app->prepare($sql);
+                        $statement->bindValue(":$uniqueAttribute", $value);
+                        $statement->execute();
+                        $record = $statement->fetchObject();
+
+                        if($record) {
+                            self::addError($attribute, self::RULE_UNIQUE);
+                        }
+                        break;
                 }
             }
         }
