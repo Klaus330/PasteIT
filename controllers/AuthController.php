@@ -29,6 +29,9 @@ class AuthController extends Controller
             if($request->validate($user->rules())){
                 $user->loadData($request->getBody());
                 $user->save();
+
+
+               $this->flash('success', 'You are registered');
                $this->redirect('/');
             }
 

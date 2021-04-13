@@ -13,6 +13,7 @@ class Application
     public Response $response;
     public static $config;
     public Database $db;
+    public Session $session;
     public static Application $app;
     public Controller $controller;
 
@@ -34,6 +35,7 @@ class Application
         $this->router = new Router($this->request, $this->response);
         $this->controller = new Controller();
         $this->db = Database::getConnection();
+        $this->session = new Session();
     }
 
     public static function bind($key, $value)

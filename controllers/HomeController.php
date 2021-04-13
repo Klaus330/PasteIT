@@ -6,9 +6,6 @@ use app\core\Controller;
 
 class HomeController extends Controller{
     public function index(){
-
-        session_start();
-
         $captchaCode = CaptchaController::getCaptcha();
 
         return $this->renderWithPartial(

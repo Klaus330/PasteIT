@@ -14,6 +14,11 @@
     {{nav}}
 
     <main class="container">
+        <?php if(\app\core\Application::$app->session->getFlash('success')): ?>
+            <div class="alert alert-primary">
+                <?= \app\core\Application::$app->session->getFlash('success')?>
+            </div>
+        <?php endif;?>
         {{content}}
     </main>
 

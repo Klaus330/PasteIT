@@ -41,5 +41,11 @@ class Controller
 
     public function redirect($path){
         Application::$app->response->redirect($path);
+        exit;
     }
+
+    public function flash($key, $message){
+        Application::$app->session->setFlash($key, $message);
+    }
+
 }
