@@ -28,13 +28,7 @@ class Database
      */
     protected function __construct()
     {
-        $config = Application::$config['database'];
-        $this->pdo = new \PDO(
-            $config['DB_CONNECTION'].";dbname={$config['DB_NAME']}",
-            $config['DB_USER'],
-            $config['DB_PASS'],
-            $config['DB_OPTIONS']
-        );
+        $this->pdo = Connection::make();
     }
 
     public function applyMigrations()
