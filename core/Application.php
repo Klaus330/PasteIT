@@ -3,10 +3,12 @@
 namespace app\core;
 
 use app\core\database\Database;
+use app\models\DbModel;
+use app\models\User;
 
 class Application
 {
-
+    public string $userClass;
     public static string $ROOT_DIR;
     public Router $router;
     public Request $request;
@@ -16,7 +18,7 @@ class Application
     public Session $session;
     public static Application $app;
     public Controller $controller;
-
+    public ?DbModel $user;
 
     protected static $registry = [];
 
@@ -27,6 +29,8 @@ class Application
 
     public function __construct($rootPath, $config)
     {
+
+        $this->userClass = $config['user_class'];
         self::$ROOT_DIR = $rootPath;
         self::$config = $config;
         self::$app = $this;
@@ -36,6 +40,15 @@ class Application
         $this->controller = new Controller();
         $this->db = Database::getConnection();
         $this->session = new Session();
+
+        if ($this->session->has('user')) {
+            $this->user = $this->userClass::findOne([
+                $this->userClass::getPrimaryKey() => $this->session->get('user')
+            ]);
+        } else {
+            $this->user = null;
+        }
+
     }
 
     public static function bind($key, $value)
@@ -66,7 +79,30 @@ class Application
     }
 
 
-    public function prepare($sql){
+    public function prepare($sql)
+    {
         return $this->db->getPdo()->prepare($sql);
+    }
+
+    public function login(DbModel $user)
+    {
+        $this->user = $user;
+        $primaryKey = $user->getPrimaryKey();
+
+        $primaryValue = $user->$primaryKey;
+        $this->session->set('user', $primaryValue);
+        return true;
+    }
+
+
+    public function logout()
+    {
+        $this->user = null;
+        $this->session->remove('user');
+    }
+
+    public static function isGuest()
+    {
+        return !self::$app->session->has('user');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'user_class' => \app\models\User::class,
     'database'=>[
         'DB_NAME' => "web",
         'DB_USER' => 'root',

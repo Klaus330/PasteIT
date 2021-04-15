@@ -4,8 +4,10 @@
 namespace app\controllers;
 
 
+use app\core\Application;
 use app\core\Controller;
 use app\core\Request;
+use app\core\Validator;
 use app\models\User;
 
 class AuthController extends Controller
@@ -14,12 +16,30 @@ class AuthController extends Controller
 
     public function index()
     {
-        return $this->render("auth/login");
+        $user = new User();
+        return $this->render("auth/login", ['model' => $user]);
     }
 
     public function login(Request $request)
     {
-        return $this->render("home");
+        $isValid = $request->validate([
+            'email' => [Validator::RULE_REQUIRED, Validator::RULE_EMAIL],
+            'password' => [Validator::RULE_REQUIRED]
+        ]);
+        $user = new User();
+        if($isValid){
+            $user->loadData($request->getBody());
+
+            if($user->login()) {
+                $this->flash('success', 'You are logged in');
+                $this->redirect('/user/profile');
+            }
+        }
+
+        return $this->render('auth/login', [
+            'model' => $user,
+            'errors' => $request->getErrors()
+        ]);
     }
 
     public function register(Request $request)
@@ -54,5 +74,11 @@ class AuthController extends Controller
     public function resetPassword(Request $request)
     {
         return $this->render("auth/reset-password");
+    }
+
+    public function logout()
+    {
+        Application::$app->logout();
+        $this->redirect('/');
     }
 }

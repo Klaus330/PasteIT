@@ -58,4 +58,29 @@ class Session
         }
         $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
+
+
+    public function set($key, $value)
+    {
+        $_SESSION[$key] = $value;
+    }
+
+    public function get($key)
+    {
+        if ($this->has($key)) {
+            return $_SESSION[$key];
+        }
+
+        throw new \HttpException('There is no such key in the session');
+    }
+
+    public function has($key)
+    {
+        return array_key_exists($key, $_SESSION);
+    }
+
+    public function remove($key)
+    {
+        unset($_SESSION[$key]);
+    }
 }

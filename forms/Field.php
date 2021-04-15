@@ -49,7 +49,7 @@ class Field
                 </div>
                 <div class="col-md-9 col-12">
                 <div class="col-md-9 col-12 flex align-center">
-                    <input type="%s" name="%s" placeholder="%s" value="%s" class="form-control" id="%s" %s/>
+                    <input type="%s" name="%s" placeholder="%s" value="%s" class="form-control %s" id="%s"/>
                 </div>
                 <div class="col-12 flex align-start">
                     <span class="text-danger"">
@@ -59,13 +59,13 @@ class Field
                 </div>
             </div>',
         $this->attribute, //for
-        ucfirst($this->attribute), // label text
+        $this->model->labels()[$this->attribute] ?? ucfirst($this->attribute), // label text
         $this->type, // type
         $this->attribute, // name
         ucfirst($this->attribute), // placeholder
         $this->model->{$this->attribute}, // value
-        $this->attribute, // id
         $this->options, // options
+        $this->attribute, // id
         Validator::getError($this->attribute) // error message
         );
     }

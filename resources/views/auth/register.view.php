@@ -1,3 +1,6 @@
+<?php
+/** @var $model \app\models\User*/
+?>
 <div class="row">
     <div class="row mt-3">
         <?php $form = \app\forms\Form::begin('/register', "POST", "register-form simple-form") ?>

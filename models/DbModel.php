@@ -12,6 +12,8 @@ abstract class DbModel extends Model
 
     abstract public function attributes(): array;
 
+    abstract public static function getPrimaryKey(): string;
+
     public function save()
     {
         $tableName = $this->tableName();
@@ -27,27 +29,51 @@ abstract class DbModel extends Model
         $statement = self::prepare($sql);
 
         try {
-            foreach ($attributes as $attribute){
-                    $statement->bindValue(":$attribute", $this->{$attribute});
+            foreach ($attributes as $attribute) {
+                $statement->bindValue(":$attribute", $this->{$attribute});
             }
 
             $result = $statement->execute();
 
             return $result;
-        }catch (\PDOException $e){
+        } catch (\PDOException $e) {
 //            die("Whoops! Something Went wrong.");
             die($e->getTrace());
         }
     }
 
 
-    public static function prepare($sql){
+    public static function prepare($sql)
+    {
         return Application::$app->db->getPdo()->prepare($sql);
     }
 
-    private function parameterizeValues($array){
-        return array_map(function($param){
+    private function parameterizeValues($array)
+    {
+        return array_map(function ($param) {
             return ":{$param}";
-        },$array);
+        }, $array);
     }
+
+
+    public static function findOne($where)
+    {
+        $tableName = (new static)->tableName();
+        $attributes = array_keys($where);
+
+        $parameters = implode(
+            "AND",
+            array_map(fn($attribute) => "$attribute  = :$attribute", $attributes)
+        );
+        $sql = "SELECT * FROM $tableName WHERE $parameters";
+
+        $statement = self::prepare($sql);
+
+        foreach ($where as $key => $value){
+            $statement->bindValue(":$key", $value);
+        }
+        $statement->execute();
+        return $statement->fetchObject(static::class);
+    }
+
 }
