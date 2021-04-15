@@ -12,8 +12,6 @@ use app\models\User;
 
 class AuthController extends Controller
 {
-
-
     public function index()
     {
         $user = new User();

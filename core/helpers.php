@@ -1,5 +1,8 @@
 <?php
 
+namespace app\core;
+
+use app\core\Application;
 
 function view($name, $data = [])
 {
@@ -10,5 +13,10 @@ function view($name, $data = [])
 
 function redirect($path)
 {
-    return require "resources/views/{$path}.view.php";
+    Application::$app->response->redirect($path);
+    exit;
+}
+
+function dd($e){
+    die(var_dump(e));
 }

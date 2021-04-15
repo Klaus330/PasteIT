@@ -2,6 +2,8 @@
 
 namespace app\core;
 
+use app\core\exceptions\PageNotFoundException;
+
 class Router
 {
     protected array $routes = [];
@@ -37,8 +39,7 @@ class Router
         $callback = $this->routes[$method][$path] ?? false;
 
         if($callback === false){
-            $this->response->setStatusCode(404);
-            return $this->renderView("_404");
+            throw new PageNotFoundException();
         }
 
         if(is_string($callback)){
@@ -53,10 +54,20 @@ class Router
         return call_user_func($callback);
     }
 
-
+    /**
+     * @var $controller Controller
+    */
     public function callAction($controller, $action) {
         $controller = "App\\Controllers\\${controller}";
         $controller = new $controller;
+        Application::$app->controller = $controller;
+        $controller->setAction($action);
+
+        foreach ($controller->getMiddlewares() as $middleware){
+            $middleware->execute();
+        }
+
+
         Application::$app->setController($controller);
         if(! method_exists($controller,$action)){
             throw new Exception("{$controller} doesn not to respond to the action {$action}");
@@ -74,7 +85,11 @@ class Router
 
     public function layoutContent()
     {
-        $layout = Application::$app->controller->getLayout();
+        $layout = Application::$app->layout;
+        if(Application::$app->controller){
+            $layout = Application::$app->controller->getLayout();
+        }
+
         ob_start();
         include Application::$ROOT_DIR."/resources/views/layouts/{$layout}.view.php";
         return ob_get_clean();
