@@ -22,8 +22,6 @@ class Database
         return self::$connection;
     }
 
-
-
     /**
      * Database constructor.
      */
@@ -49,7 +47,6 @@ class Database
 
             require_once Application::$ROOT_DIR."/migrations/$migration";
             $className = pathinfo($migration, PATHINFO_FILENAME);
-            echo "$className".PHP_EOL;
             $instance = new $className();
 
             $this->log("Applying migration $migration");
@@ -64,6 +61,21 @@ class Database
             $this->log( "All migrations are applied");;
         }
 
+    }
+
+
+    public function downMigrations(){
+        $appliedMigrations = $this->getAppliedMigrations();
+
+        foreach ($appliedMigrations as $migration){
+            require_once Application::$ROOT_DIR."/migrations/$migration";
+            $className = pathinfo($migration, PATHINFO_FILENAME);
+            $instance = new $className();
+            $this->log("Deleting migration $migration");
+            $instance->down();
+            $this->removeMigrationRecord($migration);
+            $this->log( "Migration $migration deleted");
+        }
     }
 
     public function createMigrationsTable()
@@ -105,5 +117,11 @@ class Database
     public function getPdo(): \PDO
     {
         return $this->pdo;
+    }
+
+    private function removeMigrationRecord(string $migration)
+    {
+        $statement = $this->pdo->prepare("DELETE FROM migrations WHERE migration='{$migration}'");
+        $statement->execute();
     }
 }
