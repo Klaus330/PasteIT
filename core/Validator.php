@@ -20,7 +20,6 @@ class Validator
     {
         if($rulesArray === [] || $data === [])
         {
-            var_dump($rulesArray);
             throw new \InvalidArgumentException('No Rules Provided.');
         }
 
@@ -66,7 +65,7 @@ class Validator
 
                         $sql="SELECT * FROM $tableName WHERE $uniqueAttribute=:$uniqueAttribute";
 
-                        $statement = Application::$app->prepare($sql);
+                        $statement = app('db')->prepare($sql);
                         $statement->bindValue(":$uniqueAttribute", $value);
                         $statement->execute();
                         $record = $statement->fetchObject();

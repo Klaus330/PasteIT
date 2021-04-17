@@ -11,17 +11,25 @@ if (!function_exists('view')) {
      */
     function view($view, $data = []): array|string
     {
-      return app()->view->renderView($view, $data);
+      return app('view')->renderView($view, $data);
     }
 }
+
 if (!function_exists('redirect')) {
     /**
      * @param $path
      */
-    #[NoReturn] function redirect($path)
+    function redirect($path)
     {
-        app()->response->redirect($path);
-        exit;
+        app('response')->redirect($path);
+        return;
+    }
+}
+
+if (!function_exists('response')) {
+    function response()
+    {
+        return app('response');
     }
 }
 
@@ -30,11 +38,14 @@ if (!function_exists('app')) {
     /**
      * @param null $abstract
      * @param array $parameters
-     * @return Application
      */
-    function app($abstract = null, array $parameters = []): Application
+    function app($abstract = null, array $parameters = []): mixed
     {
-        return Application::$app;
+        if(!is_null($abstract)){
+            return Application::getInstance()->make($abstract, $parameters);
+        }
+
+        return Application::getInstance();
     }
 }
 
@@ -68,10 +79,10 @@ if (!function_exists('config')) {
     function config($key = null)
     {
         if(is_null($key)){
-            return Application::$config;
+            return app('config');
         }
 
-        return Application::$config[$key];
+        return  app('config')->get($key);
 
     }
 }
@@ -82,7 +93,7 @@ if (!function_exists('session')) {
      */
     function session()
     {
-        return app()->session;
+        return  app('session');
     }
 }
 
@@ -92,6 +103,17 @@ if (!function_exists('auth')) {
      */
     function auth()
     {
-        return app()->user;
+        return  app('user');
+    }
+}
+
+
+if (!function_exists('router')) {
+    /**
+     * @return \app\models\DbModel|null
+     */
+    function router()
+    {
+        return  app('router');
     }
 }

@@ -124,4 +124,9 @@ class Database
         $statement = $this->pdo->prepare("DELETE FROM migrations WHERE migration='{$migration}'");
         $statement->execute();
     }
+
+    public function prepare($sql)
+    {
+        return $this->getPdo()->prepare($sql);
+    }
 }

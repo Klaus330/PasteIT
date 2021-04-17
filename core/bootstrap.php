@@ -1,10 +1,43 @@
 <?php
 
 use app\core\Application;
-require_once dirname(__DIR__)."/vendor/autoload.php";
-$config = require_once "../config.php";
+
+require_once dirname(__DIR__) . "/vendor/autoload.php";
 require_once 'helpers.php';
+$app = Application::getInstance();
 
-$app = new Application(dirname(__DIR__), $config);
+$app->bind('config', function () {
+    return new \app\core\Config;
+});
+$app->bind('request', function () {
+    return new \app\core\Request;
+});
+$app->bind('response', function () {
+    return new \app\core\Response;
+});
+$app->bind('router', \app\core\Router::class);
+$app->bind('view', function () {
+    return new \app\core\View;
+});
+$app->bind('session', function () {
+    return new \app\core\Session;
+});
+$app->bind('controller', function () {
+    return new \app\core\Controller;
+});
+$app->instance('db', \app\core\database\Database::getConnection());
 
-require_once Application::$ROOT_DIR."/routes/web.php";
+if (session()->has('user')) {
+    $app->bind('user', function () {
+        return \app\models\User::findOne([ // not so good because we don't have abstraction
+            'id' => session()->get('user')
+        ]);
+    });
+} else {
+    $app->bind('user', null);
+}
+
+
+require_once dirname(__DIR__) . "/routes/web.php";
+
+

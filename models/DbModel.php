@@ -45,7 +45,7 @@ abstract class DbModel extends Model
 
     public static function prepare($sql)
     {
-        return Application::$app->db->getPdo()->prepare($sql);
+        return app('db')->getPdo()->prepare($sql);
     }
 
     private function parameterizeValues($array)

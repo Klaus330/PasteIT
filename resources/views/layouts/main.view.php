@@ -14,9 +14,9 @@
     {{nav}}
 
     <main class="container">
-        <?php if(\app\core\Application::$app->session->getFlash('success')): ?>
+        <?php if(session()->getFlash('success')): ?>
             <div class="alert alert-success notification">
-                <?= \app\core\Application::$app->session->getFlash('success')?>
+                <?= session()->getFlash('success')?>
             </div>
         <?php endif;?>
         {{content}}

@@ -4,13 +4,18 @@
 namespace app\core;
 
 
+use app\core\exceptions\HttpException;
+
 class Session
 {
     protected const FLASH_KEY = "flash_messages";
 
     public function __construct()
     {
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
         $this->markFlashMessagesAsRemoved();
     }
 
@@ -71,7 +76,7 @@ class Session
             return $_SESSION[$key];
         }
 
-        throw new \HttpException('There is no such key in the session');
+        throw new HttpException('There is no such key in the session');
     }
 
     public function has($key)

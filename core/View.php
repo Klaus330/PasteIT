@@ -14,7 +14,7 @@ class View
      */
     public function __construct()
     {
-        $this->title = Application::$config['app_title'];
+        $this->title = config('app_title');
     }
 
     /**
@@ -43,9 +43,10 @@ class View
 
     public function layoutContent()
     {
-        $layout = Application::$app->layout;
-        if(Application::$app->controller){
-            $layout = Application::$app->controller->getLayout();
+        $layout = app()->layout;
+        if(app('controller'))
+        {
+            $layout = app('controller')->getLayout();
         }
 
         ob_start();
