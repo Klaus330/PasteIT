@@ -7,6 +7,7 @@
 $app->router->get('/', "HomeController@index");
 
 $app->router->get('/contact', "ContactController@index");
+$app->router->post('/contact', 'ContactController@store');
 $app->router->get("/captcha-image", 'CaptchaController@getCaptchaImage');
 
 // Auth

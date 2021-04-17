@@ -1,30 +1,31 @@
 <?php
 
 
-namespace app\core;
+namespace app\controllers;
 
 
+use app\core\Application;
 use app\middlewares\Middleware;
 
 class Controller
 {
     protected string $layout = 'main';
-    protected $action = '';
+    protected string $action = '';
 
 
     /**
-     * @var $middlewares \app\middleware\Middleware[]
+     * @var $middlewares Middleware[]
     */
     protected array $middlewares = [];
 
-    public function render($view, $params = [])
+    public function render($view, $params = []): string
     {
-        return Application::$app->router->renderView($view, $params);
+        return Application::$app->view->renderView($view, $params);
     }
 
     public function renderPartial($partial, $params = [])
     {
-        return Application::$app->router->renderPartial($partial,$params);
+        return Application::$app->view->renderPartial($partial,$params);
     }
 
     public function renderWithPartial($searchKey, $partialName, $viewName, $params = []){

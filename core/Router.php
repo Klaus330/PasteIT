@@ -48,7 +48,7 @@ class Router
 
                 return $this->callAction($controller, $action);
             }
-            return $this->renderView($callback);
+            return Application::$app->view->renderView($callback);
         }
 
         return call_user_func($callback);
@@ -73,51 +73,5 @@ class Router
             throw new Exception("{$controller} doesn not to respond to the action {$action}");
         }
         return $controller->$action($this->request);
-    }
-
-
-    public function renderView($view, $params = [])
-    {
-        $viewContent  = $this->renderOnlyView($view, $params);
-
-        return $this->renderContent($viewContent);
-    }
-
-    public function layoutContent()
-    {
-        $layout = Application::$app->layout;
-        if(Application::$app->controller){
-            $layout = Application::$app->controller->getLayout();
-        }
-
-        ob_start();
-        include Application::$ROOT_DIR."/resources/views/layouts/{$layout}.view.php";
-        return ob_get_clean();
-    }
-
-    protected function renderOnlyView($view, $params = []){
-
-        foreach($params as $key => $value){
-            $$key = $value;
-        }
-
-        ob_start();
-        include Application::$ROOT_DIR."/resources/views/{$view}.view.php";
-        return ob_get_clean();
-    }
-
-    public function renderPartial($partial, $params = []){
-        return $this->renderOnlyView("/partials/{$partial}", $params);
-    }
-
-    public function renderContent($viewContent)
-    {
-        $layoutContent = $this->layoutContent();
-        $nav = $this->renderPartial('nav');
-        $footer = $this->renderPartial('footer');
-        $layoutContent = str_replace('{{content}}', $viewContent, $layoutContent);
-        $layoutContent = str_replace('{{nav}}', $nav, $layoutContent);
-
-        return str_replace('{{footer}}', $footer, $layoutContent);
     }
 }

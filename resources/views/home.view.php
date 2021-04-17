@@ -1,4 +1,6 @@
-
+<?php
+    $this->setTitle("Paste It - Home")
+?>
 
 <section class="home-section section">
     <div class="row home-first">

@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'app_title' => 'Paste It',
     'user_class' => \app\models\User::class,
     'database'=>[
         'DB_NAME' => "web",

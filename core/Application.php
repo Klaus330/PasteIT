@@ -2,6 +2,7 @@
 
 namespace app\core;
 
+use app\controllers\Controller;
 use app\core\database\Database;
 use app\models\DbModel;
 use app\models\User;
@@ -21,6 +22,7 @@ class Application
     public static Application $app;
     public ?Controller $controller = null;
     public ?DbModel $user;
+    public View $view;
 
     protected static $registry = [];
 
@@ -42,6 +44,7 @@ class Application
         $this->controller = new Controller();
         $this->db = Database::getConnection();
         $this->session = new Session();
+        $this->view = new View();
 
         if ($this->session->has('user')) {
             $this->user = $this->userClass::findOne([
@@ -73,7 +76,7 @@ class Application
             echo $this->router->resolve();
         } catch (\Exception $e) {
             $this->response->setStatusCode($e->getCode());
-            echo $this->router->renderView('_error', ['exception' => $e]);
+            echo $this->view->renderView('_error', ['exception' => $e]);
         }
 
     }

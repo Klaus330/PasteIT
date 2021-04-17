@@ -14,16 +14,24 @@ class Form
     }
 
 
-    public static function end(){
+    public static function end()
+    {
         echo '</form>';
     }
 
-    public function field($model, $attribute, $options = "")
+    public function inputField($model, $attribute, $options = "")
     {
-        return new Field($model, $attribute, $options);
+        return new InputField($model, $attribute, $options);
     }
 
-    public function submitButton($text, $divClasses, $buttonClasses){
+
+    public function textarea($model, $attribute, $options = "")
+    {
+        return new Textarea($model, $attribute, $options);
+    }
+
+    public function submitButton($text, $divClasses, $buttonClasses)
+    {
         return new Button($text, $divClasses, $buttonClasses);
     }
 

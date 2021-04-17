@@ -5,7 +5,6 @@ namespace app\controllers;
 
 
 use app\core\Application;
-use app\core\Controller;
 use app\core\Request;
 use app\core\Validator;
 use app\models\User;
@@ -25,10 +24,10 @@ class AuthController extends Controller
             'password' => [Validator::RULE_REQUIRED]
         ]);
         $user = new User();
-        if($isValid){
+        if ($isValid) {
             $user->loadData($request->getBody());
 
-            if($user->login()) {
+            if ($user->login()) {
                 $this->flash('success', 'You are logged in');
                 $this->redirect('/user/profile');
             }
@@ -43,14 +42,14 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $user = new User();
-        if($request->isPost()){
-            if($request->validate($user->rules())){
+        if ($request->isPost()) {
+            if ($request->validate($user->rules())) {
                 $user->loadData($request->getBody());
                 $user->save();
 
 
-               $this->flash('success', 'You are registered');
-               $this->redirect('/');
+                $this->flash('success', 'You are registered');
+                $this->redirect('/');
             }
 
             return $this->render('auth/register', [
