@@ -3,7 +3,7 @@
   font-size: 0.75rem;
   border-radius: 3px;
 
-  @include mq(medium){
+  @include mq(medium) {
     padding: 0.3rem;
     font-size: 0.75rem;
     border-radius: 3px;
@@ -12,4 +12,16 @@
 
 .alert-info {
   background: $info-color;
+}
+
+.alert-success {
+  background: #2c6442;
+  color: white;
+}
+
+.notification {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  border-radius: 8px;
 }

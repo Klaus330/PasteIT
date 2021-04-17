@@ -49,7 +49,7 @@ class AuthController extends Controller
 
 
                 $this->flash('success', 'You are registered');
-                $this->redirect('/');
+                $this->redirect('/login');
             }
 
             return $this->render('auth/register', [

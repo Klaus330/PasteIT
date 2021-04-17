@@ -12,7 +12,6 @@ class Controller
     protected string $layout = 'main';
     protected string $action = '';
 
-
     /**
      * @var $middlewares Middleware[]
     */
@@ -55,7 +54,7 @@ class Controller
     }
 
     public function flash($key, $message){
-        Application::$app->session->setFlash($key, $message);
+        app()->session->setFlash($key, $message);
     }
 
 

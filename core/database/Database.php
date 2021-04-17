@@ -27,7 +27,7 @@ class Database
      */
     protected function __construct()
     {
-        $this->config = Application::$config['database'];
+        $this->config = config('database');
         $this->pdo = Connection::make($this->config);
     }
 

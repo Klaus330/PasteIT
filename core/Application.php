@@ -4,6 +4,9 @@ namespace app\core;
 
 use app\controllers\Controller;
 use app\core\database\Database;
+use app\core\exceptions\HttpException;
+use app\core\exceptions\NotFoundHttpException;
+use app\core\exceptions\PageNotFoundException;
 use app\models\DbModel;
 use app\models\User;
 
@@ -115,5 +118,14 @@ class Application
     public static function isGuest()
     {
         return !self::$app->session->has('user');
+    }
+
+    public function abort($code, mixed $message, array $headers)
+    {
+        if ($code == 404) {
+            throw new PageNotFoundException($message);
+        }
+
+        throw new HttpException($code, $message, $headers);
     }
 }
