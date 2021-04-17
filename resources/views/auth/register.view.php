@@ -1,56 +1,17 @@
+<?php
+/** @var $model \app\models\User*/
+?>
 <div class="row">
     <div class="row mt-3">
-        <form class="register-form simple-form" action="/register" method="POST">
-            <div class="grid">
-                <div class="col-md-3 col-3">
-                    <label for="username" class="form-label">
-                        Username:
-                    </label>
-                </div>
-                <div class="col-md-9 col-12 flex align-center">
-                    <input type="text" name="username" placeholder="username" class="form-control" id="username"/>
-                </div>
-            </div>
+        <?php $form = \app\forms\Form::begin('/register', "POST", "register-form simple-form") ?>
 
-            <div class="grid">
-                <div class="col-md-3 col-3">
-                    <label for="email" class="form-label">
-                        Email:
-                    </label>
-                </div>
-                <div class="col-md-9 col-12 flex align-center">
-                    <input type="email" name="email" placeholder="email" class="form-control" id="email"/>
-                </div>
 
-            </div>
+            <?php echo $form->inputField($model, 'username') ?>
+            <?php echo $form->inputField($model, "email")->emailField() ?>
+            <?php echo $form->inputField($model,"password")->passwordField() ?>
+            <?php echo $form->inputField($model, 'confirm_password')->passwordField() ?>
+            <?php echo $form->submitButton('Register', 'form-group login-buttons', 'btn btn-primary') ?>
 
-            <div class="grid">
-                <div class="col-md-3 col-3">
-                    <label for="password" class="form-label">
-                        Password:
-                    </label></div>
-                <div class="col-md-9 col-12 flex align-center">
-                    <input type="password" name="password" placeholder="password" class="form-control" id="password"/>
-                </div>
-
-            </div>
-            <div class="grid">
-                <div class="col-md-3 col-3">
-                    <label for="confirm-password" class="form-label line-height-sm">
-                        Confirm password:
-                    </label>
-                </div>
-                <div class="col-md-9 col-12 flex align-center">
-                    <input type="password" name="confirm-password" placeholder="confirm password" class="form-control" id="confirm-password"/>
-                </div>
-
-            </div>
-            <div class="form-group login-buttons">
-                <button type="submit" class="btn btn-primary">
-                    Register
-                </button>
-            </div>
-
-        </form>
+        <?php \app\forms\Form::end() ?>
     </div>
 </div>

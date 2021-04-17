@@ -34,29 +34,46 @@ class Validator
 
                 switch ($ruleName) {
                     case Validator::RULE_REQUIRED:
-                        if ($value != null) {
-                            self::addError($attribute, self::RULE_REQUIRED);
+                        if (empty($value)) {
+                            self::addErrorForRule($attribute, self::RULE_REQUIRED);
                         }
                         break;
                     case Validator::RULE_EMAIL:
                         if(!filter_var($value, FILTER_VALIDATE_EMAIL)){
-                            self::addError($attribute, self::RULE_EMAIL);
+                            self::addErrorForRule($attribute, self::RULE_EMAIL);
                         }
                         break;
                     case Validator::RULE_MIN:
                         if(strlen($value) < $rule['min']){
-                            self::addError($attribute, self::RULE_MIN, $rule);
+                            self::addErrorForRule($attribute, self::RULE_MIN, $rule);
                         }
                         break;
                     case Validator::RULE_MAX:
                         if(strlen($value) < $rule['max']){
-                            self::addError($attribute, self::RULE_MAX, $rule);
+                            self::addErrorForRule($attribute, self::RULE_MAX, $rule);
                         }
                         break;
                     case Validator::RULE_MATCH:
                             if($value !== $data[$rule['match']]){
-                                self::addError($attribute, self::RULE_MATCH, $rule);
+                                self::addErrorForRule($attribute, self::RULE_MATCH, $rule);
                             }
+                        break;
+                    case Validator::RULE_UNIQUE:
+                        $tableName = $rule['class']->tableName();
+                        $className = $rule['class']::class;
+                        $uniqueAttribute = $rule['attribute'] ?? $attribute;
+
+
+                        $sql="SELECT * FROM $tableName WHERE $uniqueAttribute=:$uniqueAttribute";
+
+                        $statement = Application::$app->prepare($sql);
+                        $statement->bindValue(":$uniqueAttribute", $value);
+                        $statement->execute();
+                        $record = $statement->fetchObject();
+
+                        if($record) {
+                            self::addErrorForRule($attribute, self::RULE_UNIQUE);
+                        }
                         break;
                 }
             }
@@ -64,7 +81,7 @@ class Validator
         return self::$errors;
     }
 
-    protected static function addError($attribute, $rule, $params = []){
+    protected static function addErrorForRule($attribute, $rule, $params = []){
         $message =  Validator::getErrorMessages()[$rule] ?? '';
 
         if(!empty($params)){
@@ -77,6 +94,12 @@ class Validator
 
     }
 
+
+    public static function addError($attribute, $message)
+    {
+        self::$errors[$attribute][] = $message;
+    }
+
     public static function getErrorMessages(){
         return[
             Validator::RULE_REQUIRED => "This field is required",
@@ -87,4 +110,15 @@ class Validator
             Validator::RULE_UNIQUE => "The value of this field must be unique"
         ];
     }
+
+    public static function hasError($attribute)
+    {
+        return self::$errors[$attribute] ?? false;
+    }
+
+    public static function getError($attribute)
+    {
+        return self::$errors[$attribute][0] ?? '';
+    }
+
 }

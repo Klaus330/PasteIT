@@ -1,33 +1,14 @@
+<?php
+ /** @var $model \app\models\User*/
+?>
+
 <div class="row">
     <div class="row mt-3">
-        <form class="login-form simple-form" action="/login" method="POST">
-            <div class="grid" >
-                <div class="col-md-3 col-3">
-                    <label for="username" class="form-label">
-                        Username:
-                    </label>
-                </div>
-                <div class="col-md-9 col-12">
-                    <input type="text" name="username" class="form-control" id="username" placeholder="username"/>
-                </div>
-            </div>
-            <div class="grid mt-2">
-                <div class="col-md-3 col-3">
-                    <label for="password" class="form-label">
-                        Password:
-                    </label>
-                </div>
-                <div class="col-md-9 col-12">
-                    <input type="password" name="password" class="form-control" id="password" placeholder="password"/>
-                </div>
-            </div>
+        <?php $form = \app\forms\Form::begin('/login', "POST", "register-form simple-form") ?>
+            <?php echo $form->inputField($model, 'email') ?>
+            <?php echo $form->inputField($model,"password")->passwordField() ?>
             <div class="form-group mt-2 login-buttons">
-<!--                <button type="submit" class="btn btn-primary">-->
-<!--                    Login-->
-<!--                </button>-->
-                <a class="btn btn-primary" href="/user/profile">Login</a>
-
-
+                <?php echo $form->submitButton('Login', '', 'btn btn-primary') ?>
                 <a href="/register" class="btn btn-dark mr-1">
                     Create new account
                 </a>
@@ -44,6 +25,6 @@
 
             </div>
 
-        </form>
+        <?php \app\forms\Form::end() ?>
     </div>
 </div>

@@ -2,11 +2,16 @@
 
 namespace app\controllers;
 
-use app\core\Controller;
 use app\core\Request;
+use app\middlewares\AuthMiddleware;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new AuthMiddleware());
+    }
+
     public function settings()
     {
         return $this->render('/user/settings');
