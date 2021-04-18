@@ -106,7 +106,7 @@
                     </div>
                 </div>
             </form>
-            {{login-alert}}
+            <?php require_once dirname(__FILE__)."/partials/alerts/guestalert.view.php"?>
         </div>
     </div>
 </section>

@@ -12,28 +12,10 @@ class Controller
     protected string $layout = 'main';
     protected string $action = '';
 
-
     /**
      * @var $middlewares Middleware[]
-    */
+     */
     protected array $middlewares = [];
-
-    public function render($view, $params = []): string
-    {
-        return Application::$app->view->renderView($view, $params);
-    }
-
-    public function renderPartial($partial, $params = [])
-    {
-        return Application::$app->view->renderPartial($partial,$params);
-    }
-
-    public function renderWithPartial($searchKey, $partialName, $viewName, $params = []){
-        $view = $this->render($viewName, $params);
-        $partial = $this->renderPartial($partialName, $params);
-
-        return str_replace($searchKey, $partial, $view);
-    }
 
 
     public function setLayout($layoutName)
@@ -48,16 +30,6 @@ class Controller
     {
         return $this->layout;
     }
-
-    public function redirect($path){
-        Application::$app->response->redirect($path);
-        exit;
-    }
-
-    public function flash($key, $message){
-        Application::$app->session->setFlash($key, $message);
-    }
-
 
     public function registerMiddleware(Middleware $middleware)
     {

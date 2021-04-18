@@ -1,31 +1,28 @@
 <?php
 
-/**
-* @var $app \app\core\Application
-*/
 
-$app->router->get('/', "HomeController@index");
+router()->get('/', "HomeController@index");
 
-$app->router->get('/contact', "ContactController@index");
-$app->router->post('/contact', 'ContactController@store');
-$app->router->get("/captcha-image", 'CaptchaController@getCaptchaImage');
+router()->get('/contact', "ContactController@index");
+router()->post('/contact', 'ContactController@store');
+router()->get("/captcha-image", 'CaptchaController@getCaptchaImage');
 
 // Auth
-$app->router->get('/login', "AuthController@index");
-$app->router->post('/login', "AuthController@login");
-$app->router->get('/register', "AuthController@register");
-$app->router->post('/register', "AuthController@register");
-$app->router->get('/logout', "AuthController@logout");
-$app->router->get("/forgot-password","AuthController@forgotPassword");
-$app->router->get("/reset-password","AuthController@resetPassword");
+router()->get('/login', "AuthController@index");
+router()->post('/login', "AuthController@login");
+router()->get('/register', "AuthController@register");
+router()->post('/register', "AuthController@register");
+router()->get('/logout', "AuthController@logout");
+router()->get("/forgot-password","AuthController@forgotPassword");
+router()->get("/reset-password","AuthController@resetPassword");
 
 // User
-$app->router->get("/user/settings","UserController@settings");
-$app->router->get("/user/profile","UserController@profile");
-$app->router->get("/user/mypastes","UserController@myPastes");
+router()->get("/user/settings","UserController@settings");
+router()->get("/user/profile","UserController@profile");
+router()->get("/user/mypastes","UserController@myPastes");
 
 // Pastes
-$app->router->get('/pastes', "PasteController@index");
-$app->router->get("/pastes/locked-paste","PasteController@lockedPaste");
-$app->router->get("/pastes/edit","PasteController@edit");
+router()->get('/pastes', "PasteController@index");
+router()->get("/pastes/locked-paste","PasteController@lockedPaste");
+router()->get("/pastes/edit","PasteController@edit");
 

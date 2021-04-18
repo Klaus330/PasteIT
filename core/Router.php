@@ -7,8 +7,8 @@ use app\core\exceptions\PageNotFoundException;
 class Router
 {
     protected array $routes = [];
-    protected $request;
-    protected $response;
+    protected Request $request;
+    protected Response $response;
 
     /**
      * Router constructor.
@@ -48,7 +48,7 @@ class Router
 
                 return $this->callAction($controller, $action);
             }
-            return Application::$app->view->renderView($callback);
+            return app('view')->renderView($callback);
         }
 
         return call_user_func($callback);
@@ -60,7 +60,7 @@ class Router
     public function callAction($controller, $action) {
         $controller = "App\\Controllers\\${controller}";
         $controller = new $controller;
-        Application::$app->controller = $controller;
+        app()->instance('controller', $controller);
         $controller->setAction($action);
 
         foreach ($controller->getMiddlewares() as $middleware){
@@ -70,7 +70,7 @@ class Router
 
         Application::$app->setController($controller);
         if(! method_exists($controller,$action)){
-            throw new Exception("{$controller} doesn not to respond to the action {$action}");
+            throw new \Exception("{$controller} doesn not to respond to the action {$action}");
         }
         return $controller->$action($this->request);
     }

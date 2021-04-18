@@ -7,8 +7,6 @@ class m0001_initial extends Migration {
 
     public function up()
     {
-        $db = \app\core\Application::$app->db;
-
         $sql = "
             CREATE TABLE IF NOT EXISTS users(
               id INT AUTO_INCREMENT PRIMARY KEY,
@@ -18,16 +16,14 @@ class m0001_initial extends Migration {
             ) ENGINE=INNODB;
         ";
 
-        $db->getPdo()->exec($sql);
+        app('db')->getPdo()->exec($sql);
     }
 
 
     public function down()
     {
-        $db = \app\core\Application::$app->db;
-
         $sql = "DROP TABLE users";
 
-        $db->getPdo()->exec($sql);
+        app('db')->getPdo()->exec($sql);
     }
 }

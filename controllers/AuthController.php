@@ -14,7 +14,7 @@ class AuthController extends Controller
     public function index()
     {
         $user = new User();
-        return $this->render("auth/login", ['model' => $user]);
+        return view("auth/login", ['model' => $user]);
     }
 
     public function login(Request $request)
@@ -23,17 +23,18 @@ class AuthController extends Controller
             'email' => [Validator::RULE_REQUIRED, Validator::RULE_EMAIL],
             'password' => [Validator::RULE_REQUIRED]
         ]);
+
         $user = new User();
         if ($isValid) {
             $user->loadData($request->getBody());
 
             if ($user->login()) {
-                $this->flash('success', 'You are logged in');
-                $this->redirect('/user/profile');
+                session()->setFlash('success', 'You are logged in');
+                return redirect('/');
             }
         }
 
-        return $this->render('auth/login', [
+        return view('auth/login', [
             'model' => $user,
             'errors' => $request->getErrors()
         ]);
@@ -48,34 +49,34 @@ class AuthController extends Controller
                 $user->save();
 
 
-                $this->flash('success', 'You are registered');
-                $this->redirect('/');
+                session()->setFlash('success', 'You are registered');
+                redirect('/login');
             }
 
-            return $this->render('auth/register', [
+            return view('auth/register', [
                 'model' => $user,
                 'errors' => $request->getErrors()
             ]);
         }
 
-        return $this->render('auth/register', [
-            'model' => $user
+        return view('auth/register', [
+            'model' => $user,
         ]);
     }
 
     public function forgotPassword(Request $request)
     {
-        return $this->render("auth/forgot-password");
+        return view("auth/forgot-password");
     }
 
     public function resetPassword(Request $request)
     {
-        return $this->render("auth/reset-password");
+        return view("auth/reset-password");
     }
 
     public function logout()
     {
-        Application::$app->logout();
-        $this->redirect('/');
+        app()->logout();
+        redirect('/');
     }
 }

@@ -7,7 +7,7 @@ use app\core\Request;
 class PasteController extends Controller
 {
     public function index(){
-        return $this->render('/pastes/index');
+        return view('/pastes/index');
     }
 
     public function store(Request $request){
@@ -15,10 +15,10 @@ class PasteController extends Controller
     }
 
     public function lockedPaste(){
-        return $this->render('/pastes/locked-paste');
+        return view('/pastes/locked-paste');
     }
 
     public function edit(){
-        return $this->render('/pastes/edit');
+        return view('/pastes/edit');
     }
 }

@@ -10,7 +10,7 @@ class ContactController extends Controller
 {
     public function index(){
         $contact = new Contact();
-        return $this->render('contact', [
+        return view('contact', [
             'model' => $contact
         ]);
     }
@@ -20,11 +20,11 @@ class ContactController extends Controller
         $contact = new Contact();
         $contact->loadData($body);
         if($request->validate($contact->rules()) && $contact->send()){
-            Application::$app->session->setFlash('success', 'Thanks for your message!');
-            $this->redirect('/contact');
+            session()->setFlash('success', 'Thanks for your message!');
+            redirect('/contact');
         }
 
-        return $this->render('contact', [
+        return view('contact', [
             'model' => $contact
         ]);
     }

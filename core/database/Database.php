@@ -27,7 +27,7 @@ class Database
      */
     protected function __construct()
     {
-        $this->config = Application::$config['database'];
+        $this->config = config('database');
         $this->pdo = Connection::make($this->config);
     }
 
@@ -123,5 +123,10 @@ class Database
     {
         $statement = $this->pdo->prepare("DELETE FROM migrations WHERE migration='{$migration}'");
         $statement->execute();
+    }
+
+    public function prepare($sql)
+    {
+        return $this->getPdo()->prepare($sql);
     }
 }

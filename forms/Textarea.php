@@ -14,7 +14,7 @@ class Textarea extends BaseField
             ucfirst($this->attribute), // placeholder
             $this->model->{$this->attribute}, // value
             $this->options, // options
-            $this->attribute, // id
+            $this->attribute // id
         );
     }
 }

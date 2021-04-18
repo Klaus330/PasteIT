@@ -11,8 +11,7 @@ class HomeController extends Controller
     {
         $captchaCode = CaptchaController::getCaptcha();
 
-        return $this->renderWithPartial(
-            "{{login-alert}}", "/alerts/guestalert", 'home',
+        return view('home',
             ['captchaCode' => $captchaCode]
         );
     }

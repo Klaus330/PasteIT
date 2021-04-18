@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function settings()
     {
-        return $this->render('/user/settings');
+        return view('/user/settings');
     }
 
     public function profile()
@@ -24,12 +24,12 @@ class UserController extends Controller
             $isInputChecked = $_COOKIE['theme'] === 'dark';
         }
 
-        return $this->render('/user/profile', ['isInputChecked' => $isInputChecked]);
+        return view('/user/profile', ['isInputChecked' => $isInputChecked]);
     }
 
     public function myPastes()
     {
-        return $this->render('/user/mypastes');
+        return view('/user/mypastes');
     }
 
 }

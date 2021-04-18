@@ -18,11 +18,11 @@
             </ul>
         </div>
         <div class="navbar-container collapse">
-            <?php if (\app\core\Application::isGuest()): ?>
+            <?php if (app()::isGuest()): ?>
                 <a href="/login" class="btn btn-login btn-sm mr-1">Login</a>
                 <a href="/register" class="btn btn-register btn-sm">Sign Up</a>
             <?php else: ?>
-                <a href="/logout" class="nav-link text-danger"><?= \app\core\Application::$app->user->username ?> (Logout)</a>
+                <a href="/logout" class="nav-link text-danger"><?=  auth()->username ?> (Logout)</a>
             <?php endif; ?>
         </div>
         <button class="navbar-toggler" type="button" id="nav-toggler">
@@ -40,9 +40,9 @@
             <li class="nav-item">
                 <a href="/" class="nav-link">Contact</a>
             </li>
-            <?php if (!\app\core\Application::isGuest()): ?>
+            <?php if (!app()::isGuest()): ?>
                 <li class="nav-item"
-                <a href="/logout"><?= \app\core\Application::$app->user->username ?></a>
+                <a href="/logout"><?= auth()->username ?></a>
                 </li>
             <?php else: ?>
                 <li class="nav-item">

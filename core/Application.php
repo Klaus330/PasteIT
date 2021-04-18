@@ -4,6 +4,9 @@ namespace app\core;
 
 use app\controllers\Controller;
 use app\core\database\Database;
+use app\core\exceptions\HttpException;
+use app\core\exceptions\NotFoundHttpException;
+use app\core\exceptions\PageNotFoundException;
 use app\models\DbModel;
 use app\models\User;
 
@@ -13,72 +16,136 @@ class Application
     public string $layout = 'main';
     public string $userClass;
     public static string $ROOT_DIR;
-    public Router $router;
-    public Request $request;
-    public Response $response;
-    public static $config;
-    public Database $db;
-    public Session $session;
     public static Application $app;
-    public ?Controller $controller = null;
-    public ?DbModel $user;
-    public View $view;
 
-    protected static $registry = [];
+    protected $instances = [];
+    protected $bindings = [];
+
+    public static function getInstance()
+    {
+        if (empty(self::$app)) {
+            self::$app = new Application();
+            self::$ROOT_DIR = dirname(__DIR__);
+            return self::$app;
+        }
+
+        return self::$app;
+    }
 
     /**
-     * Application constructor.
-     * @param $router
+     * @param $key
+     * @param $value
+     * @return $this
      */
-
-    public function __construct($rootPath, $config)
+    public function instance($key, $value)
     {
-
-        $this->userClass = $config['user_class'];
-        self::$ROOT_DIR = $rootPath;
-        self::$config = $config;
-        self::$app = $this;
-        $this->request = new Request();
-        $this->response = new Response();
-        $this->router = new Router($this->request, $this->response);
-        $this->controller = new Controller();
-        $this->db = Database::getConnection();
-        $this->session = new Session();
-        $this->view = new View();
-
-        if ($this->session->has('user')) {
-            $this->user = $this->userClass::findOne([
-                $this->userClass::getPrimaryKey() => $this->session->get('user')
-            ]);
-        } else {
-            $this->user = null;
-        }
-
+        $this->instances[$key] = $value;
+        return $this;
     }
 
-    public static function bind($key, $value)
+    /**
+     * @param $key
+     * @param $value
+     * @return $this
+     */
+    public function bind($key, $value)
     {
-        static::$registry[$key] = $value;
+        $this->bindings[$key] = $value;
+        return $this;
     }
 
-    public static function get($key)
+    /**
+     * @param $key
+     * @return false|mixed
+     * @throws \Exception
+     */
+    public function make($key)
     {
-        if (!array_key_exists($key, static::$registry)) {
-            throw new \Exception("No {$key} is bound in the container.");
+
+        if (array_key_exists($key, $this->instances)) {
+            return $this->instances[$key];
         }
 
-        return static::$registry[$key];
+        if (array_key_exists($key, $this->bindings)) {
+            $resolver = $this->bindings[$key];
+            $reflectionClass = new \ReflectionClass($resolver);
+
+            if (!$reflectionClass->getConstructor() || $reflectionClass->getConstructor()->getNumberOfParameters() === 0) {
+                return $resolver();
+            } else {
+                $params = $reflectionClass->getConstructor()->getParameters();
+                $args = [];
+
+                try {
+                    foreach ($params as $param) {
+                        $paramClass = $param->getClass()->getName();
+                        $args[] = $this->make($paramClass);
+                    }
+                } catch (\Exception $e) {
+                    throw new \Exception('Unable to resolve complex dependencies.');
+                }
+
+                $instance = $reflectionClass->newInstanceArgs($args);
+                $this->instances[$key] = $instance;
+                return $this->instances[$key];
+            }
+
+        }
+
+        if ($instance = $this->autoResolve($key)) {
+            return $instance;
+        }
+
+        throw new \Exception("Unable to resolve {$key} from container");
+    }
+
+    /**
+     * @param $key
+     * @return false|mixed
+     */
+    public function autoResolve($key)
+    {
+        if (!class_exists($key)) {
+            return false;
+        }
+
+        $reflectionClass = new \ReflectionClass($key);
+
+        if (!$reflectionClass->isInstantiable()) {
+            return false;
+        }
+
+        if (!$constructor = $reflectionClass->getConstructor()) {
+            return new $key;
+        }
+
+        $params = $constructor->getParameters();
+        $args = [];
+
+        try {
+            foreach ($params as $param) {
+                $paramClass = $param->getClass()->getName();
+                $args[] = $this->make($paramClass);
+            }
+        } catch (\Exception $e) {
+            throw new \Exception('Unable to resolve complex dependencies.');
+        }
+
+        return $reflectionClass->newInstanceArgs($args);
+    }
+
+    public function __construct()
+    {
     }
 
     public function run()
     {
         try {
-            echo $this->router->resolve();
+            echo $this->make('router')->resolve();
         } catch (\Exception $e) {
-            $this->response->setStatusCode($e->getCode());
-            echo $this->view->renderView('_error', ['exception' => $e]);
+            $this->make('response')->setStatusCode($e->getCode());
+            echo $this->make('view')->renderView('_error', ['exception' => $e]);
         }
-
     }
 
     /**
@@ -86,13 +153,7 @@ class Application
      */
     public function setController(Controller $controller): void
     {
-        $this->controller = $controller;
-    }
-
-
-    public function prepare($sql)
-    {
-        return $this->db->getPdo()->prepare($sql);
+        $this->instance('controller', $controller);
     }
 
     public function login(DbModel $user)
@@ -101,7 +162,10 @@ class Application
         $primaryKey = $user->getPrimaryKey();
 
         $primaryValue = $user->$primaryKey;
-        $this->session->set('user', $primaryValue);
+        $this->make('session')->set('user', $primaryValue);
+        $this->instance('user', function () use ($user) {
+            return $user;
+        });
         return true;
     }
 
@@ -109,11 +173,20 @@ class Application
     public function logout()
     {
         $this->user = null;
-        $this->session->remove('user');
+        $this->make('session')->remove('user');
     }
 
     public static function isGuest()
     {
-        return !self::$app->session->has('user');
+        return !session()->has('user');
+    }
+
+    public function abort($code, mixed $message, array $headers)
+    {
+        if ($code == 404) {
+            throw new PageNotFoundException($message);
+        }
+
+        throw new HttpException($code, $message, $headers);
     }
 }
