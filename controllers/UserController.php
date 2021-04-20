@@ -27,7 +27,7 @@ class UserController extends Controller
         if ($request->validate($settings->rules())) {
             $settings->loadData($body);
             $settings->save();
-            return redirect("/user/profile");
+            redirect("/user/profile");
         }
         return view("/user/settings", [
             'userId' => session()->get("user"),
