@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Request;
 use app\middlewares\AuthMiddleware;
+use app\models\Settings;
 
 class UserController extends Controller
 {
@@ -14,7 +15,25 @@ class UserController extends Controller
 
     public function settings()
     {
-        return view('/user/settings');
+        $userId = session()->get("user");
+        $errors = [];
+        return view('/user/settings', compact(["userId", "errors"]));
+    }
+
+    public function storeSettings(Request $request)
+    {
+        $body = $request->getBody();
+        $settings = new Settings();
+        if ($request->validate($settings->rules())) {
+            $settings->loadData($body);
+            $settings->save();
+            return redirect("/user/profile");
+        }
+        return view("/user/settings", [
+            'userId' => session()->get("user"),
+            'errors' => $request->getErrors()
+        ]);
+
     }
 
     public function profile()
