@@ -23,7 +23,7 @@ $app->bind('session', function () {
     return new \app\core\Session;
 });
 $app->bind('controller', function () {
-    return new \app\core\Controller;
+    return new \app\controllers\Controller;
 });
 $app->instance('db', \app\core\database\Database::getConnection());
 

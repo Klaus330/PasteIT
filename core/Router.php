@@ -67,8 +67,7 @@ class Router
             $middleware->execute();
         }
 
-
-        Application::$app->setController($controller);
+        app()->setController($controller);
         if(! method_exists($controller,$action)){
             throw new \Exception("{$controller} doesn not to respond to the action {$action}");
         }

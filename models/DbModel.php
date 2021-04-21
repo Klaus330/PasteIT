@@ -3,7 +3,6 @@
 
 namespace app\models;
 
-
 use app\core\Application;
 
 abstract class DbModel extends Model
@@ -37,7 +36,6 @@ abstract class DbModel extends Model
 
             return $result;
         } catch (\PDOException $e) {
-//            die("Whoops! Something Went wrong.");
             die($e->getTrace());
         }
     }

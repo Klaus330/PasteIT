@@ -4,7 +4,7 @@
             <?php echo $form->inputField($model, 'name') ?>
             <?php echo $form->inputField($model, 'email') ?>
             <?php echo $form->textarea($model, 'message', 'contact-message')?>
-        <?php echo $form->submitButton('Send', 'form-group login-buttons', 'btn btn-succes') ?>
+            <?php echo $form->submitButton('Send', 'form-group login-buttons', 'btn btn-succes') ?>
         <?php \app\forms\Form::end() ?>
     </div>
 </div>
