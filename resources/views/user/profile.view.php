@@ -9,7 +9,7 @@
                             <label class="form-label" for="syn-highlight">Username : </label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
-                            <input type="text" name="username" class="form-control" id="syn-highlight" placeholder="username"/>
+                            <input value=" <?= auth()->username ?>" type="text" name="username" class="form-control" id="syn-highlight" placeholder="username"/>
                         </div>
                     </div>
                     <div class="grid">
@@ -17,7 +17,7 @@
                             <label class="form-label" for="exposure">Email Adress: </label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
-                            <input type="text" name="email" class="form-control" id="exposure" placeholder="email"/>
+                            <input value=" <?= auth()->email ?>" type="text" name="email" class="form-control" id="exposure" placeholder="email"/>
                         </div>
                     </div>
                     <div class="grid">
