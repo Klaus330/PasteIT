@@ -54,4 +54,12 @@ class UserController extends Controller
         return view('/user/mypastes');
     }
 
+    public function destroy(){
+//        $userId = session()->get("user");
+//        User::delete(["id"=>$userId]);
+        auth()->destroy();
+        app()->logout();
+        redirect("/");
+    }
+
 }

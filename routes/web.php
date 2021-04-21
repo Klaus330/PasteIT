@@ -1,6 +1,8 @@
 <?php
 
 
+use app\models\User;
+
 router()->get('/', "HomeController@index");
 
 router()->get('/contact', "ContactController@index");
@@ -21,6 +23,7 @@ router()->get("/user/settings", "UserController@settings");
 router()->get("/user/profile", "UserController@profile");
 router()->get("/user/mypastes", "UserController@myPastes");
 router()->post("/user/settings", "UserController@storeSettings");
+router()->get("/user/delete", "UserController@destroy");
 
 
 // Pastes
