@@ -74,4 +74,50 @@ abstract class DbModel extends Model
         return $statement->fetchObject(static::class);
     }
 
+
+    public function update(array $data, array $where, string $separator = "AND")
+    {
+        $tableName = $this->tableName();
+        $attributes = array_keys($where);
+        $colums = array_keys($data);
+
+        $values = implode(",",
+            array_map(fn($key) => "$key=:$key", $colums)
+        );
+
+        $parameters = implode(
+            $separator,
+            array_map(fn($attribute) => "$attribute=:$attribute", $attributes)
+        );
+
+        $sql = "UPDATE $tableName SET $values WHERE $parameters";
+
+        $statement = self::prepare($sql);
+
+        foreach ($where as $key => $value){
+            $statement->bindValue(":$key",$value);
+        }
+        foreach ($data as $key => $value){
+            $statement->bindValue(":$key",$value);
+        }
+
+        try {
+            $statement->execute();
+            return true;
+        }catch (\Exception $e){
+            dd($e->getMessage());
+        }
+        return false;
+    }
+
+
+    public static function create($data) : static
+    {
+        $instace = new static;
+
+        $instace->loadData($data);
+
+        return $instace;
+    }
+
 }

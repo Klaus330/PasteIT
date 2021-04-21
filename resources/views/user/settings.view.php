@@ -4,7 +4,7 @@
             <h4 class="section-title mb-2 h4">My Settings</h4>
             <div class="settings-content">
                 <form class="home-form" action="/user/settings" method="POST">
-                    <input type="hidden" name="id_user" value="<?php echo $userId ?>">
+<!--                    <input type="hidden" name="id_user" value="--><?php //echo $userId ?><!--">-->
                     <div class="grid">
                         <div class="col-6 col-md-3 flex align-start">
                             <label class="form-label" for="syn-highlight">Default Syntacs:</label>
@@ -14,7 +14,7 @@
                                 <option value="">None</option>
                                 <option value="1">C++</option>
                                 <option value="2">Java</option>
-                                <option value="5">Html</option>
+                                <option value="3">Html</option>
                             </select>
                         </div>
 

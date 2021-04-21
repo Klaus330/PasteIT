@@ -6,7 +6,9 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Request;
+use app\core\Session;
 use app\core\Validator;
+use app\models\Settings;
 use app\models\User;
 
 class AuthController extends Controller
@@ -48,6 +50,16 @@ class AuthController extends Controller
                 $user->loadData($request->getBody());
                 $user->save();
 
+
+                $settings = Settings::create(
+                    [
+                        'id_user' => User::findOne(['email' => $user->email])->id,
+                        'id_syntax' => 1,
+                        'exposure' => 0,
+                        'expiration' => 'never'
+                    ]
+                );
+                $settings->save();
 
                 session()->setFlash('success', 'You are registered');
                 redirect('/login');

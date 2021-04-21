@@ -31,7 +31,7 @@ class Settings extends DbModel
     public function rules()
     {
         return [
-            "id_user"=>[Validator::RULE_REQUIRED],
+//            "id_user"=>[Validator::RULE_REQUIRED],
             "id_syntax"=>[Validator::RULE_REQUIRED],
             "expiration"=>[Validator::RULE_REQUIRED],
             "exposure"=>[Validator::RULE_REQUIRED]
