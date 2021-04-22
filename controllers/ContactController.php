@@ -9,7 +9,6 @@ use app\models\Contact;
 class ContactController extends Controller
 {
     public function index(){
-        dd(session()->get("user"));
         $contact = new Contact();
         return view('contact', [
             'model' => $contact
