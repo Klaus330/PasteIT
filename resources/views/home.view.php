@@ -68,7 +68,7 @@
                            <label class="form-label" for="password-allow" id="passworda-allow-label">Disabled</label>
                        </div>
                         <div class="col-md-6 col-12">
-                            <input type="text" placeholder="Password" class="form-control" name="password" id="password">
+                            <input type="text" placeholder="Password" class="form-control" name="password" id="password" disabled>
                         </div>
                     </div>
                 </div>
