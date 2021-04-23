@@ -17,12 +17,18 @@
                 </li>
             </ul>
         </div>
-        <div class="navbar-container collapse">
+        <div class="navbar-container collapse login-nav-item-dropdown">
             <?php if (app()::isGuest()): ?>
                 <a href="/login" class="btn btn-login btn-sm mr-1">Login</a>
                 <a href="/register" class="btn btn-register btn-sm">Sign Up</a>
             <?php else: ?>
-                <a href="/logout" class="nav-link text-danger"><?=  auth()->username ?> (Logout)</a>
+                <a href="#" class="nav-link text-danger dropdown-trigger"><?= auth()->username ?></a>
+                <ul class="login-dropdown-menu">
+                    <li class="login-dropdown-menu-item"><a href="/user/profile">Profile</a></li>
+                    <li class="login-dropdown-menu-item"><a href="/user/settings">Settings</a></li>
+                    <li class="login-dropdown-menu-item"><a href="user/mypastes">My Pastes</a></li>
+                    <li class="login-dropdown-menu-item"><a href="/logout">Logout</a></li>
+                </ul>
             <?php endif; ?>
         </div>
         <button class="navbar-toggler" type="button" id="nav-toggler">
