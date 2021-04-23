@@ -59,7 +59,6 @@ class Paste extends DbModel
         if ($this->password !== ''){
             $this->password = sha1($this->password);
         }
-        dd($this);
         return parent::save();
     }
 }

@@ -96,7 +96,7 @@ $this->setTitle("Paste It - Home")
                             <label class="form-label" for="captcha-code">Captcha:</label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
-                            <input type="text" placeholder="Write the code" class="form-control" name="captcha"
+                            <input type="text" placeholder="Write the code" class="form-control" name="captcha_code"
                                    id="captcha-code">
                         </div>
                         <div class="col-12 col-md-3 flex align-center">

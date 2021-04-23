@@ -7,18 +7,23 @@ use app\models\Paste;
 
 class PasteController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('/pastes/index');
     }
 
-    public function store(Request $request){
-//        dd($request->getBody());
+    public function store(Request $request)
+    {
+        if (app()::isGuest() && session()->get('captcha_code') != $request->getBody()['captcha_code']) {
+            redirect("/");
+        }
+
         $paste = new Paste();
-        if($request->validate($paste->rules())){
+        if ($request->validate($paste->rules())) {
 
             $body = $request->getBody();
             $paste->loadData($body);
-            $slug = str_replace(" ",'-',strtolower($body['title']));
+            $slug = str_replace(" ", '-', strtolower($body['title']));
             $paste->slug = $slug;
             $paste->save();
 
@@ -26,20 +31,23 @@ class PasteController extends Controller
             redirect("/");
         }
 
-        return view("home",[
+        return view("home", [
             'errors' => $request->getErrors()
         ]);
     }
 
-    public function lockedPaste(){
+    public function lockedPaste()
+    {
         return view('/pastes/locked-paste');
     }
 
-    public function edit(){
+    public function edit()
+    {
         return view('/pastes/edit');
     }
 
-    public function view(){
+    public function view()
+    {
         dd($_REQUEST);
     }
 
