@@ -27,7 +27,9 @@ router()->get("/user/delete", "UserController@destroy");
 
 
 // Pastes
-router()->get('/pastes', "PasteController@index");
+router()->get('/pastes', "PasteController@view");
+//router()->get('/pastes', "PasteController@index");
+router()->post('/pastes', "PasteController@store");
 router()->get("/pastes/locked-paste", "PasteController@lockedPaste");
 router()->get("/pastes/edit", "PasteController@edit");
 

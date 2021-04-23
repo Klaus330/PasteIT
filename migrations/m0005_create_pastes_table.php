@@ -17,11 +17,7 @@ class m0005_create_pastes_table extends Migration
               slug VARCHAR(255) NOT NULL,
               title VARCHAR(255) NOT NULL,
               nr_of_views INT,
-              id_user INT,
-              id_syntax INT,
-              exposure BIT,
-              FOREIGN KEY (id_user) REFERENCES users(id),
-              FOREIGN KEY (id_syntax) REFERENCES highlights(id)
+              exposure BIT
             ) ENGINE=INNODB;
         ";
 

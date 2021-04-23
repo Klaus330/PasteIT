@@ -36,7 +36,7 @@ abstract class DbModel extends Model
 
             return $result;
         } catch (\PDOException $e) {
-            $e->getTrace();
+            dd($e->getMessage());
         }
     }
 
