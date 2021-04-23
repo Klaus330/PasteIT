@@ -71,7 +71,7 @@ abstract class DbModel extends Model
             $statement->bindValue(":$key", $value);
         }
         $statement->execute();
-        dd($statement->fetchAll(\PDO::FETCH_CLASS, static::class));
+        return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
     }
 
 

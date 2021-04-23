@@ -32,9 +32,7 @@ class PasteController extends Controller
             redirect("/");
         }
 
-        return view("home", [
-            'errors' => $request->getErrors()
-        ]);
+        redirect("/");
     }
 
     public function lockedPaste()
