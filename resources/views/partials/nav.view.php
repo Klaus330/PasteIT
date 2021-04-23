@@ -26,7 +26,7 @@
                 <ul class="login-dropdown-menu">
                     <li class="login-dropdown-menu-item"><a href="/user/profile">Profile</a></li>
                     <li class="login-dropdown-menu-item"><a href="/user/settings">Settings</a></li>
-                    <li class="login-dropdown-menu-item"><a href="user/mypastes">My Pastes</a></li>
+                    <li class="login-dropdown-menu-item"><a href="/user/mypastes">My Pastes</a></li>
                     <li class="login-dropdown-menu-item"><a href="/logout">Logout</a></li>
                 </ul>
             <?php endif; ?>
