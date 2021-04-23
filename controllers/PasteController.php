@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Request;
 use app\models\Paste;
+use app\models\User;
 
 class PasteController extends Controller
 {
@@ -48,6 +49,9 @@ class PasteController extends Controller
 
     public function view()
     {
+
+        Paste::find();
+
         dd($_REQUEST);
     }
 
