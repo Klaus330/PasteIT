@@ -3,7 +3,6 @@
 
 namespace app\models;
 
-
 use app\core\Application;
 
 abstract class DbModel extends Model
@@ -37,8 +36,7 @@ abstract class DbModel extends Model
 
             return $result;
         } catch (\PDOException $e) {
-//            die("Whoops! Something Went wrong.");
-            die($e->getTrace());
+            dd($e->getMessage());
         }
     }
 
@@ -69,11 +67,105 @@ abstract class DbModel extends Model
 
         $statement = self::prepare($sql);
 
-        foreach ($where as $key => $value){
+        foreach ($where as $key => $value) {
             $statement->bindValue(":$key", $value);
         }
         $statement->execute();
         return $statement->fetchObject(static::class);
+    }
+
+
+    public function update(array $data, array $where, string $separator = "AND")
+    {
+        $tableName = $this->tableName();
+        $attributes = array_keys($where);
+        $colums = array_keys($data);
+
+        $values = implode(",",
+            array_map(fn($key) => "$key=:$key", $colums)
+        );
+
+        $parameters = implode(
+            $separator,
+            array_map(fn($attribute) => "$attribute=:$attribute", $attributes)
+        );
+
+        $sql = "UPDATE $tableName SET $values WHERE $parameters";
+
+        $statement = self::prepare($sql);
+
+        foreach ($where as $key => $value) {
+            $statement->bindValue(":$key", $value);
+        }
+        foreach ($data as $key => $value) {
+            $statement->bindValue(":$key", $value);
+        }
+
+        try {
+            $statement->execute();
+            return true;
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+        return false;
+    }
+
+    public static function delete(array $where, string $separator = 'AND'): bool
+    {
+
+        $tableName = (new static)->tableName();
+        $attributes = array_keys($where);
+
+        $parameters = implode(
+            $separator,
+            array_map(fn($attribute) => "$attribute=:$attribute", $attributes)
+        );
+
+        $sql = "DELETE FROM $tableName WHERE $parameters";
+
+        $statement = self::prepare($sql);
+
+        foreach ($where as $key => $value) {
+            $statement->bindValue(":$key", $value);
+        }
+
+        try {
+            $statement->execute();
+            return true;
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+        return false;
+    }
+
+    public function destroy(): bool
+    {
+
+        $tableName = $this->tableName();
+
+        $sql = "DELETE FROM $tableName WHERE id=:id";
+
+        $statement = self::prepare($sql);
+
+        $statement->bindValue(":id", $this->id);
+
+        try {
+            $statement->execute();
+            return true;
+        } catch (\Exception $e) {
+            $e->getMessage();
+        }
+        return false;
+    }
+
+
+    public static function create($data): static
+    {
+        $instace = new static;
+
+        $instace->loadData($data);
+
+        return $instace;
     }
 
 }

@@ -67,7 +67,8 @@ class Database
     public function downMigrations(){
         $appliedMigrations = $this->getAppliedMigrations();
 
-        foreach ($appliedMigrations as $migration){
+        for($i=count($appliedMigrations)-1; $i>0; $i--){
+            $migration = $appliedMigrations[$i];
             require_once Application::$ROOT_DIR."/migrations/$migration";
             $className = pathinfo($migration, PATHINFO_FILENAME);
             $instance = new $className();
@@ -129,4 +130,28 @@ class Database
     {
         return $this->getPdo()->prepare($sql);
     }
+
+
+    public function applySeeds(){
+        $files = scandir(app()::$ROOT_DIR.'/seeds');
+
+        foreach ($files as $seeder){
+            if($seeder === "." || $seeder === ".." )
+            {
+                continue;
+            }
+
+            require_once Application::$ROOT_DIR."/seeds/$seeder";
+            $className = pathinfo($seeder, PATHINFO_FILENAME);
+            $instance = new $className();
+
+            $this->log("Applying Seeder $seeder");
+            $instance->run();
+            $this->log( "Seeder $seeder applied");
+        }
+    }
+
+
+
+
 }

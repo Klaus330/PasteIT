@@ -17,7 +17,8 @@ class UserController extends Controller
     {
         $userId = session()->get("user");
         $errors = [];
-        return view('/user/settings', compact(["userId", "errors"]));
+        $settings = Settings::findOne(['id_user'=>$userId]);
+        return view('/user/settings', compact(["userId", "errors",'settings']));
     }
 
     public function storeSettings(Request $request)
@@ -26,7 +27,9 @@ class UserController extends Controller
         $settings = new Settings();
         if ($request->validate($settings->rules())) {
             $settings->loadData($body);
-            $settings->save();
+
+            $settings->update($body, ['id_user' => session()->get('user')]);
+
             redirect("/user/profile");
         }
         return view("/user/settings", [
@@ -49,6 +52,14 @@ class UserController extends Controller
     public function myPastes()
     {
         return view('/user/mypastes');
+    }
+
+    public function destroy(){
+//        $userId = session()->get("user");
+//        User::delete(["id"=>$userId]);
+        auth()->destroy();
+        app()->logout();
+        redirect("/");
     }
 
 }

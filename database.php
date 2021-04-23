@@ -21,9 +21,15 @@ if ($argv[1] == "-migrate") {
 } else if ($argv[1] == '-reset') {
     app('db')->downMigrations();
     app('db')->applyMigrations();
+} else if ($argv[1] == "-seed") {
+    app('db')->applySeeds();
+}else if($argv[1] == '-refresh'){
+    app('db')->downMigrations();
+    app('db')->applyMigrations();
+    app('db')->applySeeds();
 } else {
     echo 'I do not know this command. The available commands are:' . PHP_EOL;
-    echo 'php migrations.php -migrate - Creates all the tables specified in migrations' . PHP_EOL;
-    echo 'php migrations.php -down - Deletes all the migrations and tables from the db.' . PHP_EOL;
-    echo 'php migrations.php -reset - Resets the migrations.';
+    echo 'php database.php -migrate - Creates all the tables specified in migrations' . PHP_EOL;
+    echo 'php database.php -down - Deletes all the migrations and tables from the db.' . PHP_EOL;
+    echo 'php database.php -reset - Resets the migrations.';
 }

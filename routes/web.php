@@ -1,6 +1,8 @@
 <?php
 
 
+use app\models\User;
+
 router()->get('/', "HomeController@index");
 
 router()->get('/contact', "ContactController@index");
@@ -21,10 +23,13 @@ router()->get("/user/settings", "UserController@settings");
 router()->get("/user/profile", "UserController@profile");
 router()->get("/user/mypastes", "UserController@myPastes");
 router()->post("/user/settings", "UserController@storeSettings");
+router()->get("/user/delete", "UserController@destroy");
 
 
 // Pastes
-router()->get('/pastes', "PasteController@index");
+router()->get('/pastes', "PasteController@view");
+//router()->get('/pastes', "PasteController@index");
+router()->post('/pastes', "PasteController@store");
 router()->get("/pastes/locked-paste", "PasteController@lockedPaste");
 router()->get("/pastes/edit", "PasteController@edit");
 
