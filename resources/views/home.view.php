@@ -41,9 +41,10 @@ $this->setTitle("Paste It - Home")
                     </div>
                     <div class="col-12 col-md-6 flex align-center">
                         <select name="id_syntax" id="syn-highlight" class="form-select">
-                            <option value="">None</option>
-                            <option value="1" selected>C++</option>
-                            <option value="2">Java</option>
+                            <option value="" disabled>None</option>
+                            <?php foreach ($syntaxes as $key => $syntax) :?>
+                                <option value="<?=$syntax->id?>"><?=$syntax->name?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>

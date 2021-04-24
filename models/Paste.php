@@ -33,6 +33,7 @@ class Paste extends DbModel
             "title",
             "slug",
             "password",
+            'id_syntax',
             "burn_after_read",
             "exposure",
             "expiration_date",

@@ -54,6 +54,28 @@ abstract class DbModel extends Model
     }
 
 
+    public static function find($where=['1'=>1], $separator = "AND"){
+        $tableName = (new static)->tableName();
+        $attributes = array_keys($where);
+
+
+        $parameters = implode(
+            $separator,
+            array_map(fn($attribute) => "$attribute  = :$attribute", $attributes)
+        );
+
+        $sql = "SELECT * FROM $tableName WHERE $parameters;";
+        $statement = self::prepare($sql);
+
+        foreach ($where as $key => $value) {
+            $statement->bindValue(":$key", $value);
+        }
+        $statement->execute();
+        return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
+    }
+
+
+
     public static function findOne($where)
     {
         $tableName = (new static)->tableName();
