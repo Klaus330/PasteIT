@@ -21,6 +21,7 @@ router()->get("/reset-password", "AuthController@resetPassword");
 // User
 router()->get("/user/settings", "UserController@settings");
 router()->get("/user/profile", "UserController@profile");
+router()->post("/user/profile","UserController@profileUpdate");
 router()->get("/user/mypastes", "UserController@myPastes");
 router()->post("/user/settings", "UserController@storeSettings");
 router()->get("/user/delete", "UserController@destroy");

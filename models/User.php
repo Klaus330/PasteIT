@@ -12,6 +12,7 @@ class User extends DbModel
     public string $email = '';
     public string $confirm_password = '';
     public string $password = '';
+    public $avatar = '';
 
 
     public function save()
@@ -38,7 +39,7 @@ class User extends DbModel
 
     public function attributes(): array
     {
-        return ['username', 'email', 'password'];
+        return ['username', 'email', 'password', 'avatar'];
     }
 
     public function labels()

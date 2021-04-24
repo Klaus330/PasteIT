@@ -4,3 +4,4 @@ public/css/*.map
 public/css/*.css
 public/captcha/*.png
 public/js/
+public/storage/images/avatars
