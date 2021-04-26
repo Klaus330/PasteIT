@@ -11,7 +11,7 @@
     .navbar-nav {
       .nav-link {
         color: $text-color-black;
-        @include mq(medium){
+        @include mq(medium) {
           color: $text-color;
         }
 
@@ -32,4 +32,8 @@
 .navbar-dropdown {
 
   background: $primary-color-light;
+}
+
+.nav-user-name {
+  color: red;
 }

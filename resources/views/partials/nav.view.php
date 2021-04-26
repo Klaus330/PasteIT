@@ -46,9 +46,26 @@
             <li class="nav-item">
                 <a href="/" class="nav-link">Contact</a>
             </li>
+
             <?php if (!app()::isGuest()): ?>
-                <li class="nav-item"
-                <a href="/logout"><?= auth()->username ?></a>
+                <li class="nav-item">
+                    <a href="#" class="nav-user-name"><?php echo auth()->username; ?> </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/user/profile" class="nav-link">My profile</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/user/settings" class="nav-link">Settings</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/user/mypastes" class="nav-link">My pastes</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/logout" class="nav-link">Logout</a>
                 </li>
             <?php else: ?>
                 <li class="nav-item">
