@@ -7,12 +7,14 @@ namespace app\middlewares;
 use app\core\Application;
 use app\core\exceptions\AccessDeniedException;
 
-class AuthMiddleware extends Middleware
+class GuestMiddleware extends Middleware
 {
+
     public function execute()
     {
-        if(Application::isGuest()){
-            if(empty($this->actions) || in_array(app('controller')->getAction(), $this->actions)){
+        $currentAction = app('controller')->getAction();
+        if (empty($this->actions) || in_array($currentAction, $this->actions)) {
+            if (!Application::isGuest()) {
                 throw new AccessDeniedException();
             }
         }

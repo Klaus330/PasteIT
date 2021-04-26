@@ -19,9 +19,7 @@ $app->bind('router', \app\core\Router::class);
 $app->bind('view', function () {
     return new \app\core\View;
 });
-$app->bind('session', function () {
-    return new \app\core\Session;
-});
+$app->instance('session', \app\core\Session::getInstance());
 $app->bind('controller', function () {
     return new \app\controllers\Controller;
 });

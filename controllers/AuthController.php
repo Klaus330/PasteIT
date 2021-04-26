@@ -8,11 +8,17 @@ use app\core\Application;
 use app\core\Request;
 use app\core\Session;
 use app\core\Validator;
+use app\middlewares\GuestMiddleware;
 use app\models\Settings;
 use app\models\User;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new GuestMiddleware(['index','register', 'forgotPassword', 'resetPassword']));
+    }
+    
     public function index()
     {
         $user = new User();
@@ -21,6 +27,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
         $isValid = $request->validate([
             'email' => [Validator::RULE_REQUIRED, Validator::RULE_EMAIL],
             'password' => [Validator::RULE_REQUIRED]
@@ -36,10 +43,7 @@ class AuthController extends Controller
             }
         }
 
-        return view('auth/login', [
-            'model' => $user,
-            'errors' => $request->getErrors()
-        ]);
+        return redirect('/login')->withErrors($request->getErrors());
     }
 
     public function register(Request $request)

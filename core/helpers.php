@@ -21,8 +21,7 @@ if (!function_exists('redirect')) {
      */
     function redirect($path)
     {
-        app('response')->redirect($path);
-        return;
+        return app('response')->redirect($path);
     }
 }
 

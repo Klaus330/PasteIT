@@ -13,5 +13,12 @@ class Response
 
     public function redirect($path){
         header("Location:$path");
+        return $this;
+    }
+
+    public function withErrors(array $errors = [])
+    {
+        session()->setFlash("errors", $errors);
+        return $this;
     }
 }
