@@ -13,7 +13,7 @@ $app->bind('config', function () {
 });
 $app->instance('db', \app\core\database\Database::getConnection());
 
-if(isset($argv[1])){
+if(!isset($argv[1])){
     echo 'The available commands are:' . PHP_EOL;
     echo 'php database.php -migrate - Creates all the tables specified in migrations' . PHP_EOL;
     echo 'php database.php -down - Deletes all the migrations and tables from the db.' . PHP_EOL;
