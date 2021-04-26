@@ -66,7 +66,6 @@ class UserController extends Controller
 
     public function profileUpdate(Request $request)
     {
-
         $body = $request->getBody();
         $rules = [
             "username" => [Validator::RULE_REQUIRED],
@@ -105,9 +104,9 @@ class UserController extends Controller
                     auth()->avatar =  $body["avatar"];
                 }
             }
-
+            
             auth()->update($body, ["id" => auth()->id]);
-            redirect("/user/settings");
+            redirect("/user/profile");
         }
 
         return view("/user/profile",["errors"=>$request->getErrors()]);
