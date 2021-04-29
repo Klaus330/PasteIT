@@ -57,8 +57,6 @@ class UserController extends Controller
 
     public function destroy()
     {
-//        $userId = session()->get("user");
-//        User::delete(["id"=>$userId]);
         auth()->destroy();
         app()->logout();
         redirect("/");
@@ -104,7 +102,7 @@ class UserController extends Controller
                     auth()->avatar =  $body["avatar"];
                 }
             }
-            
+
             auth()->update($body, ["id" => auth()->id]);
             redirect("/user/profile");
         }

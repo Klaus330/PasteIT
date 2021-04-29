@@ -54,7 +54,8 @@ abstract class DbModel extends Model
     }
 
 
-    public static function find($where=['1'=>1], $separator = "AND"){
+    public static function find($where = ['1' => 1], $separator = "AND")
+    {
         $tableName = (new static)->tableName();
         $attributes = array_keys($where);
 
@@ -74,6 +75,30 @@ abstract class DbModel extends Model
         return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
     }
 
+
+    public static function latest(int $limit = 15, mixed $where = [], string $separator = "AND")
+    {
+        $tableName = (new static)->tableName();
+        if($where !== []){
+            $attributes = array_keys($where);
+
+            $parameters = implode(
+                $separator,
+                array_map(fn($attribute) => "$attribute  = :$attribute", $attributes)
+            );
+
+            $sql = "SELECT * FROM $tableName WHERE $parameters  ORDER BY TO_DATE(created_at,  'Y-m-d H:i:s') DESC LIMIT $limit;";
+        }else{
+            $sql = "SELECT * FROM $tableName ORDER BY created_at DESC LIMIT $limit;";
+        }
+
+        $statement = self::prepare($sql);
+        foreach ($where as $key => $value) {
+            $statement->bindValue(":$key", $value);
+        }
+        $statement->execute();
+        return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
+    }
 
 
     public static function findOne($where)
@@ -95,7 +120,6 @@ abstract class DbModel extends Model
         $statement->execute();
         return $statement->fetchObject(static::class);
     }
-
 
     public function update(array $data, array $where, string $separator = "AND")
     {
@@ -189,5 +213,12 @@ abstract class DbModel extends Model
 
         return $instace;
     }
+
+
+    public function belongsTo($column, $class)
+    {
+        return $class::findOne([$class::getPrimaryKey() => $this->{$column}]);
+    }
+
 
 }

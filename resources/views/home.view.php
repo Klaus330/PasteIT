@@ -12,22 +12,12 @@ $this->setTitle("Paste It - Home")
             <aside class="home-aside sm-hidden">
                 <h4 class="h4">Public Pastes</h4>
                 <ul class="list-group">
+                    <?php foreach ($latestPastes as $paste): ?>
                     <li class="list-group-item">
-                        <a href="">Lorem</a>
-                        <span>C++ | 33sec ago</span>
+                        <a href=""><?= $paste->title ?></a>
+                        <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
                     </li>
-                    <li class="list-group-item">
-                        <a href="">Lorem</a>
-                        <span>C++ | 33sec ago</span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="">Lorem</a>
-                        <span>C++ | 33sec ago</span>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="">Lorem</a>
-                        <span>C++ | 33sec ago</span>
-                    </li>
+                    <?php endforeach; ?>
                 </ul>
             </aside>
         </div>
@@ -91,6 +81,15 @@ $this->setTitle("Paste It - Home")
                         <input type="text" placeholder="Title" class="form-control" name="title" id="title">
                     </div>
                 </div>
+                <div class="grid">
+                    <div class="col-12 col-md-6 flex align-center">
+                        <?php if (app()::isGuest()): ?>
+                            <input type="hidden" name="id_user" id="id_user" value="">
+                        <?php else: ?>
+                            <input type="hidden" name="id_user" id="id_user" value="<?=auth()->id?>">
+                        <?php endif; ?>
+                    </div>
+                </div>
                 <?php if (app()::isGuest()): ?>
                     <div class="grid">
                         <div class="col-6 col-md-3 flex align-start">
@@ -112,8 +111,7 @@ $this->setTitle("Paste It - Home")
                 </div>
     </form>
     <?php require_once dirname(__FILE__) . "/partials/alerts/guestalert.view.php" ?>
-    </div>
-    </div>
+
 </section>
 
 <script>
