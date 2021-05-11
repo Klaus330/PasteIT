@@ -5,14 +5,21 @@ namespace app\controllers;
 
 
 use app\core\Application;
-use app\core\Request;
+
+use app\core\routing\Request;
 use app\core\Session;
 use app\core\Validator;
+use app\middlewares\GuestMiddleware;
 use app\models\Settings;
 use app\models\User;
 
 class AuthController extends Controller
 {
+    public function __construct()
+    {
+        $this->registerMiddleware(new GuestMiddleware(['index','register', 'forgotPassword', 'resetPassword']));
+    }
+
     public function index()
     {
         $user = new User();
@@ -21,6 +28,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+
         $isValid = $request->validate([
             'email' => [Validator::RULE_REQUIRED, Validator::RULE_EMAIL],
             'password' => [Validator::RULE_REQUIRED]
@@ -36,10 +44,7 @@ class AuthController extends Controller
             }
         }
 
-        return view('auth/login', [
-            'model' => $user,
-            'errors' => $request->getErrors()
-        ]);
+        return redirect('/login')->withErrors($request->getErrors());
     }
 
     public function register(Request $request)
@@ -48,6 +53,7 @@ class AuthController extends Controller
         if ($request->isPost()) {
             if ($request->validate($user->rules())) {
                 $user->loadData($request->getBody());
+                $user->avatar = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
                 $user->save();
 
 

@@ -2,7 +2,8 @@
 
 namespace app\controllers;
 
-use app\core\Request;
+use app\core\Random;
+use app\core\routing\Request;
 use app\models\Paste;
 use app\models\User;
 
@@ -24,33 +25,57 @@ class PasteController extends Controller
 
             $body = $request->getBody();
             $paste->loadData($body);
-            $slug = str_replace(" ", '-', strtolower($body['title']));
+            $slug = Random::generate();
             $paste->slug = $slug;
+            $paste->id_user = 1;
             $paste->save();
 
             session()->setFlash("success", 'Your paste has been saved');
-            redirect("/");
+            redirect("/paste/$slug");
         }
 
         redirect("/");
     }
 
-    public function lockedPaste()
+    public function lockedPaste(Request $request)
     {
-        return view('/pastes/locked-paste');
+        $slug = $request->getParam('slug');
+        $paste = Paste::findOne(['slug'=> $slug]);
+
+        return view('/pastes/locked-paste', compact('paste'));
     }
+
+    public function unlockPaste(Request $request)
+    {
+        $slug = $request->getBody()['slug'];
+        $password = $request->getBody()['password'];
+        session()->setFlash($slug, $password);
+        redirect("/paste/$slug");
+    }
+
 
     public function edit()
     {
         return view('/pastes/edit');
     }
 
-    public function view()
+    public function show(Request $request)
     {
 
-        Paste::find();
+        $slug = $request->getParam('slug');
+        $paste = Paste::findOne(['slug'=> $slug]);
 
-        dd($_REQUEST);
+        if($paste->hasPassword()
+            && !session()->hasFlash($slug)
+        ){
+            redirect("/pastes/locked-paste/$slug");
+        }
+
+        if(!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))){
+            $latestPastes = Paste::latest(5);
+            return view('/pastes/index', compact("paste", 'latestPastes'));
+        }
+
+        return redirect("/pastes/locked-paste/$slug")->withErrors(['password' => "Password doesn't match"]);
     }
-
 }

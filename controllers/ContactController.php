@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\core\Application;
-use app\core\Request;
+use app\core\routing\Request;
 use app\models\Contact;
 
 class ContactController extends Controller

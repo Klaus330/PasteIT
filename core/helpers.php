@@ -21,8 +21,7 @@ if (!function_exists('redirect')) {
      */
     function redirect($path)
     {
-        app('response')->redirect($path);
-        return;
+        return app('response')->redirect($path);
     }
 }
 
@@ -94,6 +93,17 @@ if (!function_exists('session')) {
     function session()
     {
         return  app('session');
+    }
+}
+
+
+if (!function_exists('request')) {
+    /**
+     * @return \app\core\Session
+     */
+    function request()
+    {
+        return  app('request');
     }
 }
 

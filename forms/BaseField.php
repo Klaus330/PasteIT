@@ -13,6 +13,7 @@ abstract class BaseField
     protected $model;
     protected $attribute;
     protected $options;
+    protected $errors;
 
     /**
      * Field constructor.
@@ -26,6 +27,7 @@ abstract class BaseField
         $this->model = $model;
         $this->attribute = $attribute;
         $this->options = $options;
+        $this->errors = session()->getFlash('errors')[$attribute][0] ?? Validator::getError($this->attribute);
     }
 
     public function __toString()
@@ -51,7 +53,7 @@ abstract class BaseField
             $this->attribute, //for
             $this->model->labels()[$this->attribute] ?? ucfirst($this->attribute), // label text
             $this->render(),
-            Validator::getError($this->attribute) // error message
+            $this->errors // error message
         );
     }
 }

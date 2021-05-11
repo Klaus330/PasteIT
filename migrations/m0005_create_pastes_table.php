@@ -12,14 +12,17 @@ class m0005_create_pastes_table extends Migration
               id INT AUTO_INCREMENT PRIMARY KEY,
               code TEXT NOT NULL,
               burn_after_read BIT,
-              password VARCHAR(30),
-              expiration_date TIMESTAMP,
+              password VARCHAR(40),
+              expiration_date DATE,
               slug VARCHAR(255) NOT NULL,
               title VARCHAR(255) NOT NULL,
               nr_of_views INT,
               exposure BIT,
+              created_at TIMESTAMP,
               id_syntax INT,
-              FOREIGN KEY (id_syntax) REFERENCES highlights(id)
+              FOREIGN KEY (id_syntax) REFERENCES highlights(id),
+              id_user INT,
+              FOREIGN KEY (id_user) REFERENCES users(id)
             ) ENGINE=INNODB;
         ";
 

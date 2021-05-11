@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\core;
+namespace app\core\routing;
 
 
 class Response
@@ -13,5 +13,12 @@ class Response
 
     public function redirect($path){
         header("Location:$path");
+        return $this;
+    }
+
+    public function withErrors(array $errors = [])
+    {
+        session()->setFlash("errors", $errors);
+        return $this;
     }
 }

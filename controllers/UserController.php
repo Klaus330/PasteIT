@@ -2,9 +2,10 @@
 
 namespace app\controllers;
 
-use app\core\Request;
+use app\core\routing\Request;
 use app\core\Validator;
 use app\middlewares\AuthMiddleware;
+use app\models\Paste;
 use app\models\Settings;
 
 class UserController extends Controller
@@ -19,7 +20,8 @@ class UserController extends Controller
         $userId = session()->get("user");
         $errors = [];
         $settings = Settings::findOne(['id_user' => $userId]);
-        return view('/user/settings', compact(["userId", "errors", 'settings']));
+        $latestPastes = Paste::latest(5);
+        return view('/user/settings', compact(["userId", "errors", 'settings', 'latestPastes']));
     }
 
     public function storeSettings(Request $request)
@@ -29,7 +31,7 @@ class UserController extends Controller
         if ($request->validate($settings->rules())) {
             $settings->loadData($body);
 
-            $settings->update($body, ['id_user' => session()->get('user')]);
+            $settings->update($body, ['id_user' => auth()->id]);
 
             redirect("/user/profile");
         }
@@ -46,8 +48,8 @@ class UserController extends Controller
         if (array_key_exists('theme', $_COOKIE)) {
             $isInputChecked = $_COOKIE['theme'] === 'dark';
         }
-
-        return view('/user/profile', ['isInputChecked' => $isInputChecked]);
+        $latestPastes = Paste::latest(5);
+        return view('/user/profile', compact('isInputChecked', 'latestPastes'));
     }
 
     public function myPastes()
@@ -57,8 +59,6 @@ class UserController extends Controller
 
     public function destroy()
     {
-//        $userId = session()->get("user");
-//        User::delete(["id"=>$userId]);
         auth()->destroy();
         app()->logout();
         redirect("/");
@@ -66,7 +66,6 @@ class UserController extends Controller
 
     public function profileUpdate(Request $request)
     {
-
         $body = $request->getBody();
         $rules = [
             "username" => [Validator::RULE_REQUIRED],
@@ -107,7 +106,7 @@ class UserController extends Controller
             }
 
             auth()->update($body, ["id" => auth()->id]);
-            redirect("/user/settings");
+            redirect("/user/profile");
         }
 
         return view("/user/profile",["errors"=>$request->getErrors()]);

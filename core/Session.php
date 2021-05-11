@@ -9,8 +9,17 @@ use app\core\exceptions\HttpException;
 class Session
 {
     protected const FLASH_KEY = "flash_messages";
+    public static Session $instance;
+    public static function getInstance()
+    {
+        if(!isset(self::$instance)){
+            self::$instance = new Session();
+        }
+        return self::$instance;
+    }
 
-    public function __construct()
+
+    protected function __construct()
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
@@ -25,6 +34,12 @@ class Session
             'remove' => false,
             'value' => $message
         ];
+    }
+
+
+    public function hasFlash($key)
+    {
+        return $_SESSION[self::FLASH_KEY][$key]['value'] ?? false;
     }
 
     public function getFlash($key)
@@ -44,12 +59,6 @@ class Session
         $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
 
-
-    public function __destruct()
-    {
-        $this->removeFlashMessages();
-    }
-
     /**
      * @return mixed
      */
@@ -63,7 +72,6 @@ class Session
         }
         $_SESSION[self::FLASH_KEY] = $flashMessages;
     }
-
 
     public function set($key, $value)
     {
@@ -87,5 +95,10 @@ class Session
     public function remove($key)
     {
         unset($_SESSION[$key]);
+    }
+
+    public function __destruct()
+    {
+        $this->removeFlashMessages();
     }
 }

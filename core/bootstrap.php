@@ -10,18 +10,16 @@ $app->bind('config', function () {
     return new \app\core\Config;
 });
 $app->bind('request', function () {
-    return new \app\core\Request;
+    return new \app\core\routing\Request;
 });
 $app->bind('response', function () {
-    return new \app\core\Response;
+    return new \app\core\routing\Response;
 });
-$app->bind('router', \app\core\Router::class);
+$app->bind('router', \app\core\routing\Router::class);
 $app->bind('view', function () {
     return new \app\core\View;
 });
-$app->bind('session', function () {
-    return new \app\core\Session;
-});
+$app->instance('session', \app\core\Session::getInstance());
 $app->bind('controller', function () {
     return new \app\controllers\Controller;
 });
@@ -29,7 +27,7 @@ $app->instance('db', \app\core\database\Database::getConnection());
 
 if (session()->has('user')) {
     $app->bind('user', function () {
-        return \app\models\User::findOne([ // not so good because we don't have abstraction
+        return \app\models\User::findOne([
             'id' => session()->get('user')
         ]);
     });

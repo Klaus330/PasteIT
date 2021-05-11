@@ -4,54 +4,54 @@
             <div class="paste-info-content">
 
                 <div class="paste-user-icon">
-                    <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50" alt="user icon"/>
+                    <img src="<?= $paste->user()->avatar?>" alt="user icon"/>
                 </div>
 
                 <div class="paste-info">
-                    <div class="paste-info-top"><h3 class="h3">Paste Title</h3></div>
+                    <div class="paste-info-top"><h3 class="h3"><?= $paste->title?></h3></div>
                     <div class="paste-info-bottom">
                         <div class="paste-bottom-content">
                             <div class="username">
                                 <img src="/img/svg/user-icon.svg" alt="user-icon"/>
-                                <a href="#">Client</a>
+                                <a href="#"><?= $paste->user()->username?></a>
                             </div>
 
                             <div class="date">
                                 <img src="/img/svg/date.svg" alt="date"/>
                                 <span>
-                        Date
+                        <?= $paste->created_at?>
                         </span>
                             </div>
 
                             <div class="expire-date">
                                 <img src="/img/svg/time.svg" alt="time"/>
                                 <span>
-                            Expiration date
+                            <?= $paste->expiration_date?>
                         </span>
                             </div>
 
                             <div class="number-of-views">
                                 <img src="/img/svg/view-eye.svg" alt="view-eye"/>
                                 <span>
-                            Views
+                            <?= $paste->nr_of_views?>
                         </span>
                             </div>
                         </div>
-
+                        <?php if($paste->user()->id === auth()->id): ?>
                         <div class="paste-actions">
                             <div class="edit">
-                                <a href="/pastes/edit">
+                                <a href="/pastes/edit/<?= $paste->slug?>">
                                     <img src="/img/svg/edit.svg" alt="edit"/>
                                 </a>
                             </div>
                             <div class="delete">
-                                <a href="#">
+                                <a href="/paste/delete/<?= $paste->slug?>">
                                     <img src="/img/svg/delete.svg" alt="delete"/>
                                 </a>
 
                             </div>
                         </div>
-
+                        <?php endif; ?>
                     </div>
                 </div>
 
@@ -64,7 +64,7 @@
                     <div class="toolbar">
 
                         <div class="">
-                            <a class="btn-toolbar" href="#">C++</a>
+                            <a class="btn-toolbar" href="#"><?= $paste->syntax()->name?></a>
                         </div>
 
                         <div>
@@ -135,7 +135,7 @@
                 </div>
 
                 <div class="col-12">
-                    <textarea name="raw-data" id="raw-data" cols="30" rows="10" class="paste-text-area"></textarea>
+                    <textarea name="raw-data" id="raw-data" cols="30" rows="10" class="paste-text-area"><?= $paste->code ?></textarea>
                 </div>
 
             </div>
@@ -146,22 +146,12 @@
     <aside class="home-aside sm-hidden settings-aside">
         <h4 class="h4">Public Pastes</h4>
         <ul class="list-group">
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
+            <?php foreach ($latestPastes as $paste): ?>
+                <li class="list-group-item">
+                    <a href="/paste/<?= $paste->slug ?>"><?= $paste->title ?></a>
+                    <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </aside>
 
