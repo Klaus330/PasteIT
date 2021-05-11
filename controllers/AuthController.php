@@ -53,6 +53,7 @@ class AuthController extends Controller
         if ($request->isPost()) {
             if ($request->validate($user->rules())) {
                 $user->loadData($request->getBody());
+                $user->avatar = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png";
                 $user->save();
 
 

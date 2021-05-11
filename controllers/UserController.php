@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\core\routing\Request;
 use app\core\Validator;
 use app\middlewares\AuthMiddleware;
+use app\models\Paste;
 use app\models\Settings;
 
 class UserController extends Controller
@@ -19,7 +20,8 @@ class UserController extends Controller
         $userId = session()->get("user");
         $errors = [];
         $settings = Settings::findOne(['id_user' => $userId]);
-        return view('/user/settings', compact(["userId", "errors", 'settings']));
+        $latestPastes = Paste::latest(5);
+        return view('/user/settings', compact(["userId", "errors", 'settings', 'latestPastes']));
     }
 
     public function storeSettings(Request $request)
@@ -46,8 +48,8 @@ class UserController extends Controller
         if (array_key_exists('theme', $_COOKIE)) {
             $isInputChecked = $_COOKIE['theme'] === 'dark';
         }
-
-        return view('/user/profile', ['isInputChecked' => $isInputChecked]);
+        $latestPastes = Paste::latest(5);
+        return view('/user/profile', compact('isInputChecked', 'latestPastes'));
     }
 
     public function myPastes()

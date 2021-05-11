@@ -48,22 +48,12 @@
     <aside class="home-aside sm-hidden settings-aside">
         <h4 class="h4">Public Pastes</h4>
         <ul class="list-group">
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
+            <?php foreach ($latestPastes as $paste): ?>
+                <li class="list-group-item">
+                    <a href="/paste/<?= $paste->slug ?>"><?= $paste->title ?></a>
+                    <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </aside>
 
