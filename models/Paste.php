@@ -93,4 +93,9 @@ class Paste extends DbModel
         return ($this->password === sha1($password));
     }
 
+
+    public function isBurnAfterRead()
+    {
+        return $this->burn_after_read ?? false;
+    }
 }

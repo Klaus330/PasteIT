@@ -7,6 +7,7 @@ use app\core\Validator;
 use app\middlewares\AuthMiddleware;
 use app\models\Paste;
 use app\models\Settings;
+use app\models\Syntax;
 
 class UserController extends Controller
 {
@@ -19,9 +20,12 @@ class UserController extends Controller
     {
         $userId = session()->get("user");
         $errors = [];
-        $settings = Settings::findOne(['id_user' => $userId]);
+        $settings = auth()->settings();
         $latestPastes = Paste::latest(5);
-        return view('/user/settings', compact(["userId", "errors", 'settings', 'latestPastes']));
+        $syntaxes = Syntax::find();
+
+//        dd($settings);
+        return view('/user/settings', compact(["userId", "errors", 'settings', 'latestPastes', 'syntaxes']));
     }
 
     public function storeSettings(Request $request)

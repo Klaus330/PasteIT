@@ -31,7 +31,7 @@ class PasteController extends Controller
             $paste->save();
 
             session()->setFlash("success", 'Your paste has been saved');
-            redirect("/paste/$slug");
+            redirect("/paste/view/$slug");
         }
 
         redirect("/");
@@ -40,7 +40,7 @@ class PasteController extends Controller
     public function lockedPaste(Request $request)
     {
         $slug = $request->getParam('slug');
-        $paste = Paste::findOne(['slug'=> $slug]);
+        $paste = Paste::findOne(['slug' => $slug]);
 
         return view('/pastes/locked-paste', compact('paste'));
     }
@@ -50,32 +50,60 @@ class PasteController extends Controller
         $slug = $request->getBody()['slug'];
         $password = $request->getBody()['password'];
         session()->setFlash($slug, $password);
-        redirect("/paste/$slug");
+        redirect("/paste/view/$slug");
     }
 
 
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('/pastes/edit');
+        $slug = $request->getParam('slug');
+        $paste = Paste::findOne(['slug'=> $slug]);
+
+        return view('/pastes/edit', compact("paste"));
+    }
+
+    public function update(Request $request){
+
+    }
+
+    public function validateBurnAfterRead(Request $request)
+    {
+        $slug = $request->getBody()['slug'];
+        session()->setFlash("$slug-burn", 1);
+        redirect("/paste/view/$slug");
     }
 
     public function show(Request $request)
     {
-
         $slug = $request->getParam('slug');
-        $paste = Paste::findOne(['slug'=> $slug]);
+        $paste = Paste::findOne(['slug' => $slug]);
+
+
+        if($paste->isBurnAfterRead()){
+            if(!session()->hasFlash("$slug-burn")){
+                 redirect("/pastes/burn-after-read/$slug");
+                 return;
+            }
+            $paste->destroy();
+        }
 
         if($paste->hasPassword()
             && !session()->hasFlash($slug)
-        ){
+        ) {
             redirect("/pastes/locked-paste/$slug");
         }
 
-        if(!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))){
+        if (!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
             $latestPastes = Paste::latest(5);
             return view('/pastes/index', compact("paste", 'latestPastes'));
         }
 
         return redirect("/pastes/locked-paste/$slug")->withErrors(['password' => "Password doesn't match"]);
+    }
+
+    public function burnAfterRead(Request $request)
+    {
+        $slug = $request->getParam('slug');
+        return view('/pastes/burn-after-read',compact('slug'));
     }
 }

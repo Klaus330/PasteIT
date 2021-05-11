@@ -221,4 +221,9 @@ abstract class DbModel extends Model
     }
 
 
+    public function hasOne($column, $class)
+    {
+        return $class::findOne([$column => $this->id]);
+    }
+
 }
