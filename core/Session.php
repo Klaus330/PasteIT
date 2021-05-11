@@ -36,6 +36,12 @@ class Session
         ];
     }
 
+
+    public function hasFlash($key)
+    {
+        return $_SESSION[self::FLASH_KEY][$key]['value'] ?? false;
+    }
+
     public function getFlash($key)
     {
         return $_SESSION[self::FLASH_KEY][$key]['value'] ?? false;

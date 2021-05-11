@@ -20,7 +20,7 @@ class Paste extends DbModel
     public string $expiration_date = '';
     public string $burn_after_read = '';
     public string $password = '';
-    public  $created_at;
+    public $created_at;
     public int $nr_of_views = 0;
 
 
@@ -42,7 +42,7 @@ class Paste extends DbModel
             "expiration_date",
             "nr_of_views",
             "created_at",
-             "id_user"
+            "id_user"
         ];
     }
 
@@ -62,7 +62,7 @@ class Paste extends DbModel
 
     public function save()
     {
-        if ($this->password !== ''){
+        if ($this->password !== '') {
             $this->password = sha1($this->password);
         }
 
@@ -74,12 +74,23 @@ class Paste extends DbModel
 
     public function user()
     {
-       return $this->belongsTo('id_user', User::class);
+        return $this->belongsTo('id_user', User::class);
     }
 
     public function syntax()
     {
         return $this->belongsTo('id_syntax', Syntax::class);
+    }
+
+
+    public function hasPassword()
+    {
+        return ($this->password !== "");
+    }
+
+    public function matchPassword($password)
+    {
+        return ($this->password === sha1($password));
     }
 
 }

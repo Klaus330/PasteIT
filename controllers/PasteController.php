@@ -31,16 +31,28 @@ class PasteController extends Controller
             $paste->save();
 
             session()->setFlash("success", 'Your paste has been saved');
-            redirect("/");
+            redirect("/paste/$slug");
         }
 
         redirect("/");
     }
 
-    public function lockedPaste()
+    public function lockedPaste(Request $request)
     {
-        return view('/pastes/locked-paste');
+        $slug = $request->getParam('slug');
+        $paste = Paste::findOne(['slug'=> $slug]);
+
+        return view('/pastes/locked-paste', compact('paste'));
     }
+
+    public function unlockPaste(Request $request)
+    {
+        $slug = $request->getBody()['slug'];
+        $password = $request->getBody()['password'];
+        session()->setFlash($slug, $password);
+        redirect("/paste/$slug");
+    }
+
 
     public function edit()
     {
@@ -49,10 +61,21 @@ class PasteController extends Controller
 
     public function show(Request $request)
     {
-        
+
         $slug = $request->getParam('slug');
         $paste = Paste::findOne(['slug'=> $slug]);
-        $latestPastes = Paste::latest(5);
-        return view('/pastes/index', compact("paste", 'latestPastes'));
+
+        if($paste->hasPassword()
+            && !session()->hasFlash($slug)
+        ){
+            redirect("/pastes/locked-paste/$slug");
+        }
+
+        if(!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))){
+            $latestPastes = Paste::latest(5);
+            return view('/pastes/index', compact("paste", 'latestPastes'));
+        }
+
+        return redirect("/pastes/locked-paste/$slug")->withErrors(['password' => "Password doesn't match"]);
     }
 }
