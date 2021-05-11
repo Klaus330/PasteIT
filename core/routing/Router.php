@@ -59,7 +59,7 @@ class Router
         }
 
         if($this->hasRegEx($matchedRoute)){
-            preg_match("/:\w+/", $matchedRoute->getUrl(), $matches, PREG_OFFSET_CAPTURE);
+            preg_match("/:./", $matchedRoute->getUrl(), $matches, PREG_OFFSET_CAPTURE);
             $pathParam = substr($path, $matches[0][1]);
         }
 

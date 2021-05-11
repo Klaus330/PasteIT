@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\core\Random;
 use app\core\routing\Request;
 use app\models\Paste;
 use app\models\User;
@@ -24,10 +25,7 @@ class PasteController extends Controller
 
             $body = $request->getBody();
             $paste->loadData($body);
-            $slug = str_replace(" ", '-', strtolower($body['title']));
-            dd(sha1(rand()));
-
-                dd('hit');
+            $slug = Random::generate();
             $paste->slug = $slug;
             $paste->id_user = 1;
             $paste->save();
@@ -51,7 +49,7 @@ class PasteController extends Controller
 
     public function show(Request $request)
     {
-
+        
         $slug = $request->getParam('slug');
         $paste = Paste::findOne(['slug'=> $slug]);
         $latestPastes = Paste::latest(5);
