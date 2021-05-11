@@ -34,6 +34,8 @@ Route::get('/pastes', "PasteController@index");
 Route::post('/pastes', "PasteController@store");
 Route::get("/pastes/locked-paste/:slug", "PasteController@lockedPaste");
 Route::post("/pastes/unlock-paste", "PasteController@unlockPaste");
+Route::get("/pastes/burn-after-read/:slug","PasteController@burnAfterRead");
+Route::post("/pastes/burn","PasteController@validateBurnAfterRead");
 
 Route::get('/paste/view/:slug', "PasteController@show");
 Route::get('/pastes/edit/:slug', "PasteController@edit");
