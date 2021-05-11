@@ -40,7 +40,7 @@ class PasteController extends Controller
     public function lockedPaste(Request $request)
     {
         $slug = $request->getParam('slug');
-        $paste = Paste::findOne(['slug'=> $slug]);
+        $paste = Paste::findOne(['slug' => $slug]);
 
         return view('/pastes/locked-paste', compact('paste'));
     }
@@ -63,19 +63,25 @@ class PasteController extends Controller
     {
 
         $slug = $request->getParam('slug');
-        $paste = Paste::findOne(['slug'=> $slug]);
+        $paste = Paste::findOne(['slug' => $slug]);
 
-        if($paste->hasPassword()
+        if ($paste->hasPassword()
             && !session()->hasFlash($slug)
-        ){
+        ) {
             redirect("/pastes/locked-paste/$slug");
         }
 
-        if(!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))){
+        if (!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
             $latestPastes = Paste::latest(5);
             return view('/pastes/index', compact("paste", 'latestPastes'));
         }
 
         return redirect("/pastes/locked-paste/$slug")->withErrors(['password' => "Password doesn't match"]);
+    }
+
+    public function burnAfterRead(Request $request)
+    {
+        $slug = $request->getParam('slug');
+        return view('/pastes/burn-after-read',compact('slug'));
     }
 }
