@@ -31,7 +31,7 @@ class PasteController extends Controller
             $paste->save();
 
             session()->setFlash("success", 'Your paste has been saved');
-            redirect("/paste/$slug");
+            redirect("/paste/view/$slug");
         }
 
         redirect("/");
@@ -50,20 +50,41 @@ class PasteController extends Controller
         $slug = $request->getBody()['slug'];
         $password = $request->getBody()['password'];
         session()->setFlash($slug, $password);
-        redirect("/paste/$slug");
+        redirect("/paste/view/$slug");
     }
 
 
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('/pastes/edit');
+        $slug = $request->getParam('slug');
+        $paste = Paste::findOne(['slug'=> $slug]);
+
+        return view('/pastes/edit', compact("paste"));
+    }
+
+    public function update(Request $request){
+
+    }
+
+    public function validateBurnAfterRead(Request $request)
+    {
+        $slug = $request->getBody()['slug'];
+        session()->setFlash("$slug-burn", 1);
+        redirect("/paste/view/$slug");
     }
 
     public function show(Request $request)
     {
-
         $slug = $request->getParam('slug');
         $paste = Paste::findOne(['slug'=> $slug]);
+
+
+        if($paste->isBurnAfterRead()){
+            if(!session()->has("$slug-burn")){
+                redirect(view("/pastes/burn-after-read"));
+            }
+            $paste->destroy();
+        }
 
         if($paste->hasPassword()
             && !session()->hasFlash($slug)

@@ -7,9 +7,9 @@
                 </div>
                 <div class="col-12 col-md-6 flex align-center">
                     <select name="exposure" id="exposure" class="form-select">
-                        <option value="">None</option>
-                        <option value="">Public</option>
-                        <option value="">Private</option>
+                        <option value="" >None</option>
+                        <option value="" <?= $paste->exposure == 0 ? "selected" : '' ?>>Public</option>
+                        <option value="" <?=$paste->exposure == 1 ? "selected" : '' ?>>Private</option>
                     </select>
                 </div>
             </div>
@@ -20,11 +20,11 @@
                 </div>
                 <div class="col-md-6 col-12">
                     <div class="col-md-9  flex align-center">
-                        <input type="checkbox" class="form-check-input" name="password-allow" id="password-allow">
+                        <input type="checkbox" class="form-check-input" name="password-allow" id="password-allow" <?=$paste->password != "" ? "checked" : '' ?>>
                         <label class="form-label" for="password-allow" id="passworda-allow-label">Disabled</label>
                     </div>
                     <div class="col-md-6 col-12">
-                        <input type="text" placeholder="Password" class="form-control" name="password" id="password">
+                        <input type="text" placeholder="Password" class="form-control" name="password" id="password" value="<?=$paste->password?>">
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="col-12">
-                    <textarea name="raw-data" id="raw-data" cols="30" rows="10" class="paste-text-area"></textarea>
+                    <textarea name="raw-data" id="raw-data" cols="30" rows="10" class="paste-text-area"><?=$paste->code?></textarea>
                 </div>
 
             </div>
@@ -65,8 +65,8 @@
         <button class="btn btn-succes mr-1">
             Save Changes
         </button>
-        <button class="btn btn-danger">
+        <a href="/" class="btn btn-danger">
             Cancel
-        </button>
+        </a>
     </div>
 </section>

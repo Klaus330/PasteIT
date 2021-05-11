@@ -11,10 +11,9 @@
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
                             <select name="id_syntax" id="syn-highlight" class="form-select">
-                                <option value="">None</option>
-                                <option value="1">C++</option>
-                                <option value="2">Java</option>
-                                <option value="3">Html</option>
+                                <?php foreach ($syntaxes as $key => $syntax) :?>
+                                    <option value="<?=$syntax->id?>" <?=  $settings->id_syntax == $syntax->id ? 'selected' : '' ?> ><?=$syntax->name?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
 
@@ -37,7 +36,7 @@
                         <div class="col-12 col-md-6 flex align-center">
                             <select name="expiration" id="exposure1" class="form-select">
                                 <option value="">Never</option>
-                                <option value="burn">Burn after read</option>
+                                <option value="burn"  >Burn after read</option>
                             </select>
                         </div>
                         <div class="col-12 flex align-start">
@@ -59,8 +58,8 @@
                         <div class="col-12 col-md-6 flex align-center">
                             <select name="exposure" id="exposure2" class="form-select">
                                 <option value="">None</option>
-                                <option value="0">Public</option>
-                                <option value="1">Private</option>
+                                <option value="0" <?=  $settings->exposure == 0? 'selected' : '' ?> >Public</option>
+                                <option value="1" <?=  $settings->exposure == 1 ? 'selected' : '' ?>>Private</option>
                             </select>
                         </div>
                         <div class="col-12 flex align-start">
@@ -94,7 +93,7 @@
         <ul class="list-group">
             <?php foreach ($latestPastes as $paste): ?>
                 <li class="list-group-item">
-                    <a href="/paste/<?= $paste->slug ?>"><?= $paste->title ?></a>
+                    <a href="/paste/view/<?= $paste->slug ?>"><?= $paste->title ?></a>
                     <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
                 </li>
             <?php endforeach; ?>

@@ -13,7 +13,6 @@ class HomeController extends Controller
     public function index()
     {
 
-
         $captchaCode = "";
         if (app()::isGuest()) {
             $captchaCode = CaptchaController::getCaptcha();

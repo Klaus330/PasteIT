@@ -75,4 +75,10 @@ class User extends DbModel
     {
         return 'id';
     }
+
+    public function settings()
+    {
+        return $this->hasOne('id_user', Settings::class);
+    }
+
 }
