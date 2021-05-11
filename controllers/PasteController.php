@@ -53,8 +53,8 @@ class PasteController extends Controller
     {
 
         $slug = $request->getParam('slug');
-        $paste = Paste::find(['slug'=> $slug]);
-//        dd($paste);
-        return view('/pastes/index');
+        $paste = Paste::findOne(['slug'=> $slug]);
+        $latestPastes = Paste::latest(5);
+        return view('/pastes/index', compact("paste", 'latestPastes'));
     }
 }
