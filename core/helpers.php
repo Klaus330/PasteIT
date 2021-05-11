@@ -96,6 +96,17 @@ if (!function_exists('session')) {
     }
 }
 
+
+if (!function_exists('request')) {
+    /**
+     * @return \app\core\Session
+     */
+    function request()
+    {
+        return  app('request');
+    }
+}
+
 if (!function_exists('auth')) {
     /**
      * @return \app\models\DbModel|null

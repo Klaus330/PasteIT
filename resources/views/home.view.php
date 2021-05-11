@@ -14,7 +14,7 @@ $this->setTitle("Paste It - Home")
                 <ul class="list-group">
                     <?php foreach ($latestPastes as $paste): ?>
                     <li class="list-group-item">
-                        <a href=""><?= $paste->title ?></a>
+                        <a href="/paste/<?= $paste->slug ?>"><?= $paste->title ?></a>
                         <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
                     </li>
                     <?php endforeach; ?>

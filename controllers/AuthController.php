@@ -5,7 +5,8 @@ namespace app\controllers;
 
 
 use app\core\Application;
-use app\core\Request;
+
+use app\core\routing\Request;
 use app\core\Session;
 use app\core\Validator;
 use app\middlewares\GuestMiddleware;
@@ -18,7 +19,7 @@ class AuthController extends Controller
     {
         $this->registerMiddleware(new GuestMiddleware(['index','register', 'forgotPassword', 'resetPassword']));
     }
-    
+
     public function index()
     {
         $user = new User();

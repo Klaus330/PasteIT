@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\core\Request;
+use app\core\routing\Request;
 use app\core\Validator;
 use app\middlewares\AuthMiddleware;
 use app\models\Settings;
@@ -29,7 +29,7 @@ class UserController extends Controller
         if ($request->validate($settings->rules())) {
             $settings->loadData($body);
 
-            $settings->update($body, ['id_user' => session()->get('user')]);
+            $settings->update($body, ['id_user' => auth()->id]);
 
             redirect("/user/profile");
         }

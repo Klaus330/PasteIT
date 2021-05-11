@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\core\Request;
+use app\core\routing\Request;
 use app\models\Paste;
 use app\models\User;
 
@@ -25,7 +25,11 @@ class PasteController extends Controller
             $body = $request->getBody();
             $paste->loadData($body);
             $slug = str_replace(" ", '-', strtolower($body['title']));
+            dd(sha1(rand()));
+
+                dd('hit');
             $paste->slug = $slug;
+            $paste->id_user = 1;
             $paste->save();
 
             session()->setFlash("success", 'Your paste has been saved');
@@ -45,12 +49,12 @@ class PasteController extends Controller
         return view('/pastes/edit');
     }
 
-    public function view()
+    public function show(Request $request)
     {
 
-        Paste::find();
-
-        dd($_REQUEST);
+        $slug = $request->getParam('slug');
+        $paste = Paste::find(['slug'=> $slug]);
+//        dd($paste);
+        return view('/pastes/index');
     }
-
 }
