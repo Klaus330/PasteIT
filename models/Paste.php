@@ -20,7 +20,6 @@ class Paste extends DbModel
     public string $expiration_date = '';
     public string $burn_after_read = '';
     public string $password = '';
-    public int $deleted = 0;
     public $created_at;
     public int $nr_of_views = 0;
 
@@ -43,8 +42,7 @@ class Paste extends DbModel
             "expiration_date",
             "nr_of_views",
             "created_at",
-            "id_user",
-            'deleted'
+            "id_user"
         ];
     }
 

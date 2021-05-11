@@ -80,8 +80,9 @@ class PasteController extends Controller
 
 
         if($paste->isBurnAfterRead()){
-            if(!session()->has("$slug-burn")){
-                redirect(view("/pastes/burn-after-read"));
+            if(!session()->hasFlash("$slug-burn")){
+                 redirect("/pastes/burn-after-read/$slug");
+                 return;
             }
             $paste->destroy();
         }
