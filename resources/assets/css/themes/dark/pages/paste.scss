@@ -20,10 +20,14 @@
 
 .number-of-views {
   span {
-    color:$text-color;
+    color: $text-color;
   }
 }
 
-.burn-after-read-warning{
+.burn-after-read-warning {
+  color: white;
+}
+
+.text-dual-color {
   color: white;
 }

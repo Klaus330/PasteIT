@@ -16,7 +16,7 @@ class Paste extends DbModel
     public string $slug = '';
     public string $id_syntax = '';
     public int $exposure = 0;
-    public mixed $id_user = "";
+    public $id_user = 1;
     public string $expiration_date = '';
     public string $burn_after_read = '';
     public string $password = '';
