@@ -4,7 +4,9 @@ namespace app\controllers;
 
 use app\core\Random;
 use app\core\routing\Request;
+use app\core\Validator;
 use app\models\Paste;
+use app\models\Syntax;
 use app\models\User;
 
 class PasteController extends Controller
@@ -57,13 +59,8 @@ class PasteController extends Controller
     {
         $slug = $request->getParam('slug');
         $paste = Paste::findOne(['slug' => $slug]);
-
-        return view('/pastes/edit', compact("paste"));
-    }
-
-    public function update(Request $request)
-    {
-
+        $syntaxes = Syntax::find();
+        return view('/pastes/edit', compact("paste","syntaxes"));
     }
 
     public function validateBurnAfterRead(Request $request)
@@ -117,6 +114,25 @@ class PasteController extends Controller
         }
         $paste->destroy();
         session()->setFlash("succes", "Postarea a fost stearsa.");
-        return view('home');
+        return redirect('/');
+    }
+
+    public function update(Request $request)
+    {
+
+        $slug = $request->getParam('slug');
+        $paste = Paste::findOne(['slug' => $slug]);
+
+        if ($request->validate([
+            "code" => [Validator::RULE_REQUIRED],
+            "title" => [Validator::RULE_REQUIRED]
+        ])) {
+
+            $body = $request->getBody();
+            $paste->update($body, ['slug' => $slug]);
+            session()->setFlash("succes", "Postarea a fost actualizata");
+            return redirect("/paste/view/$slug");
+        }
+        return redirect("/paste/edit/$slug")->withErrors($request->getErrors());
     }
 }
