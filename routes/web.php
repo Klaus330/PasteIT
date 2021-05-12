@@ -39,3 +39,5 @@ Route::post("/pastes/burn","PasteController@validateBurnAfterRead");
 
 Route::get('/paste/view/:slug', "PasteController@show");
 Route::get('/pastes/edit/:slug', "PasteController@edit");
+
+Route::post('/paste/delete/:slug', "PasteController@delete");
