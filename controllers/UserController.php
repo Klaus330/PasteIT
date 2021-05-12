@@ -58,7 +58,9 @@ class UserController extends Controller
 
     public function myPastes()
     {
-        return view('/user/mypastes');
+
+        $userPastes=Paste::latest(5,["id_user"=>auth()->id]);
+        return view('/user/mypastes',compact('userPastes'));
     }
 
     public function destroy()

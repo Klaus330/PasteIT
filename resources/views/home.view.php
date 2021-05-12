@@ -84,7 +84,7 @@ $this->setTitle("Paste It - Home")
                 <div class="grid">
                     <div class="col-12 col-md-6 flex align-center">
                         <?php if (app()::isGuest()): ?>
-                            <input type="hidden" name="id_user" id="id_user" value="">
+                            <input type="hidden" name="id_user" id="id_user" value="1">
                         <?php else: ?>
                             <input type="hidden" name="id_user" id="id_user" value="<?=auth()->id?>">
                         <?php endif; ?>

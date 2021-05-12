@@ -27,7 +27,6 @@ class PasteController extends Controller
             $paste->loadData($body);
             $slug = Random::generate();
             $paste->slug = $slug;
-            $paste->id_user = 1;
             $paste->save();
 
             session()->setFlash("success", 'Your paste has been saved');

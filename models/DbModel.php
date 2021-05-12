@@ -87,7 +87,7 @@ abstract class DbModel extends Model
                 array_map(fn($attribute) => "$attribute  = :$attribute", $attributes)
             );
 
-            $sql = "SELECT * FROM $tableName WHERE $parameters  ORDER BY TO_DATE(created_at,  'Y-m-d H:i:s') DESC LIMIT $limit;";
+            $sql = "SELECT * FROM $tableName WHERE $parameters  ORDER BY created_at DESC LIMIT $limit;";
         }else{
             $sql = "SELECT * FROM $tableName ORDER BY created_at DESC LIMIT $limit;";
         }
