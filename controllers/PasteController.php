@@ -56,12 +56,13 @@ class PasteController extends Controller
     public function edit(Request $request)
     {
         $slug = $request->getParam('slug');
-        $paste = Paste::findOne(['slug'=> $slug]);
+        $paste = Paste::findOne(['slug' => $slug]);
 
         return view('/pastes/edit', compact("paste"));
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
 
     }
 
@@ -77,16 +78,15 @@ class PasteController extends Controller
         $slug = $request->getParam('slug');
         $paste = Paste::findOne(['slug' => $slug]);
 
-
-        if($paste->isBurnAfterRead()){
-            if(!session()->hasFlash("$slug-burn")){
-                 redirect("/pastes/burn-after-read/$slug");
-                 return;
+        if ($paste->isBurnAfterRead()) {
+            if (!session()->hasFlash("$slug-burn")) {
+                redirect("/pastes/burn-after-read/$slug");
+                return;
             }
             $paste->destroy();
         }
 
-        if($paste->hasPassword()
+        if ($paste->hasPassword()
             && !session()->hasFlash($slug)
         ) {
             redirect("/pastes/locked-paste/$slug");
@@ -103,6 +103,20 @@ class PasteController extends Controller
     public function burnAfterRead(Request $request)
     {
         $slug = $request->getParam('slug');
-        return view('/pastes/burn-after-read',compact('slug'));
+        return view('/pastes/burn-after-read', compact('slug'));
+    }
+
+    public function delete(Request $request)
+    {
+        $slug = $request->getParam('slug');
+        $paste = Paste::findOne(['slug' => $slug]);
+
+        if ($paste == null) {
+            session()->setFlash("danger", "Nu a fost gasita nicio postare.");
+            return redirect("/");
+        }
+        $paste->destroy();
+        session()->setFlash("succes", "Postarea a fost stearsa.");
+        return view('home');
     }
 }

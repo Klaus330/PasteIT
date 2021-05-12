@@ -4,53 +4,54 @@
             <div class="paste-info-content">
 
                 <div class="paste-user-icon">
-                    <img src="<?= $paste->user()->avatar?>" alt="user icon"/>
+                    <img src="<?= $paste->user()->avatar ?>" alt="user icon"/>
                 </div>
 
                 <div class="paste-info">
-                    <div class="paste-info-top"><h3 class="h3"><?= $paste->title?></h3></div>
+                    <div class="paste-info-top"><h3 class="h3"><?= $paste->title ?></h3></div>
                     <div class="paste-info-bottom">
                         <div class="paste-bottom-content">
                             <div class="username">
                                 <img src="/img/svg/user-icon.svg" alt="user-icon"/>
-                                <a href="#"><?= $paste->user()->username?></a>
+                                <a href="#"><?= $paste->user()->username ?></a>
                             </div>
 
                             <div class="date">
                                 <img src="/img/svg/date.svg" alt="date"/>
                                 <span>
-                        <?= $paste->created_at?>
+                        <?= $paste->created_at ?>
                         </span>
                             </div>
 
                             <div class="expire-date">
                                 <img src="/img/svg/time.svg" alt="time"/>
                                 <span>
-                            <?= $paste->expiration_date?>
+                            <?= $paste->expiration_date ?>
                         </span>
                             </div>
 
                             <div class="number-of-views">
                                 <img src="/img/svg/view-eye.svg" alt="view-eye"/>
                                 <span>
-                            <?= $paste->nr_of_views?>
+                            <?= $paste->nr_of_views ?>
                         </span>
                             </div>
                         </div>
-                        <?php if($paste->user()->id === auth()->id): ?>
-                        <div class="paste-actions">
-                            <div class="edit">
-                                <a href="/pastes/edit/<?= $paste->slug?>">
-                                    <img src="/img/svg/edit.svg" alt="edit"/>
-                                </a>
+                        <?php if ($paste->user()->id === auth()->id): ?>
+                            <div class="paste-actions">
+                                <div class="edit">
+                                    <a href="/pastes/edit/<?= $paste->slug ?>">
+                                        <img src="/img/svg/edit.svg" alt="edit"/>
+                                    </a>
+                                </div>
+                                <div class="delete">
+                                    <form action="/paste/delete/<?= $paste->slug ?>" method="post">
+                                        <button class="btn">
+                                            <img src="/img/svg/delete.svg" alt="delete"/>
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                            <div class="delete">
-                                <a href="/paste/delete/<?= $paste->slug?>">
-                                    <img src="/img/svg/delete.svg" alt="delete"/>
-                                </a>
-
-                            </div>
-                        </div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -64,7 +65,7 @@
                     <div class="toolbar">
 
                         <div class="">
-                            <a class="btn-toolbar" href="#"><?= $paste->syntax()->name?></a>
+                            <a class="btn-toolbar" href="#"><?= $paste->syntax()->name ?></a>
                         </div>
 
                         <div>
@@ -135,7 +136,8 @@
                 </div>
 
                 <div class="col-12">
-                    <textarea name="raw-data" id="raw-data" cols="30" rows="10" class="paste-text-area"><?= $paste->code ?></textarea>
+                    <textarea name="raw-data" id="raw-data" cols="30" rows="10"
+                              class="paste-text-area"><?= $paste->code ?></textarea>
                 </div>
 
             </div>

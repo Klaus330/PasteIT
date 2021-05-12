@@ -14,9 +14,13 @@
     {{nav}}
 
     <main class="container">
-        <?php if(session()->getFlash('success')): ?>
+        <?php if(session()->hasFlash('success')): ?>
             <div class="alert alert-success notification">
                 <?= session()->getFlash('success')?>
+            </div>
+        <?php elseif (session()->hasFlash("danger")): ?>
+            <div class="alert alert-danger notification">
+                <?= session()->getFlash('danger')?>
             </div>
         <?php endif;?>
         {{content}}
