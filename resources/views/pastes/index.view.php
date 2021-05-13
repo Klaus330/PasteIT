@@ -76,51 +76,10 @@
                     </div>
                     <div class="highlight-pre">
                         <div class="source-code">
-                            <ol class="source">
-                                <li class="line">
-                                    <span class="line-number">1.</span>
-                                    <span class="fn-call">my_function</span>
-                                    (<span class="string">"ce imi place web-ul"</span>)
-                                </li>
-                                <li class="line">
-                                    <span class="line-number">2.</span>
-                                    <span class="fn-call">my_function</span>
-                                    (<span class="string">"ce imi place web-ul"</span>)
-                                </li>
-                                <li class="line">
-                                    <span class="line-number">3.</span>
-                                    <span class="keyword">int</span>
-                                    <span class="variable">x</span>
-                                </li>
-                                <li class="line">
-                                    <span class="line-number">4.</span>
-                                    <span class="comment">//</span>
-                                </li>
-                                <li class="line">
-                                    <span class="line-number">4.</span>
-                                    <span class="boolean">true</span>
-                                </li>
-                                <li class="line">
-                                    <span class="line-number">4.</span>
-                                    <span class="number">23</span>
-                                </li>
-                                <li class="line">
-                                    <span class="line-number">4.</span>
-                                    <span class="html-open">&lt;html&gt;</span>
-                                </li>
-                                <li class="line">
-                                    <span class="line-number">4.</span>
-                                    <span class="html-close">&lt;/html&gt;</span>
-                                </li>
-                                <li class="line">
-                                    <span class="line-number">4.</span>
-                                    <span class="symbol">=</span>
-                                </li>
-                                <li class="line">
-                                    <span class="line-number">4.</span>
-                                    <span class="semicolumn">;</span>
-                                </li>
-                            </ol>
+                            <pre class="source-pre">
+                                <code class="source <?= strtolower($paste->syntax()->name)?>"><?= trim($paste->code) ?></code>
+                            </pre>
+
                         </div>
                     </div>
                 </div>
@@ -159,4 +118,4 @@
 
 </div>
 
-
+<script>hljs.initHighlightingOnLoad();</script>

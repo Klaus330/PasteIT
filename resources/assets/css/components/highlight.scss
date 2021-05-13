@@ -3,7 +3,6 @@
   margin: 0 0 10px;
   color: #333;
   font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, monospace, serif;
-  overflow-x: scroll;
   @include mq(large){
     overflow-x: hidden;
   }
@@ -13,8 +12,8 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  border: 1px solid #707070;
-  overflow-x: scroll;
+  height: 100%;
+  text-align: left;
 
   @include mq(large){
     overflow-x: hidden;
@@ -23,6 +22,12 @@
   .line {
     white-space: nowrap;
   }
+}
+
+.source-pre{
+  display: flex;
+  margin: 0;
+  border: 1px solid #707070;
 }
 
 .line-number {
