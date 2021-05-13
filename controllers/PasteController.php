@@ -129,7 +129,7 @@ class PasteController extends Controller
         ])) {
 
             $body = $request->getBody();
-            $paste->update($body, ['slug' => $slug]);
+            $paste->edit($body);
             session()->setFlash("succes", "Postarea a fost actualizata");
             return redirect("/paste/view/$slug");
         }

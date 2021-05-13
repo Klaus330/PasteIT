@@ -121,9 +121,9 @@ abstract class DbModel extends Model
         return $statement->fetchObject(static::class);
     }
 
-    public function update(array $data, array $where, string $separator = "AND")
+    public static function update(array $data, array $where, string $separator = "AND")
     {
-        $tableName = $this->tableName();
+        $tableName = (new static)->tableName();
         $attributes = array_keys($where);
         $colums = array_keys($data);
 
@@ -143,6 +143,36 @@ abstract class DbModel extends Model
         foreach ($where as $key => $value) {
             $statement->bindValue(":$key", $value);
         }
+        foreach ($data as $key => $value) {
+            $statement->bindValue(":$key", $value);
+        }
+
+        try {
+            $statement->execute();
+            return true;
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+        return false;
+    }
+
+
+    public function edit(array $data)
+    {
+        $tableName = $this->tableName();
+        $colums = array_keys($data);
+
+        $values = implode(",",
+            array_map(fn($key) => "$key=:$key", $colums)
+        );
+
+
+        $primaryKey = $this->getPrimaryKey();
+        $primaryKeyValue=$this->{$primaryKey};
+        $sql = "UPDATE $tableName SET $values WHERE $primaryKey=$primaryKeyValue ";
+
+        $statement = self::prepare($sql);
+
         foreach ($data as $key => $value) {
             $statement->bindValue(":$key", $value);
         }
