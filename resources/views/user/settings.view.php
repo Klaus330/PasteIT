@@ -4,28 +4,53 @@
             <h4 class="section-title mb-2 h4">My Settings</h4>
             <div class="settings-content">
                 <form class="home-form" action="/user/settings" method="POST">
+<!--                    <input type="hidden" name="id_user" value="--><?php //echo $userId ?><!--">-->
                     <div class="grid">
                         <div class="col-6 col-md-3 flex align-start">
                             <label class="form-label" for="syn-highlight">Default Syntacs:</label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
-                            <select name="syn-highlight" id="syn-highlight" class="form-select">
-                                <option value="">None</option>
-                                <option value="">C++</option>
+                            <select name="id_syntax" id="syn-highlight" class="form-select">
+                                <?php foreach ($syntaxes as $key => $syntax) :?>
+                                    <option value="<?=$syntax->id?>" <?=  $settings->id_syntax == $syntax->id ? 'selected' : '' ?> ><?=$syntax->name?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
+
+                        <div class="col-12 flex align-start">
+                            <span class="text-danger"">
+                            <?php
+                            if($errors != [])
+                            {
+                                echo $errors["id_syntax"][0];
+                            }
+                            ?>
+                            </span>
+                        </div>
                     </div>
+
                     <div class="grid">
                         <div class="col-7 col-md-3 flex align-start">
                             <label class="form-label" for="exposure1">Default Expiration:</label>
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
-                            <select name="exposure" id="exposure1" class="form-select">
+                            <select name="expiration" id="exposure1" class="form-select">
                                 <option value="">Never</option>
-                                <option value="">Burn after read</option>
+                                <option value="burn"  >Burn after read</option>
                             </select>
                         </div>
+                        <div class="col-12 flex align-start">
+                            <span class="text-danger"">
+                            <?php
+                            if($errors != [])
+                            {
+                                echo $errors["expiration"][0];
+                            }
+                            ?>
+                            </span>
+                        </div>
                     </div>
+
                     <div class="grid">
                         <div class="col-7 col-md-3 flex align-start">
                             <label class="form-label" for="exposure2">Default Exposure:</label>
@@ -33,11 +58,22 @@
                         <div class="col-12 col-md-6 flex align-center">
                             <select name="exposure" id="exposure2" class="form-select">
                                 <option value="">None</option>
-                                <option value="">Public</option>
-                                <option value="">Private</option>
+                                <option value="0" <?=  $settings->exposure == 0? 'selected' : '' ?> >Public</option>
+                                <option value="1" <?=  $settings->exposure == 1 ? 'selected' : '' ?>>Private</option>
                             </select>
                         </div>
+                        <div class="col-12 flex align-start">
+                            <span class="text-danger"">
+                            <?php
+                            if($errors != [])
+                            {
+                                echo $errors["exposure"][0];
+                            }
+                            ?>
+                            </span>
+                        </div>
                     </div>
+
                     <div class="grid">
                         <div class="col-12 col-md-3 mt-5 flex align-start">
                             <button class="btn btn-dark">Update Settings</button>
@@ -45,7 +81,7 @@
                     </div>
                 </form>
 
-                <?php include("../resources/views/partials/related-links.view.php")?>
+                <?php include("../resources/views/partials/related-links.view.php") ?>
             </div>
         </div>
 
@@ -55,22 +91,12 @@
     <aside class="home-aside sm-hidden settings-aside">
         <h4 class="h4">Public Pastes</h4>
         <ul class="list-group">
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
-            <li class="list-group-item">
-                <a href="">Lorem</a>
-                <span>C++ | 33sec ago</span>
-            </li>
+            <?php foreach ($latestPastes as $paste): ?>
+                <li class="list-group-item">
+                    <a href="/paste/view/<?= $paste->slug ?>"><?= $paste->title ?></a>
+                    <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
+                </li>
+            <?php endforeach; ?>
         </ul>
     </aside>
 

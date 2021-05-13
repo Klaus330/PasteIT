@@ -3,78 +3,29 @@
         <div class="row">
             <h4 class="section-title mb-2 h4">My Pastes</h4>
             <div class="settings-content">
-                <div class="cards-container">
-                    <div class="card">
+                <?php if ($userPastes != []): ?>
+                    <?php foreach ($userPastes as $paste): ?>
+                        <div class="cards-container">
+
+                            <div class="card">
                         <span class="card-blocks">
 
                         </span>
-                        <div class="card-content">
-                            <h2 class="card-title h2">Card title</h2>
-                            <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
+                                <div class="card-content">
+                                    <h2 class="card-title h2"><?= $paste->title ?> </h2>
+                                    <p class="card-author"><?= $paste->syntax()->name ?></p>
+                                    <a class="btn btn-light btn-sm" href="/paste/view/<?= $paste->slug ?>">Read More</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-blocks">
+                    <?php endforeach; ?>
 
-                        </span>
-                        <div class="card-content">
-                            <h2 class="card-title h2">Card title</h2>
-                            <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="/pastes/locked-paste">Read More</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-blocks">
+                <?php else: ?>
+                        <p class="text-dual-color">
+                            Nu sunt postari.
+                        </p>
+                <?php endif; ?>
 
-                        </span>
-                        <div class="card-content">
-                            <h2 class="card-title h2">Card title</h2>
-                            <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-blocks">
-
-                        </span>
-                        <div class="card-content">
-                            <h2 class="card-title h2">Card title</h2>
-                            <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-blocks">
-
-                        </span>
-                        <div class="card-content">
-                            <h2 class="card-title h2">Card title</h2>
-                            <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-blocks">
-
-                        </span>
-                        <div class="card-content">
-                            <h2 class="card-title h2">Card title</h2>
-                            <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <span class="card-blocks">
-
-                        </span>
-                        <div class="card-content">
-                            <h2 class="card-title h2">Card title</h2>
-                            <p class="card-author">lorem</p>
-                            <a class="btn btn-light btn-sm" href="/pastes">Read More</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 

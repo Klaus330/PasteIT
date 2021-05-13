@@ -1,19 +1,46 @@
 <?php
 
 
-namespace app\core;
+namespace app\core\routing;
 
+
+use app\core\Validator;
 
 class Request
 {
     protected $errors;
+    protected array $params = [];
+
+    /**
+     * @return mixed
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+
+    public function getParam($index): mixed
+    {
+        return $this->params[$index];
+    }
+
+
+    /**
+     * @param mixed $params
+     */
+    public function setParams($params): void
+    {
+        $this->params = $params;
+    }
 
     public function getPath()
     {
+
         $path = $_SERVER['REQUEST_URI'] ?? '/';
+
         $questionMarkPosition = strpos($path, '?');
 
-        if($questionMarkPosition === false){
+        if ($questionMarkPosition === false) {
             return $path;
         }
         $path = substr($path, 0, $questionMarkPosition);
@@ -50,14 +77,14 @@ class Request
     {
         $body = [];
 
-        if($this->method() === 'get'){
-            foreach ($_GET as $key => $value){
+        if ($this->method() === 'get') {
+            foreach ($_GET as $key => $value) {
                 $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             }
         }
 
-        if($this->method() === 'post'){
-            foreach ($_POST as $key => $value){
+        if ($this->method() === 'post') {
+            foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             }
         }
@@ -68,7 +95,7 @@ class Request
     public function validate($rules)
     {
         $this->errors = Validator::validate($this->getBody(), $rules);
-        if(empty($this->errors)){
+        if (empty($this->errors)) {
             return true;
         }
         return false;

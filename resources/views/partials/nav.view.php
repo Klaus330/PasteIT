@@ -17,9 +17,19 @@
                 </li>
             </ul>
         </div>
-        <div class="navbar-container collapse">
-            <a href="/login" class="btn btn-login btn-sm mr-1">Login</a>
-            <a href="/register" class="btn btn-register btn-sm">Sign Up</a>
+        <div class="navbar-container collapse login-nav-item-dropdown">
+            <?php if (app()::isGuest()): ?>
+                <a href="/login" class="btn btn-login btn-sm mr-1">Login</a>
+                <a href="/register" class="btn btn-register btn-sm">Sign Up</a>
+            <?php else: ?>
+                <a href="#" class="nav-link text-danger dropdown-trigger"><?= auth()->username ?></a>
+                <ul class="login-dropdown-menu">
+                    <li class="login-dropdown-menu-item"><a href="/user/profile">Profile</a></li>
+                    <li class="login-dropdown-menu-item"><a href="/user/settings">Settings</a></li>
+                    <li class="login-dropdown-menu-item"><a href="/user/mypastes">My Pastes</a></li>
+                    <li class="login-dropdown-menu-item"><a href="/logout">Logout</a></li>
+                </ul>
+            <?php endif; ?>
         </div>
         <button class="navbar-toggler" type="button" id="nav-toggler">
             <span class="navbar-toggler-icon"></span>
@@ -36,16 +46,39 @@
             <li class="nav-item">
                 <a href="/" class="nav-link">Contact</a>
             </li>
-            <li class="nav-item">
-                <a href="/login" class="nav-link">
-                    Login
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="/register" class="nav-link">
-                    Register
-                </a>
-            </li>
+
+            <?php if (!app()::isGuest()): ?>
+                <li class="nav-item">
+                    <a href="#" class="nav-user-name"><?php echo auth()->username; ?> </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/user/profile" class="nav-link">My profile</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/user/settings" class="nav-link">Settings</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/user/mypastes" class="nav-link">My pastes</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/logout" class="nav-link">Logout</a>
+                </li>
+            <?php else: ?>
+                <li class="nav-item">
+                    <a href="/login" class="nav-link">
+                        Login
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/register" class="nav-link">
+                        Register
+                    </a>
+                </li>
+            <?php endif; ?>
         </ul>
     </div>
 </nav>

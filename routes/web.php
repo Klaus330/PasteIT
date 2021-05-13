@@ -1,19 +1,44 @@
 <?php
-$app->router->get('/', "HomeController@index");
 
-$app->router->get('/contact', "ContactController@index");
 
-$app->router->get('/login', "AuthController@index");
-$app->router->post('/login', "AuthController@login");
-$app->router->get('/register', "AuthController@register");
-$app->router->post('/register', "AuthController@register");
-$app->router->get('/pastes', "PasteController@index");
-$app->router->get("/forgot-password","AuthController@forgotPassword");
-$app->router->get("/reset-password","AuthController@resetPassword");
-$app->router->get("/user/settings","UserController@settings");
-$app->router->get("/user/profile","UserController@profile");
-$app->router->get("/user/mypastes","UserController@myPastes");
-$app->router->get("/pastes/locked-paste","PasteController@lockedPaste");
-$app->router->get("/pastes/edit","PasteController@edit");
+use app\core\routing\Route;
+use app\models\User;
 
-$app->router->get("/captcha-image", 'CaptchaController@getCaptchaImage');
+Route::get('/', "HomeController@index");
+
+Route::get('/contact', "ContactController@index");
+Route::post('/contact', 'ContactController@store');
+Route::get("/captcha-image", 'CaptchaController@getCaptchaImage');
+
+// Auth
+Route::get('/login', "AuthController@index");
+Route::post('/login', "AuthController@login");
+Route::get('/register', "AuthController@register");
+Route::post('/register', "AuthController@register");
+Route::get('/logout', "AuthController@logout");
+Route::get("/forgot-password", "AuthController@forgotPassword");
+Route::get("/reset-password", "AuthController@resetPassword");
+
+// User
+Route::get("/user/settings", "UserController@settings");
+Route::get("/user/profile", "UserController@profile");
+Route::post("/user/profile","UserController@profileUpdate");
+Route::get("/user/mypastes", "UserController@myPastes");
+Route::post("/user/settings", "UserController@storeSettings");
+Route::get("/user/delete", "UserController@destroy");
+
+
+// Pastes
+//Route::get('/pastes', "PasteController@view");
+Route::get('/pastes', "PasteController@index");
+Route::post('/pastes', "PasteController@store");
+Route::get("/pastes/locked-paste/:slug", "PasteController@lockedPaste");
+Route::post("/pastes/unlock-paste", "PasteController@unlockPaste");
+Route::get("/pastes/burn-after-read/:slug","PasteController@burnAfterRead");
+Route::post("/pastes/burn","PasteController@validateBurnAfterRead");
+Route::post("/pastes/update/:slug","PasteController@update");
+
+Route::get('/paste/view/:slug', "PasteController@show");
+Route::get('/pastes/edit/:slug', "PasteController@edit");
+
+Route::post('/paste/delete/:slug', "PasteController@delete");

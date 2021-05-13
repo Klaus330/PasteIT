@@ -6,7 +6,7 @@ namespace app\controllers;
 
 use app\core\Application;
 
-class CaptchaController extends \app\core\Controller
+class CaptchaController extends Controller
 {
     public static function getCaptcha()
     {
