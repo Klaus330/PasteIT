@@ -49,7 +49,23 @@ $this->setTitle("Paste It - Home")
                         </select>
                     </div>
                 </div>
-
+                <div class="grid">
+                    <div class="col-5 col-md-3 flex align-start">
+                        <label class="form-label" for="exposure">Expiration Date:</label>
+                    </div>
+                    <div class="col-12 col-md-6 flex align-center">
+                        <select name="expiration_date" id="expiration_date" class="form-select">
+                            <option value="never" selected>Never</option>
+                            <option value="1 min">1 Minutes</option>
+                            <option value="10 min">10 Minutes</option>
+                            <option value="1 hour">1 Hour</option>
+                            <option value="1 day">1 Day</option>
+                            <option value="1 week">1 Week</option>
+                            <option value="1 month">1 Month</option>
+                            <option value="1 year">1 Year</option>
+                        </select>
+                    </div>
+                </div>
                 <div class="grid">
                     <div class="col-md-3 flex align-start">
                         <label class="form-label" for="password">Password:</label>

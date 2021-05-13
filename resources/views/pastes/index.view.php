@@ -19,14 +19,14 @@
                             <div class="date">
                                 <img src="/img/svg/date.svg" alt="date"/>
                                 <span>
-                        <?= $paste->created_at ?>
+                        <?= date("Y-m-d",strtotime($paste->created_at))?>
                         </span>
                             </div>
 
                             <div class="expire-date">
                                 <img src="/img/svg/time.svg" alt="time"/>
                                 <span>
-                            <?= $paste->expiration_date ?>
+                            <?= $paste->expirationTime() ?>
                         </span>
                             </div>
 

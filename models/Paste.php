@@ -4,6 +4,7 @@
 namespace app\models;
 
 
+use app\core\DateFormatter;
 use app\core\Validator;
 use Cassandra\Date;
 use DateTime;
@@ -17,10 +18,11 @@ class Paste extends DbModel
     public string $id_syntax = '';
     public int $exposure = 0;
     public $id_user = 1;
-    public string $expiration_date = '';
+    public $expiration_date = '';
     public string $burn_after_read = '';
     public string $password = '';
     public $created_at;
+    public $expired = '';
     public int $nr_of_views = 0;
 
 
@@ -42,7 +44,8 @@ class Paste extends DbModel
             "expiration_date",
             "nr_of_views",
             "created_at",
-            "id_user"
+            "id_user",
+             "expired"
         ];
     }
 
@@ -67,6 +70,10 @@ class Paste extends DbModel
         }
 
         $this->created_at = (new DateTime())->format('Y-m-d H:i:s');
+        if ($this->expiration_date != "never") {
+            $temp = new \DateTimeImmutable();
+            $this->expiration_date = $temp->modify("+$this->expiration_date")->format('Y-m-d H:i:s');
+        }
 
         return parent::save();
     }
@@ -98,4 +105,30 @@ class Paste extends DbModel
     {
         return $this->burn_after_read ?? false;
     }
+
+
+    public function expirationTime()
+    {
+        if ($this->expires()) {
+            $start = new \DateTimeImmutable();
+            $end = new \DateTimeImmutable($this->expiration_date);
+
+            $dateString = new DateFormatter($end->diff($start));
+            return $dateString->displayHumanFormat();
+        }
+        return "never";
+    }
+
+    private function expires(){
+        return ($this->expiration_date !== "0000-00-00 00:00:00");
+    }
+
+    public function expired()
+    {
+        $start = new \DateTimeImmutable();
+        $end = new \DateTimeImmutable($this->expiration_date);
+        return ($end->diff($start)->invert === 0 || $this->expired);
+    }
+
+
 }

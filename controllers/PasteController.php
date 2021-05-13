@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\core\exceptions\PageNotFoundException;
 use app\core\Random;
 use app\core\routing\Request;
 use app\core\Validator;
@@ -18,6 +19,7 @@ class PasteController extends Controller
 
     public function store(Request $request)
     {
+
         if (app()::isGuest() && session()->get('captcha_code') != $request->getBody()['captcha_code']) {
             redirect("/");
         }
@@ -29,6 +31,7 @@ class PasteController extends Controller
             $paste->loadData($body);
             $slug = Random::generate();
             $paste->slug = $slug;
+
             $paste->save();
 
             session()->setFlash("success", 'Your paste has been saved');
@@ -75,6 +78,23 @@ class PasteController extends Controller
         $slug = $request->getParam('slug');
         $paste = Paste::findOne(['slug' => $slug]);
 
+        $this->canShowPaste($paste);
+
+        if (!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
+            $latestPastes = Paste::latest(5, ["expired" => 0]);
+            return view('/pastes/index', compact("paste", 'latestPastes'));
+        }
+
+        return redirect("/pastes/locked-paste/$slug")->withErrors(['password' => "Password doesn't match"]);
+    }
+
+    private function canShowPaste($paste){
+
+        if($paste->expired()){
+            $paste->edit(['expired'=>1]);
+            throw new PageNotFoundException();
+        }
+
         if ($paste->isBurnAfterRead()) {
             if (!session()->hasFlash("$slug-burn")) {
                 redirect("/pastes/burn-after-read/$slug");
@@ -88,14 +108,9 @@ class PasteController extends Controller
         ) {
             redirect("/pastes/locked-paste/$slug");
         }
-
-        if (!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
-            $latestPastes = Paste::latest(5);
-            return view('/pastes/index', compact("paste", 'latestPastes'));
-        }
-
-        return redirect("/pastes/locked-paste/$slug")->withErrors(['password' => "Password doesn't match"]);
     }
+
+
 
     public function burnAfterRead(Request $request)
     {

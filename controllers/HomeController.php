@@ -19,7 +19,7 @@ class HomeController extends Controller
         }
 
         $syntaxes = Syntax::find();
-        $latestPastes = Paste::latest(5);
+        $latestPastes = Paste::latest(5, ["expired" => 0]);
 
         return view('home',
             [

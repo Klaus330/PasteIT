@@ -21,10 +21,9 @@ class UserController extends Controller
         $userId = session()->get("user");
         $errors = [];
         $settings = auth()->settings();
-        $latestPastes = Paste::latest(5);
+        $latestPastes = Paste::latest(5, ["expired" => 0]);
         $syntaxes = Syntax::find();
 
-//        dd($settings);
         return view('/user/settings', compact(["userId", "errors", 'settings', 'latestPastes', 'syntaxes']));
     }
 
@@ -52,7 +51,7 @@ class UserController extends Controller
         if (array_key_exists('theme', $_COOKIE)) {
             $isInputChecked = $_COOKIE['theme'] === 'dark';
         }
-        $latestPastes = Paste::latest(5);
+        $latestPastes = Paste::latest(5, ["expired" => 0]);
         return view('/user/profile', compact('isInputChecked', 'latestPastes'));
     }
 
