@@ -19,7 +19,7 @@
                             <div class="date">
                                 <img src="/img/svg/date.svg" alt="date"/>
                                 <span>
-                        <?= date("Y-m-d",strtotime($paste->created_at))?>
+                        <?= date("Y-m-d", strtotime($paste->created_at)) ?>
                         </span>
                             </div>
 
@@ -37,21 +37,23 @@
                         </span>
                             </div>
                         </div>
-                        <?php if ($paste->user()->id === auth()->id): ?>
-                            <div class="paste-actions">
-                                <div class="edit">
-                                    <a href="/pastes/edit/<?= $paste->slug ?>">
-                                        <img src="/img/svg/edit.svg" alt="edit"/>
-                                    </a>
+                        <?php if (session()->has('user')): ?>
+                            <?php if ($paste->user()->id === auth()->id): ?>
+                                <div class="paste-actions">
+                                    <div class="edit">
+                                        <a href="/pastes/edit/<?= $paste->slug ?>">
+                                            <img src="/img/svg/edit.svg" alt="edit"/>
+                                        </a>
+                                    </div>
+                                    <div class="delete">
+                                        <form action="/paste/delete/<?= $paste->slug ?>" method="post">
+                                            <button class="btn">
+                                                <img src="/img/svg/delete.svg" alt="delete"/>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <div class="delete">
-                                    <form action="/paste/delete/<?= $paste->slug ?>" method="post">
-                                        <button class="btn">
-                                            <img src="/img/svg/delete.svg" alt="delete"/>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -77,7 +79,7 @@
                     <div class="highlight-pre">
                         <div class="source-code">
                             <pre class="source-pre">
-                                <code class="source <?= strtolower($paste->syntax()->name)?>"><?= trim($paste->code) ?></code>
+                                <code class="source <?= strtolower($paste->syntax()->name) ?>"><?= $paste->code ?></code>
                             </pre>
 
                         </div>
