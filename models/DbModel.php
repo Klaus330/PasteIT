@@ -169,7 +169,7 @@ abstract class DbModel extends Model
 
         $primaryKey = $this->getPrimaryKey();
         $primaryKeyValue=$this->{$primaryKey};
-        $sql = "UPDATE $tableName SET $values WHERE $primaryKey=$primaryKeyValue ";
+        $sql = "UPDATE $tableName SET $values WHERE $primaryKey=$primaryKeyValue; ";
 
         $statement = self::prepare($sql);
 

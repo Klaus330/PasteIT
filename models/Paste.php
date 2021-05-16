@@ -18,7 +18,7 @@ class Paste extends DbModel
     public string $id_syntax = '';
     public $exposure = "";
     public $id_user = 1;
-    public $expiration_date = '';
+    public $expiration_date = "0000-00-00 00:00:00";
     public string $burn_after_read = '';
     public string $password = '';
     public $created_at;
@@ -112,7 +112,7 @@ class Paste extends DbModel
         if ($this->expires()) {
             $start = new \DateTimeImmutable();
             $end = new \DateTimeImmutable($this->expiration_date);
-
+            
             $dateString = new DateFormatter($end->diff($start));
             return $dateString->displayHumanFormat();
         }
