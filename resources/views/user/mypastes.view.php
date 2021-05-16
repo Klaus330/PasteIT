@@ -13,7 +13,7 @@
                         </span>
                                 <div class="card-content">
                                     <h2 class="card-title h2"><?= $paste->title ?> </h2>
-                                    <p class="card-author"><?= $paste->syntax()->name ?></p>
+                                    <p class="card-author"><?= $paste->syntax()->name ?> (<?= $paste->isPrivate() ? "Private" : "Public"?>)</p>
                                     <a class="btn btn-light btn-sm" href="/paste/view/<?= $paste->slug ?>">Read More</a>
                                 </div>
                             </div>
