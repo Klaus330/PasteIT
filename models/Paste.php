@@ -16,7 +16,7 @@ class Paste extends DbModel
     public string $title = '';
     public string $slug = '';
     public string $id_syntax = '';
-    public int $exposure = 0;
+    public $exposure = "";
     public $id_user = 1;
     public $expiration_date = '';
     public string $burn_after_read = '';
@@ -81,7 +81,6 @@ class Paste extends DbModel
 
     public function user()
     {
-
         return $this->belongsTo('id_user', User::class);
     }
 
@@ -135,5 +134,14 @@ class Paste extends DbModel
         }
     }
 
+    public function isPrivate()
+    {
+       return ($this->exposure == 1);
+    }
+
+    public function isOwner(int $userId)
+    {
+        return ($this->user()->id == $userId);
+    }
 
 }

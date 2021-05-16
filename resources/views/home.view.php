@@ -13,17 +13,17 @@ $this->setTitle("Paste It - Home")
                 <h4 class="h4">Public Pastes</h4>
                 <ul class="list-group">
                     <?php foreach ($latestPastes as $paste): ?>
-                    <li class="list-group-item">
-                        <a href="/paste/view/<?= $paste->slug ?>"><?= $paste->title ?></a>
-                        <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
-                    </li>
+                        <li class="list-group-item">
+                            <a href="/paste/view/<?= $paste->slug ?>"><?= $paste->title ?></a>
+                            <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </aside>
         </div>
         <div class="row">
             <h4 class="section-title h4">Optional Paste Settings</h4>
-            <div class="home-form" >
+            <div class="home-form">
 
                 <div class="grid">
                     <div class="col-7 col-md-3 flex align-start">
@@ -32,22 +32,26 @@ $this->setTitle("Paste It - Home")
                     <div class="col-12 col-md-6 flex align-center">
                         <select name="id_syntax" id="syn-highlight" class="form-select">
                             <option value="" disabled>None</option>
-                            <?php foreach ($syntaxes as $key => $syntax) :?>
-                                <option value="<?=$syntax->id?>"><?=$syntax->name?></option>
+                            <?php foreach ($syntaxes as $key => $syntax) : ?>
+                                <option value="<?= $syntax->id ?>"><?= $syntax->name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
                 <div class="grid">
+                    <?php if (app()::isGuest()): ?>
+                        <input type="hidden" name="exposure" value="">
+                    <?php else: ?>
                     <div class="col-5 col-md-3 flex align-start">
                         <label class="form-label" for="exposure">Paste Exposure:</label>
                     </div>
                     <div class="col-12 col-md-6 flex align-center">
                         <select name="exposure" id="exposure" class="form-select">
-                            <option value="0" selected>Public</option>
+                            <option value="" selected>Public</option>
                             <option value="1">Private</option>
                         </select>
                     </div>
+                    <?php endif; ?>
                 </div>
                 <div class="grid">
                     <div class="col-5 col-md-3 flex align-start">
@@ -102,7 +106,7 @@ $this->setTitle("Paste It - Home")
                         <?php if (app()::isGuest()): ?>
                             <input type="hidden" name="id_user" id="id_user" value="1">
                         <?php else: ?>
-                            <input type="hidden" name="id_user" id="id_user" value="<?=auth()->id?>">
+                            <input type="hidden" name="id_user" id="id_user" value="<?= auth()->id ?>">
                         <?php endif; ?>
                     </div>
                 </div>

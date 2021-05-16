@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\core\exceptions\AccessDeniedException;
 use app\core\exceptions\PageNotFoundException;
 use app\core\Random;
 use app\core\routing\Request;
@@ -82,7 +83,7 @@ class PasteController extends Controller
         $this->canShowPaste($paste);
 
         if (!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
-            $latestPastes = Paste::latest(5, ["expired" => 0]);
+            $latestPastes = Paste::latest(5, ["expired" => 0, "exposure" => 0]);
 
             return view('/pastes/index', compact("paste", 'latestPastes'));
         }
@@ -91,6 +92,17 @@ class PasteController extends Controller
     }
 
     private function canShowPaste($paste){
+
+        if($paste->isPrivate()){
+            if(!session()->has('user')){
+                dd("hit");
+                throw new AccessDeniedException();
+            }
+
+            if(!$paste->isOwner(session()->get('user'))){
+                throw new AccessDeniedException();
+            }
+        }
 
         if($paste->expired()){
             $paste->edit(['expired'=>1]);
