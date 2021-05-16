@@ -94,9 +94,12 @@ class PasteController extends Controller
 
     private function canShowPaste($paste){
 
+        if($paste == false){
+            throw new PageNotFoundException();
+        }
+        $slug = $paste->slug;
         if($paste->isPrivate()){
             if(!session()->has('user')){
-                dd("hit");
                 throw new AccessDeniedException();
             }
 
@@ -111,6 +114,7 @@ class PasteController extends Controller
         }
 
         if ($paste->isBurnAfterRead()) {
+
             if (!session()->hasFlash("$slug-burn")) {
                 redirect("/pastes/burn-after-read/$slug");
                 return;
@@ -129,7 +133,7 @@ class PasteController extends Controller
 
     public function burnAfterRead(Request $request)
     {
-        $slug = $request->getParamForRoute('/paste/burn-after-read/');
+        $slug = $request->getParamForRoute('/pastes/burn-after-read/');
         return view('/pastes/burn-after-read', compact('slug'));
     }
 

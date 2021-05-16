@@ -54,6 +54,9 @@ $this->setTitle("Paste It - Home")
                     <?php endif; ?>
                 </div>
                 <div class="grid">
+                    <?php if (app()::isGuest()): ?>
+                        <input type="hidden" name="expiration_date" value="1 month">
+                    <?php else: ?>
                     <div class="col-5 col-md-3 flex align-start">
                         <label class="form-label" for="exposure">Expiration Date:</label>
                     </div>
@@ -69,6 +72,7 @@ $this->setTitle("Paste It - Home")
                             <option value="1 year">1 Year</option>
                         </select>
                     </div>
+                    <?php endif; ?>
                 </div>
                 <div class="grid">
                     <div class="col-md-3 flex align-start">
