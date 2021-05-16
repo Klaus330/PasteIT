@@ -62,7 +62,7 @@ abstract class DbModel extends Model
 
         $parameters = implode(
             $separator,
-            array_map(fn($attribute) => "$attribute  = :$attribute", $attributes)
+            array_map(fn($attribute) => " $attribute  = :$attribute ", $attributes)
         );
 
         $sql = "SELECT * FROM $tableName WHERE $parameters;";
@@ -84,7 +84,7 @@ abstract class DbModel extends Model
 
             $parameters = implode(
                 $separator,
-                array_map(fn($attribute) => "$attribute  = :$attribute", $attributes)
+                array_map(fn($attribute) => " $attribute  = :$attribute ", $attributes)
             );
 
             $sql = "SELECT * FROM $tableName WHERE $parameters  ORDER BY created_at DESC LIMIT $limit;";
@@ -108,7 +108,7 @@ abstract class DbModel extends Model
 
         $parameters = implode(
             "AND",
-            array_map(fn($attribute) => "$attribute  = :$attribute", $attributes)
+            array_map(fn($attribute) => " $attribute  = :$attribute ", $attributes)
         );
         $sql = "SELECT * FROM $tableName WHERE $parameters";
 
@@ -133,7 +133,7 @@ abstract class DbModel extends Model
 
         $parameters = implode(
             $separator,
-            array_map(fn($attribute) => "$attribute=:$attribute", $attributes)
+            array_map(fn($attribute) => " $attribute=:$attribute ", $attributes)
         );
 
         $sql = "UPDATE $tableName SET $values WHERE $parameters";
@@ -163,7 +163,7 @@ abstract class DbModel extends Model
         $colums = array_keys($data);
 
         $values = implode(",",
-            array_map(fn($key) => "$key=:$key", $colums)
+            array_map(fn($key) => " $key=:$key ", $colums)
         );
 
 
