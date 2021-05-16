@@ -81,6 +81,7 @@ class Paste extends DbModel
 
     public function user()
     {
+
         return $this->belongsTo('id_user', User::class);
     }
 
@@ -125,9 +126,13 @@ class Paste extends DbModel
 
     public function expired()
     {
-        $start = new \DateTimeImmutable();
-        $end = new \DateTimeImmutable($this->expiration_date);
-        return ($end->diff($start)->invert === 0 || $this->expired);
+        if($this->expires()){
+            $start = new \DateTimeImmutable();
+            $end = new \DateTimeImmutable($this->expiration_date);
+            return ($end->diff($start)->invert === 0 || $this->expired);
+        }else{
+            return false;
+        }
     }
 
 
