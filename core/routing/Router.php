@@ -25,26 +25,32 @@ class Router
     public function get($route)
     {
         $route->setMethod("get");
-        $this->routes['get'][] = $route;
+        $this->routes['get'][$route->getUrl()] = $route;
     }
 
     public function post($route)
     {
         $route->setMethod("post");
-        $this->routes['post'][] = $route;
+        $this->routes['post'][$route->getUrl()] = $route;
     }
 
     public function put($route)
     {
         $route->setMethod("put");
-        $this->routes['put'][] = $route;
+        $this->routes['put'][$route->getUrl()] = $route;
     }
 
     public function delete($route)
     {
         $route->setMethod("delete");
-        $this->routes['delete'][] = $route;
+        $this->routes['delete'][$route->getUrl()] = $route;
     }
+
+    public function regex($route)
+    {
+        $this->routes['regex'][$route->getMethod()][] = $route;
+    }
+
 
     public function resolve()
     {
@@ -54,14 +60,6 @@ class Router
         $url = explode("/", $path);
         $matchedRoute = $this->match($path,$method);
 
-        if($matchedRoute == null) {
-            throw new PageNotFoundException();
-        }
-
-        if($this->hasRegEx($matchedRoute)){
-            preg_match("/:./", $matchedRoute->getUrl(), $matches, PREG_OFFSET_CAPTURE);
-            $pathParam = substr($path, $matches[0][1]);
-        }
 
         $callback = $matchedRoute->getCallback();
 
@@ -73,7 +71,7 @@ class Router
             if (strpos($callback, '@')) {
                 [$controller, $action] = explode("@", $callback);
 
-                return $this->callAction($controller, $action, $pathParam ?? null);
+                return $this->callAction($controller, $action);
             }
             return app('view')->renderView($callback);
         }
@@ -100,10 +98,6 @@ class Router
             throw new \Exception("{$controller} doesn not to respond to the action {$action}");
         }
 
-        if($pathParam){
-            $this->request->setParams(['slug' => $pathParam]);
-        }
-
         if(session()->hasFlash("captcha_path")){
             \unlink(session()->getFlash("captcha_path"));
         }
@@ -114,42 +108,22 @@ class Router
     private function match(mixed $path, string $method)
     {
 
-        $bestRoute = null;
-        $bestCount = 0;
-        foreach ($this->routes[$method] as $route){
-            $count = 0;
-            $routeUrl = $route->getUrl();
+        $selectedRoute = $this->routes[$method][$path] ?? false;
 
-            if($path === $routeUrl){
-                return $route;
-            }
-
-            $offset = strlen($path) < strlen($routeUrl) ? strlen($path) : strlen($routeUrl);
-
-            for($i=0; $i < $offset; $i++){
-                if($path[$i] !== $routeUrl[$i]){
-                    if($bestCount < $count){
-                        $bestCount = $count;
-                        $bestRoute = $route;
-                    }
+        if($selectedRoute === false){
+            foreach ($this->routes['regex'][$method] as $route){
+                if(preg_match($route->getUrl(),$path)){
+                    $selectedRoute = $route;
                     break;
                 }
-                $count++;
             }
-
         }
 
-        if($count <= 1){
-            return null;
+        if($selectedRoute === false){
+            throw new PageNotFoundException();
         }
 
-        return $bestRoute;
-    }
-
-    private function hasRegEx(mixed $matchedRoute)
-    {
-        preg_match("/:\w+/", $matchedRoute->getUrl(), $matches);
-        return (count($matches) > 0 );
+        return $selectedRoute;
     }
 
 }

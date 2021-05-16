@@ -44,7 +44,7 @@ class PasteController extends Controller
 
     public function lockedPaste(Request $request)
     {
-        $slug = $request->getParam('slug');
+        $slug = $request->getParamForRoute('/pastes/locked-paste/');
         $paste = Paste::findOne(['slug' => $slug]);
 
         return view('/pastes/locked-paste', compact('paste'));
@@ -61,7 +61,7 @@ class PasteController extends Controller
 
     public function edit(Request $request)
     {
-        $slug = $request->getParam('slug');
+        $slug = $request->getParamForRoute('/pastes/edit/');
         $paste = Paste::findOne(['slug' => $slug]);
         $syntaxes = Syntax::find();
         return view('/pastes/edit', compact("paste","syntaxes"));
@@ -77,7 +77,8 @@ class PasteController extends Controller
     public function show(Request $request)
     {
 
-        $slug = $request->getParam('slug');
+        $slug = $request->getParamForRoute('/paste/view/');
+
         $paste = Paste::findOne(['slug' => $slug]);
 
         $this->canShowPaste($paste);
@@ -128,13 +129,13 @@ class PasteController extends Controller
 
     public function burnAfterRead(Request $request)
     {
-        $slug = $request->getParam('slug');
+        $slug = $request->getParamForRoute('/paste/burn-after-read/');
         return view('/pastes/burn-after-read', compact('slug'));
     }
 
     public function delete(Request $request)
     {
-        $slug = $request->getParam('slug');
+        $slug = $request->getParamForRoute('/paste/delete/');
         $paste = Paste::findOne(['slug' => $slug]);
 
         if ($paste == null) {
@@ -149,7 +150,7 @@ class PasteController extends Controller
     public function update(Request $request)
     {
 
-        $slug = $request->getParam('slug');
+        $slug = $request->getParamForRoute('/pastes/update/');
         $paste = Paste::findOne(['slug' => $slug]);
 
         if ($request->validate([
