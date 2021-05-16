@@ -21,7 +21,7 @@ class UserController extends Controller
         $userId = session()->get("user");
         $errors = [];
         $settings = auth()->settings();
-        $latestPastes = Paste::latest(5, ["expired" => 0]);
+        $latestPastes = Paste::latest(5, ["expired" => 0, "exposure" => 0]);
         $syntaxes = Syntax::find();
 
         return view('/user/settings', compact(["userId", "errors", 'settings', 'latestPastes', 'syntaxes']));
