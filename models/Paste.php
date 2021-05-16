@@ -107,12 +107,22 @@ class Paste extends DbModel
     }
 
 
+    public function timeSinceCreation()
+    {
+        $now = new \DateTimeImmutable();
+        $createdAt = new \DateTimeImmutable($this->created_at);
+        $dateString = new DateFormatter($now->diff($createdAt));
+
+        return $dateString->displayHumanFormat()." ago";
+    }
+
+
     public function expirationTime()
     {
         if ($this->expires()) {
             $start = new \DateTimeImmutable();
             $end = new \DateTimeImmutable($this->expiration_date);
-            
+
             $dateString = new DateFormatter($end->diff($start));
             return $dateString->displayHumanFormat();
         }

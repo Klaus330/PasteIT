@@ -30,11 +30,11 @@ class DateFormatter
         }
         else if($this->interval->i !=0){
             $nrOfYears = $this->interval->format("%i");
-            return "$nrOfYears minutes";
+            return "$nrOfYears min";
         }
         else if($this->interval->s !=0){
             $nrOfYears = $this->interval->format("%s");
-            return "$nrOfYears seconds";
+            return "$nrOfYears sec";
         }
     }
 }

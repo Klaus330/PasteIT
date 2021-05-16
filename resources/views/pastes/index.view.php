@@ -112,7 +112,7 @@
             <?php foreach ($latestPastes as $publicPaste): ?>
                 <li class="list-group-item">
                     <a href="/paste/view/<?= $publicPaste->slug ?>"><?= $publicPaste->title ?></a>
-                    <span><?= $publicPaste->syntax()->name ?> | <?= $publicPaste->user()->username ?></span>
+                    <span><?= $publicPaste->syntax()->name ?> | <?= $paste->timeSinceCreation() ?></span>
                 </li>
             <?php endforeach; ?>
         </ul>
