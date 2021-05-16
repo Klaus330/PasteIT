@@ -109,10 +109,10 @@
     <aside class="home-aside sm-hidden settings-aside">
         <h4 class="h4">Public Pastes</h4>
         <ul class="list-group">
-            <?php foreach ($latestPastes as $paste): ?>
+            <?php foreach ($latestPastes as $publicPaste): ?>
                 <li class="list-group-item">
-                    <a href="/paste/view/<?= $paste->slug ?>"><?= $paste->title ?></a>
-                    <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
+                    <a href="/paste/view/<?= $publicPaste->slug ?>"><?= $publicPaste->title ?></a>
+                    <span><?= $publicPaste->syntax()->name ?> | <?= $publicPaste->user()->username ?></span>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -120,4 +120,4 @@
 
 </div>
 
-<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.highlightAll();</script>

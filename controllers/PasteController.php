@@ -85,7 +85,7 @@ class PasteController extends Controller
 
         if (!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
             $latestPastes = Paste::latest(5, ["expired" => 0, "exposure" => 0]);
-
+            $this->updateViews($paste);
             return view('/pastes/index', compact("paste", 'latestPastes'));
         }
 
@@ -169,4 +169,15 @@ class PasteController extends Controller
         }
         return redirect("/paste/edit/$slug")->withErrors($request->getErrors());
     }
+
+
+    public function updateViews($paste)
+    {
+        $viewsNumber = $paste->nr_of_views + 1;
+
+        $paste->edit(['nr_of_views' => $viewsNumber]);
+
+        return json_encode("Hit");
+    }
+
 }
