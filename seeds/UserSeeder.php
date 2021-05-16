@@ -13,6 +13,7 @@ class UserSeeder implements \app\core\Seeder
         $user->username="guest";
         $user->email="admin@admin.com";
         $user->password="admin";
+        $user->avatar = 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png';
         $user->save();
 
         $settings = Settings::create(
