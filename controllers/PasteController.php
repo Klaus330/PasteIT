@@ -19,9 +19,9 @@ class PasteController extends Controller
 
     public function store(Request $request)
     {
-
-        if (app()::isGuest() && session()->get('captcha_code') != $request->getBody()['captcha_code']) {
-            redirect("/");
+        \unlink(session()->getFlash("captcha_path"));
+        if (app()::isGuest() && session()->getFlash('captcha_code') != $request->getBody()['captcha_code']) {
+            return redirect("/");
         }
 
         $paste = new Paste();
@@ -75,6 +75,7 @@ class PasteController extends Controller
 
     public function show(Request $request)
     {
+
         $slug = $request->getParam('slug');
         $paste = Paste::findOne(['slug' => $slug]);
 
@@ -82,6 +83,7 @@ class PasteController extends Controller
 
         if (!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
             $latestPastes = Paste::latest(5, ["expired" => 0]);
+
             return view('/pastes/index', compact("paste", 'latestPastes'));
         }
 

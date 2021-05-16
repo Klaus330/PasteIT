@@ -15,8 +15,9 @@ class HomeController extends Controller
 
         $captchaCode = "";
         if (app()::isGuest()) {
-            $captchaCode = CaptchaController::getCaptcha();
+            $captchaCode = CaptchaController::genCaptcha();
         }
+
 
         $syntaxes = Syntax::find();
         $latestPastes = Paste::latest(5, ["expired" => 0]);

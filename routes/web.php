@@ -29,7 +29,6 @@ Route::get("/user/delete", "UserController@destroy");
 
 
 // Pastes
-//Route::get('/pastes', "PasteController@view");
 Route::get('/pastes', "PasteController@index");
 Route::post('/pastes', "PasteController@store");
 Route::get("/pastes/locked-paste/:slug", "PasteController@lockedPaste");

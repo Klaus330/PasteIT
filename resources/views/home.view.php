@@ -116,7 +116,7 @@ $this->setTitle("Paste It - Home")
                                    id="captcha-code">
                         </div>
                         <div class="col-12 col-md-3 flex align-center">
-                            <img src="<?= $captchaCode ?>" alt="" id="captcha-code-image">
+                            <img src="<?= $captchaCode ?>" alt="Captcha code" id="captcha-code-image">
                         </div>
                     </div>
                 <?php endif ?>
