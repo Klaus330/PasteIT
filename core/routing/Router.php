@@ -104,6 +104,10 @@ class Router
             $this->request->setParams(['slug' => $pathParam]);
         }
 
+        if(session()->hasFlash("captcha_path")){
+            \unlink(session()->getFlash("captcha_path"));
+        }
+
         return $controller->$action($this->request);
     }
 
