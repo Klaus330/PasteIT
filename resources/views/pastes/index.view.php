@@ -37,23 +37,22 @@
                         </span>
                             </div>
                         </div>
-                        <?php if (session()->has('user')): ?>
-                            <?php if ($paste->user()->id === auth()->id): ?>
-                                <div class="paste-actions">
-                                    <div class="edit">
-                                        <a href="/pastes/edit/<?= $paste->slug ?>">
-                                            <img src="/img/svg/edit.svg" alt="edit"/>
-                                        </a>
-                                    </div>
-                                    <div class="delete">
-                                        <form action="/paste/delete/<?= $paste->slug ?>" method="post">
-                                            <button class="btn">
-                                                <img src="/img/svg/delete.svg" alt="delete"/>
-                                            </button>
-                                        </form>
-                                    </div>
+
+                        <?php if (session()->has('user') && $paste->canEdit(auth()->id)): ?>
+                            <div class="paste-actions">
+                                <div class="edit">
+                                    <a href="/pastes/edit/<?= $paste->slug ?>">
+                                        <img src="/img/svg/edit.svg" alt="edit"/>
+                                    </a>
                                 </div>
-                            <?php endif; ?>
+                                <div class="delete">
+                                    <form action="/paste/delete/<?= $paste->slug ?>" method="post">
+                                        <button class="btn">
+                                            <img src="/img/svg/delete.svg" alt="delete"/>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         <?php endif; ?>
                     </div>
                 </div>
@@ -103,6 +102,22 @@
 
             </div>
         </div>
+        <?php if (session()->has('user') && $paste->isOwner(auth()->id)): ?>
+            <div class="row">
+                <div class="grid">
+                    <div class="col-12 col-md-12">
+                        <form action="/paste/add-editor/<?= $paste->id ?>" method="POST" class="grid">
+                            <div class="col-6  flex align-start justify-start flex-column">
+                                <label for="username" class="form-label">Username:</label>
+                                <input type="text" name="username" id="username" class="form-control"
+                                       placeholder="Give access to edit">
+                                <button class="btn btn-primary mt-2"> Give Access</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </section>
 
 

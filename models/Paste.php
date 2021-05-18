@@ -75,7 +75,17 @@ class Paste extends DbModel
             $this->expiration_date = $temp->modify("+$this->expiration_date")->format('Y-m-d H:i:s');
         }
 
-        return parent::save();
+
+
+        parent::save();
+
+        $currentPasteId = Paste::findOne(['slug'=>$this->slug])->id;
+
+
+        $this->saveRelationship([
+            'id_paste' => $currentPasteId,
+            'id_user' => $this->id_user
+        ],"pastes_users");
     }
 
 
@@ -83,6 +93,12 @@ class Paste extends DbModel
     {
         return $this->belongsTo('id_user', User::class);
     }
+
+    public function editors()
+    {
+        return $this->hasMany(User::class, "pastes_users");
+    }
+
 
     public function syntax()
     {
@@ -153,5 +169,28 @@ class Paste extends DbModel
     {
         return ($this->user()->id == $userId);
     }
+
+
+    public function addEditor($editorId)
+    {
+        $this->saveRelationship([
+            'id_user' => $editorId,
+            'id_paste' => $this->id
+        ], 'pastes_users');
+    }
+
+
+    public function canEdit($userId)
+    {
+        $editors = $this->editors();
+
+        foreach ($editors as $editor){
+            if($editor->id === $userId){
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }

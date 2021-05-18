@@ -20,17 +20,16 @@ class m0005_create_pastes_table extends Migration
               exposure BIT,
               expired BIT DEFAULT 0,
               created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-              id_syntax INT,
-              FOREIGN KEY (id_syntax) REFERENCES highlights(id),
               id_user INT,
-              FOREIGN KEY (id_user) REFERENCES users(id)
+              FOREIGN KEY (id_user) REFERENCES users(id),
+              id_syntax INT,
+              FOREIGN KEY (id_syntax) REFERENCES highlights(id)
             ) ENGINE=INNODB;
+
         ";
 
 
         app('db')->getPdo()->exec($sql);
-
-
     }
 
     public function down()
