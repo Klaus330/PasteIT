@@ -4,6 +4,10 @@
 namespace app\models;
 
 use app\core\Application;
+use Exception;
+use PDO;
+use PDOException;
+use ReflectionClass;
 
 abstract class DbModel extends Model
 {
@@ -19,6 +23,17 @@ abstract class DbModel extends Model
         $attributes = $this->attributes();
         $parameters = $this->parameterizeValues($attributes);
 
+        return $this->insert($tableName, $attributes, $parameters);
+    }
+
+    /**
+     * @param string $tableName
+     * @param array $attributes
+     * @param array $parameters
+     * @return mixed
+     */
+    public function insert(string $tableName, array $attributes, array $parameters)
+    {
         $sql = sprintf("insert into %s(%s) values(%s)",
             $tableName,
             implode(', ', $attributes),
@@ -35,11 +50,38 @@ abstract class DbModel extends Model
             $result = $statement->execute();
 
             return $result;
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
             dd($e->getMessage());
         }
     }
 
+    protected function saveRelationship(array $payload, string $tableName)
+    {
+
+        $attributes = array_keys($payload);
+        $parameters = array_values($payload);
+        $parameterizedAttributes = $this->parameterizeValues($attributes);
+
+        $sql = sprintf("insert into %s(%s) values(%s)",
+            $tableName,
+            implode(', ', $attributes),
+            implode(',', $parameterizedAttributes)
+        );
+
+        $statement = self::prepare($sql);
+
+        try {
+            foreach ($attributes as $key => $attribute) {
+                $statement->bindValue(":$attribute", $parameters[$key]);
+            }
+
+            $result = $statement->execute();
+
+            return $result;
+        } catch (PDOException $e) {
+            dd($e->getMessage());
+        }
+    }
 
     public static function prepare($sql)
     {
@@ -72,14 +114,14 @@ abstract class DbModel extends Model
             $statement->bindValue(":$key", $value);
         }
         $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
+        return $statement->fetchAll(PDO::FETCH_CLASS, static::class);
     }
 
 
     public static function latest(int $limit = 15, mixed $where = [], string $separator = "AND")
     {
         $tableName = (new static)->tableName();
-        if($where !== []){
+        if ($where !== []) {
             $attributes = array_keys($where);
 
             $parameters = implode(
@@ -88,7 +130,7 @@ abstract class DbModel extends Model
             );
 
             $sql = "SELECT * FROM $tableName WHERE $parameters  ORDER BY created_at DESC LIMIT $limit;";
-        }else{
+        } else {
             $sql = "SELECT * FROM $tableName ORDER BY created_at DESC LIMIT $limit;";
         }
 
@@ -97,7 +139,7 @@ abstract class DbModel extends Model
             $statement->bindValue(":$key", $value);
         }
         $statement->execute();
-        return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
+        return $statement->fetchAll(PDO::FETCH_CLASS, static::class);
     }
 
 
@@ -150,7 +192,7 @@ abstract class DbModel extends Model
         try {
             $statement->execute();
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             dd($e->getMessage());
         }
         return false;
@@ -168,7 +210,7 @@ abstract class DbModel extends Model
 
 
         $primaryKey = $this->getPrimaryKey();
-        $primaryKeyValue=$this->{$primaryKey};
+        $primaryKeyValue = $this->{$primaryKey};
         $sql = "UPDATE $tableName SET $values WHERE $primaryKey=$primaryKeyValue; ";
 
         $statement = self::prepare($sql);
@@ -180,7 +222,7 @@ abstract class DbModel extends Model
         try {
             $statement->execute();
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             dd($e->getMessage());
         }
         return false;
@@ -208,7 +250,7 @@ abstract class DbModel extends Model
         try {
             $statement->execute();
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $e->getMessage();
         }
         return false;
@@ -228,7 +270,7 @@ abstract class DbModel extends Model
         try {
             $statement->execute();
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $e->getMessage();
         }
         return false;
@@ -255,5 +297,42 @@ abstract class DbModel extends Model
     {
         return $class::findOne([$column => $this->id]);
     }
+
+
+    public function hasMany($class, $relationTableName): array
+    {
+        try {
+            $searchedClass = new ReflectionClass($class);
+
+            $searchedClassName = strtolower((new ReflectionClass($class))->getShortName());
+            $currentClassName = strtolower((new ReflectionClass($this))->getShortName());
+            $sql = "SELECT id_$searchedClassName  FROM $relationTableName WHERE id_$currentClassName=:$currentClassName;";
+
+            $statement = self::prepare($sql);
+            $statement->bindValue(":$currentClassName", $this->id);
+            $statement->execute();
+
+            $listOfObjects = [];
+            $results = $statement->fetchAll(PDO::FETCH_COLUMN);
+            foreach($results as $id){
+                $searchedTableName =  $searchedClass->getMethod("tableName")->invoke(new $class());
+                $searchedClassPrimaryKey = $searchedClass->getMethod("getPrimaryKey")->invoke(null);
+                $query = "SELECT * FROM $searchedTableName WHERE $searchedClassPrimaryKey=:$searchedClassPrimaryKey";
+
+                $newStatement = self::prepare($query);
+
+                $newStatement->bindValue(":$searchedClassPrimaryKey",$id);
+
+                $newStatement->execute();
+
+                $listOfObjects[] = $newStatement->fetchObject($class);
+            }
+
+            return $listOfObjects;
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
 
 }

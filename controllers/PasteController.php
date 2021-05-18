@@ -20,7 +20,6 @@ class PasteController extends Controller
 
     public function store(Request $request)
     {
-        \unlink(session()->getFlash("captcha_path"));
         if (app()::isGuest() && session()->getFlash('captcha_code') != $request->getBody()['captcha_code']) {
             return redirect("/");
         }
@@ -179,5 +178,31 @@ class PasteController extends Controller
 
         return json_encode("Hit");
     }
+
+
+    public function addEditor(Request $request)
+    {
+        $id_paste = $request->getParamForRoute('/paste/add-editor/');
+        $paste = Paste::findOne(['id'=>$id_paste]);
+
+        if($request->validate([
+            "username" => [Validator::RULE_REQUIRED]
+        ])){
+            $username = $request->getBody()["username"];
+
+            $user = User::findOne(['username' => $username]);
+
+            $paste->addEditor($user->id);
+
+            session()->setFlash("success", "Editor added");
+
+            return redirect("/paste/view/$paste->slug");
+        }
+
+
+
+        return redirect("/paste/view/$paste->slug")->withErrors($request->getErrors());
+    }
+
 
 }

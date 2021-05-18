@@ -39,3 +39,4 @@ Route::regex("/pastes\/update\/[a-zA-Z0-9]+/","PasteController@update","post");
 Route::regex("/\/pastes\/edit\/[a-zA-Z0-9]+/","PasteController@edit","get");
 Route::regex("/\/paste\/view\/[a-zA-Z0-9]+/","PasteController@show","get");
 Route::regex("/paste\/delete\/[a-zA-Z0-9]+/","PasteController@delete","post");
+Route::regex("/paste\/add-editor\/[0-9]+/","PasteController@addEditor","post");
