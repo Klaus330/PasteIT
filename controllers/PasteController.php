@@ -206,9 +206,20 @@ class PasteController extends Controller
             return redirect("/paste/view/$paste->slug");
         }
 
-
-
         return redirect("/paste/view/$paste->slug")->withErrors($request->getErrors());
+    }
+
+
+    public function getRawData(Request $request)
+    {
+        $slug = $request->getParamForRoute("/paste/raw/");
+
+        $paste = Paste::findOne(['slug' => $slug]);
+        echo "<pre>";
+            echo $paste->code;
+        echo "</pre>";
+
+        return;
     }
 
 

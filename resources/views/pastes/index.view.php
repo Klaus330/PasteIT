@@ -70,7 +70,7 @@
                         </div>
 
                         <div>
-                            <a class="btn-toolbar" href="#">raw</a>
+                            <a class="btn-toolbar" href="/paste/raw/<?= $paste->slug ?>">raw</a>
                             <a class="btn-toolbar" href="#">download</a>
                         </div>
 
