@@ -75,7 +75,6 @@ class PasteController extends Controller
 
     public function show(Request $request)
     {
-
         $slug = $request->getParamForRoute('/paste/view/');
 
         $paste = Paste::findOne(['slug' => $slug]);
@@ -84,7 +83,6 @@ class PasteController extends Controller
 
         if (!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
             $latestPastes = Paste::latest(5, ["expired" => 0, "exposure" => 0]);
-            $this->updateViews($paste);
             return view('/pastes/index', compact("paste", 'latestPastes'));
         }
 
@@ -170,13 +168,22 @@ class PasteController extends Controller
     }
 
 
-    public function updateViews($paste)
+    public function updateViews(Request $request)
     {
+        header("Access-Contorl-Allow-Origin:*");
+        header("Content-Type: application/json; charset=UTF-8");
+        header("Access-Control-Allow-Methods: POST");
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With");
+
+        $slug = $request->getParamForRoute("/pastes/update-views/");
+
+        $paste = Paste::findOne(['slug' => $slug]);
+
         $viewsNumber = $paste->nr_of_views + 1;
 
         $paste->edit(['nr_of_views' => $viewsNumber]);
 
-        return json_encode("Hit");
+        return json_encode(['views' => $viewsNumber]);
     }
 
 
