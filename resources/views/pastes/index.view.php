@@ -32,9 +32,9 @@
 
                             <div class="number-of-views">
                                 <img src="/img/svg/view-eye.svg" alt="view-eye"/>
-                                <span>
-                            <?= $paste->nr_of_views ?>
-                        </span>
+                                <span id="views">
+                                    <?= $paste->nr_of_views ?>
+                                </span>
                             </div>
                         </div>
 
@@ -136,3 +136,22 @@
 </div>
 
 <script>hljs.highlightAll();</script>
+<script>
+    function updateViews(){
+        let request = new XMLHttpRequest();
+
+        let url = '/pastes/update-views/<?= $paste->slug?>';
+        request.open("POST", url, true);
+        request.responseType="json";
+
+        request.onreadystatechange = function (){
+            if (this.readyState === 4 && this.status === 200) {
+                let response = request.response;
+                let viewsSpan = document.getElementById("views");
+                viewsSpan.innerText = response.views;
+            }
+        };
+        request.send();
+    }
+    updateViews();
+</script>
