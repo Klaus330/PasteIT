@@ -100,6 +100,12 @@ class Paste extends DbModel
     }
 
 
+    public function versions($orderBy)
+    {
+        return $this->belongsToMany(Version::class, $orderBy);
+    }
+
+
     public function syntax()
     {
         return $this->belongsTo('id_syntax', Syntax::class);
