@@ -113,8 +113,12 @@ abstract class DbModel extends Model
         foreach ($where as $key => $value) {
             $statement->bindValue(":$key", $value);
         }
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_CLASS, static::class);
+        try {
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS, static::class);
+        } catch (PDOException $e) {
+            dd($e->getMessage());
+        }
     }
 
 
@@ -138,8 +142,12 @@ abstract class DbModel extends Model
         foreach ($where as $key => $value) {
             $statement->bindValue(":$key", $value);
         }
-        $statement->execute();
-        return $statement->fetchAll(PDO::FETCH_CLASS, static::class);
+        try {
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_CLASS, static::class);
+        } catch (PDOException $e) {
+            dd($e->getMessage());
+        }
     }
 
 
@@ -159,8 +167,12 @@ abstract class DbModel extends Model
         foreach ($where as $key => $value) {
             $statement->bindValue(":$key", $value);
         }
-        $statement->execute();
-        return $statement->fetchObject(static::class);
+        try {
+            $statement->execute();
+            return $statement->fetchObject(static::class);
+        } catch (PDOException $e) {
+            dd($e->getMessage());
+        }
     }
 
     public static function update(array $data, array $where, string $separator = "AND")
@@ -314,14 +326,14 @@ abstract class DbModel extends Model
 
             $listOfObjects = [];
             $results = $statement->fetchAll(PDO::FETCH_COLUMN);
-            foreach($results as $id){
-                $searchedTableName =  $searchedClass->getMethod("tableName")->invoke(new $class());
+            foreach ($results as $id) {
+                $searchedTableName = $searchedClass->getMethod("tableName")->invoke(new $class());
                 $searchedClassPrimaryKey = $searchedClass->getMethod("getPrimaryKey")->invoke(null);
                 $query = "SELECT * FROM $searchedTableName WHERE $searchedClassPrimaryKey=:$searchedClassPrimaryKey";
 
                 $newStatement = self::prepare($query);
 
-                $newStatement->bindValue(":$searchedClassPrimaryKey",$id);
+                $newStatement->bindValue(":$searchedClassPrimaryKey", $id);
 
                 $newStatement->execute();
 

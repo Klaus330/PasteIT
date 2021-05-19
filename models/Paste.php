@@ -167,7 +167,7 @@ class Paste extends DbModel
 
     public function isOwner(int $userId)
     {
-        return ($this->user()->id == $userId);
+        return ($this->id_user == $userId);
     }
 
 
