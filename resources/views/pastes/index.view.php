@@ -41,6 +41,11 @@
                         <?php if (session()->has('user') && $paste->canEdit(auth()->id)): ?>
                             <div class="paste-actions">
                                 <div class="edit">
+                                    <a href="/paste/versions/<?= $paste->slug ?>">
+                                        <img src="/img/svg/versions.svg" alt="versions"/>
+                                    </a>
+                                </div>
+                                <div class="edit">
                                     <a href="/pastes/edit/<?= $paste->slug ?>">
                                         <img src="/img/svg/edit.svg" alt="edit"/>
                                     </a>
@@ -78,9 +83,8 @@
                     <div class="highlight-pre">
                         <div class="source-code">
                             <pre class="source-pre">
-                                <code class="source <?= strtolower($paste->syntax()->name) ?>"><?= $paste->code ?></code>
+                                <code class="source <?= strtolower($paste->syntax()->name) ?>"><?= $latestVersion->code ?? $paste->code ?></code>
                             </pre>
-
                         </div>
                     </div>
                 </div>
@@ -97,7 +101,7 @@
 
                 <div class="col-12">
                     <textarea name="raw-data" id="raw-data" cols="30" rows="10"
-                              class="paste-text-area"><?= $paste->code ?></textarea>
+                              class="paste-text-area"><?= $latestVersion->code ?? $paste->code ?></textarea>
                 </div>
 
             </div>

@@ -10,6 +10,7 @@ use app\core\Validator;
 use app\models\Paste;
 use app\models\Syntax;
 use app\models\User;
+use app\models\Version;
 
 class PasteController extends Controller
 {
@@ -63,7 +64,8 @@ class PasteController extends Controller
         $slug = $request->getParamForRoute('/pastes/edit/');
         $paste = Paste::findOne(['slug' => $slug]);
         $syntaxes = Syntax::find();
-        return view('/pastes/edit', compact("paste","syntaxes"));
+        $latestVersion = $paste->versions(['updated_at', 'DESC'])[0] ?? null;
+        return view('/pastes/edit', compact("paste", "syntaxes", "latestVersion"));
     }
 
     public function validateBurnAfterRead(Request $request)
@@ -81,51 +83,56 @@ class PasteController extends Controller
 
         $this->canShowPaste($paste);
 
-        if (!$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
+        if ($paste->isOwner(auth()->id) || !$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
             $latestPastes = Paste::latest(5, ["expired" => 0, "exposure" => 0]);
-            return view('/pastes/index', compact("paste", 'latestPastes'));
+
+            $latestVersion = $paste->versions(['updated_at', 'DESC'])[0] ?? null;
+
+            return view('/pastes/index', compact("paste", 'latestPastes', 'latestVersion'));
         }
 
         return redirect("/pastes/locked-paste/$slug")->withErrors(['password' => "Password doesn't match"]);
     }
 
-    private function canShowPaste($paste){
+    private function canShowPaste($paste)
+    {
 
-        if($paste == false){
+        if ($paste == false) {
             throw new PageNotFoundException();
         }
         $slug = $paste->slug;
-        if($paste->isPrivate()){
-            if(!session()->has('user')){
+        if ($paste->isPrivate()) {
+            if (!session()->has('user')) {
                 throw new AccessDeniedException();
             }
 
-            if(!$paste->isOwner(session()->get('user'))){
+            if (!$paste->isOwner(session()->get('user'))) {
                 throw new AccessDeniedException();
             }
         }
 
-        if($paste->expired()){
-            $paste->edit(['expired'=>1]);
+        if ($paste->expired()) {
+            $paste->edit(['expired' => 1]);
             throw new PageNotFoundException();
         }
 
-        if ($paste->isBurnAfterRead()) {
+        if (!$paste->isOwner(auth()->id)) {
+            if ($paste->isBurnAfterRead()) {
 
-            if (!session()->hasFlash("$slug-burn")) {
-                redirect("/pastes/burn-after-read/$slug");
-                return;
+                if (!session()->hasFlash("$slug-burn")) {
+                    redirect("/pastes/burn-after-read/$slug");
+                    return;
+                }
+                $paste->destroy();
             }
-            $paste->destroy();
-        }
 
-        if ($paste->hasPassword()
-            && !session()->hasFlash($slug)
-        ) {
-            redirect("/pastes/locked-paste/$slug");
+            if ($paste->hasPassword()
+                && !session()->hasFlash($slug)
+            ) {
+                redirect("/pastes/locked-paste/$slug");
+            }
         }
     }
-
 
 
     public function burnAfterRead(Request $request)
@@ -155,13 +162,43 @@ class PasteController extends Controller
         $paste = Paste::findOne(['slug' => $slug]);
 
         if ($request->validate([
+            'id_user' => [Validator::RULE_REQUIRED],
+            'id_paste' => [Validator::RULE_REQUIRED],
             "code" => [Validator::RULE_REQUIRED],
             "title" => [Validator::RULE_REQUIRED]
         ])) {
 
             $body = $request->getBody();
-            $paste->edit($body);
+            $password = $body["password"] == "" ? "" : sha1($body["password"]);
+
+            $pastePayload = [
+                "exposure" => $body["exposure"],
+                "id_syntax" => $body["id_syntax"],
+                "burn_after_read" => $body["burn"] ?? 0,
+                "password" => $password,
+                "title" => $body["title"]
+            ];
+
+            if(!empty($body['expiration_date']))
+            {
+                $pastePayload["expiration_date"]= $body['expiration_date'];
+            }
+
+            $paste->edit($pastePayload);
+            $latestVersion = $paste->versions(['updated_at', 'DESC'])[0] ?? null;
+
+            if (($latestVersion != null && $latestVersion->code != $body["code"]) || ($latestVersion == null && $paste->code != $body['code'])) {
+                $version = Version::create([
+                        "id_user" => $body['id_user'],
+                        'id_paste' => $body['id_paste'],
+                        "code" => $body['code'],
+                        'slug' => Random::generate()
+                ]);
+                $version->save();
+            }
+
             session()->setFlash("succes", "Postarea a fost actualizata");
+
             return redirect("/paste/view/$slug");
         }
         return redirect("/paste/edit/$slug")->withErrors($request->getErrors());
@@ -190,11 +227,11 @@ class PasteController extends Controller
     public function addEditor(Request $request)
     {
         $id_paste = $request->getParamForRoute('/paste/add-editor/');
-        $paste = Paste::findOne(['id'=>$id_paste]);
+        $paste = Paste::findOne(['id' => $id_paste]);
 
-        if($request->validate([
+        if ($request->validate([
             "username" => [Validator::RULE_REQUIRED]
-        ])){
+        ])) {
             $username = $request->getBody()["username"];
 
             $user = User::findOne(['username' => $username]);
@@ -215,8 +252,10 @@ class PasteController extends Controller
         $slug = $request->getParamForRoute("/paste/raw/");
 
         $paste = Paste::findOne(['slug' => $slug]);
+        $latestVersion = $paste->versions(['updated_at', 'DESC'])[0] ?? null;
+
         echo "<pre>";
-            echo $paste->code;
+        echo $latestVersion->code ?? $paste->code;
         echo "</pre>";
 
         return;

@@ -96,7 +96,7 @@ abstract class DbModel extends Model
     }
 
 
-    public static function find($where = ['1' => 1], $separator = "AND")
+    public static function find($where = ['1' => 1], $separator = "AND", $orderBy="")
     {
         $tableName = (new static)->tableName();
         $attributes = array_keys($where);
@@ -108,6 +108,10 @@ abstract class DbModel extends Model
         );
 
         $sql = "SELECT * FROM $tableName WHERE $parameters;";
+        if(!empty($orderBy)){
+            $sql = "SELECT * FROM $tableName WHERE $parameters ORDER BY $orderBy[0] $orderBy[1];";
+        }
+
         $statement = self::prepare($sql);
 
         foreach ($where as $key => $value) {
@@ -342,6 +346,32 @@ abstract class DbModel extends Model
 
             return $listOfObjects;
         } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
+
+    public function belongsToMany($class, $orderBy)
+    {
+        try {
+            $searchedClass = new ReflectionClass($class);
+            $currentClassName = strtolower((new ReflectionClass($this))->getShortName());
+            $searchedTableName = $searchedClass->getMethod("tableName")->invoke(new $class());
+
+            $sql = "SELECT * FROM $searchedTableName WHERE id_$currentClassName=:$currentClassName";
+
+            if(!empty($orderBy)){
+                $order = $orderBy[1] ?? '';
+                $sql = $sql . " ORDER BY $orderBy[0] $order";
+            }
+
+            $statement = self::prepare($sql);
+            $statement->bindValue(":$currentClassName", $this->id);
+
+            $statement->execute();
+            return $statement->fetchAll(\PDO::FETCH_CLASS, Version::class);
+
+        }   catch (Exception $e) {
             dd($e->getMessage());
         }
     }
