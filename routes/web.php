@@ -51,3 +51,5 @@ Route::regex("/paste\/versions\/[a-zA-Z0-9]+/","VersionsController@index","get")
 Route::regex("/paste\/version\/[a-zA-Z0-9]+/","VersionsController@version","get");
 Route::regex("/versions\/delete\/[a-zA-Z0-9]+/","VersionsController@destroy","post");
 Route::regex("/versions\/promote\/[a-zA-Z0-9]+/","VersionsController@promote","post");
+Route::regex("/paste\/add-version\/[a-zA-Z0-9]+/","VersionsController@addVersion","get");
+Route::regex("/paste\/add-version\/[a-zA-Z0-9]+/","VersionsController@store","post");

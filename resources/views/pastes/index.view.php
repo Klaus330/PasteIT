@@ -46,10 +46,18 @@
                                     </a>
                                 </div>
                                 <div class="edit">
-                                    <a href="/pastes/edit/<?= $paste->slug ?>">
+                                    <a href="
+                                    <?php
+                                        if($paste->isOwner(auth()->id)){
+                                            echo "/pastes/edit/$paste->slug";
+                                        }else{
+                                            echo "/paste/add-version/$paste->slug";
+                                        }
+                                    ?>">
                                         <img src="/img/svg/edit.svg" alt="edit"/>
                                     </a>
                                 </div>
+                                <?php if($paste->isOwner(auth()->id)): ?>
                                 <div class="delete">
                                     <form action="/paste/delete/<?= $paste->slug ?>" method="post">
                                         <button class="btn">
@@ -57,6 +65,7 @@
                                         </button>
                                     </form>
                                 </div>
+                                <?php endif; ?>
                             </div>
                         <?php endif; ?>
                     </div>
