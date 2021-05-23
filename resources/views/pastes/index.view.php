@@ -92,7 +92,7 @@
                     <div class="highlight-pre">
                         <div class="source-code">
                             <pre class="source-pre">
-                                <code class="source <?= strtolower($paste->syntax()->name) ?>"><?= $latestVersion->code ?? $paste->code ?></code>
+                                <code id="source" class="source <?= strtolower($paste->syntax()->name) ?>"><?= $latestVersion->code ?? $paste->code ?></code>
                             </pre>
                         </div>
                     </div>
@@ -148,8 +148,22 @@
 
 </div>
 
-<script>hljs.highlightAll();</script>
+<script src="/js/highlight/patterns/<?= strtolower($paste->syntax()->name);?>.js"></script>
+<script src="/js/highlight/SyntaxHighlight.js"></script>
 <script>
+
+    window.addEventListener("load", () => {
+        let sourceCode = document.getElementById("source");
+
+        let syntax = new SyntaxHighlither();
+        console.log(syntax);
+        syntax.setLanguage("c",pattern);
+        syntax.highlight(sourceCode,"c");
+
+
+    });
+
+
     function updateViews(){
         let request = new XMLHttpRequest();
 

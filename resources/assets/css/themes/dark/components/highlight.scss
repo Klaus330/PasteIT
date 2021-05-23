@@ -2,28 +2,32 @@
   background: $secondary-color-dark;
 }
 
+.line{
+  color: white;
+}
+
 .toolbar {
   background: $secondary-color-dark;
 }
 
 .fn-call {
-  color: yellow;
+  color: #64aeb3;
 }
 
 .string {
-  color: #198754;
+  color: #64aeb3;
 }
 
 .keyword {
-  color: #0dcaf0;
+  color:  #508aaa;
 }
 
 .variable {
-  color: #ced4da;
+  color: #ffffff;
 }
 
-.comment {
-  color: #444444;
+.comment, .singlequote, .doublequote {
+  color: #414d62;
 }
 
 .boolean {
@@ -31,7 +35,7 @@
 }
 
 .number {
-  color: #dc3545;
+  color: #52708b;
 }
 
 .html-open, .html-close {
@@ -39,7 +43,7 @@
 }
 
 .symbol {
-  color: #79dea0;
+  color: #508aaa;
 }
 
 .semicolumn {
@@ -47,5 +51,11 @@
 }
 
 .source-pre, .source{
-  background: $primary-gray;
+  background: #181D26;
+}
+
+.php{
+  .variable{
+    color: #6AB0A3;
+  }
 }
