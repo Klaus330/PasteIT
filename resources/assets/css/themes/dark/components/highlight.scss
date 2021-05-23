@@ -2,7 +2,7 @@
   background: $secondary-color-dark;
 }
 
-.line{
+.line {
   color: white;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .keyword {
-  color:  #508aaa;
+  color: #508aaa;
 }
 
 .variable {
@@ -31,7 +31,7 @@
 }
 
 .boolean {
-  color: #0d6efd;
+  color: #dc322f;
 }
 
 .number {
@@ -50,12 +50,48 @@
   color: #f58e0f;
 }
 
-.source-pre, .source{
+.source-pre, .source {
   background: #181D26;
 }
 
-.php{
-  .variable{
+
+.html {
+  .htmlopen, .htmlclose,.htmlclosetag {
+    color: #6aaeec;
+  }
+  .attribute{
+    color:#cb4b16;
+  }
+}
+
+
+.c\+\+, .c {
+  .dependency {
+    color: #859900;
+  }
+
+  .function {
+    color:#b58900;
+  }
+}
+
+
+.sql {
+  .keyword {
+    color: #dc322f;
+  }
+
+  .symbol {
+    color: #d33682;
+  }
+}
+
+
+.php {
+  .variable {
     color: #6AB0A3;
+  }
+  .function {
+    color:#b58900;
   }
 }

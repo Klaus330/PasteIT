@@ -6,6 +6,9 @@
   .list-group-item {
     display: flex;
     flex-direction: column;
+    a:visited{
+      color: #7dc1ff;
+    }
   }
 }
 

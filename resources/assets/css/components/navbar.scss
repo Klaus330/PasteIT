@@ -186,7 +186,7 @@
   &::after {
     content: "›";
     position: absolute;
-    color: #ED3E44;
+    color: #f3d339;
     font-size: 24px;
     font-weight: bold;
     transform: rotate(90deg);
@@ -224,11 +224,11 @@
   }
 
   &:hover {
-    background-color: darken(#ED3E44, 5%);
+    background-color: #f3d339;
   }
 }
 
 
 .nav-user-name{
-  color: red;
+  color: #f3d339;
 }
