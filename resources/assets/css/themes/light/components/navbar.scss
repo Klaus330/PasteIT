@@ -34,6 +34,16 @@
   background: $primary-color-light;
 }
 
-.nav-user-name {
-  color: red;
+.nav-user-name{
+  color: #ffffff;
+}
+.dropdown-trigger{
+  &:after {
+    color: #fff;
+  }
+}
+.login-dropdown-menu-item {
+  &:hover {
+    background-color: #fff;
+  }
 }

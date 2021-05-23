@@ -92,7 +92,7 @@
                     <div class="highlight-pre">
                         <div class="source-code">
                             <pre class="source-pre">
-                                <code class="source <?= strtolower($paste->syntax()->name) ?>"><?= $latestVersion->code ?? $paste->code ?></code>
+                                <code id="source" class="source <?= strtolower($paste->syntax()->name) ?>"><?= $latestVersion->code ?? $paste->code ?></code>
                             </pre>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
             <div class="grid">
 
                 <div class="col-12 flex align-start">
-                    <h3 class="h3">RAW Paste data</h3>
+                    <label for="raw-data" class="h3">RAW Paste data</label>
                 </div>
 
                 <div class="col-12">
@@ -140,7 +140,7 @@
             <?php foreach ($latestPastes as $publicPaste): ?>
                 <li class="list-group-item">
                     <a href="/paste/view/<?= $publicPaste->slug ?>"><?= $publicPaste->title ?></a>
-                    <span><?= $publicPaste->syntax()->name ?> | <?= $paste->timeSinceCreation() ?></span>
+                    <span><?= $publicPaste->syntax()->name ?> | <?= $publicPaste->timeSinceCreation() ?></span>
                 </li>
             <?php endforeach; ?>
         </ul>
@@ -148,8 +148,22 @@
 
 </div>
 
-<script>hljs.highlightAll();</script>
+<script src="/js/highlight/patterns/<?= strtolower($paste->syntax()->name);?>.js"></script>
+<script src="/js/highlight/SyntaxHighlight.js"></script>
 <script>
+
+    window.addEventListener("load", () => {
+        let sourceCode = document.getElementById("source");
+        let patternName = "<?= strtolower($paste->syntax()->name);?>";
+        let syntax = new SyntaxHighlither();
+        console.log(syntax);
+        syntax.setLanguage(patternName,pattern);
+        syntax.highlight(sourceCode,patternName);
+
+
+    });
+
+
     function updateViews(){
         let request = new XMLHttpRequest();
 

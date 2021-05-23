@@ -2,36 +2,40 @@
   background: $secondary-color-dark;
 }
 
+.line {
+  color: white;
+}
+
 .toolbar {
   background: $secondary-color-dark;
 }
 
 .fn-call {
-  color: yellow;
+  color: #64aeb3;
 }
 
 .string {
-  color: #198754;
+  color: #64aeb3;
 }
 
 .keyword {
-  color: #0dcaf0;
+  color: #508aaa;
 }
 
 .variable {
-  color: #ced4da;
+  color: #ffffff;
 }
 
-.comment {
-  color: #444444;
+.comment, .singlequote, .doublequote {
+  color: #414d62;
 }
 
 .boolean {
-  color: #0d6efd;
+  color: #dc322f;
 }
 
 .number {
-  color: #dc3545;
+  color: #52708b;
 }
 
 .html-open, .html-close {
@@ -39,13 +43,55 @@
 }
 
 .symbol {
-  color: #79dea0;
+  color: #508aaa;
 }
 
 .semicolumn {
   color: #f58e0f;
 }
 
-.source-pre, .source{
-  background: $primary-gray;
+.source-pre, .source {
+  background: #181D26;
+}
+
+
+.html {
+  .htmlopen, .htmlclose,.htmlclosetag {
+    color: #6aaeec;
+  }
+  .attribute{
+    color:#cb4b16;
+  }
+}
+
+
+.c\+\+, .c {
+  .dependency {
+    color: #859900;
+  }
+
+  .function {
+    color:#b58900;
+  }
+}
+
+
+.sql {
+  .keyword {
+    color: #dc322f;
+  }
+
+  .symbol {
+    color: #d33682;
+  }
+}
+
+
+.php {
+  .variable {
+    color: #6AB0A3;
+  }
+  .function {
+    color:#b58900;
+  }
 }

@@ -6,7 +6,7 @@ $this->setTitle("Paste It - Home")
     <form action="/pastes" method="POST">
         <div class="row home-first">
             <div class="home-paste">
-                <h4 class="h4">New Paste</h4>
+                <label for="pasteit" class="h4">New Paste</label>
                 <textarea name="code" id="pasteit" cols="30" rows="15"></textarea>
             </div>
             <aside class="home-aside sm-hidden">
@@ -58,7 +58,7 @@ $this->setTitle("Paste It - Home")
                         <input type="hidden" name="expiration_date" value="1 month">
                     <?php else: ?>
                     <div class="col-5 col-md-3 flex align-start">
-                        <label class="form-label" for="exposure">Expiration Date:</label>
+                        <label class="form-label" for="expiration_date">Expiration Date:</label>
                     </div>
                     <div class="col-12 col-md-6 flex align-center">
                         <select name="expiration_date" id="expiration_date" class="form-select">
