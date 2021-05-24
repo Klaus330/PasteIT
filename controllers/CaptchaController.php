@@ -15,7 +15,12 @@ class CaptchaController extends Controller
         $backgroundColor = \imagecolorallocate($image, 255,255,255);
 
         $textcolor = \imagecolorallocate($image, 0, 0, 0);
-        $font = './fonts/Roboto.ttf';
+        $textcolors[] = $textcolor;
+
+        $textcolor = \imagecolorallocate($image, 10, 50, 233);
+        $textcolors[] = $textcolor;
+
+        $fonts = ['./fonts/Roboto.ttf','./fonts/Reggae.ttf'];
         \imagefilledrectangle($image, 0, 0, 200, 38, $backgroundColor);
 
 
@@ -30,7 +35,12 @@ class CaptchaController extends Controller
         }
 
 
-        \imagettftext($image, 20, 0, 60, 28, $textcolor, $font, $captchaCode);
+        for($i=0; $i<strlen($captchaCode);$i++){
+            $letter_space = 170/strlen($captchaCode);
+            $initial = 15;
+
+            imagettftext($image, 20, rand(-15,15), $initial+$i*$letter_space,28,$textcolors[rand(0, 1)],$fonts[rand(0,1)],$captchaCode[$i]);
+        }
 
         $fileName = rand() . ".png";
         $path = app()::$ROOT_DIR . "/public/captcha/" . $fileName;
