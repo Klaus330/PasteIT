@@ -8,7 +8,7 @@ class m0007_create_code_versions_table extends \app\core\Migration
     {
         $sql = "
             CREATE TABLE IF NOT EXISTS code_versions(
-                id INT PRIMARY KEY AUTOINCREMENT,
+                id INT PRIMARY KEY AUTO_INCREMENT,
                 id_paste INT,
                 FOREIGN KEY (id_paste) REFERENCES pastes(id) ON DELETE CASCADE,
                 id_user INT,
