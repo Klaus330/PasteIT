@@ -16,31 +16,20 @@ let pattern = [
         match: /^(\`[^\`]*`)/
     }, {
         name: 'symbol',
-        match: /^(-&gt;|=>|=|\+|::|-|\*|<|>|=>|<=|\[|\]|!=|!|\.)/
+        match: /^(=>|=|\+|::|-|\*|<|>|=>|<=|\[|\]|!=|!|\.|<<|>>|\&\&|\|\|<|>)/
     }, {
         name: 'keyword',
-        match: /^(function|return|switch|case|for|if|else|this|public|private|protected)\b/
-    }, {
+        match: /^(const|return|switch|case|for|if|else|default|this|type|public|private|protected|int|double|float|boolean|char|std|#include|cin|cout|main|class|void|using|namespace)\b/
+    },  {
         name: 'boolean',
         match: [/^(true|false)/]
     }, {
         name: 'number',
         match: [/^(\d+)/]
-    }, {
-        name: 'destructure',
-        match: [/^\{([^\:\}\n]+)\}/, '{', '}']
     },
     {
-        name: "variable",
-        match: /^(\$[a-zA-z_][a-zA-Z0-9_]+)/
-    },
-    {
-        name:"function",
-        match:/^([\w\d]+)(\(.*\).*)/
-    },
-    {
-        name:"brackets",
-        match: /^(\(|\))/
+        name:"dependency",
+        match:/^(\&lt;.+\&gt;)/
     }
 ];
 

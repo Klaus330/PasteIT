@@ -16,44 +16,28 @@ let pattern = [
         match: /^(\`[^\`]*`)/
     }, {
         name: 'symbol',
-        match: /^(=>|=|\+|::|-|\*|<|>|=>|<=|\[|\]|!=|!|\.)/
+        match: /^(=>|=|\+|::|-|\*|<|>|=>|<=|\[|\]|!=|!|\.|<<|>>|\&\&|\|\|<|>)/
     }, {
         name: 'keyword',
-        match: /^(function|var|let|const|return|switch|case|for|if|else|default|infuse|ensure|reduce|this|type|public|private|protected)\b/
-    }, {
-        name: 'modulerename',
-        match: [/^as\s+([^\s]+)\s+from/, 'as ', ' from']
-    }, {
-        name: 'modulename',
-        match: [/^([A-z_]+)\s+from\b/, '', ' from']
-    }, {
+        match: /^(const|return|switch|case|for|if|else|default|this|type|public|private|protected|int|double|float|boolean|char|std|#include|cin|cout|class|void|using|namespace)\b/
+    },  {
         name: 'boolean',
         match: [/^(true|false)/]
     }, {
         name: 'number',
         match: [/^(\d+)/]
-    }, {
-        name: 'destructure',
-        match: [/^\{([^\:\}\n]+)\}/, '{', '}']
-    }, {
-        name: 'objectkey',
-        match: [/^([^\s\:]+)\:/, '', ':']
     },
     {
-        name: 'htmlopen',
-        match: /^(&lt;[^\/].+?&gt;)/
+        name:"dependency",
+        match:/^(\&lt;.+\&gt;)/
     },
     {
-        name:"htmlclose",
-        match: /^(&lt;\/.+?&gt;)/
+        name:"function",
+        match:/^([\w\d]+)(\(.*\).*)/
     },
-    // {
-    //   name:"attribute",
-    //   match:  /( [a-z]+=".+" )/
-    // },
     {
-        name: "signma string",
-        match: /^(\`\w+\`)/
+        name:"brackets",
+        match: /^(\(.*\))/
     }
 ];
 
