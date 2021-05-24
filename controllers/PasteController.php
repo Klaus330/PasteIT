@@ -97,14 +97,14 @@ class PasteController extends Controller
 
     private function canShowPaste($paste)
     {
+        if ($paste == false) {
+            throw new PageNotFoundException();
+        }
 
         if((session()->has("user") && $paste->isOwner(auth()->id))){
             return;
         }
 
-        if ($paste == false) {
-            throw new PageNotFoundException();
-        }
         $slug = $paste->slug;
         if ($paste->isPrivate()) {
             if (!session()->has('user')) {
@@ -231,24 +231,32 @@ class PasteController extends Controller
 
     public function addEditor(Request $request)
     {
+
+        header("Access-Contorl-Allow-Origin:*");
+        header("Content-Type: application/json; charset=UTF-8");
+        header("Access-Control-Allow-Methods: POST");
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With");
+
         $id_paste = $request->getParamForRoute('/paste/add-editor/');
         $paste = Paste::findOne(['id' => $id_paste]);
 
         if ($request->validate([
-            "username" => [Validator::RULE_REQUIRED]
+            'username' => [Validator::RULE_REQUIRED]
         ])) {
+
             $username = $request->getBody()["username"];
 
             $user = User::findOne(['username' => $username]);
-
+            if($user === false){
+                response()->setStatusCode(500);
+                return json_encode(["errors"=>["username"=>"User not found"]]);
+            }
             $paste->addEditor($user->id);
 
-            session()->setFlash("success", "Editor added");
-
-            return redirect("/paste/view/$paste->slug");
+            return json_encode(["message"=>"Editor adaugat cu success"]);
         }
-
-        return redirect("/paste/view/$paste->slug")->withErrors($request->getErrors());
+        response()->setStatusCode(500);
+        return json_encode(["errors"=>$request->getErrors()]);
     }
 
 
