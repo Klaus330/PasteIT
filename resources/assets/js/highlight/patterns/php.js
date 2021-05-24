@@ -16,8 +16,7 @@ let pattern = [
         match: /^(\`[^\`]*`)/
     }, {
         name: 'symbol',
-
-        match: /^(-&gt;|=&gt;|=|\+|::|-|\*|<|>|&&|&lt;=|\[|\]|!=|!|\.|null|\?\?)/
+        match: /^(-&gt;|=&gt;|=|\+|::|-|\*|<|>|&&|&lt;=|\[|\]|!=|!|\.|null|\?\?|&lt;\?php|\?&gt;)/
     }, {
         name: 'keyword',
         match: /^(function|return|switch|case|for|if|else|this|public|private|protected|use|class|extends|implements|namespace|new|throw)\b/
