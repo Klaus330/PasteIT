@@ -83,10 +83,11 @@ class PasteController extends Controller
 
         $this->canShowPaste($paste);
 
-        if ($paste->isOwner(auth()->id) || !$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
+        if ((session()->has("user") && $paste->isOwner(auth()->id)) || !$paste->hasPassword() || $paste->matchPassword(session()->getFlash($slug))) {
             $latestPastes = Paste::latest(5, ["expired" => 0, "exposure" => 0]);
 
             $latestVersion = $paste->versions(['updated_at', 'DESC'])[0] ?? null;
+
 
             return view('/pastes/index', compact("paste", 'latestPastes', 'latestVersion'));
         }
@@ -96,7 +97,6 @@ class PasteController extends Controller
 
     private function canShowPaste($paste)
     {
-
         if ($paste == false) {
             throw new PageNotFoundException();
         }
@@ -116,7 +116,7 @@ class PasteController extends Controller
             throw new PageNotFoundException();
         }
 
-        if (!$paste->isOwner(auth()->id)) {
+        if ((session()->has("user") &&!$paste->isOwner(auth()->id))) {
             if ($paste->isBurnAfterRead()) {
 
                 if (!session()->hasFlash("$slug-burn")) {
