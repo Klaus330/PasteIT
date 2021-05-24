@@ -119,7 +119,7 @@
             <div class="row">
                 <div class="grid">
                     <div class="col-12 col-md-12">
-                        <form action="/paste/add-editor/<?= $paste->id ?>" method="POST" class="grid">
+                        <form onsubmit="event.preventDefault()" class="grid">
                             <div class="col-6  flex align-start justify-start flex-column">
                                 <label for="username" class="form-label">Username:</label>
                                 <input type="text" name="username" id="username" class="form-control"
