@@ -19,7 +19,7 @@ let pattern = [
         match: /^(=>|=|\+|::|-|\*|<|>|=>|<=|\[|\]|!=|!|\.|<<|>>|\&\&|\|\|<|>)/
     }, {
         name: 'keyword',
-        match: /^(const|return|switch|case|for|if|else|default|this|type|public|private|protected|int|double|float|boolean|char|std|#include|cin|cout|class|void|using|namespace)\b/
+        match: /^(const|return|switch|case|for|if|else|default|this|type|public|private|protected|int|double|float|boolean|char|std|#include|cin|cout|main|class|void|using|namespace)\b/
     },  {
         name: 'boolean',
         match: [/^(true|false)/]
@@ -30,14 +30,6 @@ let pattern = [
     {
         name:"dependency",
         match:/^(\&lt;.+\&gt;)/
-    },
-    {
-        name:"function",
-        match:/^([\w\d]+)(\(.*\).*)/
-    },
-    {
-        name:"brackets",
-        match: /^(\(.*\))/
     }
 ];
 
