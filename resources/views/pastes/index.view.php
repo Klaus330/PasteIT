@@ -124,7 +124,7 @@
                                 <label for="username" class="form-label">Username:</label>
                                 <input type="text" name="username" id="username" class="form-control"
                                        placeholder="Give access to edit">
-                                <button class="btn btn-primary mt-2"> Give Access</button>
+                                <button class="btn btn-primary mt-2" id="editor-button"> Give Access</button>
                             </div>
                         </form>
                     </div>
@@ -132,6 +132,18 @@
             </div>
         <?php endif; ?>
     </section>
+
+
+
+    <div class="modal" id="<?= $paste->slug ?>">
+        <div class="modal-content">
+            <span class="close" id="close-button">&times;</span>
+            <div>
+                <h3 id="modal-title">Editor adaugat cu success</h3>
+            </div>
+        </div>
+    </div>
+
 
 
     <aside class="home-aside sm-hidden settings-aside">
@@ -162,6 +174,46 @@
 
 
     });
+
+
+    document.getElementById("editor-button").addEventListener("click",addEditor);
+
+    function addEditor()
+    {
+        let modal = document.getElementById("<?= $paste->slug ?>");
+        let closeButton = document.getElementById("close-button");
+
+
+
+        closeButton.onclick = function (){
+            modal.style.display = "none";
+        }
+
+        let input = document.getElementById("username");
+        let modalTitle = document.getElementById("modal-title");
+
+        let request = new XMLHttpRequest();
+        let url = '/paste/add-editor/<?= $paste->id ?>';
+        request.open("POST", url, true);
+        request.responseType="json";
+
+        let payload = new FormData();
+        payload.append("username",input.value);
+
+
+        request.onreadystatechange = function (){
+            if (this.readyState === 4 && this.status === 200) {
+                modalTitle.innerText =  request.response["message"];
+                input.value="";
+                modal.style.display="flex";
+                return;
+            }
+            modalTitle.innerText =  request.response["errors"]["username"];
+            modal.style.display="flex";
+        };
+        request.send(payload);
+
+    }
 
 
     function updateViews(){
