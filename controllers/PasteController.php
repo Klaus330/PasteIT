@@ -97,6 +97,11 @@ class PasteController extends Controller
 
     private function canShowPaste($paste)
     {
+
+        if((session()->has("user") && $paste->isOwner(auth()->id))){
+            return;
+        }
+
         if ($paste == false) {
             throw new PageNotFoundException();
         }
@@ -116,22 +121,22 @@ class PasteController extends Controller
             throw new PageNotFoundException();
         }
 
-        if ((session()->has("user") &&!$paste->isOwner(auth()->id))) {
-            if ($paste->isBurnAfterRead()) {
 
-                if (!session()->hasFlash("$slug-burn")) {
-                    redirect("/pastes/burn-after-read/$slug");
-                    return;
-                }
-                $paste->destroy();
-            }
+        if ($paste->isBurnAfterRead()) {
 
-            if ($paste->hasPassword()
-                && !session()->hasFlash($slug)
-            ) {
-                redirect("/pastes/locked-paste/$slug");
+            if (!session()->hasFlash("$slug-burn")) {
+                redirect("/pastes/burn-after-read/$slug");
+                return;
             }
+            $paste->destroy();
         }
+
+        if ($paste->hasPassword()
+            && !session()->hasFlash($slug)
+        ) {
+            redirect("/pastes/locked-paste/$slug");
+        }
+
     }
 
 
