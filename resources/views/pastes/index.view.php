@@ -171,8 +171,6 @@
         console.log(syntax);
         syntax.setLanguage(patternName,pattern);
         syntax.highlight(sourceCode,patternName);
-
-
     });
 
 

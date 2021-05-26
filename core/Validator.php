@@ -15,11 +15,9 @@ class Validator
     protected static $errors = [];
 
 
-
     public static function validate($data, $rulesArray)
     {
-        if($rulesArray === [] || $data === [])
-        {
+        if ($rulesArray === [] || $data === []) {
             throw new \InvalidArgumentException('No Rules Provided.');
         }
 
@@ -38,39 +36,31 @@ class Validator
                         }
                         break;
                     case Validator::RULE_EMAIL:
-                        if(!filter_var($value, FILTER_VALIDATE_EMAIL)){
+                        if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
                             self::addErrorForRule($attribute, self::RULE_EMAIL);
                         }
                         break;
                     case Validator::RULE_MIN:
-                        if(strlen($value) < $rule['min']){
+                        if (strlen($value) < $rule['min']) {
                             self::addErrorForRule($attribute, self::RULE_MIN, $rule);
                         }
                         break;
                     case Validator::RULE_MAX:
-                        if(strlen($value) < $rule['max']){
+                        if (strlen($value) < $rule['max']) {
                             self::addErrorForRule($attribute, self::RULE_MAX, $rule);
                         }
                         break;
                     case Validator::RULE_MATCH:
-                            if($value !== $data[$rule['match']]){
-                                self::addErrorForRule($attribute, self::RULE_MATCH, $rule);
-                            }
+                        if ($value !== $data[$rule['match']]) {
+                            self::addErrorForRule($attribute, self::RULE_MATCH, $rule);
+                        }
                         break;
                     case Validator::RULE_UNIQUE:
-                        $tableName = $rule['class']->tableName();
-                        $className = $rule['class']::class;
                         $uniqueAttribute = $rule['attribute'] ?? $attribute;
 
+                       $isUnique = $rule['class']->checkIfUnique($uniqueAttribute, $value);
 
-                        $sql="SELECT * FROM $tableName WHERE $uniqueAttribute=:$uniqueAttribute";
-
-                        $statement = app('db')->prepare($sql);
-                        $statement->bindValue(":$uniqueAttribute", $value);
-                        $statement->execute();
-                        $record = $statement->fetchObject();
-
-                        if($record) {
+                        if (!$isUnique) {
                             self::addErrorForRule($attribute, self::RULE_UNIQUE);
                         }
                         break;
@@ -80,11 +70,12 @@ class Validator
         return self::$errors;
     }
 
-    protected static function addErrorForRule($attribute, $rule, $params = []){
-        $message =  Validator::getErrorMessages()[$rule] ?? '';
+    protected static function addErrorForRule($attribute, $rule, $params = [])
+    {
+        $message = Validator::getErrorMessages()[$rule] ?? '';
 
-        if(!empty($params)){
-            foreach ($params as $key => $value){
+        if (!empty($params)) {
+            foreach ($params as $key => $value) {
                 $message = str_replace("{{$key}}", $value, $message);
             }
         }
@@ -99,8 +90,9 @@ class Validator
         self::$errors[$attribute][] = $message;
     }
 
-    public static function getErrorMessages(){
-        return[
+    public static function getErrorMessages()
+    {
+        return [
             Validator::RULE_REQUIRED => "This field is required",
             Validator::RULE_EMAIL => "This field must be a valid email adress",
             Validator::RULE_MAX => "Max length of this field must be {max}",
@@ -120,4 +112,8 @@ class Validator
         return self::$errors[$attribute][0] ?? '';
     }
 
+    public static function getErrors()
+    {
+        return self::$errors;
+    }
 }

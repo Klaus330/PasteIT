@@ -287,7 +287,7 @@ abstract class DbModel extends Model
             $statement->execute();
             return true;
         } catch (Exception $e) {
-            $e->getMessage();
+            dd($e->getMessage());
         }
         return false;
     }
@@ -376,5 +376,19 @@ abstract class DbModel extends Model
         }
     }
 
+    public function checkIfUnique($attribute, $value)
+    {
+        $tableName = $this->tableName();
 
+
+        $sql = "SELECT * FROM $tableName WHERE $attribute=:$attribute";
+
+        $statement = app('db')->prepare($sql);
+        $statement->bindValue(":$attribute", $value);
+        $statement->execute();
+        $record = $statement->fetchObject();
+
+        return ($record == null);
+
+    }
 }

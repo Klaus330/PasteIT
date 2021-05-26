@@ -67,7 +67,7 @@
             <div class="grid">
                 <div class="col-md-offset-3"></div>
                 <div class="form-check col-10 col-md-8 flex align-start">
-                    <input type="checkbox" class="form-check-input" name="burn" id="burn" <?=$paste->burn_after_read != 0 ? "checked" : '' ?>>
+                    <input type="checkbox" class="form-check-input" name="burn_after_read" id="burn" <?=$paste->burn_after_read != 0 ? "checked" : '' ?>/>
                     <label class="form-label" for="burn">Burn after read</label>
                 </div>
             </div>
@@ -85,11 +85,11 @@
             <div class="grid">
 
                 <div class="col-12 flex align-start">
-                    <h3 class="h3">Edit paste</h3>
+                    <label for="code" class="h3">Edit paste</label>
                 </div>
 
                 <div class="col-12">
-                    <textarea name="code" id="code" cols="30" rows="10" class="paste-text-area"><?= $latestVersion->code ?? $paste->code?></textarea>
+                    <textarea name="code" id="code" cols="30" rows="30" class="paste-text-area"><?= $latestVersion->code ?? $paste->code?></textarea>
                 </div>
             </div>
         </div>

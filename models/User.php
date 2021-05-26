@@ -59,6 +59,7 @@ class User extends DbModel
 
         if(!$user){
             Validator::addError('email', 'Please check your credentials and try again');
+
             return false;
         }
 

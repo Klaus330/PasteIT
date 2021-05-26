@@ -179,10 +179,11 @@ class PasteController extends Controller
             $pastePayload = [
                 "exposure" => $body["exposure"],
                 "id_syntax" => $body["id_syntax"],
-                "burn_after_read" => $body["burn"] ?? 0,
+                "burn_after_read" => $body["burn"] ?? "",
                 "password" => $password,
                 "title" => $body["title"]
             ];
+
 
             if(!empty($body['expiration_date']))
             {

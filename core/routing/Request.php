@@ -83,6 +83,10 @@ class Request
      */
     public function getErrors()
     {
+        if(!empty(Validator::getErrors())){
+            $this->errors = Validator::getErrors();
+        }
+
         return $this->errors;
     }
 

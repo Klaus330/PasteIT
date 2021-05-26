@@ -21,9 +21,9 @@ class m0005_create_pastes_table extends Migration
               expired BIT DEFAULT 0,
               created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
               id_user INT,
-              FOREIGN KEY (id_user) REFERENCES users(id),
+              FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
               id_syntax INT,
-              FOREIGN KEY (id_syntax) REFERENCES highlights(id)
+              FOREIGN KEY (id_syntax) REFERENCES highlights(id) ON DELETE CASCADE
             ) ENGINE=INNODB;
 
         ";
