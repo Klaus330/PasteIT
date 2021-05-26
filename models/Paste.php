@@ -153,6 +153,11 @@ class Paste extends DbModel
             $end = new \DateTimeImmutable($this->expiration_date);
 
             $dateString = new DateFormatter($end->diff($start));
+
+            if($dateString->isInvert()){
+                return "expired";
+            }
+
             return $dateString->displayHumanFormat();
         }
         return "never";

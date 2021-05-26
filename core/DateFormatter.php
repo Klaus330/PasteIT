@@ -37,4 +37,10 @@ class DateFormatter
             return "$nrOfYears sec";
         }
     }
+
+    public function isInvert()
+    {
+        return ($this->interval->invert == 0);
+    }
+
 }

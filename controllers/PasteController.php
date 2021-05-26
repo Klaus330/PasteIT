@@ -101,6 +101,15 @@ class PasteController extends Controller
             throw new PageNotFoundException();
         }
 
+        if ($paste->expired()) {
+            if((session()->has("user") && $paste->isOwner(auth()->id))){
+                return;
+            }
+            
+            $paste->edit(['expired' => 1]);
+            throw new PageNotFoundException();
+        }
+
         if((session()->has("user") && $paste->isOwner(auth()->id)) || (session()->has("user") && $paste->canView(auth()->id))){
             return;
         }
@@ -116,10 +125,7 @@ class PasteController extends Controller
             }
         }
 
-        if ($paste->expired()) {
-            $paste->edit(['expired' => 1]);
-            throw new PageNotFoundException();
-        }
+
 
 
         if ($paste->isBurnAfterRead()) {
