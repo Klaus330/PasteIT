@@ -24,6 +24,7 @@ class UserController extends Controller
         $latestPastes = Paste::latest(5, ["expired" => 0, "exposure" => 0]);
         $syntaxes = Syntax::find();
 
+
         return view('/user/settings', compact(["userId", "errors", 'settings', 'latestPastes', 'syntaxes']));
     }
 
@@ -57,10 +58,34 @@ class UserController extends Controller
 
     public function myPastes()
     {
-
-        $userPastes=Paste::latest(5,["id_user"=>auth()->id]);
-        return view('/user/mypastes',compact('userPastes'));
+        return view('/user/mypastes');
     }
+
+
+    public function paginateMyPastes(Request $request)
+    {
+        header("Access-Contorl-Allow-Origin:*");
+        header("Content-Type: application/json; charset=UTF-8");
+        header("Access-Control-Allow-Methods: POST");
+        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With");
+
+        $body = $request->getBody();
+
+
+        $pastes = Paste::paginate($body['page_nr'],5,['id_user'=>$body['user_id']]);
+        array_map(function($paste){
+            return  $paste->load(['syntax']);
+        },$pastes);
+
+        if(empty($pastes)){
+            response()->setStatusCode(404);
+            return json_encode(["error"=> "No Data Found"]);
+        }
+
+        return json_encode(["data"=>$pastes]);
+    }
+
+
 
     public function destroy()
     {
@@ -76,7 +101,6 @@ class UserController extends Controller
             "username" => [Validator::RULE_REQUIRED],
             "email" => [Validator::RULE_REQUIRED, Validator::RULE_EMAIL]
         ];
-
 
         if ($request->validate($rules)) {
             auth()->username = $request->getBody()["username"];

@@ -44,7 +44,7 @@ Route::regex("/paste\/delete\/[a-zA-Z0-9]+/","PasteController@delete","post");
 Route::regex("/paste\/add-editor\/[0-9]+/","PasteController@addEditor","post");
 Route::regex("/pastes\/update-views\/[a-zA-Z0-9]+/","PasteController@updateViews","post");
 Route::regex("/paste\/raw\/[a-zA-Z0-9]+/","PasteController@getRawData","get");
-
+Route::regex("/user\/my-pastes\/paginate/","UserController@paginateMyPastes","post");
 
 // Versions
 Route::regex("/paste\/versions\/[a-zA-Z0-9]+/","VersionsController@index","get");

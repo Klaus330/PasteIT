@@ -96,7 +96,7 @@ abstract class DbModel extends Model
     }
 
 
-    public static function find($where = ['1' => 1], $separator = "AND", $orderBy="")
+    public static function find($where = ['1' => 1], $separator = "AND", $orderBy = "")
     {
         $tableName = (new static)->tableName();
         $attributes = array_keys($where);
@@ -108,7 +108,7 @@ abstract class DbModel extends Model
         );
 
         $sql = "SELECT * FROM $tableName WHERE $parameters;";
-        if(!empty($orderBy)){
+        if (!empty($orderBy)) {
             $sql = "SELECT * FROM $tableName WHERE $parameters ORDER BY $orderBy[0] $orderBy[1];";
         }
 
@@ -315,7 +315,7 @@ abstract class DbModel extends Model
     }
 
 
-    public function hasMany($class, $relationTableName, $where = []): array
+    public function hasMany($class, $relationTableName, $where = [], $separator = "AND"): array
     {
         try {
             $searchedClass = new ReflectionClass($class);
@@ -324,19 +324,24 @@ abstract class DbModel extends Model
             $currentClassName = strtolower((new ReflectionClass($this))->getShortName());
 
 
-            $whereCondition = implode(",",
+            $whereCondition = implode($separator,
                 array_map(fn($key) => " $key=:$key ", array_keys($where))
             );
 
+            if (!empty($where)) {
+                $sql = "SELECT id_$searchedClassName  FROM $relationTableName WHERE id_$currentClassName=:$currentClassName AND $whereCondition;";
+                $statement = self::prepare($sql);
 
-            $sql = "SELECT id_$searchedClassName  FROM $relationTableName WHERE id_$currentClassName=:$currentClassName AND $whereCondition;";
+                foreach ($where as $key => $value) {
+                    $statement->bindValue(":$key", $value);
+                }
+            } else {
+                $sql = "SELECT id_$searchedClassName  FROM $relationTableName WHERE id_$currentClassName=:$currentClassName;";
+                $statement = self::prepare($sql);
+            }
 
-            $statement = self::prepare($sql);
             $statement->bindValue(":$currentClassName", $this->id);
 
-            foreach($where as $key =>$value){
-                $statement->bindValue(":$key", $value);
-            }
 
             $statement->execute();
 
@@ -372,7 +377,7 @@ abstract class DbModel extends Model
 
             $sql = "SELECT * FROM $searchedTableName WHERE id_$currentClassName=:$currentClassName";
 
-            if(!empty($orderBy)){
+            if (!empty($orderBy)) {
                 $order = $orderBy[1] ?? '';
                 $sql = $sql . " ORDER BY $orderBy[0] $order";
             }
@@ -381,9 +386,9 @@ abstract class DbModel extends Model
             $statement->bindValue(":$currentClassName", $this->id);
 
             $statement->execute();
-            return $statement->fetchAll(\PDO::FETCH_CLASS, Version::class);
+            return $statement->fetchAll(\PDO::FETCH_CLASS, $class);
 
-        }   catch (Exception $e) {
+        } catch (Exception $e) {
             dd($e->getMessage());
         }
     }
@@ -401,6 +406,44 @@ abstract class DbModel extends Model
         $record = $statement->fetchObject();
 
         return ($record == null);
+    }
 
+
+    public static function paginate($pageNr, $nrOfRecords, $where = [], $separator = "AND")
+    {
+        try {
+            $tableName = (new static)->tableName();
+            $lastPageNr = ($pageNr - 1) * $nrOfRecords;
+
+            $whereCondition = implode($separator,
+                array_map(fn($key) => " $key=:$key ", array_keys($where))
+            );
+
+
+            if (empty($where)) {
+                $sql = "SELECT * FROM $tableName LIMIT $lastPageNr, $pageNr";
+                $statement = self::prepare($sql);
+            } else {
+                $sql = "SELECT * FROM $tableName WHERE $whereCondition LIMIT $lastPageNr, $nrOfRecords";
+                $statement = self::prepare($sql);
+
+                foreach ($where as $key => $value) {
+                    $statement->bindValue(":$key", $value);
+                }
+            }
+
+            $statement->execute();
+            return $statement->fetchAll(\PDO::FETCH_CLASS, static::class);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
+
+    public function load($dataToLoad) // ['editors', 'syntax', 'user']
+    {
+          foreach($dataToLoad as $method)
+          {
+            $this->$method = $this->$method();
+          }
     }
 }

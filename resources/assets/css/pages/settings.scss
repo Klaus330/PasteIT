@@ -20,6 +20,7 @@
 }
 
 .settings-content{
+  flex-wrap: wrap;
   display: flex;
   flex-direction: column;
   @include mq(medium)
