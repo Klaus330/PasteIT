@@ -13,17 +13,6 @@
                     Create new account
                 </a>
             </div>
-            <div class="grid">
-                <div class="col-md-8 col-5 ">
-                </div>
-
-                <div class="col-md-4 col-7 mt-2">
-                    <a href="/forgot-password" class="btn-link">
-                        Forgot your password?
-                    </a>
-                </div>
-
-            </div>
 
         <?php \app\forms\Form::end() ?>
     </div>

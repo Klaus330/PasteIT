@@ -48,23 +48,23 @@
                                 <div class="edit">
                                     <a href="
                                     <?php
-                                        if($paste->isOwner(auth()->id)){
-                                            echo "/pastes/edit/$paste->slug";
-                                        }else{
-                                            echo "/paste/add-version/$paste->slug";
-                                        }
+                                    if ($paste->isOwner(auth()->id)) {
+                                        echo "/pastes/edit/$paste->slug";
+                                    } else {
+                                        echo "/paste/add-version/$paste->slug";
+                                    }
                                     ?>">
                                         <img src="/img/svg/edit.svg" alt="edit"/>
                                     </a>
                                 </div>
-                                <?php if($paste->isOwner(auth()->id)): ?>
-                                <div class="delete">
-                                    <form action="/paste/delete/<?= $paste->slug ?>" method="post">
-                                        <button class="btn">
-                                            <img src="/img/svg/delete.svg" alt="delete"/>
-                                        </button>
-                                    </form>
-                                </div>
+                                <?php if ($paste->isOwner(auth()->id)): ?>
+                                    <div class="delete">
+                                        <form action="/paste/delete/<?= $paste->slug ?>" method="post">
+                                            <button class="btn">
+                                                <img src="/img/svg/delete.svg" alt="delete"/>
+                                            </button>
+                                        </form>
+                                    </div>
                                 <?php endif; ?>
                             </div>
                         <?php endif; ?>
@@ -92,7 +92,8 @@
                     <div class="highlight-pre">
                         <div class="source-code">
                             <pre class="source-pre">
-                                <code id="source" class="source <?= strtolower($paste->syntax()->name) ?>"><?= $latestVersion->code ?? $paste->code ?></code>
+                                <code id="source"
+                                      class="source <?= strtolower($paste->syntax()->name) ?>"><?= $latestVersion->code ?? $paste->code ?></code>
                             </pre>
                         </div>
                     </div>
@@ -124,6 +125,9 @@
                                 <label for="username" class="form-label">Username:</label>
                                 <input type="text" name="username" id="username" class="form-control"
                                        placeholder="Give access to edit">
+                                <div class="col-12">
+                                    <p class="text-danger" id="editor-error"></p>
+                                </div>
                                 <button class="btn btn-primary mt-2" id="editor-button"> Give Access</button>
                             </div>
                         </form>
@@ -133,18 +137,7 @@
         <?php endif; ?>
     </section>
 
-
-
-    <div class="modal" id="<?= $paste->slug ?>">
-        <div class="modal-content">
-            <span class="close" id="close-button">&times;</span>
-            <div>
-                <h3 id="modal-title">Editor adaugat cu success</h3>
-            </div>
-        </div>
-    </div>
-
-
+    <?php include("../resources/views/partials/modals/simple-modal.view.php")?>
 
     <aside class="home-aside sm-hidden settings-aside">
         <h4 class="h4">Public Pastes</h4>
@@ -160,7 +153,7 @@
 
 </div>
 
-<script src="/js/highlight/patterns/<?= strtolower($paste->syntax()->name);?>.js"></script>
+<script src="/js/highlight/patterns/<?= strtolower($paste->syntax()->name); ?>.js"></script>
 <script src="/js/highlight/SyntaxHighlight.js"></script>
 <script>
 
@@ -169,21 +162,20 @@
         let patternName = "<?= strtolower($paste->syntax()->name);?>";
         let syntax = new SyntaxHighlither();
         console.log(syntax);
-        syntax.setLanguage(patternName,pattern);
-        syntax.highlight(sourceCode,patternName);
+        syntax.setLanguage(patternName, pattern);
+        syntax.highlight(sourceCode, patternName);
     });
 
 
-    document.getElementById("editor-button").addEventListener("click",addEditor);
+    document.getElementById("editor-button").addEventListener("click", addEditor);
 
-    function addEditor()
-    {
+    function addEditor() {
         let modal = document.getElementById("<?= $paste->slug ?>");
         let closeButton = document.getElementById("close-button");
+        let error = document.getElementById("editor-error");
 
 
-
-        closeButton.onclick = function (){
+        closeButton.onclick = function () {
             modal.style.display = "none";
         }
 
@@ -193,35 +185,36 @@
         let request = new XMLHttpRequest();
         let url = '/paste/add-editor/<?= $paste->id ?>';
         request.open("POST", url, true);
-        request.responseType="json";
+        request.responseType = "json";
 
         let payload = new FormData();
-        payload.append("username",input.value);
+        payload.append("username", input.value);
 
 
-        request.onreadystatechange = function (){
+        request.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
-                modalTitle.innerText =  request.response["message"];
-                input.value="";
-                modal.style.display="flex";
+                modalTitle.innerText = request.response["message"];
+                input.value = "";
+                modal.style.display = "flex";
+                error.innerText = "";
                 return;
             }
-            modalTitle.innerText =  request.response["errors"]["username"];
-            modal.style.display="flex";
+
+            error.innerText = request.response["errors"]["username"];
         };
         request.send(payload);
 
     }
 
 
-    function updateViews(){
+    function updateViews() {
         let request = new XMLHttpRequest();
 
         let url = '/pastes/update-views/<?= $paste->slug?>';
         request.open("POST", url, true);
-        request.responseType="json";
+        request.responseType = "json";
 
-        request.onreadystatechange = function (){
+        request.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 let response = request.response;
                 let viewsSpan = document.getElementById("views");
@@ -230,5 +223,6 @@
         };
         request.send();
     }
+
     updateViews();
 </script>
