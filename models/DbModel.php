@@ -315,17 +315,29 @@ abstract class DbModel extends Model
     }
 
 
-    public function hasMany($class, $relationTableName): array
+    public function hasMany($class, $relationTableName, $where = []): array
     {
         try {
             $searchedClass = new ReflectionClass($class);
 
             $searchedClassName = strtolower((new ReflectionClass($class))->getShortName());
             $currentClassName = strtolower((new ReflectionClass($this))->getShortName());
-            $sql = "SELECT id_$searchedClassName  FROM $relationTableName WHERE id_$currentClassName=:$currentClassName;";
+
+
+            $whereCondition = implode(",",
+                array_map(fn($key) => " $key=:$key ", array_keys($where))
+            );
+
+
+            $sql = "SELECT id_$searchedClassName  FROM $relationTableName WHERE id_$currentClassName=:$currentClassName AND $whereCondition;";
 
             $statement = self::prepare($sql);
             $statement->bindValue(":$currentClassName", $this->id);
+
+            foreach($where as $key =>$value){
+                $statement->bindValue(":$key", $value);
+            }
+
             $statement->execute();
 
             $listOfObjects = [];

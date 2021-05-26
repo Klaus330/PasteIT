@@ -123,10 +123,18 @@
                         <form onsubmit="event.preventDefault()" class="grid">
                             <div class="col-6  flex align-start justify-start flex-column">
                                 <label for="username" class="form-label">Username:</label>
-                                <input type="text" name="username" id="username" class="form-control"
-                                       placeholder="Give access to edit">
-                                <div class="col-12">
+                                <div class="grid">
+                                <input type="text" name="username" id="username" class="form-control col-12"
+                                       placeholder="Give access">
+
                                     <p class="text-danger" id="editor-error"></p>
+                                </div>
+                                <div class="grid">
+                                    <label for="role" class="form-label">Role:</label>
+                                    <select name="role" class="form-select col-12" id="role">
+                                        <option value="viewer">Viewer</option>
+                                        <option value="editor">Editor</option>
+                                    </select>
                                 </div>
                                 <button class="btn btn-primary mt-2" id="editor-button"> Give Access</button>
                             </div>
@@ -180,6 +188,7 @@
         }
 
         let input = document.getElementById("username");
+        let roleSelect = document.getElementById("role");
         let modalTitle = document.getElementById("modal-title");
 
         let request = new XMLHttpRequest();
@@ -189,6 +198,7 @@
 
         let payload = new FormData();
         payload.append("username", input.value);
+        payload.append("role", roleSelect.value);
 
 
         request.onreadystatechange = function () {

@@ -84,7 +84,8 @@ class Paste extends DbModel
 
         $this->saveRelationship([
             'id_paste' => $currentPasteId,
-            'id_user' => $this->id_user
+            'id_user' => $this->id_user,
+            "role" => 'editor'
         ],"pastes_users");
     }
 
@@ -96,8 +97,14 @@ class Paste extends DbModel
 
     public function editors()
     {
-        return $this->hasMany(User::class, "pastes_users");
+        return $this->hasMany(User::class, "pastes_users", ["role" => "editor"]);
     }
+
+    public function viewers()
+    {
+        return $this->hasMany(User::class, "pastes_users", ["role" => "viewer"]);
+    }
+
 
 
     public function versions($orderBy)
@@ -177,11 +184,12 @@ class Paste extends DbModel
     }
 
 
-    public function addEditor($editorId)
+    public function addEditor($editorId,$role)
     {
         $this->saveRelationship([
             'id_user' => $editorId,
-            'id_paste' => $this->id
+            'id_paste' => $this->id,
+            'role' => $role
         ], 'pastes_users');
     }
 
@@ -192,6 +200,26 @@ class Paste extends DbModel
 
         foreach ($editors as $editor){
             if($editor->id === $userId){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public function canView($userId)
+    {
+        $editors = $this->editors();
+
+        foreach ($editors as $editor){
+            if($editor->id === $userId){
+                return true;
+            }
+        }
+
+        $viewers = $this->viewers();
+        foreach ($viewers as $viewer){
+            if($viewer->id === $userId){
                 return true;
             }
         }

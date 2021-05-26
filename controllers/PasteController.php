@@ -101,7 +101,7 @@ class PasteController extends Controller
             throw new PageNotFoundException();
         }
 
-        if((session()->has("user") && $paste->isOwner(auth()->id))){
+        if((session()->has("user") && $paste->isOwner(auth()->id)) || (session()->has("user") && $paste->canView(auth()->id))){
             return;
         }
 
@@ -242,17 +242,19 @@ class PasteController extends Controller
         $paste = Paste::findOne(['id' => $id_paste]);
 
         if ($request->validate([
-            'username' => [Validator::RULE_REQUIRED]
+            'username' => [Validator::RULE_REQUIRED],
+            'role' => [Validator::RULE_REQUIRED],
         ])) {
 
             $username = $request->getBody()["username"];
+            $role = $request->getBody()["role"];
 
             $user = User::findOne(['username' => $username]);
             if($user === false){
                 response()->setStatusCode(500);
                 return json_encode(["errors"=>["username"=>"User not found"]]);
             }
-            $paste->addEditor($user->id);
+            $paste->addEditor($user->id, $role);
 
             return json_encode(["message"=>"Editor adaugat cu success"]);
         }
