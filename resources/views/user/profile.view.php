@@ -8,8 +8,8 @@
                 <?= $form->inputField(auth(),"email")->emailField() ?>
 
 
-                    <div class="grid">
-                        <div class="col-4 col-md-3 flex align-start">
+                    <div class="grid mt-2">
+                        <div class="col-4 col-md-3">
                             <label class="form-label" for="avatar">Avatar : </label>
                         </div>
                         <div class="col-1 col-md-3 flex align-start" >
@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="grid">
-                        <div class="col-5 col-md-3 flex align-start">
+                        <div class="col-5 col-md-3">
                             <label class="form-label" for="theme-mode">Theme : </label>
                         </div>
                         <div class="col-7 col-md-6 flex align-center">
