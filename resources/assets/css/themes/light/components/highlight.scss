@@ -47,19 +47,25 @@
 }
 
 
-.singlequote{
-  color:#438a06;
-}
-.doublequote{
+.singlequote {
   color: #438a06;
 }
 
+.doublequote {
+  color: #438a06;
+}
+
+.function{
+  color: #915f00;
+}
+
 .html {
-  .htmlopen, .htmlclose,.htmlclosetag {
+  .htmlopen, .htmlclose, .htmlclosetag {
     color: #dc322f;
   }
-  .attribute{
-    color:#6c71c4;
+
+  .attribute {
+    color: #6c71c4;
   }
 }
 
@@ -70,7 +76,7 @@
   }
 
   .function {
-    color:#b58900;
+    color: #b58900;
   }
 }
 
@@ -90,13 +96,93 @@
   .variable {
     color: #DB784D;
   }
+
   .function {
-    color:#b58900;
+    color: #b58900;
   }
 }
 
-.css{
-  .property{
-    color:red;
+.css {
+  .property {
+    color: #01257c;
+  }
+
+  .class {
+    color: #ca8401;
+  }
+
+  .id {
+    color: #015a01;
+  }
+
+  .specialKeyword {
+    color: purple;
+  }
+
+  .hexaColor {
+    color: #666605;
+  }
+
+  .keyword {
+    color: #3e3e43;
+  }
+
+  .attribute {
+    color: #790224;
+  }
+
+  .number {
+    color: #238181;
+  }
+
+  .meta{
+    color: #04672f;
+  }
+
+  .important{
+    color: red;
+  }
+}
+
+
+.python{
+  .specialKeyword {
+    color: #672867;
+  }
+  .linecomment, .blockcomment, .hashtag{
+    color: #029d02;
+  }
+  .singlequote{
+    color: #5a4141;
+  }
+  .doublequote{
+    color: #5a4141;
+  }
+  .backquote{
+    color: #5a4141;
+  }
+  .symbol{
+    color: #6b026b;
+  }
+  .keyword{
+    color: #00008f;
+  }
+  .boolean{
+    color: #007000;
+  }
+  number{
+    color: #424266;
+  }
+  .function{
+    color: #940505;
+  }
+  .specialKeyword{
+    color: #949408;
+  }
+}
+
+.javascript {
+  .function {
+    color: #805602;
   }
 }
