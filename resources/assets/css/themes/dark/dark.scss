@@ -15,9 +15,11 @@
   "pages/login",
   "pages/paste",
   "pages/register",
-  "pages/settings";
+  "pages/settings",
+  "pages/versions";
 
-  @import "base/typography";
+  @import "base/typography",
+  "base/helpers";
 
   background: $secondary-color-dark;
 }

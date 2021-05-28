@@ -1,0 +1,31 @@
+.version-table{
+  overflow-x: auto;
+}
+
+.table{
+  display: table;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 2px;
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: transparent;
+  color: white;
+
+  th{
+    border-bottom: 1px solid #d9d3d3;
+    padding: 1.25rem;
+    text-align: left;
+  }
+
+  tr{
+    padding: 8px;
+  }
+
+  td{
+    padding: 1.25rem;
+  }
+
+}
+
