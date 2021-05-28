@@ -5,7 +5,12 @@ let pattern = [
     }, {
         name: 'comment blockcomment',
         match: /^(\/\*(\w+)+\*\/)/
-    }, {
+    },
+    {
+        name: 'comment hashtag',
+        match: /^(#.+)/
+    },
+    {
         name: 'singlequote',
         match: /^(\'[^\'\n]*\')/
     }, {
@@ -16,31 +21,24 @@ let pattern = [
         match: /^(\`[^\`]*`)/
     }, {
         name: 'symbol',
-        match: /^(-&gt;|=>|=|\+|::|-|\*|<|>|=>|<=|\[|\]|!=|!|\.)/
+        match: /^(=>|=|\+|::|-|\*|<|>|=>|<=|\[|\]|!=|!|\.|<<|>>|\&\&|\|\|<|>)/
     }, {
         name: 'keyword',
-        match: /^(function|return|switch|case|for|if|else|this|public|private|protected)\b/
+        match: /^(elif|nonlocal|return|pass|continue|for|if|else|while|with|def|del|try|int|double|float|boolean|char|class|void|using|from|import)\b/
     }, {
         name: 'boolean',
         match: [/^(true|false)/]
     }, {
         name: 'number',
         match: [/^(\d+)/]
-    }, {
-        name: 'destructure',
-        match: [/^\{([^\:\}\n]+)\}/, '{', '}']
     },
     {
-        name: "variable",
-        match: /^(\$[a-zA-z_][a-zA-Z0-9_]+)/
+        name: "function",
+        match: /^([\w\d]+)(\(.*\).*)/
     },
     {
-        name:"function",
-        match:/^([\w\d]+)(\(.*\).*)/
-    },
-    {
-        name:"brackets",
-        match: /^(\(|\))/
+        name: "specialKeyword",
+        match: /^(@\w+)/
     }
 ];
 
