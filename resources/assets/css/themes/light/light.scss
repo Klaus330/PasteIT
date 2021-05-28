@@ -17,9 +17,11 @@
   "pages/paste",
   "pages/register",
   "pages/settings",
-  "pages/contact";
+  "pages/contact",
+  "pages/versions";
 
-  @import "base/typography";
+  @import "base/typography",
+  "base/helpers";
 
   background: $secondary-color-light;
   color: $text-color-black;
