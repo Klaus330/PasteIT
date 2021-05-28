@@ -110,7 +110,7 @@
                 </div>
 
                 <div class="col-12">
-                    <textarea name="raw-data" id="raw-data" cols="30" rows="10"
+                    <textarea readonly name="raw-data" id="raw-data" cols="30" rows="10"
                               class="paste-text-area"><?= $latestVersion->code ?? $paste->code ?></textarea>
                 </div>
 
