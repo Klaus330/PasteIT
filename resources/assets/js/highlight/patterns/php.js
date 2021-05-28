@@ -16,10 +16,10 @@ let pattern = [
         match: /^(\`[^\`]*`)/
     }, {
         name: 'symbol',
-        match: /^(-&gt;|=&gt;|=|\+|::|-|\*|<|>|&&|&lt;=|\[|\]|!=|!|\.|null|\?\?|&lt;\?php|\?&gt;)/
+        match: /^(-&gt;|=>|=|\+|::|-|\*|<|>|=>|<=|\[|\]|!=|!|\.)/
     }, {
         name: 'keyword',
-        match: /^(function|return|switch|case|for|if|else|this|public|private|protected|use|class|extends|implements|namespace|new|throw)\b/
+        match: /^(function|return|switch|case|for|if|else|this|public|private|protected)\b/
     }, {
         name: 'boolean',
         match: [/^(true|false)/]
@@ -41,10 +41,6 @@ let pattern = [
     {
         name:"brackets",
         match: /^(\(|\))/
-    },
-    {
-        name:"namespace",
-        match:/^((?:\\{1,2}\w+|\w+\\{1,2})(?:\w+\\{0,2})+)(.*)/
     }
 ];
 

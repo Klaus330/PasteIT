@@ -29,7 +29,7 @@ let pattern =[
     },
     {
         name: 'symbol',
-        match: /^(=>|=|\+|::|-|\*|<|>|=>|<=|\[|\]|!=|!|\.)/
+        match: /^(=&gt;|=|\+|::|-|\*|&lt;|&gt;|&lt;=|\[|\]|!=|!|\.)/
     }, {
         name: 'keyword',
         match: /^(function|var|let|const|return|switch|case|for|if|else|default|infuse|ensure|reduce|this|type)\b/
