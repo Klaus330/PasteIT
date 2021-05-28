@@ -2,7 +2,7 @@
 $this->setTitle("Paste It - Home")
 ?>
 
-<section class="home-section section">
+<div class="home-section section">
     <form action="/pastes" method="POST">
         <div class="row home-first">
             <div class="home-paste">
@@ -133,10 +133,13 @@ $this->setTitle("Paste It - Home")
                         <button class="btn btn-dark">Create New Paste</button>
                     </div>
                 </div>
+            </div>
+        </div>
+
     </form>
     <?php require_once dirname(__FILE__) . "/partials/alerts/guestalert.view.php" ?>
 
-</section>
+</div>
 
 <script>
     let passwordAllowCheckbox = document.getElementById('password-allow');
