@@ -17,7 +17,7 @@
                         </div>
 
                         <div class="col-12 flex align-start">
-                            <span class="text-danger"">
+                            <span class="text-danger">
                             <?php
                             if($errors != [])
                             {
@@ -45,7 +45,7 @@
                             </select>
                         </div>
                         <div class="col-12 flex align-start">
-                            <span class="text-danger"">
+                            <span class="text-danger">
                             <?php
                             if($errors != [])
                             {
@@ -68,7 +68,7 @@
                             </select>
                         </div>
                         <div class="col-12 flex align-start">
-                            <span class="text-danger"">
+                            <span class="text-danger">
                             <?php
                             if($errors != [])
                             {

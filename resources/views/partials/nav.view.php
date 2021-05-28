@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div class="container navbar-container">
-        <a href="/" class="navbar-brand" title="home"><img src="<?= (array_key_exists('theme', $_COOKIE) && $_COOKIE['theme'] == "dark" ?  "/favicon-black.png" : '/favicon.png') ?>" alt="" style="    width: 50px;
+        <a href="/" class="navbar-brand" title="home"><img src="<?= (array_key_exists('theme', $_COOKIE) && $_COOKIE['theme'] == "dark" ?  "/favicon-black.png" : '/favicon.png') ?>" style="    width: 50px;
     height: 50px;" alt="Paste IT"></a>
         <a href="/" class="btn btn-succes header-paste-btn btn-sm navbar-action-button">Paste</a>
 
