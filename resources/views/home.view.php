@@ -33,7 +33,7 @@ $this->setTitle("Paste It - Home")
                         <select name="id_syntax" id="syn-highlight" class="form-select">
                             <option value="" disabled>None</option>
                             <?php foreach ($syntaxes as $key => $syntax) : ?>
-                                <option value="<?= $syntax->id ?>"><?= $syntax->name ?></option>
+                                <option value="<?= $syntax->id ?>" <?=  (session()->has('user') && auth()->settings()->id_syntax == $syntax->id) ? 'selected' : '' ?>><?= $syntax->name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -47,8 +47,8 @@ $this->setTitle("Paste It - Home")
                     </div>
                     <div class="col-12 col-md-6 flex align-center">
                         <select name="exposure" id="exposure" class="form-select">
-                            <option value="" selected>Public</option>
-                            <option value="1">Private</option>
+                            <option value="" <?=  (session()->has('user') && auth()->settings()->exposure == 0) ? 'selected' : '' ?>>Public</option>
+                            <option value="1" <?=  (session()->has('user') && auth()->settings()->exposure == 1) ? 'selected' : '' ?>>Private</option>
                         </select>
                     </div>
                     <?php endif; ?>
@@ -62,14 +62,14 @@ $this->setTitle("Paste It - Home")
                     </div>
                     <div class="col-12 col-md-6 flex align-center">
                         <select name="expiration_date" id="expiration_date" class="form-select">
-                            <option value="never" selected>Never</option>
-                            <option value="1 min">1 Minutes</option>
-                            <option value="10 min">10 Minutes</option>
-                            <option value="1 hour">1 Hour</option>
-                            <option value="1 day">1 Day</option>
-                            <option value="1 week">1 Week</option>
-                            <option value="1 month">1 Month</option>
-                            <option value="1 year">1 Year</option>
+                            <option value="never" <?=  (session()->has('user') && auth()->settings()->expiration == 'never') ? 'selected' : '' ?>>Never</option>
+                            <option value="1 min" <?=  (session()->has('user') && auth()->settings()->expiration == '1 min') ? 'selected' : '' ?>>1 Minutes</option>
+                            <option value="10 min" <?=  (session()->has('user') && auth()->settings()->expiration == '10 min') ? 'selected' : '' ?>>10 Minutes</option>
+                            <option value="1 hour" <?=  (session()->has('user') && auth()->settings()->expiration == '1 hour') ? 'selected' : '' ?>>1 Hour</option>
+                            <option value="1 day" <?=  (session()->has('user') && auth()->settings()->expiration == '1 day') ? 'selected' : '' ?>>1 Day</option>
+                            <option value="1 week" <?=  (session()->has('user') && auth()->settings()->expiration == '1 week') ? 'selected' : '' ?>>1 Week</option>
+                            <option value="1 month" <?=  (session()->has('user') && auth()->settings()->expiration == '1 month') ? 'selected' : '' ?>>1 Month</option>
+                            <option value="1 year" <?=  (session()->has('user') && auth()->settings()->expiration == '1 year') ? 'selected' : '' ?>>1 Year</option>
                         </select>
                     </div>
                     <?php endif; ?>

@@ -4,7 +4,6 @@
             <h4 class="section-title mb-2 h4">My Settings</h4>
             <div class="settings-content">
                 <form class="home-form" action="/user/settings" method="POST">
-<!--                    <input type="hidden" name="id_user" value="--><?php //echo $userId ?><!--">-->
                     <div class="grid">
                         <div class="col-6 col-md-3 flex align-start">
                             <label class="form-label" for="syn-highlight">Default Syntacs:</label>
@@ -35,8 +34,14 @@
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
                             <select name="expiration" id="exposure1" class="form-select">
-                                <option value="">Never</option>
-                                <option value="burn"  >Burn after read</option>
+                                <option value="never" <?=  $settings->expiration == 'Never' ? 'selected' : '' ?>>Never</option>
+                                <option value="1 min" <?=  $settings->expiration == '1 min' ? 'selected' : '' ?>>1 Minutes</option>
+                                <option value="10 min" <?=  $settings->expiration == '10 min' ? 'selected' : '' ?>>10 Minutes</option>
+                                <option value="1 hour" <?=  $settings->expiration == '1 hour' ? 'selected' : '' ?>>1 Hour</option>
+                                <option value="1 day" <?=  $settings->expiration == '1 day' ? 'selected' : '' ?>>1 Day</option>
+                                <option value="1 week" <?=  $settings->expiration == '1 week' ? 'selected' : '' ?>>1 Week</option>
+                                <option value="1 month" <?=  $settings->expiration == '1 month' ? 'selected' : '' ?>>1 Month</option>
+                                <option value="1 year" <?=  $settings->expiration == '1 year' ? 'selected' : '' ?>>1 Year</option>
                             </select>
                         </div>
                         <div class="col-12 flex align-start">
@@ -57,8 +62,8 @@
                         </div>
                         <div class="col-12 col-md-6 flex align-center">
                             <select name="exposure" id="exposure2" class="form-select">
-                                <option value="">None</option>
-                                <option value="0" <?=  $settings->exposure == 0? 'selected' : '' ?> >Public</option>
+                                <option value="" disabled>None</option>
+                                <option value="" <?=  $settings->exposure == 0? 'selected' : '' ?> >Public</option>
                                 <option value="1" <?=  $settings->exposure == 1 ? 'selected' : '' ?>>Private</option>
                             </select>
                         </div>

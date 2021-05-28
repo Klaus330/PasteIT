@@ -13,9 +13,9 @@ class m0004_create_settings_table extends Migration
               id_user INT,
               id_syntax INT,
               exposure BIT,
-              expiration TIMESTAMP,
+              expiration VARCHAR(255),
               FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
-              FOREIGN KEY (id_syntax) REFERENCES highlights(id) ON DELETE CASCADE
+              FOREIGN KEY (id_syntax) REFERENCES highlights(id)
             ) ENGINE=INNODB;
         ";
 

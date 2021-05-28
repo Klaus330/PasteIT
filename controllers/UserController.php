@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public function settings()
     {
-        $userId = session()->get("user");
+        $userId = auth()->id;
         $errors = [];
         $settings = auth()->settings();
         $latestPastes = Paste::latest(5, ["expired" => 0, "exposure" => 0]);
@@ -37,12 +37,10 @@ class UserController extends Controller
 
             $settings->update($body, ['id_user' => auth()->id]);
 
-            redirect("/user/profile");
+            return redirect("/user/profile");
         }
-        return view("/user/settings", [
-            'userId' => session()->get("user"),
-            'errors' => $request->getErrors()
-        ]);
+
+        return redirect("/user/settings")->withErrors($request->getErrors());
 
     }
 
