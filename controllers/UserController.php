@@ -50,7 +50,7 @@ class UserController extends Controller
         if (array_key_exists('theme', $_COOKIE)) {
             $isInputChecked = $_COOKIE['theme'] === 'dark';
         }
-        $latestPastes = Paste::latest(5, ["expired" => 0]);
+        $latestPastes = Paste::latest(5, ["expired" => 0, "exposure" => 0]);
         return view('/user/profile', compact('isInputChecked', 'latestPastes'));
     }
 
