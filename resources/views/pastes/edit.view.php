@@ -1,6 +1,9 @@
 <section class="paste-section">
     <form action="/pastes/update/<?=$paste->slug ?>" method="POST">
         <div class="row">
+            <input type="hidden" name="id_paste" value="<?=$paste->id ?>">
+            <input type="hidden" name="id_user" value="<?= auth()->id ?>">
+
             <div class="grid">
                 <div class="col-5 col-md-3 flex align-start">
                     <label class="form-label" for="exposure">Paste Exposure:</label>
@@ -9,12 +12,10 @@
                     <select name="exposure" id="exposure" class="form-select">
                         <option value="" >None</option>
                         <option value="" <?= $paste->exposure == 0 ? "selected" : '' ?>>Public</option>
-                        <option value="" <?=$paste->exposure == 1 ? "selected" : '' ?>>Private</option>
+                        <option value="1" <?=$paste->exposure == 1 ? "selected" : '' ?>>Private</option>
                     </select>
                 </div>
             </div>
-
-
 
             <div class="grid">
                 <div class="col-5 col-md-3 flex align-start">
@@ -29,7 +30,24 @@
                     </select>
                 </div>
             </div>
-
+            <div class="grid">
+                <div class="col-5 col-md-3 flex align-start">
+                    <label class="form-label" for="exposure">Expiration Date:</label>
+                </div>
+                <div class="col-12 col-md-6 flex align-center">
+                    <select name="expiration_date" id="expiration_date" class="form-select">
+                        <option value="" selected>None</option>
+                        <option value="never" >Never</option>
+                        <option value="1 min">1 Minutes</option>
+                        <option value="10 min">10 Minutes</option>
+                        <option value="1 hour">1 Hour</option>
+                        <option value="1 day">1 Day</option>
+                        <option value="1 week">1 Week</option>
+                        <option value="1 month">1 Month</option>
+                        <option value="1 year">1 Year</option>
+                    </select>
+                </div>
+            </div>
             <div class="grid">
                 <div class="col-md-3 flex align-start">
                     <label class="form-label" for="password">Password:</label>
@@ -45,10 +63,11 @@
                 </div>
             </div>
 
+
             <div class="grid">
                 <div class="col-md-offset-3"></div>
                 <div class="form-check col-10 col-md-8 flex align-start">
-                    <input type="checkbox" class="form-check-input" name="burn" id="burn" <?=$paste->burn_after_read != 0 ? "checked" : '' ?>>
+                    <input type="checkbox" class="form-check-input" name="burn_after_read" id="burn" <?=$paste->burn_after_read != 0 ? "checked" : '' ?>/>
                     <label class="form-label" for="burn">Burn after read</label>
                 </div>
             </div>
@@ -66,11 +85,11 @@
             <div class="grid">
 
                 <div class="col-12 flex align-start">
-                    <h3 class="h3">Edit paste</h3>
+                    <label for="code" class="h3">Edit paste</label>
                 </div>
 
                 <div class="col-12">
-                    <textarea name="code" id="code" cols="30" rows="10" class="paste-text-area"><?=$paste->code?></textarea>
+                    <textarea name="code" id="code" cols="30" rows="30" class="paste-text-area"><?= $latestVersion->code ?? $paste->code?></textarea>
                 </div>
             </div>
         </div>

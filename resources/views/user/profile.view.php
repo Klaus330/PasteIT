@@ -10,20 +10,19 @@
 
                     <div class="grid">
                         <div class="col-4 col-md-3 flex align-start">
-                            <label class="form-label" for="exposure">Avatar : </label>
+                            <label class="form-label" for="avatar">Avatar : </label>
                         </div>
                         <div class="col-1 col-md-3 flex align-start" >
                             <img class="profile-img" src="<?= !empty(auth()->avatar) ? auth()->avatar : 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50'?>" alt="user icon"/>
                         </div>
                         <div class="col-6 col-md-4 flex align-start">
-<!--                            <h6 class="h6"><a class="btn-link" href="#" > [ Change avatar ] </a></h6>-->
-                                <input type="file" name="avatar" />
+                                <input type="file" name="avatar" id="avatar"/>
                         </div>
                     </div>
 
                     <div class="grid">
                         <div class="col-5 col-md-3 flex align-start">
-                            <label class="form-label" for="exposure">Theme : </label>
+                            <label class="form-label" for="theme-mode">Theme : </label>
                         </div>
                         <div class="col-7 col-md-6 flex align-center">
                             <img src="/img/svg/sun.svg" alt="Sun" />
@@ -51,7 +50,7 @@
             <?php foreach ($latestPastes as $paste): ?>
                 <li class="list-group-item">
                     <a href="/paste/view/<?= $paste->slug ?>"><?= $paste->title ?></a>
-                    <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
+                    <span><?= $paste->syntax()->name ?> | <?= $paste->timeSinceCreation() ?></span>
                 </li>
             <?php endforeach; ?>
         </ul>

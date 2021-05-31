@@ -9,29 +9,6 @@ use app\core\Validator;
 class Request
 {
     protected $errors;
-    protected array $params = [];
-
-    /**
-     * @return mixed
-     */
-    public function getParams()
-    {
-        return $this->params;
-    }
-
-    public function getParam($index): mixed
-    {
-        return $this->params[$index];
-    }
-
-
-    /**
-     * @param mixed $params
-     */
-    public function setParams($params): void
-    {
-        $this->params = $params;
-    }
 
     public function getPath()
     {
@@ -106,6 +83,15 @@ class Request
      */
     public function getErrors()
     {
+        if(!empty(Validator::getErrors())){
+            $this->errors = Validator::getErrors();
+        }
+
         return $this->errors;
+    }
+
+    public function getParamForRoute(string $string)
+    {
+        return substr($this->getPath(),strlen($string));
     }
 }

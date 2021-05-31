@@ -2,36 +2,40 @@
   background: $secondary-color-dark;
 }
 
+.line {
+  color: white;
+}
+
 .toolbar {
   background: $secondary-color-dark;
 }
 
 .fn-call {
-  color: yellow;
+  color: #64aeb3;
 }
 
 .string {
-  color: #198754;
+  color: #64aeb3;
 }
 
 .keyword {
-  color: #0dcaf0;
+  color: #508aaa;
 }
 
 .variable {
-  color: #ced4da;
+  color: #ffffff;
 }
 
-.comment {
-  color: #444444;
+.comment, .singlequote, .doublequote {
+  color: #57864c;
 }
 
 .boolean {
-  color: #0d6efd;
+  color: #dc322f;
 }
 
 .number {
-  color: #dc3545;
+  color: #52708b;
 }
 
 .html-open, .html-close {
@@ -39,13 +43,160 @@
 }
 
 .symbol {
-  color: #79dea0;
+  color: #508aaa;
 }
 
 .semicolumn {
   color: #f58e0f;
 }
 
-.source-pre, .source{
-  background: $primary-gray;
+.source-pre, .source {
+  background: #181D26;
+}
+
+.function{
+  color: #ee9e08;
+}
+
+
+.html {
+  .htmlopen, .htmlclose, .htmlclosetag {
+    color: #6aaeec;
+  }
+
+  .attribute {
+    color: #cb4b16;
+  }
+}
+
+
+.c\+\+, .c {
+  .dependency {
+    color: #859900;
+  }
+
+  .function {
+    color: #b58900;
+  }
+}
+
+
+.sql {
+  .keyword {
+    color: #dc322f;
+  }
+
+  .symbol {
+    color: #d33682;
+  }
+}
+
+
+.php {
+  .variable {
+    color: #6AB0A3;
+  }
+
+  .function {
+    color: #b58900;
+  }
+
+  .namespace {
+    color: #d273ee;
+  }
+}
+
+
+.css {
+  .property {
+    color: #7495e3;
+  }
+
+  .class {
+    color: #ca8401;
+  }
+
+  .id {
+    color: #088808;
+  }
+
+  .specialKeyword {
+    color: #c365c3;
+  }
+
+  .hexaColor {
+    color: #8f8f0f;
+  }
+
+  .keyword {
+    color: #bcbcd4;
+  }
+
+  .attribute {
+    color: #9f3d56;
+  }
+
+  .number {
+    color: #238181;
+  }
+
+  .meta {
+    color: #5c9871;
+  }
+
+  .important {
+    color: #bf5252;
+  }
+}
+
+.python {
+  .specialKeyword {
+    color: #c365c3;
+  }
+
+  .comment .linecomment, .comment .blockcomment, .comment .hashtag {
+    color: #59db59;
+  }
+
+  .singlequote {
+    color: #b1adad;
+  }
+
+  .doublequote {
+    color: #b1adad;
+  }
+
+  .backquote {
+    color: #b1adad;
+  }
+
+  .symbol {
+    color: #ffb0ff;
+  }
+
+  .keyword {
+    color: #8d8de2;
+  }
+
+  .boolean {
+    color: #3b6b3b;
+  }
+
+  number {
+    color: #424266;
+  }
+
+  .function {
+    color: #eec17c;
+  }
+
+  .specialKeyword {
+    color: #a5a575;
+  }
+}
+
+.javascript {
+  .function {
+    color: #f8be5a;
+  }
 }

@@ -2,28 +2,28 @@
 $this->setTitle("Paste It - Home")
 ?>
 
-<section class="home-section section">
+<div class="home-section section">
     <form action="/pastes" method="POST">
         <div class="row home-first">
             <div class="home-paste">
-                <h4 class="h4">New Paste</h4>
+                <label for="pasteit" class="h4">New Paste</label>
                 <textarea name="code" id="pasteit" cols="30" rows="15"></textarea>
             </div>
             <aside class="home-aside sm-hidden">
                 <h4 class="h4">Public Pastes</h4>
                 <ul class="list-group">
                     <?php foreach ($latestPastes as $paste): ?>
-                    <li class="list-group-item">
-                        <a href="/paste/view/<?= $paste->slug ?>"><?= $paste->title ?></a>
-                        <span><?= $paste->syntax()->name ?> | <?= $paste->user()->username ?></span>
-                    </li>
+                        <li class="list-group-item">
+                            <a href="/paste/view/<?= $paste->slug ?>"><?= $paste->title ?></a>
+                            <span><?= $paste->syntax()->name ?> | <?= $paste->timeSinceCreation() ?></span>
+                        </li>
                     <?php endforeach; ?>
                 </ul>
             </aside>
         </div>
         <div class="row">
             <h4 class="section-title h4">Optional Paste Settings</h4>
-            <div class="home-form" >
+            <div class="home-form">
 
                 <div class="grid">
                     <div class="col-7 col-md-3 flex align-start">
@@ -32,39 +32,47 @@ $this->setTitle("Paste It - Home")
                     <div class="col-12 col-md-6 flex align-center">
                         <select name="id_syntax" id="syn-highlight" class="form-select">
                             <option value="" disabled>None</option>
-                            <?php foreach ($syntaxes as $key => $syntax) :?>
-                                <option value="<?=$syntax->id?>"><?=$syntax->name?></option>
+                            <?php foreach ($syntaxes as $key => $syntax) : ?>
+                                <option value="<?= $syntax->id ?>" <?=  (session()->has('user') && auth()->settings()->id_syntax == $syntax->id) ? 'selected' : '' ?>><?= $syntax->name ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
                 <div class="grid">
+                    <?php if (app()::isGuest()): ?>
+                        <input type="hidden" name="exposure" value="">
+                    <?php else: ?>
                     <div class="col-5 col-md-3 flex align-start">
                         <label class="form-label" for="exposure">Paste Exposure:</label>
                     </div>
                     <div class="col-12 col-md-6 flex align-center">
                         <select name="exposure" id="exposure" class="form-select">
-                            <option value="0" selected>Public</option>
-                            <option value="1">Private</option>
+                            <option value="" <?=  (session()->has('user') && auth()->settings()->exposure == 0) ? 'selected' : '' ?>>Public</option>
+                            <option value="1" <?=  (session()->has('user') && auth()->settings()->exposure == 1) ? 'selected' : '' ?>>Private</option>
                         </select>
                     </div>
+                    <?php endif; ?>
                 </div>
                 <div class="grid">
+                    <?php if (app()::isGuest()): ?>
+                        <input type="hidden" name="expiration_date" value="1 month">
+                    <?php else: ?>
                     <div class="col-5 col-md-3 flex align-start">
-                        <label class="form-label" for="exposure">Expiration Date:</label>
+                        <label class="form-label" for="expiration_date">Expiration Date:</label>
                     </div>
                     <div class="col-12 col-md-6 flex align-center">
                         <select name="expiration_date" id="expiration_date" class="form-select">
-                            <option value="never" selected>Never</option>
-                            <option value="1 min">1 Minutes</option>
-                            <option value="10 min">10 Minutes</option>
-                            <option value="1 hour">1 Hour</option>
-                            <option value="1 day">1 Day</option>
-                            <option value="1 week">1 Week</option>
-                            <option value="1 month">1 Month</option>
-                            <option value="1 year">1 Year</option>
+                            <option value="never" <?=  (session()->has('user') && auth()->settings()->expiration == 'never') ? 'selected' : '' ?>>Never</option>
+                            <option value="1 min" <?=  (session()->has('user') && auth()->settings()->expiration == '1 min') ? 'selected' : '' ?>>1 Minutes</option>
+                            <option value="10 min" <?=  (session()->has('user') && auth()->settings()->expiration == '10 min') ? 'selected' : '' ?>>10 Minutes</option>
+                            <option value="1 hour" <?=  (session()->has('user') && auth()->settings()->expiration == '1 hour') ? 'selected' : '' ?>>1 Hour</option>
+                            <option value="1 day" <?=  (session()->has('user') && auth()->settings()->expiration == '1 day') ? 'selected' : '' ?>>1 Day</option>
+                            <option value="1 week" <?=  (session()->has('user') && auth()->settings()->expiration == '1 week') ? 'selected' : '' ?>>1 Week</option>
+                            <option value="1 month" <?=  (session()->has('user') && auth()->settings()->expiration == '1 month') ? 'selected' : '' ?>>1 Month</option>
+                            <option value="1 year" <?=  (session()->has('user') && auth()->settings()->expiration == '1 year') ? 'selected' : '' ?>>1 Year</option>
                         </select>
                     </div>
+                    <?php endif; ?>
                 </div>
                 <div class="grid">
                     <div class="col-md-3 flex align-start">
@@ -102,7 +110,7 @@ $this->setTitle("Paste It - Home")
                         <?php if (app()::isGuest()): ?>
                             <input type="hidden" name="id_user" id="id_user" value="1">
                         <?php else: ?>
-                            <input type="hidden" name="id_user" id="id_user" value="<?=auth()->id?>">
+                            <input type="hidden" name="id_user" id="id_user" value="<?= auth()->id ?>">
                         <?php endif; ?>
                     </div>
                 </div>
@@ -116,7 +124,7 @@ $this->setTitle("Paste It - Home")
                                    id="captcha-code">
                         </div>
                         <div class="col-12 col-md-3 flex align-center">
-                            <img src="<?= $captchaCode ?>" alt="" id="captcha-code-image">
+                            <img src="<?= $captchaCode ?>" alt="Captcha code" id="captcha-code-image">
                         </div>
                     </div>
                 <?php endif ?>
@@ -125,10 +133,13 @@ $this->setTitle("Paste It - Home")
                         <button class="btn btn-dark">Create New Paste</button>
                     </div>
                 </div>
+            </div>
+        </div>
+
     </form>
     <?php require_once dirname(__FILE__) . "/partials/alerts/guestalert.view.php" ?>
 
-</section>
+</div>
 
 <script>
     let passwordAllowCheckbox = document.getElementById('password-allow');

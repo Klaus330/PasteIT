@@ -16,9 +16,9 @@ class Paste extends DbModel
     public string $title = '';
     public string $slug = '';
     public string $id_syntax = '';
-    public int $exposure = 0;
+    public $exposure = "";
     public $id_user = 1;
-    public $expiration_date = '';
+    public $expiration_date = "0000-00-00 00:00:00";
     public string $burn_after_read = '';
     public string $password = '';
     public $created_at;
@@ -75,7 +75,18 @@ class Paste extends DbModel
             $this->expiration_date = $temp->modify("+$this->expiration_date")->format('Y-m-d H:i:s');
         }
 
-        return parent::save();
+
+
+        parent::save();
+
+        $currentPasteId = Paste::findOne(['slug'=>$this->slug])->id;
+
+
+        $this->saveRelationship([
+            'id_paste' => $currentPasteId,
+            'id_user' => $this->id_user,
+            "role" => 'editor'
+        ],"pastes_users");
     }
 
 
@@ -83,6 +94,24 @@ class Paste extends DbModel
     {
         return $this->belongsTo('id_user', User::class);
     }
+
+    public function editors()
+    {
+        return $this->hasMany(User::class, "pastes_users", ["role" => "editor"]);
+    }
+
+    public function viewers()
+    {
+        return $this->hasMany(User::class, "pastes_users", ["role" => "viewer"]);
+    }
+
+
+
+    public function versions($orderBy)
+    {
+        return $this->belongsToMany(Version::class, $orderBy);
+    }
+
 
     public function syntax()
     {
@@ -107,6 +136,16 @@ class Paste extends DbModel
     }
 
 
+    public function timeSinceCreation()
+    {
+        $now = new \DateTimeImmutable();
+        $createdAt = new \DateTimeImmutable($this->created_at);
+        $dateString = new DateFormatter($now->diff($createdAt));
+
+        return $dateString->displayHumanFormat()." ago";
+    }
+
+
     public function expirationTime()
     {
         if ($this->expires()) {
@@ -114,6 +153,11 @@ class Paste extends DbModel
             $end = new \DateTimeImmutable($this->expiration_date);
 
             $dateString = new DateFormatter($end->diff($start));
+
+            if($dateString->isInvert()){
+                return "expired";
+            }
+
             return $dateString->displayHumanFormat();
         }
         return "never";
@@ -125,9 +169,66 @@ class Paste extends DbModel
 
     public function expired()
     {
-        $start = new \DateTimeImmutable();
-        $end = new \DateTimeImmutable($this->expiration_date);
-        return ($end->diff($start)->invert === 0 || $this->expired);
+        if($this->expires()){
+            $start = new \DateTimeImmutable();
+            $end = new \DateTimeImmutable($this->expiration_date);
+            return ($end->diff($start)->invert === 0 || $this->expired);
+        }else{
+            return false;
+        }
+    }
+
+    public function isPrivate()
+    {
+       return ($this->exposure == 1);
+    }
+
+    public function isOwner(int $userId)
+    {
+        return ($this->id_user == $userId);
+    }
+
+
+    public function addEditor($editorId,$role)
+    {
+        $this->saveRelationship([
+            'id_user' => $editorId,
+            'id_paste' => $this->id,
+            'role' => $role
+        ], 'pastes_users');
+    }
+
+
+    public function canEdit($userId)
+    {
+        $editors = $this->editors();
+
+        foreach ($editors as $editor){
+            if($editor->id === $userId){
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public function canView($userId)
+    {
+        $editors = $this->editors();
+
+        foreach ($editors as $editor){
+            if($editor->id === $userId){
+                return true;
+            }
+        }
+
+        $viewers = $this->viewers();
+        foreach ($viewers as $viewer){
+            if($viewer->id === $userId){
+                return true;
+            }
+        }
+        return false;
     }
 
 

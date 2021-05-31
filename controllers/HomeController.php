@@ -12,14 +12,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-
         $captchaCode = "";
         if (app()::isGuest()) {
-            $captchaCode = CaptchaController::getCaptcha();
+            $captchaCode = CaptchaController::genCaptcha();
         }
 
         $syntaxes = Syntax::find();
-        $latestPastes = Paste::latest(5, ["expired" => 0]);
+        $latestPastes = Paste::latest(5, ["expired" => 0, "exposure" => 0]);
 
         return view('home',
             [

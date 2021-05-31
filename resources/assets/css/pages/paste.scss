@@ -130,6 +130,7 @@
 
 
     .paste-text-area {
+        white-space: nowrap;
         width: 100%;
         resize: none;
         color : $primary-gray;

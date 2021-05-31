@@ -14,7 +14,7 @@
   padding: 0;
   height: 100%;
   text-align: left;
-
+  width: 100%;
   @include mq(large){
     overflow-x: hidden;
   }
@@ -30,20 +30,34 @@
   border: 1px solid #707070;
 }
 
-.line-number {
+.linenum {
   font-size: map-get($fontSizes, "generic-4xs");
   color: #707070;
-  padding: 2px 10px 2px 25px;
-  border-left: 1px solid #707070;
-  border-right: 1px solid #707070;
+  //padding: 2px 10px 2px 25px;
+  //border-left: 1px solid #707070;
+  //border-right: 1px solid #707070;
   margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
+.code{
+  padding-left: 1rem;
+  margin: 0;
+  line-height: 10%;
+  min-height: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-x: scroll;
+  padding-right: 1rem;
+}
 .line {
   display: flex;
   align-items: flex-start;
   width: 100%;
-  color: white;
+  position: relative;
+  line-height: 5%;
 }
 
 
@@ -94,6 +108,7 @@
 .semicolumn {
   color: #f58e0f;
 }
+
 
 
 

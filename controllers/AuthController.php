@@ -61,7 +61,7 @@ class AuthController extends Controller
                     [
                         'id_user' => User::findOne(['email' => $user->email])->id,
                         'id_syntax' => 1,
-                        'exposure' => 0,
+                        'exposure' => '',
                         'expiration' => 'never'
                     ]
                 );

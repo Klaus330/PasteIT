@@ -1,7 +1,7 @@
 <nav class="navbar">
     <div class="container navbar-container">
-        <a href="/" class="navbar-brand"><img src="/favicon.png" alt="" style="    width: 50px;
-    height: 50px;"></a>
+        <a href="/" class="navbar-brand" title="home"><img src="<?= (array_key_exists('theme', $_COOKIE) && $_COOKIE['theme'] == "dark" ?  "/favicon-black.png" : '/favicon.png') ?>" style="    width: 50px;
+    height: 50px;" alt="Paste IT"></a>
         <a href="/" class="btn btn-succes header-paste-btn btn-sm navbar-action-button">Paste</a>
 
         <div class="collapse navbar-collapse">
@@ -22,7 +22,7 @@
                 <a href="/login" class="btn btn-login btn-sm mr-1">Login</a>
                 <a href="/register" class="btn btn-register btn-sm">Sign Up</a>
             <?php else: ?>
-                <a href="#" class="nav-link text-danger dropdown-trigger"><?= auth()->username ?></a>
+                <a href="#" class="nav-link nav-user-name dropdown-trigger"><?= auth()->username ?></a>
                 <ul class="login-dropdown-menu">
                     <li class="login-dropdown-menu-item"><a href="/user/profile">Profile</a></li>
                     <li class="login-dropdown-menu-item"><a href="/user/settings">Settings</a></li>
@@ -31,7 +31,7 @@
                 </ul>
             <?php endif; ?>
         </div>
-        <button class="navbar-toggler" type="button" id="nav-toggler">
+        <button class="navbar-toggler" type="button" id="nav-toggler" title="menu">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>

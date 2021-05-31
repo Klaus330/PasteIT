@@ -45,6 +45,13 @@ class Route
     }
 
 
+    public static function regex($url, $callback, $method)
+    {
+        $route = new Route($url, $callback);
+        $route->setMethod($method);
+        router()->regex($route);
+    }
+
 
     /**
      * @return string
@@ -94,7 +101,10 @@ class Route
         $this->method = $method;
     }
 
-
+    public function isRegex()
+    {
+        return $this->method === "regex";
+    }
 
 
 }

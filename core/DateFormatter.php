@@ -24,13 +24,23 @@ class DateFormatter
         }else if($this->interval->d !=0){
             $nrOfYears = $this->interval->format("%d");
             return "$nrOfYears days";
-        }else if($this->interval->i !=0){
+        }else if($this->interval->h !=0){
+            $nrOfYears = $this->interval->format("%h");
+            return "$nrOfYears hours";
+        }
+        else if($this->interval->i !=0){
             $nrOfYears = $this->interval->format("%i");
-            return "$nrOfYears minutes";
+            return "$nrOfYears min";
         }
         else if($this->interval->s !=0){
             $nrOfYears = $this->interval->format("%s");
-            return "$nrOfYears seconds";
+            return "$nrOfYears sec";
         }
     }
+
+    public function isInvert()
+    {
+        return ($this->interval->invert == 0);
+    }
+
 }

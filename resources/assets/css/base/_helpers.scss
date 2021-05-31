@@ -98,6 +98,7 @@
 
 
 .grid {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   counter-reset: div;
@@ -382,4 +383,11 @@
 
 .is-invalid{
   border: 1px solid red;
+}
+
+.justify-center{
+  justify-content: center;
+}
+.flex-column{
+  flex-direction: column;
 }
