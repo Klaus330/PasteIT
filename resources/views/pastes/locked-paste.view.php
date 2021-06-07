@@ -1,3 +1,6 @@
+<?php
+$this->setTitle("Locked paste")
+?>
 <div class="row">
     <h4 class="section-title h4 mb-2">Locked Paste</h4>
     <div>

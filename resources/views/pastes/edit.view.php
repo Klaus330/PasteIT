@@ -1,3 +1,6 @@
+<?php
+$this->setTitle("Edit - $paste->title");
+?>
 <section class="paste-section">
     <form action="/pastes/update/<?=$paste->slug ?>" method="POST">
         <div class="row">

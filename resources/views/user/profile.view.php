@@ -1,3 +1,6 @@
+<?php
+$this->setTitle("Profile");
+?>
 <div class="flex">
     <section class="section">
         <div class="row">

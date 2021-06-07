@@ -1,3 +1,6 @@
+<?php
+$this->setTitle("My pastes")
+?>
 <div class="flex">
     <section class="section">
         <div class="row">

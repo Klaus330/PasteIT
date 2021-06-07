@@ -1,3 +1,7 @@
+<?php
+$this->setTitle("Paste - $paste->title");
+?>
+
 <div class="flex">
     <section class="paste-section">
         <div class="row">

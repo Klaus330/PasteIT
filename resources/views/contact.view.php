@@ -1,3 +1,6 @@
+<?php
+$this->setTitle("Contact");
+?>
 <div class="row">
     <div class="row mt-3">
         <?php $form = \app\forms\Form::begin('/contact', "POST", "register-form simple-form") ?>
