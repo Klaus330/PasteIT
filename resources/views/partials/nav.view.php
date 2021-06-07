@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="/ScholarlyHtml.html" class="nav-link">About</a>
+                    <a href="/about.html" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
                     <a href="/contact" class="nav-link">Report Abuse</a>
@@ -44,10 +44,10 @@
                 <a href="/" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link">About</a>
+                <a href="/about.html" class="nav-link">About</a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link">Contact</a>
+                <a href="/contact" class="nav-link">Contact</a>
             </li>
 
             <?php if (!app()::isGuest()): ?>
