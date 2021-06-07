@@ -102,7 +102,7 @@ $this->setTitle("Paste - $paste->title");
                         <div class="source-code">
                             <pre class="source-pre">
                                 <code id="source"
-                                      class="source <?= strtolower($paste->syntax()->name) ?>"><?= $latestVersion->code ?? $paste->code ?></code>
+                                      class="source <?= strtolower($paste->syntax()->name) ?>"><?= htmlspecialchars_decode($latestVersion->code ?? $paste->code) ?></code>
                             </pre>
                         </div>
                     </div>
@@ -120,7 +120,7 @@ $this->setTitle("Paste - $paste->title");
 
                 <div class="col-12">
                     <textarea readonly name="raw-data" id="raw-data" cols="30" rows="10"
-                              class="paste-text-area"><?= $latestVersion->code ?? $paste->code ?></textarea>
+                              class="paste-text-area"><?= htmlspecialchars_decode($latestVersion->code ?? $paste->code) ?></textarea>
                 </div>
 
             </div>
