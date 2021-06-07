@@ -201,7 +201,7 @@ class PasteController extends Controller
 
             $paste->edit($pastePayload);
             $latestVersion = $paste->versions(['updated_at', 'DESC'])[0] ?? null;
-
+            $body['code'] = htmlspecialchars($body['code']);
             if (($latestVersion != null && $latestVersion->code != $body["code"]) || ($latestVersion == null && $paste->code != $body['code'])) {
                 $version = Version::create([
                         "id_user" => $body['id_user'],
