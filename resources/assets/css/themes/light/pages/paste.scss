@@ -4,6 +4,7 @@
   .paste-text-area {
     background-color: $secondary-color-light;
     color: $text-color-black;
+    white-space: pre-wrap;
   }
 }
 
