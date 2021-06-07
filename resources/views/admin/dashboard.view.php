@@ -43,7 +43,7 @@
     <div class="modal-content">
         <span class="close" id="close-button">&times;</span>
         <div>
-            <h3 id="modal-title"></h3>
+            <p id="modal-title"></p>
         </div>
     </div>
 </div>

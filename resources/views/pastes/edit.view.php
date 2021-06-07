@@ -88,7 +88,7 @@ $this->setTitle("Edit - $paste->title");
             <div class="grid">
 
                 <div class="col-12 flex align-start">
-                    <label for="code" class="h3">Edit paste</label>
+                    <h3 class="text-color">Edit paste</h3>
                 </div>
 
                 <div class="col-12">

@@ -4,7 +4,6 @@ $this->setTitle("Paste It - Home");
 
 <div class="home-section section">
     <?php $form = \app\forms\Form::begin('/pastes', "POST") ?>
-    <form action="/pastes" method="POST">
         <div class="row home-first">
             <div class="home-paste">
                 <label for="pasteit" class="h4">New Paste</label>
@@ -158,7 +157,6 @@ $this->setTitle("Paste It - Home");
             </div>
         </div>
 
-    </form>
     <?php \app\forms\Form::end() ?>
     <?php require_once dirname(__FILE__) . "/partials/alerts/guestalert.view.php" ?>
 
