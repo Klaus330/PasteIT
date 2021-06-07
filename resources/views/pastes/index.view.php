@@ -63,7 +63,16 @@ $this->setTitle("Paste - $paste->title");
                                         <img src="/img/svg/edit.svg" alt="edit"/>
                                     </a>
                                 </div>
-                                <?php elseif($paste->isOwner(auth()->id) || auth()->isAdmin()): ?>
+                                    <?php if($paste->isOwner(auth()->id)): ?>
+                                        <div class="delete">
+                                            <form action="/paste/delete/<?= $paste->slug ?>" method="post">
+                                                <button class="btn">
+                                                    <img src="/img/svg/delete.svg" alt="delete"/>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php elseif(auth()->isAdmin()): ?>
                                     <div class="delete">
                                         <form action="/paste/delete/<?= $paste->slug ?>" method="post">
                                             <button class="btn">

@@ -74,7 +74,7 @@ class Paste extends DbModel
             $temp = new \DateTimeImmutable();
             $this->expiration_date = $temp->modify("+$this->expiration_date")->format('Y-m-d H:i:s');
         }
-        
+
         $this->code = \htmlspecialchars($this->code);
 
         parent::save();
