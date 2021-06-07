@@ -1,5 +1,6 @@
 <?php
 /** @var $model \app\models\Model*/
+$this->setTitle("Reset password")
 ?>
 <div class="row">
     <h1 class="h1">Reset password</h1>

@@ -1,3 +1,6 @@
+<?php
+$this->setTitle("$paste->title - Versions");
+?>
 <section class="paste-section">
     <h2 class="text-color">Versions for <a href="/paste/view/<?= $paste->slug ?>"><?= $paste->title ?></a></h2>
 

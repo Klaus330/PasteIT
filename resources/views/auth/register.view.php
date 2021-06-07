@@ -4,8 +4,6 @@
 <div class="row">
     <div class="row mt-3">
         <?php $form = \app\forms\Form::begin('/register', "POST", "register-form simple-form") ?>
-
-
             <?= $form->inputField($model, 'username') ?>
             <?= $form->inputField($model, "email")->emailField() ?>
             <?= $form->inputField($model,"password")->passwordField() ?>

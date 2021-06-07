@@ -1,3 +1,6 @@
+<?php
+$this->setTitle("Add paste vertion");
+?>
 <section class="paste-section">
     <form action="/paste/add-version/<?=$paste->slug ?>" method="POST">
         <div class="row">
