@@ -1,5 +1,5 @@
 <?php
-$this->setTitle("Paste It - Home")
+$this->setTitle("Paste It - Home");
 ?>
 
 <div class="home-section section">

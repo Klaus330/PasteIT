@@ -97,6 +97,7 @@ class PasteController extends Controller
 
     private function canShowPaste($paste)
     {
+
         if ($paste == false) {
             throw new PageNotFoundException();
         }
@@ -110,7 +111,9 @@ class PasteController extends Controller
             throw new PageNotFoundException();
         }
 
-        if((session()->has("user") && $paste->isOwner(auth()->id)) || (session()->has("user") && $paste->canView(auth()->id))){
+        if(
+            (session()->has("user") && ($paste->isOwner(auth()->id) || $paste->canView(auth()->id)))
+        ){
             return;
         }
 

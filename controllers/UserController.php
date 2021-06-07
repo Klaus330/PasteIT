@@ -8,12 +8,25 @@ use app\middlewares\AuthMiddleware;
 use app\models\Paste;
 use app\models\Settings;
 use app\models\Syntax;
+use app\models\User;
 
 class UserController extends Controller
 {
     public function __construct()
     {
         $this->registerMiddleware(new AuthMiddleware());
+    }
+
+
+    public function show(Request $request)
+    {
+        $user_id =   $request->getParamForRoute("/user/");
+
+        $user = User::findOne(['id'=>$user_id]);
+        $usersPastes = Paste::latest(10,['id_user' => $user_id]);
+
+
+        return view("user/show", compact('user', 'usersPastes'));
     }
 
     public function settings()

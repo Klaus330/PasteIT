@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\core\Application;
+use app\core\exceptions\BannedException;
 use app\core\Validator;
 use app\models\Model;
 
@@ -13,7 +14,8 @@ class User extends DbModel
     public string $confirm_password = '';
     public string $password = '';
     public $avatar = '';
-
+    public $isAdmin = false;
+    public $banned = false;
 
     public function save()
     {
@@ -39,7 +41,7 @@ class User extends DbModel
 
     public function attributes(): array
     {
-        return ['username', 'email', 'password', 'avatar'];
+        return ['username', 'email', 'password', 'avatar', 'isAdmin', 'banned'];
     }
 
     public function labels()
@@ -56,6 +58,11 @@ class User extends DbModel
     public function login()
     {
         $user = User::findOne(['email' => $this->email]);
+
+        if($user->isBanned()){
+            throw new BannedException();
+        }
+
 
         if(!$user){
             Validator::addError('email', 'Please check your credentials and try again');
@@ -82,4 +89,20 @@ class User extends DbModel
         return $this->hasOne('id_user', Settings::class);
     }
 
+
+    public function pastes()
+    {
+        return $this->hasMany(Paste::class, 'pastes_users');
+    }
+
+
+    public function isAdmin()
+    {
+        return ($this->isAdmin == '1');
+    }
+
+    public function isBanned()
+    {
+        return ($this->banned == '1');
+    }
 }

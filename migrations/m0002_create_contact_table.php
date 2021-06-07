@@ -10,9 +10,12 @@ class m0002_create_contact_table extends Migration {
         $sql = "
             CREATE TABLE IF NOT EXISTS contact(
                 id INT AUTO_INCREMENT PRIMARY KEY,
-                name VARCHAR(55) NOT NULL,
-                email VARCHAR(55) NOT NULL,
-                message TEXT
+                fromUsername VARCHAR(255) NOT NULL,
+                fromEmail VARCHAR(255) NOT NULL,
+                toUsername VARCHAR(255) NOT NULL,
+                toPaste VARCHAR(55) NOT NULL,
+                message TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
             ) ENGINE=INNODB;
         ";
 

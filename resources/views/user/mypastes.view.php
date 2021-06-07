@@ -40,7 +40,7 @@
                                 <div class="card-content">
                                     <h2 class="card-title h2">${paste.title}</h2>
                                     <p class="card-author">${paste.syntax.name}
-                                        (${paste.exposure === "1" ? "Private" : "Public"})</p>
+                                        (${paste.exposure === "1" ? "Private" : "Public"}${paste.expired === "1" ? " - expired": ""})</p>
                                     <a class="btn btn-light btn-sm" href="/paste/view/${paste.slug}">Read More</a>
                                 </div>
                             </div>

@@ -13,7 +13,7 @@
                         <div class="paste-bottom-content">
                             <div class="username">
                                 <img src="/img/svg/user-icon.svg" alt="user-icon"/>
-                                <a href="#"><?= $paste->user()->username ?></a>
+                                <a href="/user/<?=$paste->user()->id?>"><?= $paste->user()->username ?></a>
                             </div>
 
                             <div class="date">
@@ -38,8 +38,10 @@
                             </div>
                         </div>
 
-                        <?php if (session()->has('user') && $paste->canEdit(auth()->id)): ?>
+                        <?php if (session()->has('user') && $paste->canEdit(auth()->id)):?>
+
                             <div class="paste-actions">
+                                <?php if(!auth()->isAdmin()):?>
                                 <div class="edit">
                                     <a href="/paste/versions/<?= $paste->slug ?>">
                                         <img src="/img/svg/versions.svg" alt="versions"/>
@@ -57,7 +59,7 @@
                                         <img src="/img/svg/edit.svg" alt="edit"/>
                                     </a>
                                 </div>
-                                <?php if ($paste->isOwner(auth()->id)): ?>
+                                <?php elseif($paste->isOwner(auth()->id) || auth()->isAdmin()): ?>
                                     <div class="delete">
                                         <form action="/paste/delete/<?= $paste->slug ?>" method="post">
                                             <button class="btn">
@@ -66,6 +68,10 @@
                                         </form>
                                     </div>
                                 <?php endif; ?>
+                            </div>
+                        <?php else: ?>
+                            <div class="paste-actons">
+                                <a href="/contact?paste=<?=$paste->slug?>">Report abuse</a>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -174,7 +180,7 @@
     });
 
 
-    document.getElementById("editor-button").addEventListener("click", addEditor);
+    document.getElementById("editor-button")?.addEventListener("click", addEditor);
 
     function addEditor() {
         let modal = document.getElementById("<?= $paste->slug ?>");
@@ -214,8 +220,8 @@
         request.send(payload);
 
     }
-
-
+</script>
+<script>
     function updateViews() {
         let request = new XMLHttpRequest();
 

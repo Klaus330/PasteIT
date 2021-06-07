@@ -53,3 +53,13 @@ Route::regex("/versions\/delete\/[a-zA-Z0-9]+/","VersionsController@destroy","po
 Route::regex("/versions\/promote\/[a-zA-Z0-9]+/","VersionsController@promote","post");
 Route::regex("/paste\/add-version\/[a-zA-Z0-9]+/","VersionsController@addVersion","get");
 Route::regex("/paste\/add-version\/[a-zA-Z0-9]+/","VersionsController@store","post");
+
+
+
+Route::regex("/user\/[0-9]+/", "UserController@show",'get');
+Route::regex("/ban\/user\/[0-9]+/", "AdminController@banUser",'post');
+
+Route::regex("/report\/delete\/[0-9]+/", "ContactController@delete",'post');
+
+// Admin
+Route::get("/admin/dashboard", "AdminController@index");

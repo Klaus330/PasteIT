@@ -8,8 +8,10 @@ use app\core\Validator;
 
 class Contact extends DbModel
 {
-    public string $name = '';
-    public string $email = '';
+    public string $fromUsername = '';
+    public string $fromEmail = '';
+    public string $toUsername = '';
+    public string $toPaste = '';
     public string $message = '';
 
     public function tableName(): string
@@ -19,7 +21,7 @@ class Contact extends DbModel
 
     public function attributes(): array
     {
-        return ['name', 'email', 'message'];
+        return ['fromUsername', 'fromEmail','toUsername','toPaste', 'message'];
     }
 
     public static function getPrimaryKey(): string
@@ -30,8 +32,10 @@ class Contact extends DbModel
     public function rules()
     {
         return [
-            'email' => [Validator::RULE_REQUIRED, Validator::RULE_EMAIL],
-            'name' => [Validator::RULE_REQUIRED],
+            'fromEmail' => [Validator::RULE_REQUIRED, Validator::RULE_EMAIL],
+            'fromUsername' => [Validator::RULE_REQUIRED],
+            'toUsername' => [Validator::RULE_REQUIRED],
+            'toPaste' => [Validator::RULE_REQUIRED],
             'message' => [Validator::RULE_REQUIRED]
         ];
     }
@@ -39,14 +43,16 @@ class Contact extends DbModel
     public function labels()
     {
         return [
-            'email' => 'Your Email',
-            'name' => 'Your Name',
-            'message' => 'Message'
+            'fromEmail' => 'Your Email',
+            'fromUsername' => 'Your Name',
+            'toUsername' => 'The owner of the paste',
+            'toPaste' => 'The paste URL',
+            'message' => 'Reason'
         ];
     }
 
     public function send()
     {
-        return true;
+        return parent::save();
     }
 }
