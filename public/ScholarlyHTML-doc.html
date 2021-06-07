@@ -53,7 +53,7 @@
 
 
         <li>
-            <a href="#arhitectura">4. Arhitectura aplicatiei</a>
+            <a href="#arhitectura">4. Arhitectura aplicației</a>
         </li>
 
 
@@ -94,24 +94,24 @@
 
         <li>
             <a href="#pasi">
-                6. Pasi intermediari in realizarea aplicatiei
+                6. Pași intermediari în realizarea aplicației
             </a>
 
             <ol>
                 <li>
-                    <a href="#cerinta">6.1 Intelegerea cerintelor clientului</a>
+                    <a href="#cerinta">6.1 Înțelegerea cerințelor clientului</a>
                 </li>
                 <li>
                     <a href="#use-case">6.2 Crearea diagramelor Use-case</a>
                 </li>
                 <li>
-                    <a href="#interfata">6.3 Realizare interfetei grafice cu utilizatorul</a>
+                    <a href="#interfata">6.3 Realizare interfeței grafice cu utilizatorul</a>
                 </li>
                 <li>
                     <a href="#c4">6.4  Realizarea diagramelor C4</a>
                 </li>
                 <li>
-                    <a href="#implementare">6.5  Implementarea functionalitatilor aplicatiei</a>
+                    <a href="#implementare">6.5  Implementarea funcționalităților aplicației</a>
                 </li>
             </ol>
         </li>
@@ -119,7 +119,7 @@
 
         <li>
             <a href="#concepte">
-                7. Concepte folosite in realizarea PASTE IT
+                7. Concepte folosite în realizarea PASTE IT
             </a>
             <ol>
                 <li>
@@ -250,8 +250,8 @@
     <section typeof="sa:Abstract" id="abstract" role="doc-abstract" itemscope="" itemtype="https://schema.org/Article">
         <h2><span>1. </span>Abstract</h2>
         <p itemprop="description">
-            Acest document are ca scop oferirea unui ghid simplu si concis de utilizare a aplicatiei noastre.
-            Ilustratiile prezentate ajuta la intelegerea completa a conceptelor folosite in realizarea proiectului
+            Acest document are ca scop oferirea unui ghid simplu și concis de utilizare a aplicației noastre.
+            Ilustrațiile prezentate ajută la înțelegerea completă a conceptelor folosite în realizarea proiectului
             PasteIt.
         </p>
     </section>
@@ -268,21 +268,21 @@
 
         <h3 id="scop"><span>2.1</span> Scop</h3>
         <p>
-            Scopul documentului este de a veni in ajutorul noilor utilizatori care doresc sa interactioneze cu aplicatia
-            noastra web.
-            Cu ajutorul ilustratiilor grafice procesul de invatare a conceptelor din aplicatie devine facil.
-            De asemenea, raportul detaliaza o descriere ampla a scenariilor care pot surveni in timpul folosirii
-            aplicatiei.
+            Scopul documentului este de a veni în ajutorul noilor utilizatori care doresc să interacționeze cu aplicația
+            noastră web.
+            Cu ajutorul ilustrațiilor grafice procesul de învățare a conceptelor din aplicație devine facil.
+            De asemenea, raportul detaliază o descriere amplă a scenariilor care pot surveni în timpul folosirii
+            aplicației.
         </p>
 
 
         <h3 id="conventii"><span>2.2</span> Convenții document</h3>
         <ul>
-            <li>"Paste"- reprezinta o postare de cod a unui utilizator pe platforma</li>
-            <li>"Burn After Read"- proprietatea unui paste de a se autodistruge dupa prima vizualizare</li>
-            <li>"Exposure"- proprietatea de a fi vizibil oricarui utilizator sau privat</li>
-            <li>"Syntax"- limbajul in care este scris blocul de cod</li>
-            <li>"Role: viewer/editor"- rolurile pe care le poate avea un utilizator asupra unei postari</li>
+            <li>"Paste"- reprezintă o postare de cod a unui utilizator pe platforma</li>
+            <li>"Burn After Read"- proprietatea unui paste de a se autodistruge după prima vizualizare</li>
+            <li>"Exposure"- proprietatea de a fi vizibil oricărui utilizator sau privat</li>
+            <li>"Syntax"- limbajul în care este scris blocul de cod</li>
+            <li>"Role: viewer/editor"- rolurile pe care le poate avea un utilizator asupra unei postări</li>
         </ul>
 
     </section>
@@ -294,104 +294,103 @@
 
         <p>
             Pentru acest proiect au fost utilizate urmatoarele tehnologii web: PHP, SCSS, JavaScript, Ajax. Toate aceste
-            au fost folosite pentru a face experienta utilizatorului cu aplicatia mult mai prietenoasa.
+            au fost folosite pentru a face experiența utilizatorului cu aplicația mult mai prietenoasă.
         </p>
 
 
         <h2 id="arhitectura"><span>4.</span> Arhitectura aplicatiei</h2>
         <p>
-            Pentru acest proiect am optat pentru construirea unei arhitecturi de tipul MVC, datorita modularitatii pe
-            care acest
-            model o ofera.
+            Pentru acest proiect am optat pentru construirea unei arhitecturi de tipul MVC, datorită modularității pe
+            care acest model o oferă.
         </p>
 
 
         <h2 id="structura"><span>5.</span> Structura proiectului</h2>
         <p>
-            Pentru o organizare mai buna, componenentele proiectului au fost impartite in mai multe directoare, fiecare
-            avand specificul sau.
+            Pentru o organizare mai bună, componenentele proiectului au fost împărțite în mai multe directoare, fiecare
+            având specificul său.
         </p>
 
         <h3 id="dir-public"><span>5.1.</span> Directorul public</h3>
         <p>
-            Acest director este entry point-ul aplicatiei noastre. Aici se afla toate informatiile necesare pentru
-            afisarea interfetei utilizatorului, cum ar fi: fisierele css responsabile cu stilul paginilor, fisierele
-            javascript responsabile cu dinamicitatea paginilor, directorul imagini in care se afla toate iconitele
-            si imaginile care apar in documentatia site-ului, faviconurile site-ului si punctul de intrare in aplicatie
-            reprezentat de fisierul index.php.
+            Acest director este entry point-ul aplicației noastre. Aici se află toate informațiile necesare pentru
+            afișarea interfeței utilizatorului, cum ar fi: fișierele CSS responsabile cu stilul paginilor, fișierele
+            javascript responsabile cu dinamicitatea paginilor, directorul imagini în care se află toate iconițele
+            și imaginile care apar în documentația site-ului, faviconurile site-ului și punctul de intrare în aplicație
+            reprezentat de fișierul index.php.
         </p>
 
 
         <h3 id="dir-core"><span>5.2</span> Directorul core</h3>
         <p>
-            In acest director se afla nucleul aplicatiei noastre, aici putem gasi clase precum: Application, Router,
+            În acest director se afla nucleul aplicației noastre, aici putem găsi clase precum: Application, Router,
             Config
-            Session, Validator etc. Toate aceste clase formeaza baza aplicatiei noastre. Vom detalia fiecare clasa din
+            Session, Validator etc. Toate aceste clase formează baza aplicației noastre. Vom detalia fiecare clasă din
             acest director
-            mai tarziu in acest raport.
+            mai târziu în acest raport.
         </p>
 
         <h3 id="dir-resources"><span>5.3</span> Directorul resources</h3>
         <p>
-            Acest director contine toate informatiile care creaza view-urile care sunt randate pentru a crea interfata
-            utilizatorului. Toate fisierele scss care urmeaza a fi compilate pentru a reda stilul site-ului se afla
+            Acest director conține toate informațiile care crează view-urile care sunt randate pentru a crea interfața
+            utilizatorului. Toate fișierele SCSS care urmează a fi compilate pentru a reda stilul site-ului se află
             aici,
-            de asemenea si toate template-urile(view-urile) html se afla aici.
+            de asemenea și toate template-urile(view-urile) html se afla aici.
         </p>
 
         <h3 id="dir-routes"><span>5.4</span> Directorul routes</h3>
         <p>
-            Acest director contine un fisier cu toate rutele accesibile in aplicatie.
+            Acest director conține un fișier cu toate rutele accesibile în aplicație.
         </p>
 
         <h3 id="dir-migrations"><span>5.5.</span> Directorul migrations</h3>
         <p>
-            Acest director contine toate fisierele care se ocupa cu migratiile catre baza de date.
-            El contine clase care realizeaza diverse operatii DML asupra bazei de date la care este conectata aplicatia,
-            precum: crearea tabelului de utilizatori, crearea tabelului responsabil cu postarile de pe site etc.
+            Acest director conține toate fișierele care se ocupă cu migrațiile către baza de date.
+            El conține clase care realizează diverse operații DML asupra bazei de date la care este conectată aplicația,
+            precum: crearea tabelului de utilizatori, crearea tabelului responsabil cu postările de pe site etc.
         </p>
 
 
         <h3 id="dir-middleware"><span>5.6</span> Directorul middlewares</h3>
         <p>
-            Am considerat ca pentru o restrictionare eficienta si usoara a accesului utilizatorilor neautorizati pe
-            anumite pagini ale site-ului este bine sa folosim Middlewares. Astfel ca in acest director stocam toate
+            Am considerat ca pentru o restricționare eficientă și ușoară a accesului utilizatorilor neautorizați pe
+            anumite pagini ale site-ului este bine să folosim Middlewares. Astfel că în acest director stocăm toate
             middleware-urile utilizate.
         </p>
 
-        <h3 id="dir-controller"><span>5.7</span> Directoarele controllers si models</h3>
+        <h3 id="dir-controller"><span>5.7</span> Directoarele controllers și models</h3>
         <p>
-            Deoarece arhitectura aplicatiei este un MVC, in aceste directoare pastram toate modele si controllerele
-            aplicatiei.
+            Deoarece arhitectura aplicației este un MVC, în aceste directoare pastrăm toate modele și controllerele
+            aplicației.
         </p>
 
 
         <h3 id="id-vendor"><span>5.8</span> Directorul vendor</h3>
         <p>
-            Pentru a avea un cod bine organizat si usor extensibil am ales folosirea namespace-urilor pentru clase.
-            Prin urmare, in acest director se afla fisierul care realizeaza incarcarea automata a claselor.
+            Pentru a avea un cod bine organizat și ușor extensibil am ales folosirea namespace-urilor pentru clase.
+            Prin urmare, în acest director se află fișierul care realizează încărcarea automată a claselor.
         </p>
 
     </section>
 
 
     <section typeof="sa:MaterialsAndMethods">
-        <h2 id="pasi"><span>6.</span> Pasi intermediari in realizarea aplicatiei </h2>
+        <h2 id="pasi"><span>6.</span> Pași intermediari în realizarea aplicației </h2>
 
-        <h3 id="cerinte"><span>6.1</span> Intelegerea cerintelor clientului</h3>
+        <h3 id="cerinte"><span>6.1</span> Înțelegerea cerințelor clientului</h3>
         <p>
-            Primul pas in realizarea acestui proiect a fost intelegerea cerintelor clientului, notand si discutand toate
-            viitoarele caracteristicii pe care aplicatia urma sa le indeplineasca.
+            Primul pas în realizarea acestui proiect a fost înțelegerea cerințelor clientului, notând și discutând toate
+            viitoarele caracteristicii pe care aplicația urma să le îndeplinească.
         </p>
 
 
         <h3 id="use-case"><span>6.2</span> Crearea diagramelor Use-case</h3>
         <p>
-            Pentru intelegerea mai rapida a flowurilor actiunilor pe care un utilizator le poate face in aplicatie, am
+            Pentru intelegerea mai rapidă a flowurilor acțiunilor pe care un utilizator le poate face în aplicație, am
             recurs
-            la realizarea diagramelor use-case care ne-au ajutat sa clarificam anumite concepte, sa stabilim un
-            vocabular comun intre membrii echipei
-            si sa definim foarte bine atributiile si drepturile pe care utilizatorul le are in aplicatie.
+            la realizarea diagramelor use-case care ne-au ajutat să clarificăm anumite concepte, să stabilim un
+            vocabular comun între membrii echipei
+            și să definim foarte bine atribuțiile și drepturile pe care utilizatorul le are în aplicație.
             <img class="screenshot" src="img/scholarly/usecase-register.png" alt="usecase-register">
             <img class="screenshot" src="img/scholarly/usecase-editor.png" alt="usecase-editor">
             <img class="screenshot" src="img/scholarly/usecase-creaza-postare.png" alt="usecase-postare1">
@@ -400,25 +399,25 @@
             <img class="screenshot" src="img/scholarly/usecase-vizualizare-postare.png" alt="usecase-vizualizare">
         </p>
 
-        <h3 id="interfata"><span>6.3</span> Realizrea interfetei grafice cu utilizatorul</h3>
+        <h3 id="interfata"><span>6.3</span> Realizarea interfeței grafice cu utilizatorul</h3>
         <p>
-            Odata stabilit flow-ul actiunilor din aplicatie urmatorul pas a fost crearea interfetei grafice a site-ului.
-            Pentru acest task am utilizat urmatoarele tehnologii web: HTML, SCSS si Javascript, pentru ca aplicatia
-            noastra sa poata
+            Odată stabilit flow-ul acțiunilor din aplicație următorul pas a fost crearea interfeței grafice a site-ului.
+            Pentru acest task am utilizat următoarele tehnologii web: HTML, SCSS și Javascript, pentru ca aplicația
+            noastră să poată
             rula pe orice browser modern care are javascript activat.
         </p>
 
         <h3 id="c4"><span>6.4</span> Realizarea diagramelor C4</h3>
         <p>
-            Cu interfata grafica stabilita, urmatorul pas a fost sa realizam diagramele C4 care ne-au ajutat in
-            stabilirea componentelor externe si interne ale aplicatiei, stabilirea containerelor principale din
-            aplicatia noastra,
+            Cu interfața grafică stabilită, următorul pas a fost să realizăm diagramele C4 care ne-au ajutat în
+            stabilirea componentelor externe și interne ale aplicației, stabilirea containerelor principale din
+            aplicația noastră,
             </p>
             <img class="screenshot" src="img/scholarly/c1.png" alt="c1" style="width: 300px;">
             <img class="screenshot" src="img/scholarly/c2.png" alt="c2" style="width: 300px;">
             <img class="screenshot" src="img/scholarly/c3.png" alt="c3" style="width: 800px;">
         <p>
-            cat si stabilirea relatiilor din clase prin intermediul diagramelor de clase.
+            cât și stabilirea relațiilor din clase prin intermediul diagramelor de clase.
             <img class="screenshot" src="img/scholarly/clase-app.png" alt="clase-app">
             <img class="screenshot" src="img/scholarly/clase-router.png" alt="clase-router">
             <img class="screenshot" src="img/scholarly/clase-controllers.png" alt="clase-controllers">
@@ -426,66 +425,66 @@
         </p>
 
 
-        <h3 id="implementari "><span>6.5</span> Implementarea functionalitatilor aplicatiei</h3>
+        <h3 id="implementari "><span>6.5</span> Implementarea funcționalităților aplicației</h3>
         <p>
-            Avand toate conceptele bine intarite in minte, urmatorul pas a fost implementarea tuturor functionalitatilor
-            pe care aplicatia noastra le ofera.
+            Având toate conceptele bine întărite în minte, următorul pas a fost implementarea tuturor funcționalităților
+            pe care aplicația noastră le oferă.
         </p>
 
     </section>
 
 
     <section typeof="sa:MaterialsAndMethods">
-        <h2 id="concepte"><span>7.</span> Concepte folosite in realizarea PASTE IT</h2>
+        <h2 id="concepte"><span>7.</span> Concepte folosite în realizarea PASTE IT</h2>
 
         <h3 id="ioc"><span>7.1</span> IoC Container</h3>
         <p>
-            Deoarece am dorit sa evitam cazul in care clasa Application sa ajunga un god object, am decis ca
-            aceasta va implementa un Inversion of Control Container. Modalitatea prin care acesta lucreaza este
-            urmatoarea:
+            Deoarece am dorit să evităm cazul în care clasa Application să ajungă un god object, am decis ca
+            aceasta va implementa un Inversion of Control Container. Modalitatea prin care acesta lucrează este
+            următoarea:
         <ol>
             <li>
-                Exista doua array-uri instances care stocheaza instante ale claselor si bindings care stocheaza legaturi
-                intre numele unei clase
-                si implementarile lor care urmeaza sa fie instantiate la un moment dat.
+                Există două array-uri instances care stocheaza instanțe ale claselor și bindings care stochează legături
+                între numele unei clase
+                și implementările lor care urmează să fie instanțiate la un moment dat.
             </li>
             <li>
-                Aceste array-uri sunt populate folosind cele doua metode instance si binding
+                Aceste array-uri sunt populate folosind cele două metode instance și binding
             </li>
             <li>
-                Modalitatea prin care o clasa este rezolvata de catre ioc Container se afla in metoda
-                make din clasa Application. Logica acestei metode este urmatoarea: functia mai intai verifica
-                daca clasa ceruta se afla in array-ul instances in caz afirmativ o returneaza, atfel continua cautarea
-                in array-ul bindings, in caz afirmativ instantiaza clasa si o returneaza, altfel incearca sa faca
+                Modalitatea prin care o clasă este rezolvată de către IOC Container se află în metoda
+                make din clasa Application. Logica acestei metode este următoarea: funcția mai intâi verifică
+                dacă clasa cerută se află în array-ul instances, în caz afirmativ o returnează, atfel continuă căutarea
+                în array-ul bindings, în caz afirmativ instanțiază clasa și o returnează, altfel încearcă să facă
                 autoload clasei cerute.
             </li>
             <li>
-                Componenta de inversion of control din acest container vine atunci cand avem o clasa al carei
+                Componenta de inversion of control din acest container vine atunci când avem o clasă al cărei
                 constructor
-                necesita alte clase ca parametrii. In acest caz, Containerul va incerca sa instantieze mai intai clasele
-                necesare si sa
-                le paseze ca parametru clasei dorite, dupa care va returna instanta acesteia.
+                necesită alte clase ca parametri. În acest caz, Containerul va incerca să instanțieze mai întâi clasele
+                necesare și să
+                le paseze ca parametru clasei dorite, după care va returna instanța acesteia.
             </li>
         </ol>
         </p>
 
         <h3 id="routing"><span>7.2</span> Sistemul de routing</h3>
         <p>
-            Sistemul de routing realizat foloseste urmatoarele clase: Router, Route, Request, Response. Clasa router
+            Sistemul de routing realizat folosește următoarele clase: Router, Route, Request, Response. Clasa router
             este cea
-            care se ocupa cu directionarea traficului pe site, aceasta stabiliste care sunt rutele care exista pe site
-            si
-            le rezolvai in consecinta. Clasa Route contine informatii referitoare la o ruta precum: url-ul la care se
-            regaseste, ce controller este responsabil de rezolvarea ei, cat si care este verbul http la care se aplica.
+            care se ocupă cu direcționarea traficului pe site, aceasta stabiliște care sunt rutele care există pe site
+            și
+            le rezolvă în consecință. Clasa Route conține informații referitoare la o rută precum: url-ul la care se
+            regăsește, ce controller este responsabil de rezolvarea ei, cât și care este verbul http la care se aplică.
         </p>
         <p>
-            Clasa Request reprezinta o mapare a variabilei superglobale $_REQUEST din PHP si contine diverse functii
+            Clasa Request reprezintă o mapare a variabilei superglobale $_REQUEST din PHP și conține diverse funcții
             care
-            eficientizeaza lucrul cu datele requesturilor facute de router. Iar in final, clasa Response se ocupa cu
-            setarea informatiilor de raspuns(status code etc.) pentru un request al userului.
+            eficientizează lucrul cu datele requesturilor făcute de router. Iar în final, clasa Response se ocupă cu
+            setarea informațiilor de răspuns(status code etc.) pentru un request al userului.
         </p>
         <p>
-            Rutele sunt declarate in fisierul web.php din folderul routes al proiectului.
+            Rutele sunt declarate în fișierul web.php din folderul routes al proiectului.
         </p>
 
         <blockquote>
@@ -504,9 +503,9 @@ Route::regex("/\/pastes\/burn-after-read\/[a-zA-Z0-9]+/","PasteController@burnAf
 
         <h3 id="validare"><span>7.3</span> Modalitatea de validare a datelor</h3>
         <p>
-            Clasa Validator este cea care este responsabila de validarea inputurilor primite de la utilizatori. Aceasta
-            contine
-            un set de reguli predefinite (required, email, confirmation, min, max) pe care clasa le foloseste ca sa
+            Clasa Validator este cea care este responsabilă de validarea inputurilor primite de la utilizatori. Aceasta
+            conține
+            un set de reguli predefinite (required, email, confirmation, min, max) pe care clasa le folosește ca să
             valideze
             datele.
         </p>
@@ -540,59 +539,59 @@ public function rules()
 
         <h3 id="sesiune"><span>7.4</span> Modalitatea de gestiune a sesiunii curente</h3>
         <p>
-            Pentru gestionarea sesinii curente am creat clasa Session care mapeaza variabila superglobala $_SESSION si
-            adauga o interfata mai prietenoasa pentru lucrul cu aceasta variabila. De asemenea, am adaugat si conceptul
+            Pentru gestionarea sesinii curente am creat clasa Session care mapeaza variabila superglobala $_SESSION și
+            adaugă o interfață mai prietenoasă pentru lucrul cu aceasta variabilă. De asemenea, am adaugat și conceptul
             de
-            "flash message" care adauga o variabila in sesiune pentru o scurta perioada de timp. Este folosit adesea
+            "flash message" care adaugă o variabilă în sesiune pentru o scurtă perioadă de timp. Este folosit adesea
             pentru
-            a afisa mesaje de succes/insucces ale unor operatii.
+            a afișa mesaje de succes/eșec ale unor operații.
         </p>
         <p>
-            Clasa Application contine o instanta a sesiunii, in array-ul instances, pe care o foloseste in lucrul cu
+            Clasa Application conține o instanță a sesiunii, în array-ul instances, pe care o folosește în lucrul cu
             utilizatorii.
         </p>
 
 
         <h3 id="db"><span>7.5</span> Procedeul de gestiune a bazei de date</h3>
         <p>
-            Pentru lucrul cu o baza de date am optat pentru folosirea unei baze date MySQL, datorita suportului
-            oferit de catre limbajul PHP. Conexiunea cu aceasta se realizeaza cu ajutorul clasei PDO, care ofera suport
-            nativ pentru aceasta operatie.
+            Pentru lucrul cu o bază de date am optat pentru folosirea unei baze date MySQL, datorită suportului
+            oferit de către limbajul PHP. Conexiunea cu aceasta se realizează cu ajutorul clasei PDO, care oferă suport
+            nativ pentru această operație.
         <p>
-            De asemenea in realizarea tabelelor am optat pentru crearea unor migratii care au ca scop gestionarea
-            operatiilor
-            DML ce urmeaza a fi efectuate asupra bazei MySQL. Aceste fisiere pot fi gasite in directorul migrations al
+            De asemenea în realizarea tabelelor am optat pentru crearea unor migrații care au ca scop gestionarea
+            operațiilor
+            DML ce urmează a fi efectuate asupra bazei MySQL. Aceste fișiere pot fi găsite în directorul migrations al
             proiectului.
         </p>
         <p>
-            In plus, pentru emularea primei componente din modelul arhitectural MVC, modelul, am realizat un ORM(Object
+            În plus, pentru emularea primei componente din modelul arhitectural MVC, modelul, am realizat un ORM(Object
             Relational Mapping)
-            care gestioneaza toate operatiile DDL efectuate de aplicatia web in baza de date. Pentru aceasta, am creat
-            clasa abstracta DbModel, care este mai apoi extinsa de toate clasele ce reprezinta entitati in aplicatia
-            noastra (Paste,
+            care gestionează toate operațiile DDL efectuate de aplicația web în baza de date. Pentru aceasta, am creat
+            clasa abstractă DbModel, care este mai apoi extinsă de toate clasele ce reprezintă entități în aplicația
+            noastră (Paste,
             User, Syntax etc.).
         </p>
         <p>
-            Aceasta contine functii generice precum: insert, save, latest, find, findOne, hasOne, belongsTo, hasMany
+            Aceasta conține funcții generice precum: insert, save, latest, find, findOne, hasOne, belongsTo, hasMany
             etc., care induc scrierea
-            de cod mai curat si usor de inteles de catre programatori.
+            de cod mai curat și ușor de înțeles de către programatori.
         </p>
 
         <h3 id="middleware"><span>7.6</span> Middlewares</h3>
         <p>
-            Mecanismul middleware ofera o modalitate eficienta de inspectare si filtrare a cererilor HTTP care intra in
-            aplicatia noastra. Spre exemplu, aplicatia noastra contine un middleware care restrictioneaza accesul
+            Mecanismul middleware oferă o modalitate eficientă de inspectare și filtrare a cererilor HTTP care intră în
+            aplicația noastră. Spre exemplu, aplicația noastră conține un middleware care restricționează accesul
             utilizatorilor neautentificati
             pe pagina "My pastes".
         </p>
         <p>
-            Pentru a crea un middleware este nevoie sa creem o clasa in directorul middlewares care sa
-            extinda clasa abstracta Middleware. Aceasta va fi obligata sa implementeze functia execute, functie care
-            va fi apelata la momentul requestului.
+            Pentru a crea un middleware este nevoie sa creem o clasă în directorul middlewares care să
+            extindă clasa abstractă Middleware. Aceasta va fi obligată să implementeze funcția execute, funcție care
+            va fi apelată la momentul requestului.
         </p>
         <p>
-            Pentru a face implementarea este nevoie ca in constructorul controllerului, in care se afla metodele
-            rutelor care dorim sa fie filtrate, sa fie inregistrat un middleware ca in exemplul de mai jos:
+            Pentru a face implementarea este nevoie ca în constructorul controllerului, în care se afla metodele
+            rutelor care dorim să fie filtrate, să fie înregistrat un middleware ca în exemplul de mai jos:
 
         </p>
 
@@ -610,25 +609,25 @@ public function __construct()
 
         <h3 id="formulare"><span>7.7</span> Formulare</h3>
         <p>
-            In vederea utilizarii formularelor pentru diverse cereri catre server, am creat clase ajutatoare care
-            abstractizeaza procesul de creare, validare si istoricul unui formular. Acestea se regasesc in directorul
+            În vederea utilizării formularelor pentru diverse cereri către server, am creat clase ajutătoare care
+            abstractizează procesul de creare, validare și istoricul unui formular. Acestea se regăsesc în directorul
             forms.
         </p>
         <p>
-            Clasa Form reprezinta containerul in care vor fi adaugate toate campurile formularului. Aceasta se ocupa cu
+            Clasa Form reprezintă containerul în care vor fi adaugate toate câmpurile formularului. Aceasta se ocupa cu
             :
-            memorarea metodei si rutei catre care se va face cererea, adaugarea campurilor precum textarea, input,
-            button si
-            afisarea tuturor componentelor pe ecran.
+            memorarea metodei și rutei către care se va face cererea, adăugarea câmpurilor precum textarea, input,
+            button și
+            afișarea tuturor componentelor pe ecran.
         </p>
         <p>
-            Clasele Textarea si InputField sunt subclase ale abstractizarii BaseField, ce reprezinta implementari
+            Clasele Textarea si InputField sunt subclase ale abstractizarii BaseField, ce reprezintă implementări
             concrete
-            ale conceptelor intalnite.
+            ale conceptelor întâlnite.
         </p>
         <p>
-            Mai exista si clasa Button care genereaza butonul ce va fi folosit pentru trimiterea cererii formularului
-            catre server.
+            Mai există și clasa Button care generează butonul ce va fi folosit pentru trimiterea cererii formularului
+            către server.
         </p>
 
         <blockquote>
@@ -647,9 +646,9 @@ public function __construct()
 
         <h3 id="ajax"><span>7.8</span> Apeluri AJAX</h3>
         <p>
-            Pentru a imbunatati experienta utilizatorului cu aplicatia, am utilizat apeluri AJAX care gestioneaza
-            cereri importante catre server precum: oferirea de roluri altori utilizatori asupra unui paste, cresterea
-            numarului de vizualizari ale unui paste etc. . Un exemplu notabil pentru aceasta sectiune urmatorul block de
+            Pentru a îmbunătăți experiența utilizatorului cu aplicația, am utilizat apeluri AJAX care gestionează
+            cereri importante către server precum: oferirea de roluri altori utilizatori asupra unui paste, creșterea
+            numărului de vizualizări ale unui paste etc. . Un exemplu notabil pentru această secțiune următorul block de
             cod:
         <blockquote>
         <pre>
@@ -680,28 +679,28 @@ request.send(payload);
         </pre>
         </blockquote>
         </p><p>
-        Aici se realizeaza operatiunea de oferire de rol unui anumit user pentru o postare de catre detinatorul acesteia.
-        Observam ca pentru initierea apelului formulam un nou XMLHttpRequest cu care descriem o conexiune de tip POST
-        asupra unui url specificat. Setam tipul raspunsului sa fie JSON, iar apoi construim payload-ul care urmeaza sa fie
-        trimis catre server. In functia atribuita lui onreadystatechange, verificam raspunsul primit si declansam un  modal
-        adecvat acestuia. Apoi trimitem requestul catre server folosind functia send.
+        Aici se realizează operațiunea de oferire de rol unui anumit user pentru o postare de către deținătorul acesteia.
+        Observăm că pentru inițierea apelului formulăm un nou XMLHttpRequest cu care descriem o conexiune de tip POST
+        asupra unui url specificat. Setăm tipul răspunsului să fie JSON, iar apoi construim payload-ul care urmează să fie
+        trimis către server. În funcția atribuită lui onreadystatechange, verificăm răspunsul primit și declanșăm un modal
+        adecvat acestuia. Apoi trimitem requestul către server folosind funcția send.
         </p>
 
         <h3 id="sass"><span>7.9</span> Syntactically Awesome Style Sheet</h3>
         <p>
-            Pentru stilizarea paginilor am recurs la utilizarea tehnologiei SASS, care ofera o modalitate mai
-            usoara de a scrie cod CSS. Organizarea fisierelor scss am facut-o dupa unul din patternurile recomandate in
-            documentatia aflata pe site-ul sass.com si anume patternul 7-1. Astfel ca, fisierel au fost impartite in 7 directoare
-            diferite fiecare avand un rol bine stabilit (component, page, layout etc.), dupa care au fost incluse toate in
-            fisierul ce va urma a fi compilat si transformat intr-un fisier .css, app.scss.
+            Pentru stilizarea paginilor am recurs la utilizarea tehnologiei SASS, care oferă o modalitate mai
+            ușoara de a scrie cod CSS. Organizarea fisierelor scss am facut-o dupa unul din patternurile recomandate in
+            documentația aflată pe site-ul sass.com și anume patternul 7-1. Astfel că, fișierele au fost împărțite în 7 directoare
+            diferite fiecare având un rol bine stabilit (component, page, layout etc.), dupa care au fost incluse toate în
+            fișierul ce va urma a fi compilat și transformat într-un fișier .css, app.scss.
         </p>
 
 
         <h3 id="highlight"><span>7.10</span> Syntax Highlight</h3>
         <p>
-            In ceea ce priveste modul de afisare a codului publicat de utilizatori, am creat prin intermediul limbajului
-            Javascript un syntax highlighter care se foloseste de un set de expresii regulate, specifice limbajului de
-            programare specificat in postare, pentru a colora sintaxa codului de pe site in momentul incarcarii acestuia pe pagina.
+            În ceea ce privește modul de afișare a codului publicat de utilizatori, am creat prin intermediul limbajului
+            Javascript un syntax highlighter care se folosește de un set de expresii regulate, specifice limbajului de
+            programare specificat în postare, pentru a colora sintaxa codului de pe site în momentul încărcării acestuia pe pagină.
 
             <blockquote>
         <pre>
