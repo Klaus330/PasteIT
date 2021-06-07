@@ -1,3 +1,7 @@
+<?php
+$this->setTitle("Paste - $paste->title");
+?>
+
 <div class="flex">
     <section class="paste-section">
         <div class="row">
@@ -98,7 +102,7 @@
                         <div class="source-code">
                             <pre class="source-pre">
                                 <code id="source"
-                                      class="source <?= strtolower($paste->syntax()->name) ?>"><?= $latestVersion->code ?? $paste->code ?></code>
+                                      class="source <?= strtolower($paste->syntax()->name) ?>"><?= htmlspecialchars_decode($latestVersion->code ?? $paste->code) ?></code>
                             </pre>
                         </div>
                     </div>
@@ -116,7 +120,7 @@
 
                 <div class="col-12">
                     <textarea readonly name="raw-data" id="raw-data" cols="30" rows="10"
-                              class="paste-text-area"><?= $latestVersion->code ?? $paste->code ?></textarea>
+                              class="paste-text-area"><?= htmlspecialchars_decode($latestVersion->code ?? $paste->code) ?></textarea>
                 </div>
 
             </div>
