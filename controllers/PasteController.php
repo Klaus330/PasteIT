@@ -22,7 +22,7 @@ class PasteController extends Controller
     public function store(Request $request)
     {
         if (app()::isGuest() && session()->getFlash('captcha_code') != $request->getBody()['captcha_code']) {
-            return redirect("/");
+            return redirect("/")->withErrors(['captcha'=>'You must complete the captcha first']);
         }
 
         $paste = new Paste();
@@ -39,7 +39,7 @@ class PasteController extends Controller
             redirect("/paste/view/$slug");
         }
 
-        redirect("/");
+        return redirect("/")->withErrors($request->getErrors());
     }
 
     public function lockedPaste(Request $request)

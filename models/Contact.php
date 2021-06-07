@@ -45,7 +45,7 @@ class Contact extends DbModel
         return [
             'fromEmail' => 'Your Email',
             'fromUsername' => 'Your Name',
-            'toUsername' => 'The owner of the paste',
+            'toUsername' => 'The owner',
             'toPaste' => 'The paste URL',
             'message' => 'Reason'
         ];
