@@ -190,7 +190,8 @@ class PasteController extends Controller
                 "id_syntax" => $body["id_syntax"],
                 "burn_after_read" => $body["burn"] ?? "",
                 "password" => $password,
-                "title" => $body["title"]
+                "title" => $body["title"],
+                "expiration_date" => $body["expiration_date"]
             ];
 
 

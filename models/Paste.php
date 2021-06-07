@@ -90,6 +90,17 @@ class Paste extends DbModel
     }
 
 
+    public function edit($data)
+    {
+        if ($data["expiration_date"] != "never") {
+            $temp = new \DateTimeImmutable();
+            $addition = $data["expiration_date"];
+            $data["expiration_date"] = $temp->modify("+$addition")->format('Y-m-d H:i:s');
+        }
+
+        parent::edit($data);
+    }
+
     public function user()
     {
         return $this->belongsTo('id_user', User::class);
