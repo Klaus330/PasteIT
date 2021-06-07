@@ -83,7 +83,7 @@ class UserController extends Controller
         $body = $request->getBody();
 
 
-        $pastes = Paste::paginate($body['page_nr'],5,['id_user'=>$body['user_id']]);
+        $pastes = Paste::paginate($body['page_nr'],4,['id_user'=>$body['user_id']]);
         array_map(function($paste){
             return  $paste->load(['syntax']);
         },$pastes);
