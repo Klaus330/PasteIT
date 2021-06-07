@@ -16,13 +16,13 @@ class Paste extends DbModel
     public string $title = '';
     public string $slug = '';
     public string $id_syntax = '';
-    public $exposure = "";
+    public $exposure = false;
     public $id_user = 1;
     public $expiration_date = "0000-00-00 00:00:00";
-    public string $burn_after_read = '';
+    public $burn_after_read = false;
     public string $password = '';
     public $created_at;
-    public $expired = '';
+    public $expired = false;
     public int $nr_of_views = 0;
 
 
@@ -75,7 +75,7 @@ class Paste extends DbModel
             $this->expiration_date = $temp->modify("+$this->expiration_date")->format('Y-m-d H:i:s');
         }
 
-
+        $this->code = \htmlspecialchars($this->code);
 
         parent::save();
 
@@ -89,6 +89,17 @@ class Paste extends DbModel
         ],"pastes_users");
     }
 
+
+    public function edit($data)
+    {
+        if ($data["expiration_date"] != "never") {
+            $temp = new \DateTimeImmutable();
+            $addition = $data["expiration_date"];
+            $data["expiration_date"] = $temp->modify("+$addition")->format('Y-m-d H:i:s');
+        }
+
+        parent::edit($data);
+    }
 
     public function user()
     {
@@ -201,6 +212,11 @@ class Paste extends DbModel
 
     public function canEdit($userId)
     {
+        if(auth()->isAdmin())
+        {
+            return true;
+        }
+
         $editors = $this->editors();
 
         foreach ($editors as $editor){
@@ -214,6 +230,11 @@ class Paste extends DbModel
 
     public function canView($userId)
     {
+        if(auth()->isAdmin())
+        {
+            return true;
+        }
+
         $editors = $this->editors();
 
         foreach ($editors as $editor){

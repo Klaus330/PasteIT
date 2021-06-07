@@ -1,3 +1,6 @@
+<?php
+$this->setTitle($paste->title);
+?>
 <section class="paste-section">
     <h2>Version</h2>
     <div class="home-first">

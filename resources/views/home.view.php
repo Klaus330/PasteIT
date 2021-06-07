@@ -1,13 +1,18 @@
 <?php
-$this->setTitle("Paste It - Home")
+$this->setTitle("Paste It - Home");
 ?>
 
 <div class="home-section section">
-    <form action="/pastes" method="POST">
+    <?php $form = \app\forms\Form::begin('/pastes', "POST") ?>
         <div class="row home-first">
             <div class="home-paste">
                 <label for="pasteit" class="h4">New Paste</label>
                 <textarea name="code" id="pasteit" cols="30" rows="15"></textarea>
+                <?php if(array_key_exists('code',$errors)): ?>
+                    <span class="text-danger">
+                        <?= $errors['code'][0]?>
+                    </span>
+                <?php endif; ?>
             </div>
             <aside class="home-aside sm-hidden">
                 <h4 class="h4">Public Pastes</h4>
@@ -90,6 +95,7 @@ $this->setTitle("Paste It - Home")
                     </div>
                 </div>
 
+
                 <div class="grid">
                     <div class="col-md-offset-3"></div>
                     <div class="form-check col-10 col-md-8 flex align-start">
@@ -104,7 +110,15 @@ $this->setTitle("Paste It - Home")
                     <div class="col-12 col-md-6 flex align-center">
                         <input type="text" placeholder="Title" class="form-control" name="title" id="title">
                     </div>
+                    <div class="col-12 flex align-start">
+                    <?php if(array_key_exists('title',$errors)): ?>
+                        <span class="text-danger">
+                                <?= $errors['title'][0]?>
+                        </span>
+                    <?php endif; ?>
+                    </div>
                 </div>
+
                 <div class="grid">
                     <div class="col-12 col-md-6 flex align-center">
                         <?php if (app()::isGuest()): ?>
@@ -126,6 +140,13 @@ $this->setTitle("Paste It - Home")
                         <div class="col-12 col-md-3 flex align-center">
                             <img src="<?= $captchaCode ?>" alt="Captcha code" id="captcha-code-image">
                         </div>
+                        <div class="col-12">
+                        <?php if(array_key_exists('captcha',$errors)): ?>
+                            <span class="text-danger">
+                                <?= $errors['captcha']?>
+                            </span>
+                        <?php endif; ?>
+                        </div>
                     </div>
                 <?php endif ?>
                 <div class="grid">
@@ -136,7 +157,7 @@ $this->setTitle("Paste It - Home")
             </div>
         </div>
 
-    </form>
+    <?php \app\forms\Form::end() ?>
     <?php require_once dirname(__FILE__) . "/partials/alerts/guestalert.view.php" ?>
 
 </div>

@@ -1,3 +1,6 @@
+<?php
+$this->setTitle("Burn after read")
+?>
 <div class="row">
     <h4 class="section-title h4 mb-2 mt-2">Burn after read</h4>
     <div>

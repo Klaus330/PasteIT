@@ -2,6 +2,7 @@
 /**
 * @var $model \app\models\Model
 */
+$this->setTitle("Forgot password")
 ?>
 <div class="row">
     <div class="row mt-5">

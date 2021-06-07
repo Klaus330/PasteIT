@@ -34,7 +34,7 @@ abstract class BaseField
     {
         return sprintf(
             ' <div class="grid">
-                <div class="col-md-3 col-3">
+                <div class="col-md-3 col-12 flex align-start">
                     <label for="%s" class="form-label">
                         %s:
                     </label>

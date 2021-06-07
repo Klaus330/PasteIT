@@ -22,7 +22,7 @@ class PasteController extends Controller
     public function store(Request $request)
     {
         if (app()::isGuest() && session()->getFlash('captcha_code') != $request->getBody()['captcha_code']) {
-            return redirect("/");
+            return redirect("/")->withErrors(['captcha'=>'You must complete the captcha first']);
         }
 
         $paste = new Paste();
@@ -39,7 +39,7 @@ class PasteController extends Controller
             redirect("/paste/view/$slug");
         }
 
-        redirect("/");
+        return redirect("/")->withErrors($request->getErrors());
     }
 
     public function lockedPaste(Request $request)
@@ -97,6 +97,7 @@ class PasteController extends Controller
 
     private function canShowPaste($paste)
     {
+
         if ($paste == false) {
             throw new PageNotFoundException();
         }
@@ -110,7 +111,9 @@ class PasteController extends Controller
             throw new PageNotFoundException();
         }
 
-        if((session()->has("user") && $paste->isOwner(auth()->id)) || (session()->has("user") && $paste->canView(auth()->id))){
+        if(
+            (session()->has("user") && ($paste->isOwner(auth()->id) || $paste->canView(auth()->id)))
+        ){
             return;
         }
 
@@ -187,7 +190,8 @@ class PasteController extends Controller
                 "id_syntax" => $body["id_syntax"],
                 "burn_after_read" => $body["burn"] ?? "",
                 "password" => $password,
-                "title" => $body["title"]
+                "title" => $body["title"],
+                "expiration_date" => $body["expiration_date"]
             ];
 
 
@@ -198,7 +202,7 @@ class PasteController extends Controller
 
             $paste->edit($pastePayload);
             $latestVersion = $paste->versions(['updated_at', 'DESC'])[0] ?? null;
-
+            $body['code'] = htmlspecialchars($body['code']);
             if (($latestVersion != null && $latestVersion->code != $body["code"]) || ($latestVersion == null && $paste->code != $body['code'])) {
                 $version = Version::create([
                         "id_user" => $body['id_user'],

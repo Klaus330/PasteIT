@@ -69,6 +69,11 @@ class Request
         return $body;
     }
 
+    public function has($attribute)
+    {
+        return array_key_exists($attribute, $this->getBody());
+    }
+
     public function validate($rules)
     {
         $this->errors = Validator::validate($this->getBody(), $rules);

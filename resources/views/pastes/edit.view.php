@@ -1,3 +1,6 @@
+<?php
+$this->setTitle("Edit - $paste->title");
+?>
 <section class="paste-section">
     <form action="/pastes/update/<?=$paste->slug ?>" method="POST">
         <div class="row">
@@ -85,7 +88,7 @@
             <div class="grid">
 
                 <div class="col-12 flex align-start">
-                    <label for="code" class="h3">Edit paste</label>
+                    <h3 class="text-color">Edit paste</h3>
                 </div>
 
                 <div class="col-12">

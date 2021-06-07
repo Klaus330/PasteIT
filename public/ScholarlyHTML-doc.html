@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PasteIt - Scholarly HTML</title>
+    <link rel="stylesheet" href="https://w3c.github.io/scholarly-html/css/scholarly.min.css">
+    <link rel="shortcut icon" type="image/svg" href="/img/logo.svg">
+    <style>
+        p {
+            text-indent: 40px;
+            text-align: justify;
+        }
+
+        .screenshot {
+            width: 860px;
+        }
+
+    </style>
+</head>
+<body prefix="schema: http://schema.org"
+      style="font-family: 'Times New Roman', Times, serif; font-size: 15pt;"
+      itemscope itemtype="http://schema.org/WebPage"
+>
+<header>
+    <h1 itemprop="name">Paste It</h1>
+</header>
+<div role="contentinfo">
+    <ol role="directory">
+        <li>
+            <a href="#abstract">
+                <span>1. </span>Abstract
+            </a>
+        </li>
+        <li>
+            <a href="#introducere">
+                <span>2. </span>Introducere
+            </a>
+            <ol>
+                <li>
+                    <a href="#scop">2.1 Scop</a>
+                </li>
+                <li>
+                    <a href="#conventii">2.2 Convenții document</a>
+                </li>
+            </ol>
+        </li>
+        <li>
+            <a href="#overall-description">
+                <span>3. </span> Tehnologii utilizate
+            </a>
+        </li>
+
+
+        <li>
+            <a href="#arhitectura">4. Arhitectura aplicației</a>
+        </li>
+
+
+        <li>
+            <a href="#structura">5. Structura proiectului</a>
+            <ol>
+                <li>
+                    <a href="#dir-public">5.1 Directorul public</a>
+                </li>
+
+                <li>
+                    <a href="#dir-core">5.2 Directorul core</a>
+                </li>
+
+                <li>
+                    <a href="#dir-resoureces">5.3 Directorul resources</a>
+                </li>
+
+                <li>
+                    <a href="#dir-routes">5.4 Directorul routes</a>
+                </li>
+
+                <li>
+                    <a href="#dir-migrations">5.5 Directorul migrations</a>
+                </li>
+                <li>
+                    <a href="#dir-middlewares">5.6 Directorul middlewares</a>
+                </li>
+                <li>
+                    <a href="#dir-controllers">5.7 Directorul controller si models</a>
+                </li>
+                <li>
+                    <a href="#dir-vendor">5.8 Directorul vendor</a>
+                </li>
+            </ol>
+        </li>
+
+
+        <li>
+            <a href="#pasi">
+                6. Pași intermediari în realizarea aplicației
+            </a>
+
+            <ol>
+                <li>
+                    <a href="#cerinta">6.1 Înțelegerea cerințelor clientului</a>
+                </li>
+                <li>
+                    <a href="#use-case">6.2 Crearea diagramelor Use-case</a>
+                </li>
+                <li>
+                    <a href="#interfata">6.3 Realizare interfeței grafice cu utilizatorul</a>
+                </li>
+                <li>
+                    <a href="#c4">6.4  Realizarea diagramelor C4</a>
+                </li>
+                <li>
+                    <a href="#implementare">6.5  Implementarea funcționalităților aplicației</a>
+                </li>
+            </ol>
+        </li>
+
+
+        <li>
+            <a href="#concepte">
+                7. Concepte folosite în realizarea PASTE IT
+            </a>
+            <ol>
+                <li>
+                    <a href="#ioc">
+                        7.1 IoC Container
+                    </a>
+                </li>
+                <li>
+                    <a href="#routing">
+                        7.2 Sistemul de routing
+                    </a>
+                </li>
+                <li>
+                    <a href="#validare">
+                        7.3 Modalitatea de validare a datelor
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#sesiune">
+                        7.4  Modalitatea de gestiune a sesiunii curente
+                    </a>
+                </li>
+                <li>
+                    <a href="#db">
+                        7.5 Procedeul de gestiune a bazei de date
+                    </a>
+                </li>
+                <li>
+                    <a href="#middleware">
+                        7.6 Middlewares
+                    </a>
+                </li>
+                <li>
+                    <a href="#formulare">
+                        7.7 Formulare
+                    </a>
+                </li>
+                <li>
+                    <a href="#ajax">
+                        7.8 Apeluri AJAX
+                    </a>
+                </li>
+                <li>
+                    <a href="#sass">
+                        7.9 Syntactically Awesome Style Sheet
+                    </a>
+                </li>
+                <li><a href="#highlight">
+                    7.10 Syntax Highlight
+                </a></li>
+            </ol>
+        </li>
+
+        <li>
+            <a href="#referinte">
+                <span>5. </span>Referinţe
+            </a>
+        </li>
+    </ol>
+
+    <section typeof="sa:AuthorsList" itemscope itemprop="authors">
+
+        <h2>Autori</h2>
+        <ol>
+            <li property="schema:author" typeof="sa:ContributorRole" itemscope itemtype="https://schema.org/Person"
+                itemprop="author">
+                    <span typeof="schema:Person" resource="https://claudiupopa.ro/">
+                        <meta property="schema:givenName" content="Claudiu">
+                        <meta property="schema:familyName" content="Popa">
+                        <span property="schema:name" itemprop="name">Popa Claudiu</span>
+                    </span>
+                <ul>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint" itemscope
+                        itemtype="https://schema.org/ContactPoint">
+                        <a href="mailto:claudiu.popa@info.uaic.ro"
+                           property="schema:email" itemprop="email">claudiu.popa@info.uaic.ro</a>
+                    </li>
+                </ul>
+            </li>
+            <li property="schema:author" typeof="sa:ContributorRole" itemscope itemtype="https://schema.org/Person"
+                itemprop="author">
+                    <span typeof="schema:Person" resource="https://github.com/RataCristinaIulia">
+                        <meta property="schema:givenName" content="Iulia">
+                        <meta property="schema:additionalName" content="Cristina">
+                        <meta property="schema:familyName" content="Rata">
+                        <span property="schema:name" itemprop="name">Rață Cristina Iulia</span>
+                    </span>
+                <ul>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint" itemscope
+                        itemtype="https://schema.org/ContactPoint">
+                        <a href="mailto:cristina.rata@info.uaic.ro"
+                           property="schema:email" itemprop="email">cristina.rata@info.uaic.ro</a>
+                    </li>
+                </ul>
+            </li>
+            <li property="schema:author" typeof="sa:ContributorRole" itemscope itemtype="https://schema.org/Person"
+                itemprop="author">
+                    <span typeof="schema:Person" resource="https://github.com/SanduVAdelin">
+                        <meta property="schema:givenName" content="Adelin">
+                        <meta property="schema:additionalName" content="Viorel">
+                        <meta property="schema:familyName" content="Sandu">
+                        <span property="schema:name" itemprop="name">Sandu Viorel Adelin</span>
+                    </span>
+                <ul>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint" itemscope
+                        itemtype="https://schema.org/ContactPoint">
+                        <a href="mailto:viorel.sandu@info.uaic.ro"
+                           property="schema:email" itemprop="email">viorel.sandu@info.uaic.ro</a>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+        <dl>
+            <dt>Licence</dt>
+            <dd>
+                <a itemprop="license" rel="license" href="https://github.com/Klaus330/PasteIt/blob/master/LICENSE">GNU
+                    GENERAL PUBLIC LICENSE</a>
+            </dd>
+
+            <dt>Erori și recomandări</dt>
+            <dd>
+                <a href="https://docs.google.com/document/d/1kW5WO_tjzeUwpeDiJludJ8oN4C0CZfaCgZPr5dPiXrY/edit?usp=sharing">Erori/Recomandări</a>
+            </dd>
+        </dl>
+    </section>
+
+    <section typeof="sa:Abstract" id="abstract" role="doc-abstract" itemscope="" itemtype="https://schema.org/Article">
+        <h2><span>1. </span>Abstract</h2>
+        <p itemprop="description">
+            Acest document are ca scop oferirea unui ghid simplu și concis de utilizare a aplicației noastre.
+            Ilustrațiile prezentate ajută la înțelegerea completă a conceptelor folosite în realizarea proiectului
+            PasteIt.
+        </p>
+    </section>
+
+    <section typeof="sa:ScholarlyArticle" id="introducere" role="doc-introduction" itemscope=""
+             itemtype="https://schema.org/Article">
+        <h2><span>2. </span>Introducere</h2>
+        <p itemprop="description">
+            PasteIt este o platformă unde poți stoca online orice text pentru a fi ușor de distribuit.
+            Site-ul este destinat în mare parte programatorilor care doresc să împărtășeasca bucăți de
+            cod sau informații de configurare (de servere, de baze de date), dar oricine se poate folosi
+            de funcționalitățile aplicației.
+        </p>
+
+        <h3 id="scop"><span>2.1</span> Scop</h3>
+        <p>
+            Scopul documentului este de a veni în ajutorul noilor utilizatori care doresc să interacționeze cu aplicația
+            noastră web.
+            Cu ajutorul ilustrațiilor grafice procesul de învățare a conceptelor din aplicație devine facil.
+            De asemenea, raportul detaliază o descriere amplă a scenariilor care pot surveni în timpul folosirii
+            aplicației.
+        </p>
+
+
+        <h3 id="conventii"><span>2.2</span> Convenții document</h3>
+        <ul>
+            <li>"Paste"- reprezintă o postare de cod a unui utilizator pe platforma</li>
+            <li>"Burn After Read"- proprietatea unui paste de a se autodistruge după prima vizualizare</li>
+            <li>"Exposure"- proprietatea de a fi vizibil oricărui utilizator sau privat</li>
+            <li>"Syntax"- limbajul în care este scris blocul de cod</li>
+            <li>"Role: viewer/editor"- rolurile pe care le poate avea un utilizator asupra unei postări</li>
+        </ul>
+
+    </section>
+
+
+    <section typeof="sa:MaterialsAndMethods" id="overall-description" role="doc-chapter">
+
+        <h2 id="tehnologii"><span>3.</span> Tehnologii utilizate</h2>
+
+        <p>
+            Pentru acest proiect au fost utilizate urmatoarele tehnologii web: PHP, SCSS, JavaScript, Ajax. Toate aceste
+            au fost folosite pentru a face experiența utilizatorului cu aplicația mult mai prietenoasă.
+        </p>
+
+
+        <h2 id="arhitectura"><span>4.</span> Arhitectura aplicatiei</h2>
+        <p>
+            Pentru acest proiect am optat pentru construirea unei arhitecturi de tipul MVC, datorită modularității pe
+            care acest model o oferă.
+        </p>
+
+
+        <h2 id="structura"><span>5.</span> Structura proiectului</h2>
+        <p>
+            Pentru o organizare mai bună, componenentele proiectului au fost împărțite în mai multe directoare, fiecare
+            având specificul său.
+        </p>
+
+        <h3 id="dir-public"><span>5.1.</span> Directorul public</h3>
+        <p>
+            Acest director este entry point-ul aplicației noastre. Aici se află toate informațiile necesare pentru
+            afișarea interfeței utilizatorului, cum ar fi: fișierele CSS responsabile cu stilul paginilor, fișierele
+            javascript responsabile cu dinamicitatea paginilor, directorul imagini în care se află toate iconițele
+            și imaginile care apar în documentația site-ului, faviconurile site-ului și punctul de intrare în aplicație
+            reprezentat de fișierul index.php.
+        </p>
+
+
+        <h3 id="dir-core"><span>5.2</span> Directorul core</h3>
+        <p>
+            În acest director se afla nucleul aplicației noastre, aici putem găsi clase precum: Application, Router,
+            Config
+            Session, Validator etc. Toate aceste clase formează baza aplicației noastre. Vom detalia fiecare clasă din
+            acest director
+            mai târziu în acest raport.
+        </p>
+
+        <h3 id="dir-resources"><span>5.3</span> Directorul resources</h3>
+        <p>
+            Acest director conține toate informațiile care crează view-urile care sunt randate pentru a crea interfața
+            utilizatorului. Toate fișierele SCSS care urmează a fi compilate pentru a reda stilul site-ului se află
+            aici,
+            de asemenea și toate template-urile(view-urile) html se afla aici.
+        </p>
+
+        <h3 id="dir-routes"><span>5.4</span> Directorul routes</h3>
+        <p>
+            Acest director conține un fișier cu toate rutele accesibile în aplicație.
+        </p>
+
+        <h3 id="dir-migrations"><span>5.5.</span> Directorul migrations</h3>
+        <p>
+            Acest director conține toate fișierele care se ocupă cu migrațiile către baza de date.
+            El conține clase care realizează diverse operații DML asupra bazei de date la care este conectată aplicația,
+            precum: crearea tabelului de utilizatori, crearea tabelului responsabil cu postările de pe site etc.
+        </p>
+
+
+        <h3 id="dir-middleware"><span>5.6</span> Directorul middlewares</h3>
+        <p>
+            Am considerat ca pentru o restricționare eficientă și ușoară a accesului utilizatorilor neautorizați pe
+            anumite pagini ale site-ului este bine să folosim Middlewares. Astfel că în acest director stocăm toate
+            middleware-urile utilizate.
+        </p>
+
+        <h3 id="dir-controller"><span>5.7</span> Directoarele controllers și models</h3>
+        <p>
+            Deoarece arhitectura aplicației este un MVC, în aceste directoare pastrăm toate modele și controllerele
+            aplicației.
+        </p>
+
+
+        <h3 id="id-vendor"><span>5.8</span> Directorul vendor</h3>
+        <p>
+            Pentru a avea un cod bine organizat și ușor extensibil am ales folosirea namespace-urilor pentru clase.
+            Prin urmare, în acest director se află fișierul care realizează încărcarea automată a claselor.
+        </p>
+
+    </section>
+
+
+    <section typeof="sa:MaterialsAndMethods">
+        <h2 id="pasi"><span>6.</span> Pași intermediari în realizarea aplicației </h2>
+
+        <h3 id="cerinte"><span>6.1</span> Înțelegerea cerințelor clientului</h3>
+        <p>
+            Primul pas în realizarea acestui proiect a fost înțelegerea cerințelor clientului, notând și discutând toate
+            viitoarele caracteristicii pe care aplicația urma să le îndeplinească.
+        </p>
+
+
+        <h3 id="use-case"><span>6.2</span> Crearea diagramelor Use-case</h3>
+        <p>
+            Pentru intelegerea mai rapidă a flowurilor acțiunilor pe care un utilizator le poate face în aplicație, am
+            recurs
+            la realizarea diagramelor use-case care ne-au ajutat să clarificăm anumite concepte, să stabilim un
+            vocabular comun între membrii echipei
+            și să definim foarte bine atribuțiile și drepturile pe care utilizatorul le are în aplicație.
+            <img class="screenshot" src="img/scholarly/usecase-register.png" alt="usecase-register">
+            <img class="screenshot" src="img/scholarly/usecase-editor.png" alt="usecase-editor">
+            <img class="screenshot" src="img/scholarly/usecase-creaza-postare.png" alt="usecase-postare1">
+            <img class="screenshot" src="img/scholarly/usecase-creaza-postare2.png" alt="usecase-postare2">
+            <img class="screenshot" src="img/scholarly/usecase-editor.png" alt="usecase-editor">
+            <img class="screenshot" src="img/scholarly/usecase-vizualizare-postare.png" alt="usecase-vizualizare">
+        </p>
+
+        <h3 id="interfata"><span>6.3</span> Realizarea interfeței grafice cu utilizatorul</h3>
+        <p>
+            Odată stabilit flow-ul acțiunilor din aplicație următorul pas a fost crearea interfeței grafice a site-ului.
+            Pentru acest task am utilizat următoarele tehnologii web: HTML, SCSS și Javascript, pentru ca aplicația
+            noastră să poată
+            rula pe orice browser modern care are javascript activat.
+        </p>
+
+        <h3 id="c4"><span>6.4</span> Realizarea diagramelor C4</h3>
+        <p>
+            Cu interfața grafică stabilită, următorul pas a fost să realizăm diagramele C4 care ne-au ajutat în
+            stabilirea componentelor externe și interne ale aplicației, stabilirea containerelor principale din
+            aplicația noastră,
+            </p>
+            <img class="screenshot" src="img/scholarly/c1.png" alt="c1" style="width: 300px;">
+            <img class="screenshot" src="img/scholarly/c2.png" alt="c2" style="width: 300px;">
+            <img class="screenshot" src="img/scholarly/c3.png" alt="c3" style="width: 800px;">
+        <p>
+            cât și stabilirea relațiilor din clase prin intermediul diagramelor de clase.
+            <img class="screenshot" src="img/scholarly/clase-app.png" alt="clase-app">
+            <img class="screenshot" src="img/scholarly/clase-router.png" alt="clase-router">
+            <img class="screenshot" src="img/scholarly/clase-controllers.png" alt="clase-controllers">
+            <img class="screenshot" src="img/scholarly/clase-db.png" alt="clase-db">
+        </p>
+
+
+        <h3 id="implementari "><span>6.5</span> Implementarea funcționalităților aplicației</h3>
+        <p>
+            Având toate conceptele bine întărite în minte, următorul pas a fost implementarea tuturor funcționalităților
+            pe care aplicația noastră le oferă.
+        </p>
+
+    </section>
+
+
+    <section typeof="sa:MaterialsAndMethods">
+        <h2 id="concepte"><span>7.</span> Concepte folosite în realizarea PASTE IT</h2>
+
+        <h3 id="ioc"><span>7.1</span> IoC Container</h3>
+        <p>
+            Deoarece am dorit să evităm cazul în care clasa Application să ajungă un god object, am decis ca
+            aceasta va implementa un Inversion of Control Container. Modalitatea prin care acesta lucrează este
+            următoarea:
+        <ol>
+            <li>
+                Există două array-uri instances care stocheaza instanțe ale claselor și bindings care stochează legături
+                între numele unei clase
+                și implementările lor care urmează să fie instanțiate la un moment dat.
+            </li>
+            <li>
+                Aceste array-uri sunt populate folosind cele două metode instance și binding
+            </li>
+            <li>
+                Modalitatea prin care o clasă este rezolvată de către IOC Container se află în metoda
+                make din clasa Application. Logica acestei metode este următoarea: funcția mai intâi verifică
+                dacă clasa cerută se află în array-ul instances, în caz afirmativ o returnează, atfel continuă căutarea
+                în array-ul bindings, în caz afirmativ instanțiază clasa și o returnează, altfel încearcă să facă
+                autoload clasei cerute.
+            </li>
+            <li>
+                Componenta de inversion of control din acest container vine atunci când avem o clasă al cărei
+                constructor
+                necesită alte clase ca parametri. În acest caz, Containerul va incerca să instanțieze mai întâi clasele
+                necesare și să
+                le paseze ca parametru clasei dorite, după care va returna instanța acesteia.
+            </li>
+        </ol>
+        </p>
+
+        <h3 id="routing"><span>7.2</span> Sistemul de routing</h3>
+        <p>
+            Sistemul de routing realizat folosește următoarele clase: Router, Route, Request, Response. Clasa router
+            este cea
+            care se ocupă cu direcționarea traficului pe site, aceasta stabiliște care sunt rutele care există pe site
+            și
+            le rezolvă în consecință. Clasa Route conține informații referitoare la o rută precum: url-ul la care se
+            regăsește, ce controller este responsabil de rezolvarea ei, cât și care este verbul http la care se aplică.
+        </p>
+        <p>
+            Clasa Request reprezintă o mapare a variabilei superglobale $_REQUEST din PHP și conține diverse funcții
+            care
+            eficientizează lucrul cu datele requesturilor făcute de router. Iar în final, clasa Response se ocupă cu
+            setarea informațiilor de răspuns(status code etc.) pentru un request al userului.
+        </p>
+        <p>
+            Rutele sunt declarate în fișierul web.php din folderul routes al proiectului.
+        </p>
+
+        <blockquote>
+            <pre>
+                <code>
+Route::get('/pastes', "PasteController@index");
+Route::post('/pastes', "PasteController@store");
+Route::post("/pastes/unlock-paste", "PasteController@unlockPaste");
+Route::post("/pastes/burn","PasteController@validateBurnAfterRead");
+
+Route::regex("/\/pastes\/locked-paste\/[a-zA-Z0-9]+/","PasteController@lockedPaste","get");
+Route::regex("/\/pastes\/burn-after-read\/[a-zA-Z0-9]+/","PasteController@burnAfterRead","get");
+                </code>
+            </pre>
+        </blockquote>
+
+        <h3 id="validare"><span>7.3</span> Modalitatea de validare a datelor</h3>
+        <p>
+            Clasa Validator este cea care este responsabilă de validarea inputurilor primite de la utilizatori. Aceasta
+            conține
+            un set de reguli predefinite (required, email, confirmation, min, max) pe care clasa le folosește ca să
+            valideze
+            datele.
+        </p>
+
+        <blockquote>
+            <pre>
+                <code>
+public const RULE_REQUIRED = 'required';
+public const RULE_EMAIL = 'email';
+public const RULE_UNIQUE = 'unique';
+public const RULE_MATCH = 'match';
+public const RULE_MIN = 'min';
+public const RULE_MAX = 'min';
+
+---------------------------------------------------------------------------------------------------------------
+
+public function rules()
+{
+    return [
+        'username' => [Validator::RULE_REQUIRED],
+        'email' => [Validator::RULE_REQUIRED, Validator::RULE_EMAIL, [Validator::RULE_UNIQUE, 'class' => $this]],
+        'password' => [Validator::RULE_REQUIRED, [Validator::RULE_MIN, 'min' => 6]],
+        'confirm_password' => [Validator::RULE_REQUIRED, [Validator::RULE_MATCH, 'match' => 'password']]
+    ];
+}
+
+                </code>
+            </pre>
+        </blockquote>
+
+
+        <h3 id="sesiune"><span>7.4</span> Modalitatea de gestiune a sesiunii curente</h3>
+        <p>
+            Pentru gestionarea sesinii curente am creat clasa Session care mapeaza variabila superglobala $_SESSION și
+            adaugă o interfață mai prietenoasă pentru lucrul cu aceasta variabilă. De asemenea, am adaugat și conceptul
+            de
+            "flash message" care adaugă o variabilă în sesiune pentru o scurtă perioadă de timp. Este folosit adesea
+            pentru
+            a afișa mesaje de succes/eșec ale unor operații.
+        </p>
+        <p>
+            Clasa Application conține o instanță a sesiunii, în array-ul instances, pe care o folosește în lucrul cu
+            utilizatorii.
+        </p>
+
+
+        <h3 id="db"><span>7.5</span> Procedeul de gestiune a bazei de date</h3>
+        <p>
+            Pentru lucrul cu o bază de date am optat pentru folosirea unei baze date MySQL, datorită suportului
+            oferit de către limbajul PHP. Conexiunea cu aceasta se realizează cu ajutorul clasei PDO, care oferă suport
+            nativ pentru această operație.
+        <p>
+            De asemenea în realizarea tabelelor am optat pentru crearea unor migrații care au ca scop gestionarea
+            operațiilor
+            DML ce urmează a fi efectuate asupra bazei MySQL. Aceste fișiere pot fi găsite în directorul migrations al
+            proiectului.
+        </p>
+        <p>
+            În plus, pentru emularea primei componente din modelul arhitectural MVC, modelul, am realizat un ORM(Object
+            Relational Mapping)
+            care gestionează toate operațiile DDL efectuate de aplicația web în baza de date. Pentru aceasta, am creat
+            clasa abstractă DbModel, care este mai apoi extinsă de toate clasele ce reprezintă entități în aplicația
+            noastră (Paste,
+            User, Syntax etc.).
+        </p>
+        <p>
+            Aceasta conține funcții generice precum: insert, save, latest, find, findOne, hasOne, belongsTo, hasMany
+            etc., care induc scrierea
+            de cod mai curat și ușor de înțeles de către programatori.
+        </p>
+
+        <h3 id="middleware"><span>7.6</span> Middlewares</h3>
+        <p>
+            Mecanismul middleware oferă o modalitate eficientă de inspectare și filtrare a cererilor HTTP care intră în
+            aplicația noastră. Spre exemplu, aplicația noastră conține un middleware care restricționează accesul
+            utilizatorilor neautentificati
+            pe pagina "My pastes".
+        </p>
+        <p>
+            Pentru a crea un middleware este nevoie sa creem o clasă în directorul middlewares care să
+            extindă clasa abstractă Middleware. Aceasta va fi obligată să implementeze funcția execute, funcție care
+            va fi apelată la momentul requestului.
+        </p>
+        <p>
+            Pentru a face implementarea este nevoie ca în constructorul controllerului, în care se afla metodele
+            rutelor care dorim să fie filtrate, să fie înregistrat un middleware ca în exemplul de mai jos:
+
+        </p>
+
+        <blockquote>
+                <pre>
+                    <code>
+public function __construct()
+{
+    $this->registerMiddleware(new CheckIfAdmin());
+}
+
+                    </code>
+                </pre>
+        </blockquote>
+
+        <h3 id="formulare"><span>7.7</span> Formulare</h3>
+        <p>
+            În vederea utilizării formularelor pentru diverse cereri către server, am creat clase ajutătoare care
+            abstractizează procesul de creare, validare și istoricul unui formular. Acestea se regăsesc în directorul
+            forms.
+        </p>
+        <p>
+            Clasa Form reprezintă containerul în care vor fi adaugate toate câmpurile formularului. Aceasta se ocupa cu
+            :
+            memorarea metodei și rutei către care se va face cererea, adăugarea câmpurilor precum textarea, input,
+            button și
+            afișarea tuturor componentelor pe ecran.
+        </p>
+        <p>
+            Clasele Textarea si InputField sunt subclase ale abstractizarii BaseField, ce reprezintă implementări
+            concrete
+            ale conceptelor întâlnite.
+        </p>
+        <p>
+            Mai există și clasa Button care generează butonul ce va fi folosit pentru trimiterea cererii formularului
+            către server.
+        </p>
+
+        <blockquote>
+            <pre>
+                <code>
+&lt;?php $form = \app\forms\Form::begin('/register', "POST", "register-form simple-form") ?&gt;
+    &lt;?= $form->inputField($model, 'username') ?&gt;
+    &lt;?= $form->inputField($model, "email")->emailField() ?&gt;
+    &lt;?= $form->inputField($model,"password")->passwordField() ?&gt;
+    &lt;?= $form->inputField($model, 'confirm_password')->passwordField() ?&gt;
+    &lt;?= $form->submitButton('Register', 'form-group login-buttons', 'btn btn-primary') ?&gt;
+&lt;?php \app\forms\Form::end() ?&gt;
+            </code>
+            </pre>
+        </blockquote>
+
+        <h3 id="ajax"><span>7.8</span> Apeluri AJAX</h3>
+        <p>
+            Pentru a îmbunătăți experiența utilizatorului cu aplicația, am utilizat apeluri AJAX care gestionează
+            cereri importante către server precum: oferirea de roluri altori utilizatori asupra unui paste, creșterea
+            numărului de vizualizări ale unui paste etc. . Un exemplu notabil pentru această secțiune următorul block de
+            cod:
+        <blockquote>
+        <pre>
+            <code>
+let request = new XMLHttpRequest();
+let url = '/paste/add-editor/<?= $paste->id ?>';
+request.open("POST", url, true);
+request.responseType = "json";
+
+let payload = new FormData();
+payload.append("username", input.value);
+payload.append("role", roleSelect.value);
+
+
+request.onreadystatechange = function () {
+if (this.readyState === 4 && this.status === 200) {
+    modalTitle.innerText = request.response["message"];
+    input.value = "";
+    modal.style.display = "flex";
+    error.innerText = "";
+    return;
+}
+
+error.innerText = request.response["errors"]["username"];
+};
+request.send(payload);
+            </code>
+        </pre>
+        </blockquote>
+        </p><p>
+        Aici se realizează operațiunea de oferire de rol unui anumit user pentru o postare de către deținătorul acesteia.
+        Observăm că pentru inițierea apelului formulăm un nou XMLHttpRequest cu care descriem o conexiune de tip POST
+        asupra unui url specificat. Setăm tipul răspunsului să fie JSON, iar apoi construim payload-ul care urmează să fie
+        trimis către server. În funcția atribuită lui onreadystatechange, verificăm răspunsul primit și declanșăm un modal
+        adecvat acestuia. Apoi trimitem requestul către server folosind funcția send.
+        </p>
+
+        <h3 id="sass"><span>7.9</span> Syntactically Awesome Style Sheet</h3>
+        <p>
+            Pentru stilizarea paginilor am recurs la utilizarea tehnologiei SASS, care oferă o modalitate mai
+            ușoara de a scrie cod CSS. Organizarea fisierelor scss am facut-o dupa unul din patternurile recomandate in
+            documentația aflată pe site-ul sass.com și anume patternul 7-1. Astfel că, fișierele au fost împărțite în 7 directoare
+            diferite fiecare având un rol bine stabilit (component, page, layout etc.), dupa care au fost incluse toate în
+            fișierul ce va urma a fi compilat și transformat într-un fișier .css, app.scss.
+        </p>
+
+
+        <h3 id="highlight"><span>7.10</span> Syntax Highlight</h3>
+        <p>
+            În ceea ce privește modul de afișare a codului publicat de utilizatori, am creat prin intermediul limbajului
+            Javascript un syntax highlighter care se folosește de un set de expresii regulate, specifice limbajului de
+            programare specificat în postare, pentru a colora sintaxa codului de pe site în momentul încărcării acestuia pe pagină.
+
+            <blockquote>
+        <pre>
+            <code>
+let pattern ={
+{
+    name: 'backquote',
+    match: /^(\`[^\`]*`)/
+}, {
+    name: 'symbol',
+    match: /^(-&gt;|=&gt;|=|\+|::|-|\*|<|>|&&|&lt;=|\[|\]|!=|!|\.|null|\?\?|&lt;\?php|\?&gt;)/
+}, {
+    name: 'keyword',
+    match: /^(function|return|switch|case|for|if|else|this|public|private|protected|use|class|extends|implements|namespace|new|throw)\b/
+}, {
+    name: 'boolean',
+    match: [/^(true|false)/]
+}, {
+    name: 'number',
+    match: [/^(\d+)/]
+},
+}
+
+----------------------------------------------------------------------------------------------------------------------------------
+window.addEventListener("load", () => {
+    let sourceCode = document.getElementById("source");
+    let patternName = "<?= strtolower($paste->syntax()->name);?>";
+    let syntax = new SyntaxHighlither();
+    console.log(syntax);
+    syntax.setLanguage(patternName, pattern);
+    syntax.highlight(sourceCode, patternName);
+});
+            </code>
+        </pre>
+    </blockquote>
+        </p>
+    </section>
+
+
+    <section typeof="sa:ReferenceList" id="referinte" role="doc-bibliography">
+        <h2><span>5. </span>Referinţe</h2>
+        <ol>
+            <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage" id="Scholarly-html"
+                resource="https://w3c.github.io/scholarly-html/">
+                <cite property="schema:name">
+                    <a href="https://w3c.github.io/scholarly-html/">Scholarly HTML</a>
+                </cite>, by
+                <span property="schema:author" typeof="schema:Person">
+                            <span property="schema:givenName">Tzviya</span>
+                            <span property="schema:aditionalName">Wiley</span>
+                            <span property="schema:familiyName">Siegman</span>
+
+                </span>&amp;
+                <span property="schema:author" typeof="schema:Person">
+                    <span property="schema:givenName">Robin</span>
+                    <span property="schema:familiyName">Berjon</span>
+                </span>
+            </li>
+            <li property="schema:citation" role="doc-biblioentry" typeof="schema:WebPage" id="busaco"
+                resource="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html">
+                 <span property="schema:author" typeof="schema:Person">
+                        <span property="schema:givenName">Sabin</span>
+                        <span property="schema:aditionalName">Corneliu</span>
+                        <span property="schema:familiyName">Buraga</span>
+                 </span>,
+                <cite property="schema:name">
+                    <a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-film.html">
+                        Site-ul disciplinei "Tehnologii Web"
+                    </a> parte a
+                    <span typeof="schema:Organization"
+                          resource="https://www.uaic.ro" property="schema:isPartOf">
+                            <a href="https://www.uaic.ro">
+                             <span property="schema:name">UAIC</span>
+                          </a>
+                    </span>
+                </cite>
+            </li>
+            <li class="ref-something" typeof="schema:ScholarlyArticle"
+                resource="https://github.com/rick4470/IEEE-SRS-Tempate">
+                <span property="schema:author" typeof="schema:Person">
+                  <span property="schema:familyName">H</span>
+                  <span property="schema:givenName">Rick</span>.
+                </span>
+                <cite property="schema:name">
+                    <a href="https://github.com/rick4470/IEEE-SRS-Tempate">IEEE-Template.</a>
+                </cite>
+                <span property="schema:isPartOf" typeof="schema:Periodical">
+                  <span property="schema:name">GitHub</span>
+                </span>
+            </li>
+        </ol>
+    </section>
+</div>
+</body>
+</html>

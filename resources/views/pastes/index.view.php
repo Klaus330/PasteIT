@@ -1,3 +1,7 @@
+<?php
+$this->setTitle("Paste - $paste->title");
+?>
+
 <div class="flex">
     <section class="paste-section">
         <div class="row">
@@ -13,7 +17,7 @@
                         <div class="paste-bottom-content">
                             <div class="username">
                                 <img src="/img/svg/user-icon.svg" alt="user-icon"/>
-                                <a href="#"><?= $paste->user()->username ?></a>
+                                <a href="/user/<?=$paste->user()->id?>"><?= $paste->user()->username ?></a>
                             </div>
 
                             <div class="date">
@@ -38,8 +42,10 @@
                             </div>
                         </div>
 
-                        <?php if (session()->has('user') && $paste->canEdit(auth()->id)): ?>
+                        <?php if (session()->has('user') && $paste->canEdit(auth()->id)):?>
+
                             <div class="paste-actions">
+                                <?php if(!auth()->isAdmin()):?>
                                 <div class="edit">
                                     <a href="/paste/versions/<?= $paste->slug ?>">
                                         <img src="/img/svg/versions.svg" alt="versions"/>
@@ -57,7 +63,16 @@
                                         <img src="/img/svg/edit.svg" alt="edit"/>
                                     </a>
                                 </div>
-                                <?php if ($paste->isOwner(auth()->id)): ?>
+                                    <?php if($paste->isOwner(auth()->id)): ?>
+                                        <div class="delete">
+                                            <form action="/paste/delete/<?= $paste->slug ?>" method="post">
+                                                <button class="btn">
+                                                    <img src="/img/svg/delete.svg" alt="delete"/>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php elseif(auth()->isAdmin()): ?>
                                     <div class="delete">
                                         <form action="/paste/delete/<?= $paste->slug ?>" method="post">
                                             <button class="btn">
@@ -66,6 +81,10 @@
                                         </form>
                                     </div>
                                 <?php endif; ?>
+                            </div>
+                        <?php else: ?>
+                            <div class="paste-actons">
+                                <a href="/contact?paste=<?=$paste->slug?>">Report abuse</a>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -85,7 +104,6 @@
 
                         <div>
                             <a class="btn-toolbar" href="/paste/raw/<?= $paste->slug ?>">raw</a>
-                            <a class="btn-toolbar" href="#">download</a>
                         </div>
 
                     </div>
@@ -93,7 +111,7 @@
                         <div class="source-code">
                             <pre class="source-pre">
                                 <code id="source"
-                                      class="source <?= strtolower($paste->syntax()->name) ?>"><?= $latestVersion->code ?? $paste->code ?></code>
+                                      class="source <?= strtolower($paste->syntax()->name) ?>"><?= htmlspecialchars_decode($latestVersion->code ?? $paste->code) ?></code>
                             </pre>
                         </div>
                     </div>
@@ -110,8 +128,8 @@
                 </div>
 
                 <div class="col-12">
-                    <textarea name="raw-data" id="raw-data" cols="30" rows="10"
-                              class="paste-text-area"><?= $latestVersion->code ?? $paste->code ?></textarea>
+                    <textarea readonly name="raw-data" id="raw-data" cols="30" rows="10"
+                              class="paste-text-area"><?= htmlspecialchars_decode($latestVersion->code ?? $paste->code) ?></textarea>
                 </div>
 
             </div>
@@ -175,7 +193,7 @@
     });
 
 
-    document.getElementById("editor-button").addEventListener("click", addEditor);
+    document.getElementById("editor-button")?.addEventListener("click", addEditor);
 
     function addEditor() {
         let modal = document.getElementById("<?= $paste->slug ?>");
@@ -215,8 +233,8 @@
         request.send(payload);
 
     }
-
-
+</script>
+<script>
     function updateViews() {
         let request = new XMLHttpRequest();
 

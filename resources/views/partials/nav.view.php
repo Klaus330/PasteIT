@@ -7,10 +7,10 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="/ScholarlyHtml.html" class="nav-link">About</a>
+                    <a href="/about.html" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/contact" class="nav-link">Contact</a>
+                    <a href="/contact" class="nav-link">Report Abuse</a>
                 </li>
                 <li class="nav-item">
                     <a href="/" class="btn btn-succes header-paste-btn">Paste</a>
@@ -27,6 +27,9 @@
                     <li class="login-dropdown-menu-item"><a href="/user/profile">Profile</a></li>
                     <li class="login-dropdown-menu-item"><a href="/user/settings">Settings</a></li>
                     <li class="login-dropdown-menu-item"><a href="/user/mypastes">My Pastes</a></li>
+                    <?php if(auth()->isAdmin()):?>
+                        <li class="login-dropdown-menu-item"><a href="/admin/dashboard">Dashboard</a></li>
+                    <?php endif;?>
                     <li class="login-dropdown-menu-item"><a href="/logout">Logout</a></li>
                 </ul>
             <?php endif; ?>
@@ -41,10 +44,10 @@
                 <a href="/" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link">About</a>
+                <a href="/about.html" class="nav-link">About</a>
             </li>
             <li class="nav-item">
-                <a href="/" class="nav-link">Contact</a>
+                <a href="/contact" class="nav-link">Contact</a>
             </li>
 
             <?php if (!app()::isGuest()): ?>
@@ -63,7 +66,11 @@
                 <li class="nav-item">
                     <a href="/user/mypastes" class="nav-link">My pastes</a>
                 </li>
-
+                <?php if(auth()->isAdmin()):?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/dashboard">Dashboard</a>
+                    </li>
+                <?php endif;?>
                 <li class="nav-item">
                     <a href="/logout" class="nav-link">Logout</a>
                 </li>

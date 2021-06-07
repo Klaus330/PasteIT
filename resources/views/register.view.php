@@ -1,4 +1,6 @@
-
+<?php
+$this->setTitle("Register");
+?>
 <form action="/register" method="POST">
     <div>
         <label for="">Username</label>
