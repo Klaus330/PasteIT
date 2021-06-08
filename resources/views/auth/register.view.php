@@ -1,5 +1,6 @@
 <?php
 /** @var $model \app\models\Model*/
+$this->setTitle("Reigister")
 ?>
 <div class="row">
     <div class="row mt-3">
