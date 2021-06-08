@@ -1,7 +1,6 @@
 <?php
+$this->setTitle("Dashboard")
 ?>
-
-
 
 <section class="section">
     <h2>Lastest reports</h2>
