@@ -6,7 +6,6 @@ $this->setTitle("Edit - $paste->title");
         <div class="row">
             <input type="hidden" name="id_paste" value="<?=$paste->id ?>">
             <input type="hidden" name="id_user" value="<?= auth()->id ?>">
-
             <div class="grid">
                 <div class="col-5 col-md-3 flex align-start">
                     <label class="form-label" for="exposure">Paste Exposure:</label>
@@ -39,15 +38,16 @@ $this->setTitle("Edit - $paste->title");
                 </div>
                 <div class="col-12 col-md-6 flex align-center">
                     <select name="expiration_date" id="expiration_date" class="form-select">
-                        <option value="" selected>None</option>
-                        <option value="never" >Never</option>
-                        <option value="1 min">1 Minutes</option>
-                        <option value="10 min">10 Minutes</option>
-                        <option value="1 hour">1 Hour</option>
-                        <option value="1 day">1 Day</option>
-                        <option value="1 week">1 Week</option>
-                        <option value="1 month">1 Month</option>
-                        <option value="1 year">1 Year</option>
+
+                        <option value=""  disabled>None</option>
+                        <option value="never" <?=  (session()->has('user') && auth()->settings()->expiration == 'never') ? 'selected' : '' ?>>Never</option>
+                        <option value="1 min" <?=  (session()->has('user') && auth()->settings()->expiration == '1 min') ? 'selected' : '' ?>>1 Minutes</option>
+                        <option value="10 min" <?=  (session()->has('user') && auth()->settings()->expiration == '10 min') ? 'selected' : '' ?>>10 Minutes</option>
+                        <option value="1 hour" <?=  (session()->has('user') && auth()->settings()->expiration == '1 hour') ? 'selected' : '' ?>>1 Hour</option>
+                        <option value="1 day" <?=  (session()->has('user') && auth()->settings()->expiration == '1 day') ? 'selected' : '' ?>>1 Day</option>
+                        <option value="1 week" <?=  (session()->has('user') && auth()->settings()->expiration == '1 week') ? 'selected' : '' ?>>1 Week</option>
+                        <option value="1 month" <?=  (session()->has('user') && auth()->settings()->expiration == '1 month') ? 'selected' : '' ?>>1 Month</option>
+                        <option value="1 year" <?=  (session()->has('user') && auth()->settings()->expiration == '1 year') ? 'selected' : '' ?>>1 Year</option>
                     </select>
                 </div>
             </div>
@@ -92,7 +92,7 @@ $this->setTitle("Edit - $paste->title");
                 </div>
 
                 <div class="col-12">
-                    <textarea name="code" id="code" cols="30" rows="30" class="paste-text-area"><?= $latestVersion->code ?? $paste->code?></textarea>
+                    <textarea name="code" id="code" cols="30" rows="30" class="paste-text-area"><?= htmlspecialchars_decode($latestVersion->code ?? $paste->code)?></textarea>
                 </div>
             </div>
         </div>

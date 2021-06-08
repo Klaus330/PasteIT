@@ -92,7 +92,7 @@ class Paste extends DbModel
 
     public function edit($data)
     {
-        if ($data["expiration_date"] != "never") {
+        if (array_key_exists('expiration_date',$data) && $data["expiration_date"] != "never") {
             $temp = new \DateTimeImmutable();
             $addition = $data["expiration_date"];
             $data["expiration_date"] = $temp->modify("+$addition")->format('Y-m-d H:i:s');
